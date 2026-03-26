@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DISTILL — Школа метанавыков</title>
+  <meta name="description" content="Научно обоснованный курс управления мозгом, средой и привычками. 12 уроков. Без эзотерики. Первые 4 урока бесплатно." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #E8FF00;
+      --dark: #0A0A0A;
+      --dark2: #111111;
+      --dark3: #161616;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --font: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: var(--yellow);
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      opacity: 0.7;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      border: 2px dashed var(--dark);
+      padding: 10px 22px;
+      text-transform: lowercase;
+    }
+
+    /* ─── SCREEN 1: HERO ─── */
+    .screen-hero {
+      min-height: 100vh;
+      background: var(--yellow);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 0 56px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+      border: 1.5px solid rgba(0,0,0,0.35);
+      padding: 6px 14px;
+      border-radius: 100px;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .tag-yellow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+      border: 1.5px dashed rgba(0,0,0,0.6);
+      padding: 6px 14px;
+      border-radius: 100px;
+      color: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.07);
+    }
+
+    .hero-title {
+      font-size: clamp(52px, 6.5vw, 100px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: var(--dark);
+      margin-bottom: 28px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(0,0,0,0.65);
+      max-width: 440px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn-dark {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: lowercase;
+      text-decoration: none;
+      color: var(--yellow);
+      background: var(--dark);
+      padding: 16px 36px;
+      border: 2px solid var(--dark);
+      letter-spacing: 0.01em;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: lowercase;
+      text-decoration: none;
+      color: var(--dark);
+      border: 2px dashed var(--dark);
+      padding: 16px 36px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-right {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, var(--yellow) 0%, transparent 100%);
+    }
+
+    /* ─── SCREEN 2: AHA-MOMENT ─── */
+    .screen-aha {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .aha-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    .aha-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .aha-stat-overlay {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      right: 48px;
+    }
+
+    .aha-stat-num {
+      font-size: clamp(72px, 10vw, 130px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--yellow);
+    }
+
+    .aha-stat-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-top: 8px;
+      text-transform: lowercase;
+    }
+
+    .aha-stat-source {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 10px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .aha-text {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .aha-tag-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .tag-outline {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .tag-outline-y {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+      border: 1.5px dashed var(--yellow);
+      padding: 6px 14px;
+      border-radius: 100px;
+      color: var(--yellow);
+    }
+
+    .aha-title {
+      font-size: clamp(36px, 4.5vw, 64px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .aha-title em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .aha-body {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      max-width: 460px;
+      margin-bottom: 32px;
+    }
+
+    .aha-body strong { color: var(--white); font-weight: 700; }
+
+    .aha-source {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+      line-height: 1.5;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+    }
+
+    /* ─── SCREEN 3: MYTHS ─── */
+    .screen-myths {
+      background: var(--dark2);
+      padding: 120px 56px;
+    }
+
+    .section-header {
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: var(--white);
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .myths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 56px;
+    }
+
+    .myth-card {
+      background: var(--dark3);
+      padding: 40px 36px;
+    }
+
+    .myth-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 24px;
+    }
+
+    .myth-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+
+    .myth-text {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,255,255,0.2);
+    }
+
+    .reality-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+
+    .reality-text {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--white);
+    }
+
+    .myths-conclusion {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.5);
+      max-width: 700px;
+      border-left: 3px solid var(--yellow);
+      padding-left: 28px;
+    }
+
+    .myths-conclusion em {
+      font-style: normal;
+      color: var(--white);
+    }
+
+    /* ─── SCREEN 4: FOR WHOM ─── */
+    .screen-forwhom {
+      background: var(--dark);
+      padding: 120px 56px;
+    }
+
+    .forwhom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .forwhom-card {
+      background: var(--dark3);
+      padding: 48px 36px;
+      position: relative;
+    }
+
+    .forwhom-card.active {
+      background: var(--yellow);
+    }
+
+    .forwhom-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 28px;
+    }
+
+    .forwhom-icon svg { width: 100%; height: 100%; }
+
+    .forwhom-who {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .forwhom-card.active .forwhom-who { color: var(--dark); }
+
+    .forwhom-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .forwhom-card.active .forwhom-desc { color: rgba(0,0,0,0.65); }
+
+    .forwhom-trigger {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-top: 24px;
+      text-transform: lowercase;
+    }
+
+    .forwhom-card.active .forwhom-trigger { color: var(--dark); }
+
+    /* ─── SCREEN 5: FRAMEWORK ─── */
+    .screen-framework {
+      background: #0F0F0F;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fw-photo-strip {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fw-photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .fw-photo-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, #0F0F0F 0%, transparent 100%);
+    }
+
+    .fw-title-block {
+      padding: 0 56px;
+      margin-top: -80px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+
+    .fw-title {
+      font-size: clamp(40px, 5.5vw, 80px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: var(--white);
+    }
+
+    .fw-title em { font-style: normal; color: var(--yellow); }
+
+    .fw-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      max-width: 280px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      padding: 0 56px 80px;
+    }
+
+    .fw-card {
+      padding: 40px 32px;
+      background: #0A0A0A;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fw-card:first-child { background: var(--yellow); }
+
+    .fw-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 32px;
+    }
+
+    .fw-card:first-child .fw-num { color: rgba(0,0,0,0.4); }
+
+    .fw-card-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .fw-card:first-child .fw-card-title { color: var(--dark); }
+
+    .fw-card-sub {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: lowercase;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+
+    .fw-card:first-child .fw-card-sub { color: rgba(0,0,0,0.5); }
+
+    .fw-card-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+      flex: 1;
+    }
+
+    .fw-card:first-child .fw-card-body { color: rgba(0,0,0,0.6); }
+
+    .fw-science {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      font-style: italic;
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+
+    .fw-card:first-child .fw-science { color: rgba(0,0,0,0.3); }
+
+    /* ─── SCREEN 6: PROGRAM ─── */
+    .screen-program {
+      background: var(--dark2);
+      padding: 120px 56px;
+    }
+
+    .program-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+    }
+
+    .program-meta {
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .program-meta strong { color: var(--yellow); }
+
+    .program-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .program-block {
+      background: var(--dark3);
+    }
+
+    .program-block-header {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      padding: 28px 36px;
+      cursor: pointer;
+      gap: 24px;
+    }
+
+    .program-block-header:hover { background: rgba(255,255,255,0.03); }
+
+    .pb-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+    }
+
+    .pb-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: var(--white);
+    }
+
+    .pb-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      text-transform: lowercase;
+    }
+
+    .pb-toggle {
+      font-size: 20px;
+      color: var(--yellow);
+      font-weight: 900;
+      transition: transform 0.3s;
+    }
+
+    .program-block.open .pb-toggle { transform: rotate(45deg); }
+
+    .program-lessons {
+      display: none;
+      padding: 0 36px 28px 140px;
+      gap: 16px;
+      flex-direction: column;
+    }
+
+    .program-block.open .program-lessons { display: flex; }
+
+    .lesson-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .lesson-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.2);
+      padding-top: 3px;
+    }
+
+    .lesson-info {}
+
+    .lesson-title-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .lesson-skill-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+      border: 1px solid rgba(232,255,0,0.3);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .lesson-free {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dark);
+      background: var(--yellow);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+    }
+
+    /* ─── SCREEN 7: RESULTS ─── */
+    .screen-results {
+      background: var(--yellow);
+      padding: 120px 56px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .result-card {
+      background: rgba(0,0,0,0.07);
+      padding: 48px 40px;
+    }
+
+    .result-num {
+      font-size: clamp(64px, 8vw, 100px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .result-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 12px;
+      text-transform: lowercase;
+      letter-spacing: -0.02em;
+    }
+
+    .result-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ─── SCREEN 8: PRICING ─── */
+    .screen-pricing {
+      background: var(--dark);
+      padding: 120px 56px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .pricing-card {
+      background: var(--dark3);
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      background: var(--yellow);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -1px;
+      right: 32px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--dark);
+      color: var(--yellow);
+      padding: 6px 14px;
+    }
+
+    .pricing-card.featured .pricing-badge {
+      background: var(--dark);
+      color: var(--yellow);
+    }
+
+    .pricing-tier {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+
+    .pricing-card.featured .pricing-tier { color: rgba(0,0,0,0.5); }
+
+    .pricing-price {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .pricing-card.featured .pricing-price { color: var(--dark); }
+
+    .pricing-price-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 36px;
+    }
+
+    .pricing-card.featured .pricing-price-note { color: rgba(0,0,0,0.45); }
+
+    .pricing-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .pricing-card.featured .pricing-divider { background: rgba(0,0,0,0.12); }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+      margin-bottom: 40px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.6);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .pricing-card.featured .pricing-features li { color: rgba(0,0,0,0.65); }
+
+    .pricing-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
+    .pricing-card.featured .pricing-features li::before { color: var(--dark); }
+
+    .btn-pricing {
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: lowercase;
+      text-decoration: none;
+      padding: 16px 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-pricing-outline {
+      color: var(--white);
+      border: 2px dashed rgba(255,255,255,0.3);
+    }
+
+    .btn-pricing-dark {
+      color: var(--yellow);
+      background: var(--dark);
+      border: 2px solid var(--dark);
+    }
+
+    /* ─── SCREEN 9: FAQ ─── */
+    .screen-faq {
+      background: var(--dark2);
+      padding: 120px 56px;
+    }
+
+    .faq-list {
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      cursor: pointer;
+      gap: 24px;
+    }
+
+    .faq-q-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: lowercase;
+    }
+
+    .faq-toggle {
+      font-size: 24px;
+      color: var(--yellow);
+      font-weight: 900;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+    .faq-answer {
+      display: none;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      padding-bottom: 28px;
+      max-width: 720px;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ─── SCREEN 10: LEAD MAGNET ─── */
+    .screen-lead {
+      background: var(--dark3);
+      padding: 120px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .lead-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+
+    .lead-title {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .lead-title em { font-style: normal; color: var(--yellow); }
+
+    .lead-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 40px;
+    }
+
+    .lead-what {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lead-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .lead-item-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--yellow);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .lead-item-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .lead-item-text strong { color: var(--white); }
+
+    .lead-cta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn-lead {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: lowercase;
+      text-decoration: none;
+      color: var(--dark);
+      background: var(--yellow);
+      padding: 20px 40px;
+      letter-spacing: 0.01em;
+      text-align: center;
+    }
+
+    .lead-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-transform: lowercase;
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      text-transform: lowercase;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+    .footer-socials {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-socials a {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      text-transform: lowercase;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-socials a:hover { color: var(--yellow); }
+
+    /* ─── STICKMAN SVG ILLUSTRATIONS ─── */
+    .stickman-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">distill</a>
+  <ul class="nav-links">
+    <li><a href="#program">программа</a></li>
+    <li><a href="#methodology">методология</a></li>
+    <li><a href="#forwhom">для кого</a></li>
+    <li><a href="#pricing">тарифы</a></li>
+  </ul>
+  <a href="#lead" class="nav-cta">начать бесплатно →</a>
+</nav>
+
+<!-- SCREEN 1: HERO -->
+<section class="screen-hero" id="hero">
+  <div class="hero-left" style="padding-top:120px;">
+    <div class="hero-tags">
+      <span class="tag-yellow">метанавыки</span>
+      <span class="tag">нейробиология</span>
+      <span class="tag">поведенческий дизайн</span>
+    </div>
+    <h1 class="hero-title">дистилляция<br>себя.</h1>
+    <p class="hero-subtitle">Убираем шум. Оставляем суть. Научно обоснованный пульт управления мозгом, средой и привычками — без эзотерики и мотивационного сахара.</p>
+    <div class="hero-actions">
+      <a href="#lead" class="btn-dark">начать бесплатно →</a>
+      <a href="#methodology" class="btn-outline">как это работает</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="photo1.webp" alt="distill" />
+  </div>
+</section>
+
+<!-- SCREEN 2: AHA-MOMENT -->
+<section class="screen-aha" id="aha">
+  <div class="aha-photo">
+    <img src="photo2.webp" alt="автопилот" />
+    <div class="aha-stat-overlay">
+      <div class="aha-stat-num">88%</div>
+      <div class="aha-stat-label">действий в день — автопилот</div>
+      <div class="aha-stat-source">Bargh &amp; Chartrand, American Psychologist, 1999</div>
+    </div>
+  </div>
+  <div class="aha-text">
+    <div class="aha-tag-row">
+      <span class="tag-outline-y">aha-момент</span>
+      <span class="tag-outline">прямо сейчас</span>
+    </div>
+    <h2 class="aha-title">прямо сейчас<br>вами управляет<br><em>автопилот.</em></h2>
+    <p class="aha-body">Сожмите челюсть. Почувствуйте напряжение в плечах. Дыхание поверхностное? Это не вы — это ваш мозг-прогнозист, запертый в черепе, который строит модели мира и паникует при малейшем расхождении с ожиданиями.<br><br><strong>Теперь разожмите челюсть. Опустите плечи. Сделайте глубокий вдох.</strong><br><br>Почувствовали разницу? Вы только что провели первую дистилляцию — отделили стресс тела от задачи, которую решаете. Это и есть метанавык.</p>
+    <div class="aha-source">Теория конструирования эмоций: Lisa Feldman Barrett,<br>Social Cognitive and Affective Neuroscience, 2017</div>
+  </div>
+</section>
+
+<!-- SCREEN 3: MYTHS -->
+<section class="screen-myths" id="myths">
+  <div class="section-header">
+    <div class="section-eyebrow">почему не работает</div>
+    <h2 class="section-title">почему вы всё понимаете,<br>но <em>ничего не делаете?</em></h2>
+  </div>
+  <div class="myths-grid">
+    <div class="myth-card">
+      <div class="myth-num">01</div>
+      <div class="myth-label">миф</div>
+      <div class="myth-text">нужно больше силы воли</div>
+      <div class="reality-label">реальность</div>
+      <div class="reality-text">сила воли проигрывает дизайну среды со счётом 0:10</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-num">02</div>
+      <div class="myth-label">миф</div>
+      <div class="myth-text">нужен жёсткий тайм-менеджмент</div>
+      <div class="reality-label">реальность</div>
+      <div class="reality-text">тайм-менеджмент мёртв без энерджи-менеджмента</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-num">03</div>
+      <div class="myth-label">миф</div>
+      <div class="myth-text">нужно «просто успокоиться»</div>
+      <div class="reality-label">реальность</div>
+      <div class="reality-text">мозг не понимает слов. он понимает язык тела и гормонов</div>
+    </div>
+  </div>
+  <p class="myths-conclusion">Мы забираем пустую середину: <em>академическая нейробиология, переведённая на язык простых протоколов</em> для реальной жизни.</p>
+</section>
+
+<!-- SCREEN 4: FOR WHOM -->
+<section class="screen-forwhom" id="forwhom">
+  <div class="section-header">
+    <div class="section-eyebrow">целевая аудитория</div>
+    <h2 class="section-title">кому нужна<br><em>дистилляция?</em></h2>
+  </div>
+  <div class="forwhom-grid">
+    <div class="forwhom-card active">
+      <div class="forwhom-icon">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="14" r="7" stroke="#0A0A0A" stroke-width="2.5"/>
+          <line x1="28" y1="21" x2="28" y2="38" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="16" y2="34" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="40" y2="34" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="20" y2="50" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="36" y2="50" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="38" y1="24" x2="46" y2="20" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round"/>
+          <line x1="44" y1="18" x2="48" y2="14" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="forwhom-who">предпринимателям и фаундерам</div>
+      <div class="forwhom-desc">Когда бизнес зависит от вашего состояния, а батарейка на 1%. Когда решения принимаются из стресса, а не из стратегии.</div>
+      <div class="forwhom-trigger">→ «я не могу думать стратегически»</div>
+    </div>
+    <div class="forwhom-card">
+      <div class="forwhom-icon">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="14" r="7" stroke="white" stroke-width="2.5"/>
+          <line x1="28" y1="21" x2="28" y2="38" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="16" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="40" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="20" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="36" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="38" y="22" width="12" height="8" rx="1" stroke="white" stroke-width="1.5"/>
+          <line x1="40" y1="26" x2="48" y2="26" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="forwhom-who">it-специалистам и менеджерам</div>
+      <div class="forwhom-desc">Когда выгорание стучится в дверь, а фокус внимания украден думскроллингом и бесконечными встречами.</div>
+      <div class="forwhom-trigger" style="color:var(--yellow);">→ «я всё время занят, но ничего не успеваю»</div>
+    </div>
+    <div class="forwhom-card">
+      <div class="forwhom-icon">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="14" r="7" stroke="white" stroke-width="2.5"/>
+          <line x1="28" y1="21" x2="28" y2="38" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="16" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="40" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="20" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="38" x2="36" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M20 8 Q14 4 16 12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M36 8 Q42 4 40 12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="forwhom-who">всем, кто ищет опору в хаосе</div>
+      <div class="forwhom-desc">Когда мир непредсказуем, единственное, чем вы можете управлять — это ваши реакции. Distill даёт именно этот инструмент.</div>
+      <div class="forwhom-trigger" style="color:var(--yellow);">→ «я не понимаю, что со мной происходит»</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 5: FRAMEWORK -->
+<section class="screen-framework" id="methodology">
+  <div class="fw-photo-strip">
+    <img src="photo3.webp" alt="методология" />
+  </div>
+  <div class="fw-title-block">
+    <h2 class="fw-title">4 этапа<br><em>дистилляции</em></h2>
+    <p class="fw-desc">Каждый блок — отдельный фильтр. Вместе они дают кристально чистую систему управления собой.</p>
+  </div>
+  <div class="fw-grid">
+    <div class="fw-card">
+      <div class="fw-num">0 1</div>
+      <div class="fw-card-title">агент</div>
+      <div class="fw-card-sub">мозг + тело</div>
+      <div class="fw-card-body">Очищаем мозг от режима выживания. Учимся перехватывать контроль у миндалевидного тела и включать префронтальную кору без насилия над собой.</div>
+      <div class="fw-science">Принцип свободной энергии К. Фристона (Nature Reviews Neuroscience, 2010) · Интероцепция и конструирование эмоций (Barrett, 2017)</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">0 2</div>
+      <div class="fw-card-title">среда</div>
+      <div class="fw-card-sub">миры + системы + правила</div>
+      <div class="fw-card-body">Отфильтровываем токсичные контексты. Проектируем среду так, чтобы правильные действия совершались сами — через архитектуру выбора.</div>
+      <div class="fw-science">Теория аффордансов Гибсона (1979) · Nudge-Theory: Thaler &amp; Sunstein (Нобелевская премия, 2017)</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">0 3</div>
+      <div class="fw-card-title">потенциал</div>
+      <div class="fw-card-sub">ресурсы + ограничения</div>
+      <div class="fw-card-body">Убираем утечки энергии. Честный аудит ресурсов по модели HERO и закрытие кранов, через которые утекает ваша батарейка.</div>
+      <div class="fw-science">Психологический капитал HERO: Luthans et al. (2007) · Теория сохранения ресурсов: Hobfoll (1989)</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">0 4</div>
+      <div class="fw-card-title">интервенции</div>
+      <div class="fw-card-sub">действия + метрики</div>
+      <div class="fw-card-body">Кристаллизуем привычки. Внедряем микро-изменения по модели B=MAP, которые работают даже в дни, когда мотивация равна нулю.</div>
+      <div class="fw-science">Модель поведения B=MAP: BJ Fogg (2018) · Двойная петля обучения: Argyris, HBR (1977)</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 6: PROGRAM -->
+<section class="screen-program" id="program">
+  <div class="program-header">
+    <div>
+      <div class="section-eyebrow">программа школы</div>
+      <h2 class="section-title">от автопилота<br>к <em>авторству.</em></h2>
+    </div>
+    <div class="program-meta">
+      <strong>12 уроков</strong> · 4 блока<br>
+      <strong>6 недель</strong> · 2 урока в неделю<br>
+      первые 4 урока <strong>бесплатно</strong>
+    </div>
+  </div>
+  <div class="program-blocks">
+
+    <div class="program-block open">
+      <div class="program-block-header" onclick="toggleBlock(this)">
+        <span class="pb-num">блок 01</span>
+        <div>
+          <div class="pb-title">агент — мозг + тело</div>
+          <div class="pb-sub">3 урока · метакогниция, state management, когнитивная гибкость</div>
+        </div>
+        <span class="pb-toggle">+</span>
+      </div>
+      <div class="program-lessons">
+        <div class="lesson-row">
+          <div class="lesson-num">01</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">добро пожаловать в вашу голову</div>
+            <span class="lesson-skill-tag">метакогниция</span>
+            <span class="lesson-free">бесплатно</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">02</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">как хакнуть своё состояние</div>
+            <span class="lesson-skill-tag">state management</span>
+            <span class="lesson-free">бесплатно</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">03</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">ловушки ума и баги мышления</div>
+            <span class="lesson-skill-tag">когнитивная гибкость</span>
+            <span class="lesson-free">бесплатно</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block">
+      <div class="program-block-header" onclick="toggleBlock(this)">
+        <span class="pb-num">блок 02</span>
+        <div>
+          <div class="pb-title">среда — миры, системы, правила</div>
+          <div class="pb-sub">3 урока · чтение контекста, environment design, социальный интеллект</div>
+        </div>
+        <span class="pb-toggle">+</span>
+      </div>
+      <div class="program-lessons">
+        <div class="lesson-row">
+          <div class="lesson-num">04</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">матрица вокруг нас</div>
+            <span class="lesson-skill-tag">чтение контекста</span>
+            <span class="lesson-free">бесплатно</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">05</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">инженерия контекста</div>
+            <span class="lesson-skill-tag">environment design</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">06</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">социальная гравитация</div>
+            <span class="lesson-skill-tag">социальный интеллект</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block">
+      <div class="program-block-header" onclick="toggleBlock(this)">
+        <span class="pb-num">блок 03</span>
+        <div>
+          <div class="pb-title">потенциал — ресурсы + ограничения</div>
+          <div class="pb-sub">3 урока · аудит ресурсов, resilience, управление вниманием</div>
+        </div>
+        <span class="pb-toggle">+</span>
+      </div>
+      <div class="program-lessons">
+        <div class="lesson-row">
+          <div class="lesson-num">07</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">экономика вашей батарейки</div>
+            <span class="lesson-skill-tag">аудит ресурсов</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">08</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">алхимия ограничений</div>
+            <span class="lesson-skill-tag">resilience</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">09</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">война за ваше внимание</div>
+            <span class="lesson-skill-tag">управление вниманием</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-block">
+      <div class="program-block-header" onclick="toggleBlock(this)">
+        <span class="pb-num">блок 04</span>
+        <div>
+          <div class="pb-title">интервенции — действия + метрики</div>
+          <div class="pb-sub">3 урока · behavior design, feedback loops, сборка системы</div>
+        </div>
+        <span class="pb-toggle">+</span>
+      </div>
+      <div class="program-lessons">
+        <div class="lesson-row">
+          <div class="lesson-num">10</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">анатомия действия (которое случается)</div>
+            <span class="lesson-skill-tag">behavior design</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">11</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">компас, а не карта</div>
+            <span class="lesson-skill-tag">feedback loops</span>
+          </div>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-num">12</div>
+          <div class="lesson-info">
+            <div class="lesson-title-text">финал: карта вашей реальности</div>
+            <span class="lesson-skill-tag">сборка системы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCREEN 7: RESULTS -->
+<section class="screen-results" id="results">
+  <div class="section-header">
+    <div class="section-eyebrow" style="color:rgba(0,0,0,0.5);">что изменится</div>
+    <h2 class="section-title" style="color:var(--dark);">что будет<br>на выходе?</h2>
+  </div>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-num">01</div>
+      <div class="result-title">личная приборная панель</div>
+      <div class="result-desc">Вы перестанете бороться с собой и обстоятельствами. Получите систему управления своим состоянием, которая работает в реальных условиях.</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">02</div>
+      <div class="result-title">стресс → энергия за 60 секунд</div>
+      <div class="result-desc">Навык переводить режим выживания в режим игры. Не «успокоиться», а перенаправить — через тело, дыхание и зрение.</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">03</div>
+      <div class="result-title">среда, которая работает за вас</div>
+      <div class="result-desc">Настроенное физическое и цифровое пространство, где правильные действия совершаются «сами» — без силы воли.</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">04</div>
+      <div class="result-title">возврат контроля над вниманием</div>
+      <div class="result-desc">Вы вернёте себе главный ресурс 21 века. Глубокая работа вместо поверхностной суеты. Фокус вместо думскроллинга.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 8: PRICING -->
+<section class="screen-pricing" id="pricing">
+  <div class="section-header">
+    <div class="section-eyebrow">тарифы</div>
+    <h2 class="section-title">выберите свой<br>уровень <em>погружения</em></h2>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="pricing-tier">тест-драйв</div>
+      <div class="pricing-price">бесплатно</div>
+      <div class="pricing-price-note">первые 4 урока навсегда</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Уроки 1–4 (весь Блок 1 «Агент» + Урок 4)</li>
+        <li>Рабочие тетради к урокам</li>
+        <li>Доступ к Telegram-сообществу</li>
+        <li>PDF-гайд «4 протокола скорой помощи»</li>
+      </ul>
+      <a href="#lead" class="btn-pricing btn-pricing-outline">начать бесплатно →</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">оптимально</div>
+      <div class="pricing-tier">базовый</div>
+      <div class="pricing-price">25 000 ₽</div>
+      <div class="pricing-price-note">полный доступ к курсу</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Все 12 уроков + финальный воркшоп</li>
+        <li>Рабочие тетради и чек-листы</li>
+        <li>Доступ к платформе без ограничений</li>
+        <li>Закрытое Telegram-сообщество</li>
+        <li>Обновления курса включены</li>
+      </ul>
+      <a href="#lead" class="btn-pricing btn-pricing-dark">выбрать тариф →</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-tier">продвинутый</div>
+      <div class="pricing-price">35 000 ₽</div>
+      <div class="pricing-price-note">с поддержкой и ментором</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Всё из базового тарифа</li>
+        <li>Распределение в пары (бадди-система)</li>
+        <li>Еженедельные групповые Q&amp;A сессии</li>
+        <li>Индивидуальный разбор с ментором (2 сессии)</li>
+        <li>Аудит ресурсов по модели HERO</li>
+        <li>Персональная стратегия на 90 дней</li>
+      </ul>
+      <a href="#lead" class="btn-pricing btn-pricing-outline">выбрать тариф →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCREEN 9: FAQ -->
+<section class="screen-faq" id="faq">
+  <div class="section-header">
+    <div class="section-eyebrow">частые вопросы</div>
+    <h2 class="section-title">отвечаем<br><em>честно.</em></h2>
+  </div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">это очередная эзотерика про «силу намерения»?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Нет. Distill строится исключительно на нейробиологии, поведенческой экономике и когнитивной психологии. Каждый инструмент курса опирается на рецензируемые исследования — Фристон, Барретт, Канеман, Фогг, Хаберман. Никакой эзотерики, никаких «законов притяжения».</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">у меня нет времени на долгие курсы</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Каждый урок — 15–20 минут. Курс построен на принципе микро-интервенций: вы применяете инструмент сразу после урока, в реальной ситуации. Никаких домашних заданий на 3 часа. Только то, что можно сделать сегодня.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">подойдёт ли мне, если я уже в глубоком выгорании?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Да, и именно для таких состояний курс разрабатывался. Первый блок «Агент» начинается с самых простых протоколов — физиологический вздох, заземление, минимальное действие. Мы не требуем мотивации для старта. Мы даём инструменты, которые работают, когда мотивации нет.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">чем это отличается от обычного курса по продуктивности?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Большинство курсов по продуктивности работают с симптомами: «делай списки», «вставай в 5 утра». Distill работает с причинами — с тем, как устроен мозг, как среда формирует поведение, как ресурсы утекают незаметно. Это не лайфхаки. Это система.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">что если курс мне не подойдёт?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Именно поэтому первые 4 урока — бесплатно. Вы получаете полный первый блок «Агент» без каких-либо обязательств. Если после 4 уроков вы не почувствуете разницу — просто не продолжайте.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCREEN 10: LEAD MAGNET -->
+<section class="screen-lead" id="lead">
+  <div>
+    <div class="lead-eyebrow">начните прямо сейчас</div>
+    <h2 class="lead-title">не готовы нырять<br>с головой?<br><em>начните с аптечки.</em></h2>
+    <p class="lead-desc">Заберите бесплатный доступ к первым 4 урокам и PDF-гайд «4 протокола скорой помощи при стрессе». Никакой предоплаты.</p>
+    <div class="lead-what">
+      <div class="lead-item">
+        <div class="lead-item-dot"></div>
+        <div class="lead-item-text"><strong>4 урока бесплатно</strong> — весь первый блок «Агент»</div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-item-dot"></div>
+        <div class="lead-item-text"><strong>PDF-гайд</strong> — 4 протокола скорой помощи при стрессе</div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-item-dot"></div>
+        <div class="lead-item-text"><strong>Telegram-сообщество</strong> — поддержка и разборы</div>
+      </div>
+    </div>
+  </div>
+  <div class="lead-cta-block">
+    <a href="https://t.me/distill_bot" class="btn-lead">получить доступ в telegram →</a>
+    <div class="lead-note">без спама · можно отписаться в любой момент</div>
+    <div style="margin-top:40px; padding:40px; background:rgba(255,255,255,0.03); text-align:center;">
+      <svg width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="18" r="12" stroke="#E8FF00" stroke-width="3"/>
+        <line x1="40" y1="30" x2="40" y2="62" stroke="#E8FF00" stroke-width="3" stroke-linecap="round"/>
+        <line x1="40" y1="44" x2="20" y2="56" stroke="#E8FF00" stroke-width="3" stroke-linecap="round"/>
+        <line x1="40" y1="44" x2="60" y2="56" stroke="#E8FF00" stroke-width="3" stroke-linecap="round"/>
+        <line x1="40" y1="62" x2="28" y2="82" stroke="#E8FF00" stroke-width="3" stroke-linecap="round"/>
+        <line x1="40" y1="62" x2="52" y2="82" stroke="#E8FF00" stroke-width="3" stroke-linecap="round"/>
+        <line x1="58" y1="38" x2="70" y2="30" stroke="rgba(232,255,0,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="68" y1="28" x2="76" y2="22" stroke="rgba(232,255,0,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:13px; color:rgba(255,255,255,0.3); margin-top:16px; line-height:1.5;">distill / опора в хаосе</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">distill</div>
+    <div class="footer-tagline">дистилляторная метанавыков</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">договор оферты</a>
+    <a href="#">политика конфиденциальности</a>
+  </div>
+  <div class="footer-socials">
+    <a href="#">telegram</a>
+    <a href="#">instagram</a>
+    <a href="#">vk</a>
+  </div>
+</footer>
+
+<script>
+  function toggleBlock(header) {
+    const block = header.closest('.program-block');
+    block.classList.toggle('open');
+  }
+
+  function toggleFaq(question) {
+    const item = question.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // Smooth nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(10,10,10,0.95)';
+      nav.style.backdropFilter = 'blur(10px)';
+      document.querySelector('.nav-logo').style.color = '#E8FF00';
+      document.querySelectorAll('.nav-links a').forEach(a => a.style.color = 'rgba(255,255,255,0.7)');
+      document.querySelector('.nav-cta').style.color = '#E8FF00';
+      document.querySelector('.nav-cta').style.borderColor = 'rgba(232,255,0,0.4)';
+    } else {
+      nav.style.background = 'var(--yellow)';
+      nav.style.backdropFilter = '';
+      document.querySelector('.nav-logo').style.color = 'var(--dark)';
+      document.querySelectorAll('.nav-links a').forEach(a => a.style.color = 'rgba(0,0,0,0.7)');
+      document.querySelector('.nav-cta').style.color = 'var(--dark)';
+      document.querySelector('.nav-cta').style.borderColor = 'var(--dark)';
+    }
+  });
+</script>
+
+</body>
+</html>
