@@ -1123,6 +1123,250 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* ─── MOBILE HAMBURGER ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      transition: all 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0; right: 0;
+      background: var(--yellow);
+      padding: 24px 24px 32px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      letter-spacing: -0.01em;
+    }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-cta {
+      margin-top: 20px;
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      border: 2px dashed var(--dark);
+      padding: 14px 24px;
+      text-transform: lowercase;
+      text-align: center;
+    }
+
+    /* ─── TABLET (max 1024px) ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 18px 32px; }
+      .hero-left { padding: 0 32px 56px; }
+      .fw-grid { grid-template-columns: repeat(2, 1fr); padding: 0 32px 60px; }
+      .screen-myths { padding: 80px 32px; }
+      .screen-forwhom { padding: 80px 32px; }
+      .screen-program { padding: 80px 32px; }
+      .screen-results { padding: 80px 32px; }
+      .screen-pricing { padding: 80px 32px; }
+      .screen-faq { padding: 80px 32px; }
+      .screen-lead { padding: 80px 32px; gap: 48px; }
+      footer { padding: 40px 32px; }
+    }
+
+    /* ─── MOBILE (max 768px) ─── */
+    @media (max-width: 768px) {
+      /* NAV */
+      nav {
+        padding: 16px 20px;
+        height: 60px;
+      }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* HERO */
+      .screen-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-left {
+        padding: 100px 20px 48px;
+        order: 2;
+      }
+      .hero-right {
+        height: 55vw;
+        min-height: 220px;
+        order: 1;
+      }
+      .hero-title {
+        font-size: clamp(40px, 11vw, 64px);
+        margin-bottom: 20px;
+      }
+      .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 32px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .btn-dark, .btn-outline {
+        text-align: center;
+        padding: 16px 24px;
+      }
+
+      /* AHA */
+      .screen-aha {
+        grid-template-columns: 1fr;
+      }
+      .aha-photo {
+        min-height: 280px;
+        height: 60vw;
+      }
+      .aha-stat-overlay {
+        bottom: 24px;
+        left: 20px;
+        right: 20px;
+      }
+      .aha-stat-num { font-size: clamp(56px, 16vw, 90px); }
+      .aha-text {
+        padding: 40px 20px 48px;
+      }
+      .aha-title { font-size: clamp(30px, 9vw, 48px); }
+      .aha-body { font-size: 15px; }
+
+      /* MYTHS */
+      .screen-myths { padding: 64px 20px; }
+      .myths-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .myth-card { padding: 28px 24px; }
+      .section-title { font-size: clamp(28px, 8vw, 48px); }
+      .myths-conclusion { font-size: 16px; }
+
+      /* FOR WHOM */
+      .screen-forwhom { padding: 64px 20px; }
+      .forwhom-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .forwhom-card { padding: 32px 24px; }
+
+      /* FRAMEWORK */
+      .fw-photo-strip { height: 56vw; min-height: 200px; }
+      .fw-title-block {
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .fw-title { font-size: clamp(32px, 9vw, 56px); }
+      .fw-desc { text-align: left; max-width: 100%; }
+      .fw-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 48px;
+        gap: 2px;
+      }
+      .fw-card { padding: 28px 24px; }
+
+      /* PROGRAM */
+      .screen-program { padding: 64px 20px; }
+      .program-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .program-meta { text-align: left; }
+      .program-block-header {
+        grid-template-columns: 60px 1fr auto;
+        padding: 20px 20px;
+        gap: 12px;
+      }
+      .pb-title { font-size: 16px; }
+      .pb-sub { font-size: 11px; }
+      .program-lessons {
+        padding: 0 20px 20px 20px;
+      }
+      .lesson-row {
+        grid-template-columns: 36px 1fr;
+        gap: 12px;
+      }
+
+      /* RESULTS */
+      .screen-results { padding: 64px 20px; }
+      .results-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .result-card { padding: 32px 24px; }
+      .result-num { font-size: clamp(48px, 12vw, 72px); }
+
+      /* PRICING */
+      .screen-pricing { padding: 64px 20px; }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .pricing-card { padding: 36px 24px; }
+      .pricing-price { font-size: clamp(28px, 8vw, 44px); }
+
+      /* FAQ */
+      .screen-faq { padding: 64px 20px; }
+      .faq-q-text { font-size: 15px; }
+      .faq-question { padding: 20px 0; }
+
+      /* LEAD */
+      .screen-lead {
+        grid-template-columns: 1fr;
+        padding: 64px 20px;
+        gap: 40px;
+      }
+      .lead-title { font-size: clamp(28px, 8vw, 44px); }
+      .btn-lead { padding: 18px 24px; font-size: 15px; }
+
+      /* FOOTER */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        padding: 40px 20px;
+      }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+
+    /* ─── SMALL MOBILE (max 400px) ─── */
+    @media (max-width: 400px) {
+      .hero-title { font-size: 36px; }
+      .aha-stat-num { font-size: 52px; }
+      .section-title { font-size: 26px; }
+    }
   </style>
 </head>
 <body>
@@ -1137,7 +1381,17 @@
     <li><a href="#pricing">тарифы</a></li>
   </ul>
   <a href="#lead" class="nav-cta">начать бесплатно →</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#program" onclick="closeMobileMenu()">программа</a>
+  <a href="#methodology" onclick="closeMobileMenu()">методология</a>
+  <a href="#forwhom" onclick="closeMobileMenu()">для кого</a>
+  <a href="#pricing" onclick="closeMobileMenu()">тарифы</a>
+  <a href="#lead" class="nav-mobile-cta" onclick="closeMobileMenu()">начать бесплатно →</a>
+</div>
 
 <!-- SCREEN 1: HERO -->
 <section class="screen-hero" id="hero">
@@ -1678,23 +1932,48 @@
     item.classList.toggle('open');
   }
 
+  // Hamburger menu
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('navMobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   // Smooth nav background on scroll
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
+    const isMobile = window.innerWidth <= 768;
     if (window.scrollY > 80) {
       nav.style.background = 'rgba(10,10,10,0.95)';
       nav.style.backdropFilter = 'blur(10px)';
       document.querySelector('.nav-logo').style.color = '#E8FF00';
       document.querySelectorAll('.nav-links a').forEach(a => a.style.color = 'rgba(255,255,255,0.7)');
-      document.querySelector('.nav-cta').style.color = '#E8FF00';
-      document.querySelector('.nav-cta').style.borderColor = 'rgba(232,255,0,0.4)';
+      const navCta = document.querySelector('.nav-cta');
+      if (navCta) { navCta.style.color = '#E8FF00'; navCta.style.borderColor = 'rgba(232,255,0,0.4)'; }
+      if (isMobile) {
+        const hLines = document.querySelectorAll('.nav-hamburger span');
+        hLines.forEach(l => l.style.background = '#E8FF00');
+      }
     } else {
       nav.style.background = 'var(--yellow)';
       nav.style.backdropFilter = '';
       document.querySelector('.nav-logo').style.color = 'var(--dark)';
       document.querySelectorAll('.nav-links a').forEach(a => a.style.color = 'rgba(0,0,0,0.7)');
-      document.querySelector('.nav-cta').style.color = 'var(--dark)';
-      document.querySelector('.nav-cta').style.borderColor = 'var(--dark)';
+      const navCta = document.querySelector('.nav-cta');
+      if (navCta) { navCta.style.color = 'var(--dark)'; navCta.style.borderColor = 'var(--dark)'; }
+      if (isMobile) {
+        const hLines = document.querySelectorAll('.nav-hamburger span');
+        hLines.forEach(l => l.style.background = 'var(--dark)');
+      }
     }
   });
 </script>
