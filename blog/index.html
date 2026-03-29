@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Блог DISTILL — о мозге, привычках и метанавыках</title>
+  <meta name="description" content="Статьи о нейробиологии, выгорании, управлении вниманием и метанавыках. Без мотивационных банальностей — только рабочие инструменты." />
+  <meta name="keywords" content="блог о выгорании, метанавыки, нейробиология, управление вниманием, привычки, личная эффективность" />
+  <link rel="canonical" href="https://www.distill-school.ru/blog/" />
+
+  <!-- Яндекс.Метрика -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108295821', 'ym');
+    ym(108295821, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/108295821" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #E8FF00;
+      --dark: #0A0A0A;
+      --dark2: #111111;
+      --dark3: #161616;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: var(--yellow);
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--dark);
+      color: var(--yellow);
+      text-decoration: none;
+      text-transform: lowercase;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── BLOG LAYOUT ─── */
+    .blog-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .blog-header {
+      margin-bottom: 56px;
+    }
+    .blog-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+    .blog-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .blog-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+    .blog-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    /* ─── CARDS ─── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px;
+    }
+
+    .blog-card {
+      display: block;
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+      text-decoration: none;
+      color: var(--white);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .blog-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-3px);
+    }
+    .card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 3px 10px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+    }
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--gray);
+      align-items: center;
+    }
+    .card-read-link {
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--yellow);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--gray);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 80px;
+    }
+    footer a { color: var(--yellow); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .blog-wrap { padding: 90px 20px 60px; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">distill</a>
+  <ul class="nav-links">
+    <li><a href="/#program">программа</a></li>
+    <li><a href="/#methodology">методология</a></li>
+    <li><a href="/#forwhom">для кого</a></li>
+    <li><a href="/blog/" class="active">блог</a></li>
+  </ul>
+  <a href="/?utm_source=blog&utm_medium=nav&utm_campaign=blog_index#lead" class="nav-cta">начать бесплатно →</a>
+</nav>
+
+<!-- BLOG -->
+<main class="blog-wrap">
+
+  <header class="blog-header">
+    <div class="blog-eyebrow">блог distill</div>
+    <h1 class="blog-title">о мозге, привычках<br>и <em>метанавыках</em></h1>
+    <p class="blog-desc">Без мотивационных банальностей. Только рабочие инструменты, нейробиология и честный разговор о том, почему мы застреваем.</p>
+  </header>
+
+  <div class="blog-grid">
+
+    <!-- Карточка статьи 1 -->
+    <a class="blog-card" href="/blog/pochemu-umnye-lyudi-vygorayut.html?utm_source=seo&utm_medium=blog&utm_campaign=burnout&utm_term=выгорание_умных_людей">
+      <span class="card-tag">выгорание</span>
+      <h2 class="card-title">Проклятие умных: почему ваш интеллект сжигает вас дотла</h2>
+      <p class="card-desc">3 системных бага в голове умного человека, которые приводят к выгоранию быстрее, чем у всех остальных. И как их пофиксить.</p>
+      <div class="card-meta">
+        <span>29 марта 2026</span>
+        <span>4 мин.</span>
+        <span class="card-read-link">читать →</span>
+      </div>
+    </a>
+
+    <!-- Заглушка для будущих статей -->
+    <div class="blog-card" style="opacity:0.35; cursor:default; pointer-events:none;">
+      <span class="card-tag">скоро</span>
+      <h2 class="card-title">Почему дофамин врёт вам каждый день</h2>
+      <p class="card-desc">Как петля вознаграждения превращает умных людей в прокрастинаторов и что с этим делать.</p>
+      <div class="card-meta">
+        <span>скоро</span>
+      </div>
+    </div>
+
+    <div class="blog-card" style="opacity:0.35; cursor:default; pointer-events:none;">
+      <span class="card-tag">скоро</span>
+      <h2 class="card-title">Сила воли — миф. Что работает вместо неё</h2>
+      <p class="card-desc">Нейробиология самоконтроля: почему «просто возьми себя в руки» не работает и какой инструмент реально меняет поведение.</p>
+      <div class="card-meta">
+        <span>скоро</span>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 <a href="/">DISTILL — Школа метанавыков</a>. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

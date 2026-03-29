@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO: Title + Description с ключевыми словами -->
+  <title>Почему умные люди выгорают быстрее всех | DISTILL Блог</title>
+  <meta name="description" content="Выгорание у умных людей — не слабость, а системный баг. Разбираем 3 причины, почему высокий интеллект ускоряет эмоциональное выгорание, и как это исправить." />
+  <meta name="keywords" content="выгорание умных людей, эмоциональное выгорание, профессиональное выгорание, как справиться с выгоранием, иллюзия контроля, аналитический паралич, метанавыки" />
+
+  <!-- Open Graph для соцсетей -->
+  <meta property="og:title" content="Почему умные люди выгорают быстрее всех" />
+  <meta property="og:description" content="3 системных бага в голове умного человека, которые приводят к выгоранию. И как их пофиксить." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.distill-school.ru/blog/pochemu-umnye-lyudi-vygorayut.html" />
+  <meta property="og:image" content="https://www.distill-school.ru/blog/og-burnout.jpg" />
+  <meta property="og:site_name" content="DISTILL — Школа метанавыков" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Почему умные люди выгорают быстрее всех" />
+  <meta name="twitter:description" content="3 системных бага в голове умного человека, которые приводят к выгоранию." />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.distill-school.ru/blog/pochemu-umnye-lyudi-vygorayut.html" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Почему умные люди выгорают быстрее всех",
+    "description": "3 системных бага в голове умного человека, которые приводят к выгоранию, и как их исправить.",
+    "author": {
+      "@type": "Organization",
+      "name": "DISTILL — Школа метанавыков",
+      "url": "https://www.distill-school.ru"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "DISTILL",
+      "url": "https://www.distill-school.ru"
+    },
+    "datePublished": "2026-03-29",
+    "dateModified": "2026-03-29",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.distill-school.ru/blog/pochemu-umnye-lyudi-vygorayut.html"
+    },
+    "keywords": "выгорание, умные люди, эмоциональное выгорание, метанавыки, иллюзия контроля"
+  }
+  </script>
+
+  <!-- Яндекс.Метрика -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108295821', 'ym');
+    ym(108295821, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/108295821" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #E8FF00;
+      --dark: #0A0A0A;
+      --dark2: #111111;
+      --dark3: #161616;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: var(--yellow);
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: lowercase;
+      background: var(--dark);
+      color: var(--yellow);
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── ARTICLE LAYOUT ─── */
+    .article-wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+    .breadcrumb a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* Meta */
+    .article-meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .article-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .article-read {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* Title */
+    h1.article-title {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    h1.article-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    /* Lead */
+    .article-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 48px;
+      border-left: 3px solid var(--yellow);
+      padding-left: 20px;
+    }
+
+    /* Body */
+    .article-body p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+    }
+    .article-body h2 {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-top: 52px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .article-body h2 .bug-num {
+      color: var(--yellow);
+    }
+    .article-body strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+    .article-body .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+      margin-bottom: 6px;
+      margin-top: 20px;
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--yellow);
+      padding: 16px 20px;
+      background: var(--dark3);
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+      font-style: italic;
+    }
+
+    /* Article image */
+    .article-img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 28px 0;
+      display: block;
+    }
+    .article-img-caption {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 28px;
+    }
+
+    /* Patch box */
+    .patch-box {
+      background: var(--dark3);
+      border: 1px solid rgba(232,255,0,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .patch-box .patch-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .patch-box p {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+      color: rgba(255,255,255,0.9) !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Divider */
+    .article-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 48px 0;
+    }
+
+    /* CTA Block */
+    .article-cta {
+      background: var(--yellow);
+      color: var(--dark);
+      border-radius: 16px;
+      padding: 40px 40px;
+      margin-top: 56px;
+      text-align: center;
+    }
+    .article-cta h3 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .article-cta p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.7);
+      margin-bottom: 24px;
+    }
+    .article-cta a {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--yellow);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 100px;
+      transition: opacity 0.2s;
+    }
+    .article-cta a:hover { opacity: 0.85; }
+
+    /* Back to blog */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--yellow);
+      text-decoration: none;
+      margin-top: 48px;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--gray);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 80px;
+    }
+    footer a { color: var(--yellow); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 90px 20px 60px; }
+      .article-cta { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">distill</a>
+  <ul class="nav-links">
+    <li><a href="/#program">программа</a></li>
+    <li><a href="/#methodology">методология</a></li>
+    <li><a href="/#forwhom">для кого</a></li>
+    <li><a href="/blog/">блог</a></li>
+  </ul>
+  <a href="/?utm_source=blog&utm_medium=article&utm_campaign=burnout&utm_term=выгорание_умных#lead" class="nav-cta">начать бесплатно →</a>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article-wrap" itemscope itemtype="https://schema.org/Article">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="/">distill</a>
+    <span>›</span>
+    <a href="/blog/">блог</a>
+    <span>›</span>
+    почему умные выгорают
+  </nav>
+
+  <!-- Meta -->
+  <div class="article-meta">
+    <span class="article-tag">выгорание</span>
+    <span class="article-date">29 марта 2026</span>
+    <span class="article-read">4 мин. чтения</span>
+  </div>
+
+  <!-- Title -->
+  <h1 class="article-title" itemprop="headline">
+    Проклятие умных: почему ваш <em>интеллект</em> сжигает вас дотла
+  </h1>
+
+  <!-- Lead -->
+  <p class="article-lead">
+    Самые умные люди выгорают быстрее, глубже и страшнее всех остальных. Не потому что слабые — а потому что их мозг работает против них. Разбираем 3 системных бага.
+  </p>
+
+  <!-- Body -->
+  <div class="article-body" itemprop="articleBody">
+
+    <p>Знакомая картина? Вы просыпаетесь, смотрите на ноутбук, и внутри всё сжимается от лёгкой тошноты. Вы объективно умный человек. У вас крутой опыт, вы умеете решать задачи, от которых у других плавится мозг. Вы всё понимаете.</p>
+
+    <p>Но почему-то именно вы сейчас сидите, смотрите в одну точку и чувствуете себя как батарейка на 1%, которую забыли снять с зарядки, и она просто вздулась.</p>
+
+    <p>Парадокс: по идее, высокий интеллект должен помогать нам устраивать жизнь лучше. Но на практике <strong>самые умные люди выгорают быстрее, глубже и страшнее всех остальных</strong>.</p>
+
+    <p>Почему? Потому что ваш мозг — это суперкомпьютер. И вы используете его не по назначению.</p>
+
+    <blockquote>
+      Глупый человек устаёт, когда копает яму. Умный человек устаёт, когда лежит на диване — потому что в этот момент его мозг рендерит 14 вариантов развития событий на работе, просчитывает риски и генерирует фоновую тревогу.
+    </blockquote>
+
+    <p>Выгорание наступает не от количества часов за экраном. Оно наступает от <strong>перегрева процессора</strong>.</p>
+
+    <p>Вот 3 системных бага в вашей голове, которые довели вас до этого состояния.</p>
+
+    <hr class="article-divider" />
+
+    <!-- БАГ 1 -->
+    <h2><span class="bug-num">Баг 1.</span> Иллюзия «Всевидящего ока»</h2>
+
+    <p>Чем вы умнее, тем лучше вы видите причинно-следственные связи. Вы замечаете, где джун накосячил в коде, где дизайнер съехал на пиксель, а где подрядчик не докрутил стратегию.</p>
+
+    <div class="label">Как это ощущается</div>
+    <p>«Если я это вижу, значит, я должен это исправить. Иначе всё рухнет».</p>
+
+    <p>Вы превращаетесь в осьминога, который пытается управлять американскими горками. Вы тратите ресурс своего суперкомпьютера на задачи уровня калькулятора. Вы переписываете чужие тексты в 2 часа ночи, потому что «так будет быстрее, чем объяснять».</p>
+
+    <div class="patch-box">
+      <div class="patch-label">Патч</div>
+      <p>Примите «Правило 80%». Если кто-то сделал задачу на 80% от вашего идеала — заберите свои щупальца. Рынок не заметит эти 20% разницы. А вот ваш инфаркт через полгода заметят все.</p>
+    </div>
+
+    <!-- БАГ 2 -->
+    <h2><span class="bug-num">Баг 2.</span> Комната симуляций</h2>
+
+    <p>Глупый человек видит стену, бьёт в неё лбом, получает шишку и идёт искать дверь. Умный человек видит стену, садится рядом и начинает строить 3D-модели пробивания стены, рассчитывать плотность кирпича и читать исследования по сопромату.</p>
+
+    <div class="label">Как это ощущается</div>
+    <p>Вы путаете «думать» и «делать». Для вашего мозга глубокий анализ проблемы сжигает столько же глюкозы, сколько реальная работа. Вы можете просидеть неделю, вылизывая концепцию, устать как собака, но по факту не сдвинуться ни на миллиметр. Вы выгораете в симуляторе, так и не выйдя на реальный трек.</p>
+
+    <div class="patch-box">
+      <div class="patch-label">Патч</div>
+      <p>Включите режим «тупого достигатора». Идеальное решение, принятое завтра, хуже кривого решения, принятого сегодня. Выкатывайте сырое, получайте по лицу от реальности, корректируйте. Реальность — лучший аналитик.</p>
+    </div>
+
+    <!-- БАГ 3 -->
+    <h2><span class="bug-num">Баг 3.</span> Гениальный адвокат-убийца</h2>
+
+    <p>Это финальная стадия выгорания. Ваше тело уже кричит: бессонница, апатия, дёргающийся глаз. Батарейка мигает красным.</p>
+
+    <p>Что делает обычный человек? Идёт спать. Что делает умный человек? Он нанимает свой интеллект в качестве адвоката, чтобы доказать телу, почему спать сейчас нельзя.</p>
+
+    <div class="label">Как это ощущается</div>
+    <p>Ваш мозг выстраивает железобетонные аргументы: «Сейчас важный спринт», «Если я остановлюсь, мы потеряем долю рынка», «Осталось чуть-чуть дожать». Чем выше ваш IQ, тем изощрённее вы умеете врать самому себе.</p>
+
+    <div class="patch-box">
+      <div class="patch-label">Патч</div>
+      <p>Тело — это сервер. Интеллект — это софт. Если сервер сгорит, ваш гениальный софт никому не будет нужен. Отдых не должен зависеть от выполненных задач. 20:00 — ноутбук закрывается. Даже если мир в огне.</p>
+    </div>
+
+    <hr class="article-divider" />
+
+    <h2>Хватит быть сверхчеловеком</h2>
+
+    <p>Быть умным — не значит быть всемогущим. Ваше <strong>эмоциональное выгорание</strong> — это просто результат того, что вы пытаетесь обработать больше данных, чем может выдержать человеческая психика.</p>
+
+    <p>Перестаньте использовать свой мозг как кнут, которым вы бьёте себя по спине. Начните использовать его как инструмент.</p>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="article-cta">
+    <h3>Хватит вывозить всё на силе воли</h3>
+    <p>В DISTILL мы учим управлять мозгом, состоянием и привычками. Нейробиология и поведенческий дизайн — без эзотерики и «успешного успеха».</p>
+    <a href="https://www.distill-school.ru?utm_source=seo&utm_medium=blog&utm_campaign=burnout&utm_term=выгорание_умных_людей">
+      забрать первые 4 урока бесплатно →
+    </a>
+  </div>
+
+  <a href="/blog/" class="back-link">← все статьи блога</a>
+
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="/">DISTILL — Школа метанавыков</a>. Все права защищены.</p>
+</footer>
+
+</body>
+</html>
