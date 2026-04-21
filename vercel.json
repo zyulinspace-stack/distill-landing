@@ -1,6 +1,20 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/yandex_de813c18d6851e03.html",
+      "headers": [
+        { "key": "Content-Type", "value": "text/html" }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/yandex_de813c18d6851e03.html",
+      "destination": "/yandex_de813c18d6851e03.html"
+    }
+  ],
   "redirects": [
     {
       "source": "/(.*)",
