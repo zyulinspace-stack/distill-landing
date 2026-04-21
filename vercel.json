@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "distill-school.ru"
+        }
+      ],
+      "destination": "https://www.distill-school.ru/$1",
+      "permanent": true
+    }
+  ]
+}
