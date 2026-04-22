@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вскрытие рабочей недели — Диагностика | DISTILL</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Яндекс.Метрика -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108295821', 'ym');
+    ym(108295821, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #E8FF00;
+      --dark: #0A0A0A;
+      --red: #D32F2F;
+      --paper: #F5F2EC;
+      --ink: #1A1A1A;
+      --ink-light: #666;
+      --mono: 'Courier Prime', 'Courier New', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--mono);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: var(--dark);
+      border-bottom: 2px solid var(--yellow);
+    }
+    .nav-logo { font-family: var(--sans); font-size: 18px; font-weight: 900; letter-spacing: -0.04em; color: var(--yellow); text-decoration: none; text-transform: lowercase; }
+    .nav-label { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* PROGRESS */
+    .progress-bar-wrap {
+      position: fixed; top: 62px; left: 0; right: 0; z-index: 99;
+      height: 4px; background: rgba(0,0,0,0.1);
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--yellow);
+      transition: width 0.4s ease;
+    }
+
+    /* PAGE */
+    .page { max-width: 720px; margin: 0 auto; padding: 110px 32px 80px; }
+
+    /* QUESTION SCREEN */
+    .q-screen { display: none; }
+    .q-screen.active { display: block; }
+
+    .q-doc {
+      border: 2px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .q-header {
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    .q-counter {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .q-body { padding: 32px 28px; }
+
+    .q-tag {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .q-text {
+      font-family: var(--sans);
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    /* ANSWERS */
+    .answers { display: flex; flex-direction: column; gap: 10px; }
+
+    .answer-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border: 1.5px solid rgba(0,0,0,0.2);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink);
+      transition: border-color 0.15s, background 0.15s;
+      width: 100%;
+    }
+
+    .answer-btn:hover {
+      border-color: var(--ink);
+      background: rgba(0,0,0,0.03);
+    }
+
+    .answer-btn.selected {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--yellow);
+    }
+
+    .answer-letter {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 900;
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      letter-spacing: 0;
+    }
+
+    /* NEXT BUTTON */
+    .q-footer {
+      padding: 20px 28px;
+      border-top: 1px solid rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .next-btn {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 900;
+      background: var(--dark);
+      color: var(--yellow);
+      border: none;
+      padding: 14px 28px;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      text-transform: lowercase;
+      opacity: 0.3;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .next-btn.enabled {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .next-btn.enabled:hover {
+      background: #222;
+    }
+
+    /* ─── RESULT SCREEN ─── */
+    #result-screen { display: none; }
+    #result-screen.active { display: block; }
+
+    .result-doc { border: 2px solid var(--ink); background: var(--paper); }
+
+    .result-header {
+      padding: 20px 28px;
+      border-bottom: 2px solid var(--ink);
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .result-header-left {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .result-stamp {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 2px solid var(--yellow);
+      color: var(--yellow);
+    }
+
+    .result-body { padding: 32px 28px; }
+
+    .result-label {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+    }
+
+    .result-diagnosis {
+      font-family: var(--sans);
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .result-cause {
+      font-size: 13px;
+      color: var(--red);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed rgba(0,0,0,0.2);
+    }
+
+    .result-description {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .result-findings {
+      background: rgba(0,0,0,0.04);
+      border-left: 3px solid var(--ink);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .result-findings-title {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+
+    .result-findings ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .result-findings ul li {
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 4px 0;
+      display: flex;
+      gap: 8px;
+    }
+
+    .result-findings ul li::before {
+      content: '—';
+      color: var(--ink-light);
+      flex-shrink: 0;
+    }
+
+    /* CTA */
+    .result-cta {
+      border: 2px solid var(--ink);
+      border-top: none;
+      background: var(--dark);
+      padding: 28px;
+    }
+
+    .result-cta-title {
+      font-family: var(--sans);
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .result-cta-title em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    .result-cta-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .result-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 900;
+      text-decoration: none;
+      padding: 16px 32px;
+      text-transform: lowercase;
+      transition: transform 0.15s, box-shadow 0.15s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .result-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(232,255,0,0.3);
+    }
+
+    .result-share {
+      margin-top: 16px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .page { padding: 90px 16px 60px; }
+      .q-body, .q-header, .q-footer, .result-body, .result-header { padding-left: 20px; padding-right: 20px; }
+      .result-cta { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">distill</a>
+  <span class="nav-label" id="nav-step">Вопрос 1 из 5</span>
+</nav>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar-fill" id="progress-fill" style="width: 20%"></div>
+</div>
+
+<main class="page">
+
+  <!-- ─── ВОПРОС 1 ─── -->
+  <div class="q-screen active" id="q1">
+    <div class="q-doc">
+      <div class="q-header">
+        <span>Диагностический вопрос</span>
+        <span class="q-counter">01 / 05</span>
+      </div>
+      <div class="q-body">
+        <div class="q-tag">Симптом А — Энергетический баланс</div>
+        <div class="q-text">Как ты себя чувствуешь в воскресенье вечером, когда думаешь о завтрашнем рабочем дне?</div>
+        <div class="answers">
+          <button class="answer-btn" data-q="1" data-score="0" onclick="selectAnswer(this)">
+            <span class="answer-letter">А</span>
+            <span>Нормально, даже немного жду — есть интересные задачи</span>
+          </button>
+          <button class="answer-btn" data-q="1" data-score="1" onclick="selectAnswer(this)">
+            <span class="answer-letter">Б</span>
+            <span>Нейтрально. Работа есть работа, особо не думаю</span>
+          </button>
+          <button class="answer-btn" data-q="1" data-score="2" onclick="selectAnswer(this)">
+            <span class="answer-letter">В</span>
+            <span>Лёгкая тревога. Уже прокручиваю в голове список дел</span>
+          </button>
+          <button class="answer-btn" data-q="1" data-score="3" onclick="selectAnswer(this)">
+            <span class="answer-letter">Г</span>
+            <span>Тяжело. Хочется, чтобы понедельник не наступал как можно дольше</span>
+          </button>
+        </div>
+      </div>
+      <div class="q-footer">
+        <button class="next-btn" id="next-1" onclick="nextQuestion(2)">далее →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ВОПРОС 2 ─── -->
+  <div class="q-screen" id="q2">
+    <div class="q-doc">
+      <div class="q-header">
+        <span>Диагностический вопрос</span>
+        <span class="q-counter">02 / 05</span>
+      </div>
+      <div class="q-body">
+        <div class="q-tag">Симптом Б — Когнитивная нагрузка</div>
+        <div class="q-text">Когда ты в последний раз делал что-то с полным погружением — без мыслей о других задачах?</div>
+        <div class="answers">
+          <button class="answer-btn" data-q="2" data-score="0" onclick="selectAnswer(this)">
+            <span class="answer-letter">А</span>
+            <span>На этой неделе — бывает, когда задача интересная</span>
+          </button>
+          <button class="answer-btn" data-q="2" data-score="1" onclick="selectAnswer(this)">
+            <span class="answer-letter">Б</span>
+            <span>Недели 2–3 назад, помню конкретный момент</span>
+          </button>
+          <button class="answer-btn" data-q="2" data-score="2" onclick="selectAnswer(this)">
+            <span class="answer-letter">В</span>
+            <span>Не помню. Постоянно что-то отвлекает или параллельно думаю о другом</span>
+          </button>
+          <button class="answer-btn" data-q="2" data-score="3" onclick="selectAnswer(this)">
+            <span class="answer-letter">Г</span>
+            <span>Уже не помню, когда такое было вообще</span>
+          </button>
+        </div>
+      </div>
+      <div class="q-footer">
+        <button class="next-btn" id="next-2" onclick="nextQuestion(3)">далее →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ВОПРОС 3 ─── -->
+  <div class="q-screen" id="q3">
+    <div class="q-doc">
+      <div class="q-header">
+        <span>Диагностический вопрос</span>
+        <span class="q-counter">03 / 05</span>
+      </div>
+      <div class="q-body">
+        <div class="q-tag">Симптом В — Смысловой ресурс</div>
+        <div class="q-text">Как часто ты ловишь себя на мысли «зачем я вообще это делаю»?</div>
+        <div class="answers">
+          <button class="answer-btn" data-q="3" data-score="0" onclick="selectAnswer(this)">
+            <span class="answer-letter">А</span>
+            <span>Редко — в целом понимаю, для чего работаю</span>
+          </button>
+          <button class="answer-btn" data-q="3" data-score="1" onclick="selectAnswer(this)">
+            <span class="answer-letter">Б</span>
+            <span>Иногда, особенно после сложных недель</span>
+          </button>
+          <button class="answer-btn" data-q="3" data-score="2" onclick="selectAnswer(this)">
+            <span class="answer-letter">В</span>
+            <span>Часто. Делаю на автопилоте, смысл размылся</span>
+          </button>
+          <button class="answer-btn" data-q="3" data-score="3" onclick="selectAnswer(this)">
+            <span class="answer-letter">Г</span>
+            <span>Почти каждый день. Ощущение, что работаю вхолостую</span>
+          </button>
+        </div>
+      </div>
+      <div class="q-footer">
+        <button class="next-btn" id="next-3" onclick="nextQuestion(4)">далее →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ВОПРОС 4 ─── -->
+  <div class="q-screen" id="q4">
+    <div class="q-doc">
+      <div class="q-header">
+        <span>Диагностический вопрос</span>
+        <span class="q-counter">04 / 05</span>
+      </div>
+      <div class="q-body">
+        <div class="q-tag">Симптом Г — Реакция на нагрузку</div>
+        <div class="q-text">Руководитель ставит новую срочную задачу поверх текущих. Твоя первая реакция?</div>
+        <div class="answers">
+          <button class="answer-btn" data-q="4" data-score="0" onclick="selectAnswer(this)">
+            <span class="answer-letter">А</span>
+            <span>Окей, разберусь — расставлю приоритеты и сделаю</span>
+          </button>
+          <button class="answer-btn" data-q="4" data-score="1" onclick="selectAnswer(this)">
+            <span class="answer-letter">Б</span>
+            <span>Небольшое раздражение, но справляюсь</span>
+          </button>
+          <button class="answer-btn" data-q="4" data-score="2" onclick="selectAnswer(this)">
+            <span class="answer-letter">В</span>
+            <span>Внутренний протест. Чувствую, что меня не слышат</span>
+          </button>
+          <button class="answer-btn" data-q="4" data-score="3" onclick="selectAnswer(this)">
+            <span class="answer-letter">Г</span>
+            <span>Опустошение. Хочется просто закрыть ноутбук и уйти</span>
+          </button>
+        </div>
+      </div>
+      <div class="q-footer">
+        <button class="next-btn" id="next-4" onclick="nextQuestion(5)">далее →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ВОПРОС 5 ─── -->
+  <div class="q-screen" id="q5">
+    <div class="q-doc">
+      <div class="q-header">
+        <span>Диагностический вопрос</span>
+        <span class="q-counter">05 / 05</span>
+      </div>
+      <div class="q-body">
+        <div class="q-tag">Симптом Д — Восстановление</div>
+        <div class="q-text">Что происходит с твоей энергией после выходных?</div>
+        <div class="answers">
+          <button class="answer-btn" data-q="5" data-score="0" onclick="selectAnswer(this)">
+            <span class="answer-letter">А</span>
+            <span>Восстанавливаюсь полностью — в понедельник чувствую себя свежим</span>
+          </button>
+          <button class="answer-btn" data-q="5" data-score="1" onclick="selectAnswer(this)">
+            <span class="answer-letter">Б</span>
+            <span>Частично. Лучше, чем в пятницу, но не на 100%</span>
+          </button>
+          <button class="answer-btn" data-q="5" data-score="2" onclick="selectAnswer(this)">
+            <span class="answer-letter">В</span>
+            <span>Почти не восстанавливаюсь. Выходные уходят на «отойти»</span>
+          </button>
+          <button class="answer-btn" data-q="5" data-score="3" onclick="selectAnswer(this)">
+            <span class="answer-letter">Г</span>
+            <span>Выходные не помогают. Усталость накапливается неделями</span>
+          </button>
+        </div>
+      </div>
+      <div class="q-footer">
+        <button class="next-btn" id="next-5" onclick="showResult()">получить диагноз →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── РЕЗУЛЬТАТ ─── -->
+  <div id="result-screen">
+    <div class="result-doc">
+      <div class="result-header">
+        <div class="result-header-left">
+          <div>DISTILL / Протокол вскрытия</div>
+          <div id="result-date" style="margin-top:4px;"></div>
+        </div>
+        <div class="result-stamp" id="result-stamp-text">ДИАГНОЗ УСТАНОВЛЕН</div>
+      </div>
+      <div class="result-body">
+        <div class="result-label">Официальный диагноз</div>
+        <div class="result-diagnosis" id="result-title"></div>
+        <div class="result-cause" id="result-cause"></div>
+        <div class="result-description" id="result-desc"></div>
+        <div class="result-findings">
+          <div class="result-findings-title">Обнаруженные симптомы</div>
+          <ul id="result-findings-list"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="result-cta">
+      <div class="result-cta-title">Твой протокол <em>реабилитации</em> готов</div>
+      <div class="result-cta-desc">4 бесплатных урока, подобранных под твой диагноз. Нейробиология, без мотивационных банальностей.</div>
+      <a href="https://t.me/distill_school_bot?start=quiz" class="result-cta-btn" target="_blank" onclick="trackBotClick()">
+        забрать протокол в Telegram →
+      </a>
+      <div class="result-share">Поделись результатом с коллегой — возможно, он тоже не знает своего диагноза</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  var totalScore = 0;
+  var answers = {};
+
+  function selectAnswer(btn) {
+    var q = btn.getAttribute('data-q');
+    var score = parseInt(btn.getAttribute('data-score'));
+
+    // Remove selected from siblings
+    var siblings = btn.closest('.answers').querySelectorAll('.answer-btn');
+    siblings.forEach(function(s) { s.classList.remove('selected'); });
+
+    btn.classList.add('selected');
+    answers[q] = score;
+
+    // Enable next button
+    var nextBtn = document.getElementById('next-' + q);
+    if (nextBtn) nextBtn.classList.add('enabled');
+  }
+
+  function nextQuestion(num) {
+    // Hide current
+    var current = document.querySelector('.q-screen.active');
+    if (current) current.classList.remove('active');
+
+    // Show next
+    var next = document.getElementById('q' + num);
+    if (next) {
+      next.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    // Update progress
+    var progress = (num / 5) * 100;
+    document.getElementById('progress-fill').style.width = progress + '%';
+    document.getElementById('nav-step').textContent = 'Вопрос ' + num + ' из 5';
+  }
+
+  function showResult() {
+    // Calculate total score
+    totalScore = 0;
+    for (var q in answers) { totalScore += answers[q]; }
+
+    // Hide last question
+    var current = document.querySelector('.q-screen.active');
+    if (current) current.classList.remove('active');
+
+    // Progress 100%
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('nav-step').textContent = 'Диагноз готов';
+
+    // Determine result
+    var result = getResult(totalScore);
+
+    // Fill result screen
+    document.getElementById('result-title').textContent = result.title;
+    document.getElementById('result-cause').textContent = 'Причина: ' + result.cause;
+    document.getElementById('result-desc').textContent = result.desc;
+
+    var list = document.getElementById('result-findings-list');
+    list.innerHTML = '';
+    result.findings.forEach(function(f) {
+      var li = document.createElement('li');
+      li.textContent = f;
+      list.appendChild(li);
+    });
+
+    // Date
+    var d = new Date();
+    var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+    document.getElementById('result-date').textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+    // Show result
+    document.getElementById('result-screen').classList.add('active');
+    window.scrollTo(0, 0);
+
+    // Track
+    if (typeof ym !== 'undefined') {
+      ym(108295821, 'reachGoal', 'quiz_completed', { score: totalScore, result: result.id });
+    }
+  }
+
+  function getResult(score) {
+    if (score <= 3) {
+      return {
+        id: 'green',
+        title: 'Стабильное состояние с признаками накопленной усталости',
+        cause: 'Дефицит осознанного восстановления при высокой нагрузке',
+        desc: 'Ты справляешься. Энергетический баланс в норме, смысл в работе есть. Но есть тревожный сигнал: усталость копится незаметно. Без профилактики через 2–3 месяца картина изменится.',
+        findings: [
+          'Когнитивный ресурс используется эффективно',
+          'Восстановление частично нарушено',
+          'Риск перехода в стадию Б при увеличении нагрузки',
+          'Рекомендована профилактическая программа'
+        ]
+      };
+    } else if (score <= 7) {
+      return {
+        id: 'yellow',
+        title: 'Начальная стадия профессионального выгорания',
+        cause: 'Хроническое многозадачие в сочетании с дефицитом восстановления',
+        desc: 'Ты на стадии, когда ещё можно всё исправить без серьёзных последствий. Продуктивность снижается не из-за лени — мозг буквально экономит ресурс. Это защитная реакция, а не слабость.',
+        findings: [
+          'Нарушен цикл восстановления после нагрузки',
+          'Снижена способность к глубокой концентрации',
+          'Начальные признаки потери смысловой мотивации',
+          'Реакция на стресс выше нормы'
+        ]
+      };
+    } else if (score <= 11) {
+      return {
+        id: 'orange',
+        title: 'Среднее выгорание. Требуется системное вмешательство',
+        cause: 'Истощение когнитивного ресурса при отсутствии системы восстановления',
+        desc: 'Это не «просто устал». Это системный сбой. Мозг работает в режиме выживания: отключает всё, что не критично для выживания — творчество, инициативу, удовольствие от работы. Без изменений это будет нарастать.',
+        findings: [
+          'Критическое снижение когнитивного ресурса',
+          'Нарушена смысловая мотивация',
+          'Восстановление не происходит даже в выходные',
+          'Высокий риск перехода в стадию хронического выгорания'
+        ]
+      };
+    } else {
+      return {
+        id: 'red',
+        title: 'Критическое выгорание. Немедленное вмешательство необходимо',
+        cause: 'Полное истощение адаптационного ресурса нервной системы',
+        desc: 'Ты давно работаешь на резервах. Тело и мозг сигнализируют: так продолжаться не может. Это не слабость характера — это физиология. Нервная система исчерпала буфер адаптации. Нужна система, а не «просто отдохнуть».',
+        findings: [
+          'Полное истощение адаптационного ресурса',
+          'Отсутствие восстановления при любом отдыхе',
+          'Потеря смысла и профессиональной идентичности',
+          'Высокий риск соматических последствий'
+        ]
+      };
+    }
+  }
+
+  function trackBotClick() {
+    if (typeof ym !== 'undefined') {
+      ym(108295821, 'reachGoal', 'quiz_bot_click');
+    }
+  }
+</script>
+
+</body>
+</html>
