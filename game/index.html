@@ -168,40 +168,61 @@
     }
 
     .scene-pixel-char {
-      width: 48px;
-      height: 64px;
+      width: 64px;
+      height: 96px;
       position: relative;
       flex-shrink: 0;
       image-rendering: pixelated;
+      align-self: flex-end;
     }
+    /* Head */
     .scene-pixel-char::before {
       content: '';
       position: absolute;
-      top: 0; left: 10px;
-      width: 28px; height: 24px;
+      top: 0; left: 12px;
+      width: 40px; height: 36px;
       background: var(--yellow);
       box-shadow:
+        /* eyes */
+        8px 12px 0 0 var(--dark),
+        8px 13px 0 0 var(--dark),
+        20px 12px 0 0 var(--dark),
+        20px 13px 0 0 var(--dark),
+        /* eyebrows */
         6px 8px 0 0 var(--dark),
-        14px 8px 0 0 var(--dark),
-        6px 16px 0 0 var(--dark),
-        10px 18px 0 0 var(--dark),
-        14px 16px 0 0 var(--dark);
+        8px 7px 0 0 var(--dark),
+        18px 7px 0 0 var(--dark),
+        20px 8px 0 0 var(--dark),
+        /* mouth smile */
+        8px 24px 0 0 var(--dark),
+        12px 26px 0 0 var(--dark),
+        16px 26px 0 0 var(--dark),
+        20px 24px 0 0 var(--dark);
     }
+    /* Body + arms + legs */
     .scene-pixel-char::after {
       content: '';
       position: absolute;
-      top: 24px; left: 8px;
-      width: 32px; height: 26px;
+      top: 36px; left: 10px;
+      width: 44px; height: 36px;
       background: #fff;
       box-shadow:
-        -6px 4px 0 0 #fff,
-        -6px 10px 0 0 #fff,
-        38px 4px 0 0 #fff,
-        38px 10px 0 0 #fff,
-        4px 26px 0 0 var(--yellow),
-        4px 34px 0 0 var(--yellow),
-        20px 26px 0 0 var(--yellow),
-        20px 34px 0 0 var(--yellow);
+        /* left arm */
+        -8px 4px 0 0 #fff,
+        -8px 12px 0 0 #fff,
+        -8px 20px 0 0 #fff,
+        /* right arm */
+        52px 4px 0 0 #fff,
+        52px 12px 0 0 #fff,
+        52px 20px 0 0 #fff,
+        /* left leg */
+        4px 36px 0 0 var(--yellow),
+        4px 44px 0 0 var(--yellow),
+        4px 52px 0 0 var(--yellow),
+        /* right leg */
+        28px 36px 0 0 var(--yellow),
+        28px 44px 0 0 var(--yellow),
+        28px 52px 0 0 var(--yellow);
     }
 
     .speech-bubble {
@@ -969,6 +990,150 @@
         <div class="feedback" id="feedback-5">
           <div class="feedback-delta" id="delta-5"></div>
           <div id="feedback-text-5"></div>
+          <button class="continue-btn" onclick="nextScene(6)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 6: КОНЦЕНТРАЦИЯ ─── -->
+  <div class="screen" id="screen-6">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🧠</span>
+        <div>
+          <div class="scene-location">Рабочее место</div>
+          <div class="scene-time-label">11:00 — Глубокая работа</div>
+        </div>
+      </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Нужно сосредоточиться на сложной задаче. Но телефон <em>вибрирует каждые 10 минут</em>. Как быть?</div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Тебе нужно сделать сложную аналитическую задачу. <strong>Телефон вибрирует каждые 10 минут</strong> — не срочное, но ты видишь уведомления. Через 2 часа должен быть результат.</p>
+        <div class="choices" id="choices-6">
+          <button class="choice-btn" onclick="choose(6, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Перевожу телефон в режим полёта или отключу уведомления на 2 часа.</div>
+              <span class="choice-effect">Фокус сохраняется. Задача будет сделана быстрее.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(6, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Быстро смотрю каждое уведомление — вдруг что-то важное.</div>
+              <span class="choice-effect">Каждый загляд — это прерывание фокуса.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(6, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Работаю с телефоном рядом — пусть будет под рукой.</div>
+              <span class="choice-effect">Телефон рядом — это приглашение отвлечься.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-6">
+          <div class="feedback-delta" id="delta-6"></div>
+          <div id="feedback-text-6"></div>
+          <button class="continue-btn" onclick="nextScene(7)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 7: КРИТИКА ─── -->
+  <div class="screen" id="screen-7">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">💥</span>
+        <div>
+          <div class="scene-location">Офис / чат</div>
+          <div class="scene-time-label">14:00 — Обратная связь</div>
+        </div>
+      </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Коллега публично сказал: <em>«ты неправильно сделал»</em>. Я знаю, что он неправ. Но все смотрят...</div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">На общем совещании коллега сказал, что <strong>ты сделал неправильно</strong>. Ты знаешь, что он ошибается. Все молчат и смотрят на тебя.</p>
+        <div class="choices" id="choices-7">
+          <button class="choice-btn" onclick="choose(7, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Спокойно объясняю свою логику с фактами, без эмоций.</div>
+              <span class="choice-effect">Ассертивность — это метанавык.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(7, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Молчу. Не хочу конфликта на виду у всех.</div>
+              <span class="choice-effect">Агрессия накапливается внутри.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(7, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Отвечаю резко — накопилось.</div>
+              <span class="choice-effect">Конфликт эскалируется. Репутация под угрозой.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-7">
+          <div class="feedback-delta" id="delta-7"></div>
+          <div id="feedback-text-7"></div>
+          <button class="continue-btn" onclick="nextScene(8)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 8: ВЕЧЕР ─── -->
+  <div class="screen" id="screen-8">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🌙</span>
+        <div>
+          <div class="scene-location">Дом</div>
+          <div class="scene-time-label">21:00 — Вечер</div>
+        </div>
+      </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Дома. Но <em>мысли о 3 незакрытых задачах</em> не дают отключиться. Делать что-то сейчас?</div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Ты дома. Но <strong>мысли о работе не отпускают</strong>. В голове крутятся 3 незакрытых задачи. Сериал или ноутбук?</p>
+        <div class="choices" id="choices-8">
+          <button class="choice-btn" onclick="choose(8, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Записываю задачи в блокнот и смотрю сериал. Завтра разберусь.</div>
+              <span class="choice-effect">Мозг отпускает задачи только если зафиксированы.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(8, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Открываю ноутбук — закрою хотя бы одну задачу.</div>
+              <span class="choice-effect">Мозг не успеет отключиться до сна.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(8, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Лежу с телефоном, листаю ленту. Засну позже.</div>
+              <span class="choice-effect">Соцсети перед сном — худшее из возможного.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-8">
+          <div class="feedback-delta" id="delta-8"></div>
+          <div id="feedback-text-8"></div>
           <button class="continue-btn" onclick="showResult()">ИТОГИ ДНЯ →</button>
         </div>
       </div>
@@ -1017,7 +1182,7 @@
   var hp = 100;
   var energy = 100;
   var choiceLog = [];
-  var times = ['09:00','10:30','13:00','15:30','18:30'];
+  var times = ['09:00','10:30','13:00','15:30','18:30','11:00','14:00','21:00'];
   var currentScene = 0;
 
   var sceneData = {
@@ -1045,6 +1210,21 @@
       A: { hp: 10, energy: 15, text: 'Ритуал завершения дня — один из самых недооценённых инструментов. Мозг получает сигнал: «рабочий режим выключен». Это буквально снижает кортизол.', tag: '✅ Ритуал завершения' },
       B: { hp: -5, energy: -10, text: 'Граница размылась. Мозг не переключится до сна — будешь думать о работе в постели. Завтра встанешь не отдохнувшим.', tag: '⚠ Граница нарушена' },
       C: { hp: -15, energy: -20, text: '+2 задачи сегодня, -20% завтра. Это не продуктивность — это кредит под высокий процент.', tag: '❌ Переработка = долг' }
+    },
+    6: {
+      A: { hp: 10, energy: 15, text: 'Телефон в режиме полёта на 2 часа — это не изоляция, это управление вниманием. Исследования показывают: глубокая работа без прерываний в  2–3 раза эффективнее.', tag: '✅ Глубокая работа активирована' },
+      B: { hp: -10, energy: -15, text: 'Каждый загляд в телефон — это прерывание фокуса. После каждого прерывания мозгу нужно 23 минуты, чтобы вернуться в задачу.', tag: '⚠ Фокус раздроблен' },
+      C: { hp: -15, energy: -20, text: 'Телефон в поле зрения — это приглашение отвлечься. Мозг постоянно реагирует на новые стимулы даже без вашего сознательного участия.', tag: '❌ Телефон как ловушка внимания' }
+    },
+    7: {
+      A: { hp: 10, energy: 10, text: 'Ассертивность — это способность отстаивать свою позицию без агрессии. Это метанавык, который защищает и репутацию, и отношения.', tag: '✅ Ассертивность +1' },
+      B: { hp: -10, energy: -15, text: 'Невысказанная агрессия накапливается внутри и выходит позже — чаще всего на не тех, кто заслужил. Это выгорание в миниатюре.', tag: '⚠ Агрессия накапливается' },
+      C: { hp: -20, energy: -20, text: 'Резкая реакция на критику — это амигдала берёт управление. Даже если ты прав, реакция запомнится лучше, чем аргументы.', tag: '❌ Реакция вместо ответа' },
+    },
+    8: {
+      A: { hp: 10, energy: 15, text: 'Мозг отпускает задачи только тогда, когда видит, что они зафиксированы. Блокнот — это не старомодно, это нейронаука.', tag: '✅ Отключение активировано' },
+      B: { hp: -15, energy: -20, text: 'Работа вечером нарушает циркадный ритм. Мозг не успеет отключиться до сна — завтра встанешь уже уставшим.', tag: '❌ Циркадный ритм нарушен' },
+      C: { hp: -10, energy: -15, text: 'Соцсети перед сном — это худшее из возможного. Синий свет экрана подавляет мелатонин и затрудняет засыпание.', tag: '⚠ Сон будет хуже' }
     }
   };
 
@@ -1065,7 +1245,7 @@
     document.getElementById('hud').classList.add('visible');
     document.getElementById('screen-1').classList.add('active');
     document.getElementById('hud-time').textContent = times[0];
-    document.getElementById('nav-label').textContent = 'Сцена 1 из 5';
+    document.getElementById('nav-label').textContent = 'Сцена 1 из 8';
     currentScene = 1;
     if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_started');
   }
@@ -1122,7 +1302,7 @@
     if (prev) prev.classList.remove('active');
     document.getElementById('screen-' + num).classList.add('active');
     document.getElementById('hud-time').textContent = times[num - 1];
-    document.getElementById('nav-label').textContent = 'Сцена ' + num + ' из 5';
+    document.getElementById('nav-label').textContent = 'Сцена ' + num + ' из 8';
     currentScene = num;
     window.scrollTo(0, 0);
   }
