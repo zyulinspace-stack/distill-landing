@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Сколько HP ты теряешь за рабочий день? — DISTILL</title>
+  <title>Сколько сил ты теряешь за рабочий день? — DISTILL</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <meta name="description" content="Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, теряй или набирай HP. Узнай, почему к вечеру не остаётся сил." />
+  <meta name="description" content="Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, теряй или набирай силы. Узнай, почему к вечеру не остаётся сил." />
   <link rel="canonical" href="https://www.distill-school.ru/game/" />
 
   <!-- Яндекс.Метрика -->
@@ -579,14 +579,14 @@
     </div>
     <div class="hud-bars">
       <div class="bar-row">
-        <span class="bar-label">❤ HP</span>
+        <span class="bar-label">❤ СИЛЫ</span>
         <div class="bar-track">
           <div class="bar-fill hp" id="hp-bar" style="width:100%"></div>
         </div>
         <span class="bar-val" id="hp-val">100</span>
       </div>
       <div class="bar-row">
-        <span class="bar-label">⚡ ENERGY</span>
+        <span class="bar-label">⚡ ЭНЕРГИЯ</span>
         <div class="bar-track">
           <div class="bar-fill energy" id="energy-bar" style="width:100%"></div>
         </div>
@@ -599,8 +599,8 @@
   <div class="screen active" id="screen-start">
     <div class="start-screen">
       <div class="game-badge">DISTILL // ИНТЕРАКТИВНЫЙ ТЕСТ</div>
-      <div class="game-title">СКОЛЬКО HP ТЫ<br>ТЕРЯЕШЬ ЗА ДЕНЬ?</div>
-      <p class="game-subtitle">5 реальных ситуаций из рабочего дня. Делай выборы — смотри как падают HP и энергия. В конце узнаешь, почему к вечеру не остаётся сил — и что с этим делать.</p>
+      <div class="game-title">СКОЛЬКО СИЛ ТЫ<br>ТЕРЯЕШЬ ЗА ДЕНЬ?</div>
+      <p class="game-subtitle">5 реальных ситуаций из рабочего дня. Делай выборы — смотри как падают силы и энергия. В конце узнаешь, почему к вечеру не остаётся сил — и что с этим делать.</p>
       <div class="pixel-char"></div>
       <button class="start-btn" onclick="startGame()">▶ ПРОВЕРИТЬ СВОЙ ДЕНЬ</button>
       <div class="start-hint">5 сцен · 3 минуты · результат сразу</div>
@@ -835,7 +835,7 @@
 
       <div class="result-stats">
         <div class="stat-box">
-          <div class="stat-label">❤ HP ОСТАЛОСЬ</div>
+          <div class="stat-label">❤ СИЛЫ ОСТАЛИСЬ</div>
           <div class="stat-value" id="final-hp-val">—</div>
         </div>
         <div class="stat-box">
@@ -856,7 +856,7 @@
 
       <div class="result-cta-box">
         <div class="result-cta-title">ХОЧЕШЬ ПРОЙТИ СЛЕДУЮЩИЙ УРОВЕНЬ<br>С ПОЛНЫМИ ИНСТРУМЕНТАМИ?</div>
-        <div class="result-cta-desc">4 бесплатных урока о том, как перестать сливать HP на автопилоте. Нейробиология, без мотивационных банальностей.</div>
+        <div class="result-cta-desc">4 бесплатных урока о том, как перестать сливать силы на автопилоте. Нейробиология, без мотивационных банальностей.</div>
         <a href="https://t.me/distillsh_bot?start=game" class="result-cta-btn" target="_blank" onclick="trackBot()">▶ ЗАБРАТЬ УРОКИ В TELEGRAM</a>
         <button class="replay-btn" onclick="replayGame()">↺ СЫГРАТЬ СНОВА</button>
       </div>
@@ -931,7 +931,7 @@
     var hpSign = data.hp >= 0 ? '+' : '';
     var enSign = data.energy >= 0 ? '+' : '';
     delta.innerHTML =
-      '<span class="delta-hp' + (data.hp < 0 ? ' neg' : '') + '">HP ' + hpSign + data.hp + '</span>  ' +
+      '<span class="delta-hp' + (data.hp < 0 ? ' neg' : '') + '">Силы ' + hpSign + data.hp + '</span>  ' +
       '<span class="delta-energy' + (data.energy < 0 ? ' neg' : '') + '">⚡ ' + enSign + data.energy + '</span>';
 
     document.getElementById('feedback-text-' + scene).textContent = data.text;
@@ -1011,7 +1011,7 @@
       momentsList.appendChild(div);
     });
 
-    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_completed', { hp: hp, energy: energy });
+    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_completed', { sily: hp, energy: energy });
   }
 
   function trackBot() {
