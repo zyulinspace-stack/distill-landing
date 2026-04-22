@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Рабочий день: Уровень 1 — DISTILL</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="description" content="Пройди свой рабочий день как уровень в игре. Делай выборы, следи за HP и энергией. Узнай, сколько HP осталось к вечеру." />
+  <link rel="canonical" href="https://www.distill-school.ru/game/" />
+
+  <!-- Яндекс.Метрика -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108295821','ym');
+    ym(108295821,'init',{webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #E8FF00;
+      --dark: #0A0A0A;
+      --dark2: #111;
+      --dark3: #1A1A1A;
+      --green: #00FF41;
+      --red: #FF3B3B;
+      --blue: #4FC3F7;
+      --orange: #FFB347;
+      --pixel: 'Press Start 2P', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--pixel);
+      background: var(--dark);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCANLINES EFFECT ─── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: var(--dark);
+      border-bottom: 2px solid var(--yellow);
+    }
+    .nav-logo {
+      font-family: var(--sans); font-size: 18px; font-weight: 900;
+      letter-spacing: -0.04em; color: var(--yellow); text-decoration: none;
+    }
+    .nav-label {
+      font-size: 7px; color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ─── GAME WRAPPER ─── */
+    .game-wrap {
+      max-width: 680px; margin: 0 auto;
+      padding: 90px 20px 60px;
+    }
+
+    /* ─── SCREEN ─── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ─── START SCREEN ─── */
+    .start-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .game-badge {
+      display: inline-block;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 6px 14px;
+      margin-bottom: 32px;
+    }
+
+    .game-title {
+      font-size: clamp(16px, 4vw, 28px);
+      line-height: 1.4;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .game-title span { color: var(--yellow); }
+
+    .game-subtitle {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* PIXEL CHARACTER (CSS art) */
+    .pixel-char {
+      width: 64px; height: 80px;
+      margin: 0 auto 32px;
+      position: relative;
+      image-rendering: pixelated;
+    }
+
+    /* Head */
+    .pixel-char::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 16px;
+      width: 32px; height: 28px;
+      background: var(--yellow);
+      box-shadow:
+        /* eyes */
+        8px 10px 0 0 var(--dark),
+        16px 10px 0 0 var(--dark),
+        /* mouth */
+        8px 18px 0 0 var(--dark),
+        12px 20px 0 0 var(--dark),
+        16px 18px 0 0 var(--dark);
+    }
+
+    /* Body */
+    .pixel-char::after {
+      content: '';
+      position: absolute;
+      top: 28px; left: 12px;
+      width: 40px; height: 32px;
+      background: #fff;
+      box-shadow:
+        /* arms */
+        -8px 4px 0 0 #fff,
+        -8px 12px 0 0 #fff,
+        48px 4px 0 0 #fff,
+        48px 12px 0 0 #fff,
+        /* legs */
+        4px 32px 0 0 var(--yellow),
+        4px 40px 0 0 var(--yellow),
+        24px 32px 0 0 var(--yellow),
+        24px 40px 0 0 var(--yellow);
+    }
+
+    .start-btn {
+      display: inline-block;
+      font-family: var(--pixel);
+      font-size: 11px;
+      background: var(--yellow);
+      color: var(--dark);
+      border: none;
+      padding: 16px 32px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      animation: blink 1.2s step-end infinite;
+      margin-top: 8px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .start-btn:hover { animation: none; opacity: 1; }
+
+    .start-hint {
+      font-size: 7px;
+      color: rgba(255,255,255,0.25);
+      margin-top: 16px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── HUD (always visible during game) ─── */
+    .hud {
+      display: none;
+      background: var(--dark2);
+      border: 2px solid rgba(255,255,255,0.1);
+      padding: 14px 20px;
+      margin-bottom: 16px;
+    }
+
+    .hud.visible { display: block; }
+
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .hud-title {
+      font-size: 7px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+    }
+
+    .hud-time {
+      font-size: 9px;
+      color: var(--yellow);
+    }
+
+    .hud-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-label {
+      font-size: 7px;
+      color: rgba(255,255,255,0.5);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      transition: width 0.5s ease, background 0.5s ease;
+      position: relative;
+    }
+
+    .bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .bar-fill.hp { background: var(--green); }
+    .bar-fill.hp.mid { background: var(--orange); }
+    .bar-fill.hp.low { background: var(--red); }
+    .bar-fill.energy { background: var(--blue); }
+    .bar-fill.energy.low { background: var(--orange); }
+
+    .bar-val {
+      font-size: 8px;
+      color: #fff;
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ─── SCENE SCREEN ─── */
+    .scene-box {
+      border: 2px solid rgba(255,255,255,0.12);
+      background: var(--dark2);
+    }
+
+    .scene-top {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scene-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .scene-location {
+      font-size: 7px;
+      color: var(--yellow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .scene-time-label {
+      font-size: 8px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .scene-body { padding: 24px 20px; }
+
+    .scene-text {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 28px;
+    }
+
+    .scene-text strong { color: var(--yellow); }
+
+    /* CHOICES */
+    .choices { display: flex; flex-direction: column; gap: 10px; }
+
+    .choice-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      color: #fff;
+      transition: border-color 0.15s, background 0.15s;
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--yellow);
+      background: rgba(232,255,0,0.05);
+    }
+
+    .choice-key {
+      font-family: var(--pixel);
+      font-size: 8px;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 4px 7px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .choice-effect {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* FEEDBACK POPUP */
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--yellow);
+      background: rgba(232,255,0,0.06);
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .feedback.visible { display: block; }
+
+    .feedback-delta {
+      font-family: var(--pixel);
+      font-size: 8px;
+      margin-bottom: 8px;
+    }
+
+    .delta-hp { color: var(--green); }
+    .delta-hp.neg { color: var(--red); }
+    .delta-energy { color: var(--blue); }
+    .delta-energy.neg { color: var(--orange); }
+
+    .continue-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      font-family: var(--pixel);
+      font-size: 9px;
+      background: transparent;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 12px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-align: center;
+      transition: background 0.15s;
+    }
+
+    .continue-btn:hover { background: rgba(232,255,0,0.1); }
+
+    /* ─── RESULT SCREEN ─── */
+    .result-screen { text-align: center; padding: 20px 0; }
+
+    .result-game-over {
+      font-size: clamp(20px, 5vw, 36px);
+      color: var(--yellow);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .result-subtitle {
+      font-size: 8px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+
+    .result-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-box {
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 16px 12px;
+      background: var(--dark2);
+    }
+
+    .stat-label {
+      font-size: 7px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: clamp(20px, 4vw, 32px);
+      color: #fff;
+    }
+
+    .stat-value.good { color: var(--green); }
+    .stat-value.mid { color: var(--orange); }
+    .stat-value.bad { color: var(--red); }
+
+    .result-verdict {
+      border: 2px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      background: var(--dark2);
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .verdict-title {
+      font-size: 9px;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .verdict-text {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .result-moments {
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .moments-title {
+      font-size: 8px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .moment-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    .moment-icon { flex-shrink: 0; font-size: 16px; }
+
+    /* CTA */
+    .result-cta-box {
+      background: var(--dark2);
+      border: 2px solid var(--yellow);
+      padding: 24px 20px;
+      margin-top: 8px;
+    }
+
+    .result-cta-title {
+      font-size: 10px;
+      color: var(--yellow);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .result-cta-desc {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .result-cta-btn {
+      display: block;
+      font-family: var(--pixel);
+      font-size: 9px;
+      background: var(--yellow);
+      color: var(--dark);
+      text-decoration: none;
+      padding: 16px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .result-cta-btn:hover { opacity: 0.85; }
+
+    .replay-btn {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--pixel);
+      font-size: 8px;
+      background: transparent;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 12px;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: 0.06em;
+    }
+
+    .replay-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 480px) {
+      nav { padding: 12px 16px; }
+      .game-wrap { padding: 80px 14px 50px; }
+      .result-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">distill</a>
+  <span class="nav-label" id="nav-label">Уровень 1 — Рабочий день</span>
+</nav>
+
+<div class="game-wrap">
+
+  <!-- HUD -->
+  <div class="hud" id="hud">
+    <div class="hud-top">
+      <span class="hud-title">PLAYER_01 // РАБОЧИЙ ДЕНЬ</span>
+      <span class="hud-time" id="hud-time">09:00</span>
+    </div>
+    <div class="hud-bars">
+      <div class="bar-row">
+        <span class="bar-label">❤ HP</span>
+        <div class="bar-track">
+          <div class="bar-fill hp" id="hp-bar" style="width:100%"></div>
+        </div>
+        <span class="bar-val" id="hp-val">100</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">⚡ ENERGY</span>
+        <div class="bar-track">
+          <div class="bar-fill energy" id="energy-bar" style="width:100%"></div>
+        </div>
+        <span class="bar-val" id="energy-val">100</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── START SCREEN ─── -->
+  <div class="screen active" id="screen-start">
+    <div class="start-screen">
+      <div class="game-badge">DISTILL GAMES // BETA</div>
+      <div class="game-title">РАБОЧИЙ ДЕНЬ:<br><span>УРОВЕНЬ 1</span></div>
+      <p class="game-subtitle">Пройди свой рабочий день как уровень в игре. Делай выборы, следи за HP и энергией. В конце узнаешь, сколько от тебя осталось.</p>
+      <div class="pixel-char"></div>
+      <button class="start-btn" onclick="startGame()">▶ НАЧАТЬ ИГРУ</button>
+      <div class="start-hint">5 сцен · ~3 минуты · без регистрации</div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 1: УТРО ─── -->
+  <div class="screen" id="screen-1">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🌅</span>
+        <div>
+          <div class="scene-location">Дом → Офис / Удалёнка</div>
+          <div class="scene-time-label">09:00 — Начало дня</div>
+        </div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Будильник. 7:30. Ты открываешь телефон и видишь <strong>14 непрочитанных сообщений в рабочем чате</strong>. Рабочий день ещё не начался, но уже что-то горит.</p>
+        <div class="choices" id="choices-1">
+          <button class="choice-btn" onclick="choose(1, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Закрываю телефон. Сначала завтрак, потом работа.</div>
+              <span class="choice-effect">Ты знаешь: реакция до кофе — плохая реакция.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(1, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Быстро просматриваю — вдруг что-то срочное.</div>
+              <span class="choice-effect">Лёгкая тревога уже включилась.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(1, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Читаю всё, начинаю отвечать прямо из кровати.</div>
+              <span class="choice-effect">День начался, даже не вставая.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-1">
+          <div class="feedback-delta" id="delta-1"></div>
+          <div id="feedback-text-1"></div>
+          <button class="continue-btn" onclick="nextScene(2)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 2: ПЛАНЁРКА ─── -->
+  <div class="screen" id="screen-2">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">📋</span>
+        <div>
+          <div class="scene-location">Zoom / Переговорка</div>
+          <div class="scene-time-label">10:30 — Планёрка на 30 минут</div>
+        </div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Планёрка идёт уже <strong>55 минут</strong>. Тема давно закрыта, но все продолжают говорить. У тебя горит задача, дедлайн сегодня.</p>
+        <div class="choices" id="choices-2">
+          <button class="choice-btn" onclick="choose(2, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Говорю: «Коллеги, давайте зафиксируем решение и закончим — у меня дедлайн.»</div>
+              <span class="choice-effect">Неловко, но честно.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(2, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Молча сижу, параллельно работаю в другом окне.</div>
+              <span class="choice-effect">Тело на встрече, голова — нет.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(2, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Слушаю до конца. Дедлайн подождёт, уважение важнее.</div>
+              <span class="choice-effect">+1 к лояльности, -1 к здравому смыслу.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-2">
+          <div class="feedback-delta" id="delta-2"></div>
+          <div id="feedback-text-2"></div>
+          <button class="continue-btn" onclick="nextScene(3)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 3: ОБЕД ─── -->
+  <div class="screen" id="screen-3">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🍜</span>
+        <div>
+          <div class="scene-location">Кухня / Кафе / Рабочий стол</div>
+          <div class="scene-time-label">13:00 — Обеденный перерыв</div>
+        </div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Обед. Ты <strong>не успел</strong> сделать половину запланированного. Коллега зовёт пообедать вместе. Дедлайн через 4 часа.</p>
+        <div class="choices" id="choices-3">
+          <button class="choice-btn" onclick="choose(3, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Иду обедать. 30 минут — это инвестиция, не трата.</div>
+              <span class="choice-effect">Мозг восстанавливается в переключении.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(3, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Ем за компьютером, продолжаю работать.</div>
+              <span class="choice-effect">Ни нормально поел, ни нормально поработал.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(3, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Пропускаю обед. Не до этого.</div>
+              <span class="choice-effect">Глюкоза падает. Мозг начинает тупить к 15:00.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-3">
+          <div class="feedback-delta" id="delta-3"></div>
+          <div id="feedback-text-3"></div>
+          <button class="continue-btn" onclick="nextScene(4)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 4: СРОЧНАЯ ЗАДАЧА ─── -->
+  <div class="screen" id="screen-4">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🔥</span>
+        <div>
+          <div class="scene-location">Рабочий стол</div>
+          <div class="scene-time-label">15:30 — Прилетает «срочно»</div>
+        </div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Руководитель пишет: <strong>«Нужно срочно, к 17:00»</strong>. Ты в середине своей задачи. Если переключишься — потеряешь контекст и не успеешь ни то, ни другое.</p>
+        <div class="choices" id="choices-4">
+          <button class="choice-btn" onclick="choose(4, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Пишу: «Сейчас в середине задачи с дедлайном сегодня. Могу взяться через час — ок?»</div>
+              <span class="choice-effect">Честная коммуникация о приоритетах.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(4, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Бросаю всё, берусь за новую задачу.</div>
+              <span class="choice-effect">Контекст потерян. Оба дедлайна под угрозой.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(4, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Пытаюсь делать оба одновременно.</div>
+              <span class="choice-effect">Многозадачность — миф. Мозг просто переключается и теряет 40% эффективности.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-4">
+          <div class="feedback-delta" id="delta-4"></div>
+          <div id="feedback-text-4"></div>
+          <button class="continue-btn" onclick="nextScene(5)">ПРОДОЛЖИТЬ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCENE 5: КОНЕЦ ДНЯ ─── -->
+  <div class="screen" id="screen-5">
+    <div class="scene-box">
+      <div class="scene-top">
+        <span class="scene-icon">🌆</span>
+        <div>
+          <div class="scene-location">Конец рабочего дня</div>
+          <div class="scene-time-label">18:30 — Рабочий день закончен</div>
+        </div>
+      </div>
+      <div class="scene-body">
+        <p class="scene-text">Рабочий день формально закончился. Но в голове <strong>ещё крутятся задачи</strong> на завтра. Коллега пишет в чат — не срочно, но ты видишь уведомление.</p>
+        <div class="choices" id="choices-5">
+          <button class="choice-btn" onclick="choose(5, 'A')">
+            <span class="choice-key">A</span>
+            <div>
+              <div>Закрываю ноутбук. Записываю задачи на завтра в блокнот и выключаю уведомления.</div>
+              <span class="choice-effect">Ритуал завершения дня — это навык.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(5, 'B')">
+            <span class="choice-key">B</span>
+            <div>
+              <div>Отвечаю коллеге — раз уж увидел.</div>
+              <span class="choice-effect">Граница размылась. Мозг не переключится до сна.</span>
+            </div>
+          </button>
+          <button class="choice-btn" onclick="choose(5, 'C')">
+            <span class="choice-key">C</span>
+            <div>
+              <div>Продолжаю работать — хочу закрыть ещё пару задач.</div>
+              <span class="choice-effect">+2 задачи сегодня, -20% завтра.</span>
+            </div>
+          </button>
+        </div>
+        <div class="feedback" id="feedback-5">
+          <div class="feedback-delta" id="delta-5"></div>
+          <div id="feedback-text-5"></div>
+          <button class="continue-btn" onclick="showResult()">ИТОГИ ДНЯ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RESULT SCREEN ─── -->
+  <div class="screen" id="screen-result">
+    <div class="result-screen">
+      <div class="result-game-over" id="result-title-text">ДЕНЬ ЗАВЕРШЁН</div>
+      <div class="result-subtitle">ИТОГОВЫЙ ОТЧЁТ // DISTILL ANALYTICS</div>
+
+      <div class="result-stats">
+        <div class="stat-box">
+          <div class="stat-label">❤ HP ОСТАЛОСЬ</div>
+          <div class="stat-value" id="final-hp-val">—</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">⚡ ЭНЕРГИЯ</div>
+          <div class="stat-value" id="final-energy-val">—</div>
+        </div>
+      </div>
+
+      <div class="result-verdict">
+        <div class="verdict-title">// ВЕРДИКТ СИСТЕМЫ</div>
+        <div class="verdict-text" id="verdict-text"></div>
+      </div>
+
+      <div class="result-moments">
+        <div class="moments-title">// КЛЮЧЕВЫЕ МОМЕНТЫ, ГДЕ УТЕКЛА ЭНЕРГИЯ</div>
+        <div id="moments-list"></div>
+      </div>
+
+      <div class="result-cta-box">
+        <div class="result-cta-title">ХОЧЕШЬ ПРОЙТИ СЛЕДУЮЩИЙ УРОВЕНЬ<br>С ПОЛНЫМИ ИНСТРУМЕНТАМИ?</div>
+        <div class="result-cta-desc">4 бесплатных урока о том, как перестать сливать HP на автопилоте. Нейробиология, без мотивационных банальностей.</div>
+        <a href="https://t.me/distill_school_bot?start=game" class="result-cta-btn" target="_blank" onclick="trackBot()">▶ ЗАБРАТЬ УРОКИ В TELEGRAM</a>
+        <button class="replay-btn" onclick="replayGame()">↺ СЫГРАТЬ СНОВА</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /game-wrap -->
+
+<script>
+  var hp = 100;
+  var energy = 100;
+  var choiceLog = [];
+  var times = ['09:00','10:30','13:00','15:30','18:30'];
+  var currentScene = 0;
+
+  var sceneData = {
+    1: {
+      A: { hp: 0, energy: 5, text: 'Правильный ход. Мозг ещё не включился — реакция до завтрака всегда хуже. Ты сохранил утренний ресурс.', tag: '✅ Граница сохранена' },
+      B: { hp: -5, energy: -10, text: 'Тревога включилась раньше, чем ты встал. Кортизол уже в крови. День начался не с тебя, а с чужих проблем.', tag: '⚠ Ранний стресс-триггер' },
+      C: { hp: -15, energy: -20, text: 'Ты отдал первые 30 минут дня чужим задачам. Мозг не успел перейти в рабочий режим — он сразу в режиме реакции.', tag: '❌ Утренний ресурс слит' }
+    },
+    2: {
+      A: { hp: 5, energy: 5, text: 'Это называется «управление вниманием группы». Неловко один раз — зато все получили время обратно. Это метанавык.', tag: '✅ Ассертивность +1' },
+      B: { hp: -5, energy: -15, text: 'Мультитаскинг на встрече — худший вариант. Ни встреча не прошла нормально, ни задача не сдвинулась. Двойная потеря.', tag: '⚠ Фокус раздроблен' },
+      C: { hp: -10, energy: -10, text: 'Уважение — это хорошо. Но дедлайн никуда не делся. Теперь у тебя меньше времени и больше стресса.', tag: '❌ Приоритеты инвертированы' }
+    },
+    3: {
+      A: { hp: 10, energy: 15, text: 'Переключение контекста — это не слабость, это физиология. Мозг восстанавливается именно в паузах. Ты сделал правильно.', tag: '✅ Восстановление активировано' },
+      B: { hp: -10, energy: -15, text: 'Классическая ловушка. Ни еда не пошла впрок, ни работа не продвинулась. К 15:00 мозг начнёт тупить.', tag: '⚠ Двойная потеря' },
+      C: { hp: -20, energy: -25, text: 'Без глюкозы мозг буквально замедляется. Ты «сэкономил» 30 минут, но потерял 2 часа продуктивности после.', tag: '❌ Критическая ошибка' }
+    },
+    4: {
+      A: { hp: 5, energy: 10, text: 'Честная коммуникация о приоритетах — это не конфликт, это профессионализм. В большинстве случаев руководитель скажет «ок».', tag: '✅ Управление приоритетами' },
+      B: { hp: -15, energy: -20, text: 'Ты потерял контекст по своей задаче. Восстановление займёт 20–30 минут. Оба дедлайна теперь под угрозой.', tag: '❌ Контекст потерян' },
+      C: { hp: -20, energy: -25, text: 'Многозадачность — это миф. Мозг не делает два дела одновременно, он переключается между ними, теряя 40% эффективности каждый раз.', tag: '❌ Многозадачность = ошибка' }
+    },
+    5: {
+      A: { hp: 10, energy: 15, text: 'Ритуал завершения дня — один из самых недооценённых инструментов. Мозг получает сигнал: «рабочий режим выключен». Это буквально снижает кортизол.', tag: '✅ Ритуал завершения' },
+      B: { hp: -5, energy: -10, text: 'Граница размылась. Мозг не переключится до сна — будешь думать о работе в постели. Завтра встанешь не отдохнувшим.', tag: '⚠ Граница нарушена' },
+      C: { hp: -15, energy: -20, text: '+2 задачи сегодня, -20% завтра. Это не продуктивность — это кредит под высокий процент.', tag: '❌ Переработка = долг' }
+    }
+  };
+
+  function startGame() {
+    document.getElementById('screen-start').classList.remove('active');
+    document.getElementById('hud').classList.add('visible');
+    document.getElementById('screen-1').classList.add('active');
+    document.getElementById('hud-time').textContent = times[0];
+    document.getElementById('nav-label').textContent = 'Сцена 1 из 5';
+    currentScene = 1;
+    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_started');
+  }
+
+  function choose(scene, option) {
+    var data = sceneData[scene][option];
+    if (!data) return;
+
+    // Disable choices
+    var btns = document.querySelectorAll('#choices-' + scene + ' .choice-btn');
+    btns.forEach(function(b) { b.disabled = true; b.style.opacity = '0.5'; });
+
+    // Update stats
+    hp = Math.max(0, Math.min(100, hp + data.hp));
+    energy = Math.max(0, Math.min(100, energy + data.energy));
+    choiceLog.push({ scene: scene, option: option, tag: data.tag });
+
+    // Update HUD
+    updateHUD();
+
+    // Show feedback
+    var delta = document.getElementById('delta-' + scene);
+    var hpSign = data.hp >= 0 ? '+' : '';
+    var enSign = data.energy >= 0 ? '+' : '';
+    delta.innerHTML =
+      '<span class="delta-hp' + (data.hp < 0 ? ' neg' : '') + '">HP ' + hpSign + data.hp + '</span>  ' +
+      '<span class="delta-energy' + (data.energy < 0 ? ' neg' : '') + '">⚡ ' + enSign + data.energy + '</span>';
+
+    document.getElementById('feedback-text-' + scene).textContent = data.text;
+    document.getElementById('feedback-' + scene).classList.add('visible');
+
+    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_choice', { scene: scene, option: option });
+  }
+
+  function updateHUD() {
+    // HP bar
+    var hpBar = document.getElementById('hp-bar');
+    hpBar.style.width = hp + '%';
+    hpBar.className = 'bar-fill hp';
+    if (hp <= 40) hpBar.classList.add('low');
+    else if (hp <= 65) hpBar.classList.add('mid');
+    document.getElementById('hp-val').textContent = hp;
+
+    // Energy bar
+    var enBar = document.getElementById('energy-bar');
+    enBar.style.width = energy + '%';
+    enBar.className = 'bar-fill energy';
+    if (energy <= 40) enBar.classList.add('low');
+    document.getElementById('energy-val').textContent = energy;
+  }
+
+  function nextScene(num) {
+    var prev = document.querySelector('.screen.active');
+    if (prev) prev.classList.remove('active');
+    document.getElementById('screen-' + num).classList.add('active');
+    document.getElementById('hud-time').textContent = times[num - 1];
+    document.getElementById('nav-label').textContent = 'Сцена ' + num + ' из 5';
+    currentScene = num;
+    window.scrollTo(0, 0);
+  }
+
+  function showResult() {
+    var prev = document.querySelector('.screen.active');
+    if (prev) prev.classList.remove('active');
+    document.getElementById('hud').classList.remove('visible');
+    document.getElementById('screen-result').classList.add('active');
+    document.getElementById('nav-label').textContent = 'Итоги дня';
+    window.scrollTo(0, 0);
+
+    // Fill result
+    var hpClass = hp >= 70 ? 'good' : hp >= 40 ? 'mid' : 'bad';
+    var enClass = energy >= 70 ? 'good' : energy >= 40 ? 'mid' : 'bad';
+    document.getElementById('final-hp-val').textContent = hp + '%';
+    document.getElementById('final-hp-val').className = 'stat-value ' + hpClass;
+    document.getElementById('final-energy-val').textContent = energy + '%';
+    document.getElementById('final-energy-val').className = 'stat-value ' + enClass;
+
+    // Title
+    var titleEl = document.getElementById('result-title-text');
+    if (hp >= 80) { titleEl.textContent = 'ДЕНЬ ПРОЙДЕН'; titleEl.style.color = 'var(--green)'; }
+    else if (hp >= 50) { titleEl.textContent = 'ДЕНЬ ВЫЖИТ'; titleEl.style.color = 'var(--orange)'; }
+    else { titleEl.textContent = 'GAME OVER'; titleEl.style.color = 'var(--red)'; }
+
+    // Verdict
+    var verdict = '';
+    if (hp >= 80 && energy >= 70) {
+      verdict = 'Ты управляешь своим днём, а не реагируешь на него. Это редкость. Большинство людей проживают рабочий день в режиме пожаротушения. Ты — нет. Но даже у тебя есть точки роста.';
+    } else if (hp >= 50) {
+      verdict = 'Ты справляешься, но ценой ресурса. Несколько ключевых моментов слили твою энергию незаметно. Это не лень и не слабость — это когнитивные ошибки, которые можно исправить с правильными инструментами.';
+    } else {
+      verdict = 'Твой день управлял тобой, а не ты им. Большинство решений принималось реактивно — в ответ на чужие приоритеты. Это системная проблема, не личная. Её можно решить.';
+    }
+    document.getElementById('verdict-text').textContent = verdict;
+
+    // Moments
+    var momentsList = document.getElementById('moments-list');
+    momentsList.innerHTML = '';
+    choiceLog.forEach(function(c) {
+      var div = document.createElement('div');
+      div.className = 'moment-item';
+      var icon = c.option === 'A' ? '✅' : c.option === 'B' ? '⚠️' : '❌';
+      div.innerHTML = '<span class="moment-icon">' + icon + '</span><span>' + c.tag + '</span>';
+      momentsList.appendChild(div);
+    });
+
+    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_completed', { hp: hp, energy: energy });
+  }
+
+  function trackBot() {
+    if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_bot_click');
+  }
+
+  function replayGame() {
+    hp = 100; energy = 100; choiceLog = []; currentScene = 0;
+    // Reset all screens
+    document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('screen-start').classList.add('active');
+    document.getElementById('hud').classList.remove('visible');
+    document.getElementById('nav-label').textContent = 'Уровень 1 — Рабочий день';
+    // Reset feedbacks
+    for (var i = 1; i <= 5; i++) {
+      var fb = document.getElementById('feedback-' + i);
+      if (fb) fb.classList.remove('visible');
+      var btns = document.querySelectorAll('#choices-' + i + ' .choice-btn');
+      btns.forEach(function(b) { b.disabled = false; b.style.opacity = '1'; });
+    }
+    updateHUD();
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
