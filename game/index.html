@@ -88,6 +88,45 @@
       padding: 40px 20px;
     }
 
+    /* BURNOUT METER on start screen */
+    .burnout-meter {
+      margin: 0 auto 32px;
+      max-width: 360px;
+      text-align: left;
+    }
+    .burnout-label {
+      font-size: 7px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .burnout-track {
+      height: 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .burnout-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green) 0%, var(--orange) 60%, var(--red) 100%);
+      animation: burnout-load 2s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes burnout-load {
+      0% { width: 0%; }
+      100% { width: 73%; }
+    }
+    .burnout-warning {
+      font-size: 7px;
+      color: var(--orange);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+    }
+
     .game-badge {
       display: inline-block;
       font-size: 8px;
@@ -116,6 +155,90 @@
       max-width: 440px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    /* ─── PIXEL CHARACTER (scene version with speech bubble) ─── */
+    .scene-char-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .scene-pixel-char {
+      width: 48px;
+      height: 64px;
+      position: relative;
+      flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+    .scene-pixel-char::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10px;
+      width: 28px; height: 24px;
+      background: var(--yellow);
+      box-shadow:
+        6px 8px 0 0 var(--dark),
+        14px 8px 0 0 var(--dark),
+        6px 16px 0 0 var(--dark),
+        10px 18px 0 0 var(--dark),
+        14px 16px 0 0 var(--dark);
+    }
+    .scene-pixel-char::after {
+      content: '';
+      position: absolute;
+      top: 24px; left: 8px;
+      width: 32px; height: 26px;
+      background: #fff;
+      box-shadow:
+        -6px 4px 0 0 #fff,
+        -6px 10px 0 0 #fff,
+        38px 4px 0 0 #fff,
+        38px 10px 0 0 #fff,
+        4px 26px 0 0 var(--yellow),
+        4px 34px 0 0 var(--yellow),
+        20px 26px 0 0 var(--yellow),
+        20px 34px 0 0 var(--yellow);
+    }
+
+    .speech-bubble {
+      position: relative;
+      background: var(--dark3);
+      border: 1px solid rgba(232,255,0,0.3);
+      padding: 10px 14px;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.75);
+      flex: 1;
+      margin-bottom: 8px;
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: -8px;
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 8px solid rgba(232,255,0,0.3);
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: 11px;
+      left: -6px;
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 7px solid var(--dark3);
+    }
+    .speech-bubble em {
+      color: var(--yellow);
+      font-style: normal;
     }
 
     /* PIXEL CHARACTER (CSS art) */
@@ -598,11 +721,16 @@
   <!-- ─── START SCREEN ─── -->
   <div class="screen active" id="screen-start">
     <div class="start-screen">
-      <div class="game-badge">DISTILL // ИНТЕРАКТИВНЫЙ ТЕСТ</div>
-      <div class="game-title">СКОЛЬКО СИЛ ТЫ<br>ТЕРЯЕШЬ ЗА ДЕНЬ?</div>
-      <p class="game-subtitle">5 реальных ситуаций из рабочего дня. Делай выборы — смотри как падают силы и энергия. В конце узнаешь, почему к вечеру не остаётся сил — и что с этим делать.</p>
+      <div class="game-badge">DISTILL // ТЕСТ НА ВЫГОРАНИЕ</div>
+      <div class="game-title">ТЫ ВЫГОРАЕШЬ?<br><span>ПРОВЕРЬ ЗА 3 МИНУТЫ</span></div>
+      <p class="game-subtitle">Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, смотри как падают силы. В конце узнаешь, на какой стадии выгорания ты находишься.</p>
+      <div class="burnout-meter">
+        <div class="burnout-label"><span>УРОВЕНЬ ВЫГОРАНИЯ</span><span id="burnout-pct">...</span></div>
+        <div class="burnout-track"><div class="burnout-fill" id="burnout-fill"></div></div>
+        <div class="burnout-warning">⚠ У большинства людей — выше нормы. Проверь свой уровень.</div>
+      </div>
       <div class="pixel-char"></div>
-      <button class="start-btn" onclick="startGame()">▶ ПРОВЕРИТЬ СВОЙ ДЕНЬ</button>
+      <button class="start-btn" onclick="startGame()">▶ ПРОВЕРИТЬ СВОЙ УРОВЕНЬ</button>
       <div class="start-hint">5 сцен · 3 минуты · результат сразу</div>
     </div>
   </div>
@@ -617,8 +745,12 @@
           <div class="scene-time-label">09:00 — Начало дня</div>
         </div>
       </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Будильник. 7:30. Открываю телефон — <em>14 непрочитанных</em> в рабочем чате. День ещё не начался, а уже что-то горит...</div>
+      </div>
       <div class="scene-body">
-        <p class="scene-text">Будильник. 7:30. Ты открываешь телефон и видишь <strong>14 непрочитанных сообщений в рабочем чате</strong>. Рабочий день ещё не начался, но уже что-то горит.</p>
+        <p class="scene-text">Рабочий день ещё не начался, но уже что-то горит. Как ты реагируешь на <strong>14 непрочитанных сообщений</strong> прямо с утра?</p>
         <div class="choices" id="choices-1">
           <button class="choice-btn" onclick="choose(1, 'A')">
             <span class="choice-key">A</span>
@@ -660,6 +792,10 @@
           <div class="scene-location">Zoom / Переговорка</div>
           <div class="scene-time-label">10:30 — Планёрка на 30 минут</div>
         </div>
+      </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Уже <em>55 минут</em>. Тема закрыта, но все продолжают говорить. У меня дедлайн сегодня, а я тут сижу...</div>
       </div>
       <div class="scene-body">
         <p class="scene-text">Планёрка идёт уже <strong>55 минут</strong>. Тема давно закрыта, но все продолжают говорить. У тебя горит задача, дедлайн сегодня.</p>
@@ -705,6 +841,10 @@
           <div class="scene-time-label">13:00 — Обеденный перерыв</div>
         </div>
       </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Обед. Я не успел половину запланированного. Коллега зовёт пообедать. <em>Дедлайн через 4 часа.</em> Что делать?</div>
+      </div>
       <div class="scene-body">
         <p class="scene-text">Обед. Ты <strong>не успел</strong> сделать половину запланированного. Коллега зовёт пообедать вместе. Дедлайн через 4 часа.</p>
         <div class="choices" id="choices-3">
@@ -748,6 +888,10 @@
           <div class="scene-location">Рабочий стол</div>
           <div class="scene-time-label">15:30 — Прилетает «срочно»</div>
         </div>
+      </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Руководитель: <em>«Нужно срочно, к 17:00»</em>. Я в середине своей задачи. Если переключусь — потеряю контекст...</div>
       </div>
       <div class="scene-body">
         <p class="scene-text">Руководитель пишет: <strong>«Нужно срочно, к 17:00»</strong>. Ты в середине своей задачи. Если переключишься — потеряешь контекст и не успеешь ни то, ни другое.</p>
@@ -793,6 +937,10 @@
           <div class="scene-time-label">18:30 — Рабочий день закончен</div>
         </div>
       </div>
+      <div class="scene-char-wrap">
+        <div class="scene-pixel-char"></div>
+        <div class="speech-bubble">Формально день закончился. Но в голове <em>ещё крутятся задачи</em>. Коллега пишет — не срочно, но я уже вижу уведомление...</div>
+      </div>
       <div class="scene-body">
         <p class="scene-text">Рабочий день формально закончился. Но в голове <strong>ещё крутятся задачи</strong> на завтра. Коллега пишет в чат — не срочно, но ты видишь уведомление.</p>
         <div class="choices" id="choices-5">
@@ -831,11 +979,11 @@
   <div class="screen" id="screen-result">
     <div class="result-screen">
       <div class="result-game-over" id="result-title-text">ДЕНЬ ЗАВЕРШЁН</div>
-      <div class="result-subtitle">ИТОГОВЫЙ ОТЧЁТ // DISTILL ANALYTICS</div>
+      <div class="result-subtitle">ДИАГНОЗ ВЫГОРАНИЯ // DISTILL ANALYTICS</div>
 
       <div class="result-stats">
         <div class="stat-box">
-          <div class="stat-label">❤ СИЛЫ ОСТАЛИСЬ</div>
+          <div class="stat-label">🔥 УРОВЕНЬ ВЫГОРАНИЯ</div>
           <div class="stat-value" id="final-hp-val">—</div>
         </div>
         <div class="stat-box">
@@ -899,6 +1047,18 @@
       C: { hp: -15, energy: -20, text: '+2 задачи сегодня, -20% завтра. Это не продуктивность — это кредит под высокий процент.', tag: '❌ Переработка = долг' }
     }
   };
+
+  // Animate burnout meter percentage text
+  (function() {
+    var el = document.getElementById('burnout-pct');
+    if (!el) return;
+    var target = 73; var cur = 0;
+    var t = setInterval(function() {
+      cur += 2;
+      if (cur >= target) { cur = target; clearInterval(t); }
+      el.textContent = cur + '%';
+    }, 40);
+  })();
 
   function startGame() {
     document.getElementById('screen-start').classList.remove('active');
@@ -978,8 +1138,11 @@
     // Fill result
     var hpClass = hp >= 70 ? 'good' : hp >= 40 ? 'mid' : 'bad';
     var enClass = energy >= 70 ? 'good' : energy >= 40 ? 'mid' : 'bad';
-    document.getElementById('final-hp-val').textContent = hp + '%';
-    document.getElementById('final-hp-val').className = 'stat-value ' + hpClass;
+    // Burnout level is inverse of HP
+    var burnoutLevel = 100 - hp;
+    document.getElementById('final-hp-val').textContent = burnoutLevel + '%';
+    document.getElementById('final-hp-val').className = 'stat-value ' + (burnoutLevel <= 30 ? 'good' : burnoutLevel <= 60 ? 'mid' : 'bad');
+    // (already set above)
     document.getElementById('final-energy-val').textContent = energy + '%';
     document.getElementById('final-energy-val').className = 'stat-value ' + enClass;
 
