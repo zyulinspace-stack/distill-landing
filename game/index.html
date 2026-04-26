@@ -1303,6 +1303,27 @@
     if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_completed', { sily: hp, energy: energy });
   }
 
+  // ── UTM → Salebot tag substitution ──────────────────────────────────────
+  // Reads utm_campaign from the URL and replaces the bot start= parameter
+  // so Salebot knows which traffic source brought the user.
+  // Mapping:
+  //   utm_campaign contains "search" → start=search
+  //   utm_campaign contains "rsya"   → start=rsya
+  //   anything else / no UTM         → start=game_direct (default, unchanged)
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var campaign = (params.get('utm_campaign') || '').toLowerCase();
+    var tag = 'game_direct'; // default — keeps existing behaviour
+    if (campaign.indexOf('search') !== -1) tag = 'search';
+    else if (campaign.indexOf('rsya') !== -1) tag = 'rsya';
+    if (tag !== 'game_direct') {
+      document.querySelectorAll('a[href*="t.me/distillsh_bot"]').forEach(function(link) {
+        link.href = 'https://t.me/distillsh_bot?start=' + tag;
+      });
+    }
+  })();
+  // ─────────────────────────────────────────────────────────────────────────
+
   function trackBot() {
     if (typeof ym !== 'undefined') ym(108295821, 'reachGoal', 'game_bot_click');
   }
