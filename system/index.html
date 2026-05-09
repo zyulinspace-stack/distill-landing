@@ -4,923 +4,176 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Системное мышление — бесплатный мини-курс · DISTILL</title>
-  <meta name="description" content="5 уроков системного мышления. Интерактивный мини-курс в стиле Тима Урбана. Бесплатно.">
+  <meta name="description" content="5 уроков системного мышления с интерактивными механиками. Глубокий разбор методологии. Бесплатно.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --yellow: #c8ff00;
-      --black: #0a0a0a;
-      --dark: #111111;
-      --card: #1a1a1a;
-      --border: #2a2a2a;
-      --white: #ffffff;
-      --gray: #888888;
-      --red: #ff3b3b;
-      --green: #00ff88;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--black);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-weight: 900;
-      font-size: 18px;
-      color: var(--yellow);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .nav-logo span { color: var(--white); }
-    .nav-progress {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-    .nav-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-      transition: background 0.3s;
-    }
-    .nav-dot.done { background: var(--yellow); }
-    .nav-dot.active { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
-
-    /* SCREENS */
-    .screen {
-      display: none;
-      min-height: 100vh;
-      padding-top: 56px;
-    }
-    .screen.active { display: flex; flex-direction: column; }
-
-    /* HERO SCREEN */
-    #screen-hero {
-      background: var(--black);
-    }
-    .hero-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 56px);
-    }
-    .hero-left {
-      background: var(--yellow);
-      padding: 64px 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 32px;
-    }
-    .tag {
-      border: 1px solid rgba(0,0,0,0.3);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #000;
-    }
-    .hero-title {
-      font-size: clamp(52px, 6vw, 88px);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: -3px;
-      color: #000;
-      text-transform: lowercase;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: #000;
-    }
-    .hero-desc {
-      margin-top: 32px;
-      font-size: 16px;
-      color: #333;
-      max-width: 400px;
-      line-height: 1.6;
-    }
-    .hero-desc strong { color: #000; }
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: #000;
-      color: var(--yellow);
-      border: none;
-      padding: 16px 32px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: -0.3px;
-      transition: opacity 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.85; }
-    .btn-ghost {
-      background: transparent;
-      color: #000;
-      border: 1.5px solid #000;
-      padding: 16px 32px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
-    .btn-ghost:hover { background: rgba(0,0,0,0.08); }
-    .hero-right {
-      background: var(--dark);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-right-content {
-      text-align: center;
-      padding: 48px;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 48px;
-    }
-    .stat-block {
-      background: var(--card);
-      padding: 24px;
-      text-align: left;
-    }
-    .stat-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--gray);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .stat-value {
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--yellow);
-      letter-spacing: -2px;
-    }
-    .stat-sub {
-      font-size: 12px;
-      color: var(--gray);
-      margin-top: 4px;
-    }
-    .hero-badge {
-      display: inline-block;
-      border: 1.5px solid var(--yellow);
-      color: var(--yellow);
-      padding: 8px 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .hero-big-text {
-      font-size: clamp(28px, 3vw, 42px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      color: var(--white);
-    }
-    .hero-big-text em { color: var(--yellow); font-style: italic; }
-    .hero-lessons-list {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      text-align: left;
-    }
-    .lesson-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--gray);
-    }
-    .lesson-num {
-      width: 28px; height: 28px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--yellow);
-      flex-shrink: 0;
-    }
-
-    /* LESSON SCREEN */
-    .lesson-screen {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 48px 32px 80px;
-      width: 100%;
-    }
-    .lesson-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 48px;
-    }
-    .lesson-num-big {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--yellow);
-      text-transform: uppercase;
-    }
-    .lesson-title {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      margin-bottom: 16px;
-    }
-    .lesson-subtitle {
-      font-size: 18px;
-      color: var(--gray);
-      font-weight: 400;
-      margin-bottom: 40px;
-    }
-
-    /* SITUATION BOX */
-    .situation-box {
-      background: var(--card);
-      border-left: 3px solid var(--yellow);
-      padding: 28px 32px;
-      margin-bottom: 40px;
-    }
-    .situation-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--yellow);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .situation-text {
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--white);
-    }
-
-    /* QUESTION */
-    .question-text {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 28px;
-      line-height: 1.3;
-    }
-
-    /* SWIPE MECHANIC */
-    .swipe-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-    }
-    .swipe-card {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 32px;
-      font-size: 17px;
-      line-height: 1.6;
-      text-align: center;
-      cursor: grab;
-      user-select: none;
-      transition: transform 0.15s, border-color 0.15s;
-      position: relative;
-    }
-    .swipe-card:active { cursor: grabbing; }
-    .swipe-card.swipe-left { transform: translateX(-20px) rotate(-3deg); border-color: var(--red); }
-    .swipe-card.swipe-right { transform: translateX(20px) rotate(3deg); border-color: var(--green); }
-    .swipe-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-    }
-    .swipe-btn {
-      padding: 14px 32px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      border: none;
-      transition: opacity 0.2s;
-    }
-    .swipe-btn:hover { opacity: 0.85; }
-    .swipe-btn.no { background: var(--red); color: #fff; }
-    .swipe-btn.yes { background: var(--green); color: #000; }
-    .swipe-hint {
-      font-size: 13px;
-      color: var(--gray);
-      text-align: center;
-    }
-    .swipe-progress {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-    }
-    .swipe-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    .swipe-dot.done { background: var(--yellow); }
-    .swipe-dot.correct { background: var(--green); }
-    .swipe-dot.wrong { background: var(--red); }
-
-    /* CHAIN MECHANIC */
-    .chain-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .chain-option {
-      border: 1.5px solid var(--border);
-      padding: 20px 24px;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .chain-option:hover { border-color: var(--yellow); background: rgba(200,255,0,0.04); }
-    .chain-option.selected-correct { border-color: var(--green); background: rgba(0,255,136,0.06); }
-    .chain-option.selected-wrong { border-color: var(--red); background: rgba(255,59,59,0.06); }
-    .chain-option.reveal-correct { border-color: var(--green); background: rgba(0,255,136,0.06); }
-    .chain-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--gray);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .chain-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin-top: 12px;
-    }
-    .chain-step {
-      background: var(--dark);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    .chain-arrow {
-      color: var(--gray);
-      font-size: 16px;
-    }
-    .chain-option.selected-correct .chain-step { border-color: var(--green); color: var(--green); }
-    .chain-option.selected-wrong .chain-step { border-color: var(--red); color: var(--red); }
-    .chain-option.reveal-correct .chain-step { border-color: var(--green); color: var(--green); }
-
-    /* SLIDER MECHANIC */
-    .slider-container {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .slider-item {
-      background: var(--card);
-      padding: 24px;
-      border: 1px solid var(--border);
-    }
-    .slider-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .slider-name {
-      font-size: 15px;
-      font-weight: 700;
-    }
-    .slider-value {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--yellow);
-      letter-spacing: -1px;
-    }
-    input[type="range"] {
-      width: 100%;
-      height: 4px;
-      background: var(--border);
-      outline: none;
-      cursor: pointer;
-      -webkit-appearance: none;
-      border-radius: 0;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px; height: 20px;
-      background: var(--yellow);
-      cursor: pointer;
-      border-radius: 0;
-    }
-    .slider-ends {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--gray);
-      margin-top: 8px;
-    }
-    .slider-submit {
-      background: var(--yellow);
-      color: #000;
-      border: none;
-      padding: 16px 40px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      align-self: flex-start;
-      transition: opacity 0.2s;
-    }
-    .slider-submit:hover { opacity: 0.85; }
-
-    /* SORT MECHANIC */
-    .sort-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .sort-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .sort-col {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      padding: 20px;
-      min-height: 200px;
-    }
-    .sort-col-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .sort-col-title.symptom { color: var(--red); }
-    .sort-col-title.cause { color: var(--green); }
-    .sort-items {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 120px;
-    }
-    .sort-item {
-      background: var(--dark);
-      border: 1px solid var(--border);
-      padding: 10px 14px;
-      font-size: 14px;
-      cursor: grab;
-      user-select: none;
-      transition: border-color 0.2s, opacity 0.2s;
-    }
-    .sort-item:hover { border-color: var(--yellow); }
-    .sort-item.dragging { opacity: 0.5; }
-    .sort-item.correct-place { border-color: var(--green); color: var(--green); }
-    .sort-item.wrong-place { border-color: var(--red); color: var(--red); }
-    .sort-source {
-      background: var(--card);
-      border: 1.5px dashed var(--border);
-      padding: 20px;
-    }
-    .sort-source-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--gray);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .sort-source-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .sort-submit {
-      background: var(--yellow);
-      color: #000;
-      border: none;
-      padding: 16px 40px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: opacity 0.2s;
-    }
-    .sort-submit:hover { opacity: 0.85; }
-
-    /* INSIGHT CARD */
-    .insight-card {
-      display: none;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 40px;
-      margin-top: 32px;
-    }
-    .insight-card.show { display: block; }
-    .insight-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--yellow);
-      color: #000;
-      padding: 6px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .insight-title {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-      line-height: 1.1;
-    }
-    .insight-body {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #ccc;
-    }
-    .insight-body p { margin-bottom: 16px; }
-    .insight-body strong { color: var(--white); }
-    .insight-body em { color: var(--yellow); font-style: normal; }
-    .insight-quote {
-      border-left: 3px solid var(--yellow);
-      padding: 16px 24px;
-      margin: 24px 0;
-      font-size: 17px;
-      font-style: italic;
-      color: var(--white);
-      background: rgba(200,255,0,0.04);
-    }
-    .insight-illustration {
-      background: #0f0f0f;
-      border: 1px solid var(--border);
-      padding: 40px;
-      margin: 28px 0;
-      text-align: center;
-      font-family: monospace;
-      font-size: 14px;
-      line-height: 2;
-      color: var(--white);
-    }
-    .insight-illustration .yellow { color: var(--yellow); }
-    .insight-illustration .red { color: var(--red); }
-    .insight-illustration .green { color: var(--green); }
-    .insight-illustration .gray { color: var(--gray); }
-    .insight-principle {
-      background: rgba(200,255,0,0.06);
-      border: 1px solid rgba(200,255,0,0.2);
-      padding: 20px 24px;
-      margin-top: 24px;
-    }
-    .insight-principle-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--yellow);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .insight-principle-text {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-    }
-    .insight-apply {
-      margin-top: 28px;
-      padding: 24px;
-      background: var(--dark);
-      border: 1px solid var(--border);
-    }
-    .insight-apply-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--green);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .insight-apply-text {
-      font-size: 15px;
-      color: #ccc;
-      line-height: 1.7;
-    }
-    .next-btn {
-      background: var(--yellow);
-      color: #000;
-      border: none;
-      padding: 18px 48px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      margin-top: 32px;
-      display: block;
-      transition: opacity 0.2s;
-    }
-    .next-btn:hover { opacity: 0.85; }
-
-    /* RESULT SCREEN */
-    #screen-result {
-      background: var(--black);
-    }
-    .result-container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 64px 32px;
-      text-align: center;
-    }
-    .result-score-ring {
-      width: 140px; height: 140px;
-      border: 4px solid var(--yellow);
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 40px;
-    }
-    .result-score-num {
-      font-size: 48px;
-      font-weight: 900;
-      color: var(--yellow);
-      letter-spacing: -3px;
-      line-height: 1;
-    }
-    .result-score-label {
-      font-size: 11px;
-      color: var(--gray);
-      letter-spacing: 1px;
-    }
-    .result-level {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--yellow);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .result-title {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
-    .result-desc {
-      font-size: 17px;
-      color: #aaa;
-      line-height: 1.7;
-      margin-bottom: 48px;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .result-insights {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-bottom: 48px;
-      text-align: left;
-    }
-    .result-insight-item {
-      background: var(--card);
-      padding: 20px;
-    }
-    .result-insight-num {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--yellow);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .result-insight-name {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .result-insight-sub {
-      font-size: 13px;
-      color: var(--gray);
-    }
-    .result-cta-box {
-      background: var(--yellow);
-      padding: 48px;
-      text-align: left;
-    }
-    .result-cta-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: rgba(0,0,0,0.5);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .result-cta-title {
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 900;
-      color: #000;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .result-cta-desc {
-      font-size: 16px;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 28px;
-      max-width: 480px;
-    }
-    .result-cta-btn {
-      display: inline-block;
-      background: #000;
-      color: var(--yellow);
-      padding: 18px 40px;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      transition: opacity 0.2s;
-    }
-    .result-cta-btn:hover { opacity: 0.85; }
-    .result-retry {
-      margin-top: 24px;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      color: var(--gray);
-      padding: 14px 32px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .result-retry:hover { border-color: var(--white); color: var(--white); }
-
-    /* FEEDBACK */
-    .feedback-wrong {
-      background: rgba(255,59,59,0.08);
-      border: 1px solid rgba(255,59,59,0.3);
-      padding: 16px 20px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      color: #ff8888;
-      display: none;
-    }
-    .feedback-wrong.show { display: block; }
-    .feedback-correct {
-      background: rgba(0,255,136,0.08);
-      border: 1px solid rgba(0,255,136,0.3);
-      padding: 16px 20px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      color: var(--green);
-      display: none;
-    }
-    .feedback-correct.show { display: block; }
-
-    /* TIMELINE MECHANIC */
-    .timeline-container {
-      position: relative;
-    }
-    .timeline-line {
-      position: absolute;
-      left: 20px;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-    .timeline-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding-left: 56px;
-    }
-    .timeline-item {
-      position: relative;
-      padding: 20px 24px;
-      border: 1px solid var(--border);
-      margin-bottom: 2px;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -38px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--border);
-      border: 2px solid var(--black);
-      transition: background 0.3s;
-    }
-    .timeline-item:hover { border-color: var(--yellow); }
-    .timeline-item.selected { border-color: var(--yellow); background: rgba(200,255,0,0.04); }
-    .timeline-item.selected::before { background: var(--yellow); }
-    .timeline-item.correct::before { background: var(--green); }
-    .timeline-item.wrong::before { background: var(--red); }
-    .timeline-item.correct { border-color: var(--green); background: rgba(0,255,136,0.04); }
-    .timeline-item.wrong { border-color: var(--red); background: rgba(255,59,59,0.04); }
-    .timeline-month {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--yellow);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .timeline-text {
-      font-size: 15px;
-      font-weight: 600;
-    }
-    .timeline-sub {
-      font-size: 13px;
-      color: var(--gray);
-      margin-top: 4px;
-    }
-    .timeline-submit {
-      background: var(--yellow);
-      color: #000;
-      border: none;
-      padding: 16px 40px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      margin-top: 20px;
-      transition: opacity 0.2s;
-    }
-    .timeline-submit:hover { opacity: 0.85; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero-split { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .hero-left { padding: 40px 24px; }
-      .sort-columns { grid-template-columns: 1fr; }
-      .result-insights { grid-template-columns: 1fr; }
-      .result-cta-box { padding: 32px 24px; }
-      .lesson-screen { padding: 32px 20px 60px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--y:#c8ff00;--bk:#0a0a0a;--dk:#111;--card:#1a1a1a;--brd:#2a2a2a;--w:#fff;--g:#888;--lg:#bbb;--r:#ff3b3b;--gr:#00ff88}
+    html{scroll-behavior:smooth}
+    body{background:var(--bk);color:var(--w);font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bk);border-bottom:1px solid var(--brd);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-weight:900;font-size:18px;color:var(--y);text-decoration:none;letter-spacing:-.5px}
+    .nav-logo span{color:var(--w)}
+    .nav-progress{display:flex;gap:6px;align-items:center}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:var(--brd);transition:all .3s}
+    .nav-dot.done{background:var(--y)}
+    .nav-dot.active{background:var(--y);box-shadow:0 0 8px var(--y)}
+    .screen{display:none;min-height:100vh;padding-top:56px}
+    .screen.active{display:block}
+    .hero{min-height:calc(100vh - 56px);display:grid;grid-template-columns:1fr 1fr}
+    .hero-left{background:var(--y);padding:80px 56px;display:flex;flex-direction:column;justify-content:center}
+    .hero-tag{display:inline-block;border:1.5px solid rgba(0,0,0,.3);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;color:#000;margin-bottom:32px}
+    .hero-title{font-size:clamp(48px,5.5vw,80px);font-weight:900;line-height:.95;letter-spacing:-3px;color:#000}
+    .hero-title em{font-style:italic}
+    .hero-sub{margin-top:28px;font-size:17px;color:#222;max-width:440px;line-height:1.7}
+    .hero-sub strong{color:#000}
+    .hero-start{margin-top:40px;display:inline-block;background:#000;color:var(--y);padding:18px 40px;font-size:16px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+    .hero-start:hover{opacity:.85}
+    .hero-right{background:var(--dk);display:flex;align-items:center;justify-content:center;padding:48px}
+    .hero-right-inner{max-width:400px}
+    .hero-badge{border:1.5px solid var(--y);color:var(--y);padding:8px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:inline-block;margin-bottom:28px}
+    .hero-lessons{display:flex;flex-direction:column;gap:16px}
+    .hero-lesson{display:flex;align-items:flex-start;gap:16px}
+    .hero-lesson-num{flex-shrink:0;width:32px;height:32px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--y)}
+    .hero-lesson-title{font-size:15px;font-weight:700;color:var(--w)}
+    .hero-lesson-desc{font-size:13px;color:var(--g);margin-top:2px}
+    .lesson-wrap{max-width:720px;margin:0 auto;padding:64px 32px 100px}
+    .lesson-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px}
+    .lesson-title{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:40px}
+    .article p{margin-bottom:24px;color:var(--lg)}
+    .article p strong{color:var(--w)}
+    .article p em{color:var(--y);font-style:normal}
+    .article h3{font-size:22px;font-weight:900;letter-spacing:-.5px;margin:48px 0 20px;color:var(--w)}
+    .article .highlight{background:rgba(200,255,0,.06);border-left:3px solid var(--y);padding:20px 28px;margin:32px 0;font-size:17px;color:var(--w);line-height:1.7}
+    .article .highlight strong{color:var(--y)}
+    .article .metaphor{background:var(--card);border:1px solid var(--brd);padding:28px 32px;margin:32px 0;font-size:16px;color:var(--lg);line-height:1.8}
+    .article .metaphor::before{content:'💡';display:block;margin-bottom:12px;font-size:24px}
+    .illustration{background:#0d0d0d;border:1px solid var(--brd);padding:40px;margin:40px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .illustration svg{max-width:100%;height:auto}
+    .illustration .caption{font-size:13px;color:var(--g);margin-top:12px;font-style:italic}
+    .iceberg{background:#0d0d0d;border:1px solid var(--brd);padding:40px 32px;margin:40px 0}
+    .iceberg-level{padding:16px 24px;margin-bottom:2px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:16px}
+    .iceberg-level .depth{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;width:120px}
+    .iceberg-level:nth-child(1){background:rgba(200,255,0,.15);color:var(--y)}
+    .iceberg-level:nth-child(1) .depth{color:var(--y)}
+    .iceberg-level:nth-child(2){background:rgba(200,255,0,.08);color:#aaffaa}
+    .iceberg-level:nth-child(2) .depth{color:#aaffaa}
+    .iceberg-level:nth-child(3){background:rgba(100,100,255,.08);color:#aaaaff}
+    .iceberg-level:nth-child(3) .depth{color:#aaaaff}
+    .iceberg-level:nth-child(4){background:rgba(255,100,100,.08);color:#ffaaaa}
+    .iceberg-level:nth-child(4) .depth{color:#ffaaaa}
+    .iceberg-divider{text-align:center;padding:12px;font-size:12px;color:var(--g);letter-spacing:3px}
+    .game-section{background:var(--card);border:1px solid var(--brd);padding:40px;margin-top:56px}
+    .game-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px}
+    .game-title{font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px}
+    .game-desc{font-size:15px;color:var(--g);margin-bottom:32px}
+    .swipe-area{display:flex;flex-direction:column;align-items:center;gap:20px}
+    .swipe-progress{display:flex;gap:6px}
+    .swipe-dot{width:8px;height:8px;border-radius:50%;background:var(--brd)}
+    .swipe-dot.correct{background:var(--gr)}
+    .swipe-dot.wrong{background:var(--r)}
+    .swipe-dot.current{background:var(--y);box-shadow:0 0 6px var(--y)}
+    .swipe-card{width:100%;max-width:520px;background:var(--dk);border:1.5px solid var(--brd);padding:36px;font-size:18px;line-height:1.6;text-align:center;transition:transform .2s,border-color .2s}
+    .swipe-card.left{transform:translateX(-15px) rotate(-2deg);border-color:var(--r)}
+    .swipe-card.right{transform:translateX(15px) rotate(2deg);border-color:var(--gr)}
+    .swipe-hint{font-size:12px;color:var(--g)}
+    .swipe-btns{display:flex;gap:16px}
+    .swipe-btn{padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:opacity .2s}
+    .swipe-btn:hover{opacity:.85}
+    .swipe-btn.no{background:var(--r);color:#fff}
+    .swipe-btn.yes{background:var(--gr);color:#000}
+    .chain-option{border:1.5px solid var(--brd);padding:24px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,background .2s}
+    .chain-option:hover{border-color:var(--y);background:rgba(200,255,0,.03)}
+    .chain-option.correct{border-color:var(--gr);background:rgba(0,255,136,.05)}
+    .chain-option.wrong{border-color:var(--r);background:rgba(255,59,59,.05)}
+    .chain-option.reveal{border-color:var(--gr);background:rgba(0,255,136,.05)}
+    .chain-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--g);text-transform:uppercase;margin-bottom:10px}
+    .chain-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .chain-step{background:var(--bk);border:1px solid var(--brd);padding:6px 12px;font-size:13px;font-weight:500}
+    .chain-arrow{color:var(--g);font-size:14px}
+    .chain-option.correct .chain-step{border-color:var(--gr);color:var(--gr)}
+    .chain-option.wrong .chain-step{border-color:var(--r);color:var(--r)}
+    .chain-option.reveal .chain-step{border-color:var(--gr);color:var(--gr)}
+    .slider-item{background:var(--dk);border:1px solid var(--brd);padding:24px;margin-bottom:12px}
+    .slider-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .slider-name{font-size:15px;font-weight:600}
+    .slider-val{font-size:24px;font-weight:900;color:var(--y);letter-spacing:-1px}
+    input[type="range"]{width:100%;height:4px;background:var(--brd);outline:none;cursor:pointer;-webkit-appearance:none;border-radius:0}
+    input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--y);cursor:pointer}
+    .slider-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--g);margin-top:6px}
+    .sort-source{background:var(--dk);border:1.5px dashed var(--brd);padding:24px;margin-bottom:20px}
+    .sort-source-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g);text-transform:uppercase;margin-bottom:14px}
+    .sort-source-items{display:flex;flex-wrap:wrap;gap:8px}
+    .sort-item{background:var(--card);border:1px solid var(--brd);padding:10px 16px;font-size:14px;cursor:grab;user-select:none;transition:border-color .2s}
+    .sort-item:hover{border-color:var(--y)}
+    .sort-item.dragging{opacity:.4}
+    .sort-item.correct{border-color:var(--gr);color:var(--gr)}
+    .sort-item.wrong{border-color:var(--r);color:var(--r)}
+    .sort-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+    .sort-col{background:var(--dk);border:1.5px solid var(--brd);padding:20px;min-height:160px}
+    .sort-col-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+    .sort-col-title.a{color:var(--r)}
+    .sort-col-title.b{color:var(--gr)}
+    .sort-col-items{display:flex;flex-direction:column;gap:8px;min-height:80px}
+    .timeline{position:relative;padding-left:40px}
+    .timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:var(--brd)}
+    .timeline-item{position:relative;padding:20px 24px;border:1px solid var(--brd);margin-bottom:2px;cursor:pointer;transition:all .2s}
+    .timeline-item::before{content:'';position:absolute;left:-30px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--brd);transition:all .3s}
+    .timeline-item:hover{border-color:var(--y)}
+    .timeline-item.selected{border-color:var(--y);background:rgba(200,255,0,.03)}
+    .timeline-item.selected::before{background:var(--y)}
+    .timeline-item.correct{border-color:var(--gr);background:rgba(0,255,136,.03)}
+    .timeline-item.correct::before{background:var(--gr)}
+    .timeline-item.wrong{border-color:var(--r);background:rgba(255,59,59,.03)}
+    .timeline-item.wrong::before{background:var(--r)}
+    .timeline-month{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--y);text-transform:uppercase;margin-bottom:4px}
+    .timeline-text{font-size:15px;font-weight:600}
+    .timeline-sub{font-size:13px;color:var(--g);margin-top:4px}
+    .feedback{padding:16px 20px;margin-top:16px;font-size:14px;display:none}
+    .feedback.show{display:block}
+    .feedback.wrong{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.3);color:#ff8888}
+    .feedback.correct{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);color:var(--gr)}
+    .submit-btn{background:var(--y);color:#000;border:none;padding:16px 40px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-top:20px;transition:opacity .2s}
+    .submit-btn:hover{opacity:.85}
+    .submit-btn:disabled{opacity:.4;cursor:not-allowed}
+    .next-lesson{margin-top:48px;padding-top:32px;border-top:1px solid var(--brd)}
+    .next-btn{background:var(--y);color:#000;border:none;padding:18px 48px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+    .next-btn:hover{opacity:.85}
+    .result-wrap{max-width:720px;margin:0 auto;padding:80px 32px;text-align:center}
+    .result-ring{width:140px;height:140px;border:4px solid var(--y);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 40px}
+    .result-num{font-size:48px;font-weight:900;color:var(--y);letter-spacing:-3px;line-height:1}
+    .result-of{font-size:11px;color:var(--g)}
+    .result-level{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px}
+    .result-title{font-size:clamp(28px,3.5vw,44px);font-weight:900;letter-spacing:-1.5px;margin-bottom:20px}
+    .result-desc{font-size:17px;color:var(--g);line-height:1.7;margin-bottom:48px;max-width:540px;margin-left:auto;margin-right:auto}
+    .result-principles{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:48px;text-align:left}
+    .result-principle{background:var(--card);padding:20px}
+    .result-principle-num{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--y);margin-bottom:6px}
+    .result-principle-name{font-size:15px;font-weight:700;margin-bottom:4px}
+    .result-principle-sub{font-size:13px;color:var(--g)}
+    .result-cta{background:var(--y);padding:48px;text-align:left;margin-top:32px}
+    .result-cta-label{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:16px}
+    .result-cta-title{font-size:clamp(24px,3vw,36px);font-weight:900;color:#000;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+    .result-cta-desc{font-size:16px;color:#333;line-height:1.7;margin-bottom:28px;max-width:480px}
+    .result-cta-btn{display:inline-block;background:#000;color:var(--y);padding:18px 40px;font-size:16px;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif}
+    .result-retry{margin-top:24px;background:transparent;border:1.5px solid var(--brd);color:var(--g);padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+    .result-retry:hover{border-color:var(--w);color:var(--w)}
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr}
+      .hero-right{display:none}
+      .hero-left{padding:48px 24px}
+      .lesson-wrap{padding:40px 20px 80px}
+      .game-section{padding:28px 20px}
+      .sort-cols{grid-template-columns:1fr}
+      .result-principles{grid-template-columns:1fr}
+      .result-cta{padding:32px 20px}
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="https://www.distill-school.ru" class="nav-logo">distill<span>.</span></a>
   <div class="nav-progress" id="navProgress">
@@ -932,917 +185,700 @@
   </div>
 </nav>
 
-<!-- ============================================================ -->
-<!-- SCREEN 0: HERO -->
-<!-- ============================================================ -->
+<!-- ===== HERO ===== -->
 <div class="screen active" id="screen-hero">
-  <div class="hero-split">
+  <div class="hero">
     <div class="hero-left">
-      <div>
-        <div class="hero-tags">
-          <span class="tag">системное мышление</span>
-          <span class="tag">интерактивный курс</span>
-          <span class="tag">5 уроков · бесплатно</span>
-        </div>
-        <h1 class="hero-title">ты думаешь<br>линейно.<br><em>это проблема.</em></h1>
-        <p class="hero-desc">
-          <strong>Бесплатный мини-курс</strong> по системному мышлению. 5 уроков — 5 разных механик. Каждый урок — реальная ситуация, где «очевидное» решение ведёт к катастрофе.
-        </p>
-        <p class="hero-desc" style="margin-top:12px;">
-          Ты узнаешь себя. Ошибёшься. Получишь инсайт. И больше не сможешь думать по-старому.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="startCourse()">начать бесплатно →</button>
-        <button class="btn-ghost" onclick="scrollToLessons()">что внутри</button>
-      </div>
+      <div class="hero-tag">бесплатный мини-курс · 5 уроков · ~20 мин</div>
+      <h1 class="hero-title">ты думаешь<br>линейно.<br><em>это проблема.</em></h1>
+      <p class="hero-sub"><strong>Системное мышление</strong> — это не абстрактная теория. Это способ видеть, почему одни и те же проблемы повторяются в твоей жизни, работе и отношениях. И как это изменить.</p>
+      <p class="hero-sub" style="margin-top:12px;font-size:15px;color:#444;">5 уроков. 5 механик. Реальная методология Медоуз, Сенге и Форрестера. Без воды.</p>
+      <button class="hero-start" onclick="startCourse()">начать курс →</button>
     </div>
     <div class="hero-right">
-      <div class="hero-right-content">
-        <div class="hero-badge">5 уроков · 5 механик</div>
-        <div class="hero-big-text">каждый урок —<br><em>новый способ</em><br>думать</div>
-        <div class="hero-lessons-list">
-          <div class="lesson-item">
-            <div class="lesson-num">01</div>
-            <span>Свайп: системно или нет?</span>
-          </div>
-          <div class="lesson-item">
-            <div class="lesson-num">02</div>
-            <span>Цепная реакция: предскажи последствия</span>
-          </div>
-          <div class="lesson-item">
-            <div class="lesson-num">03</div>
-            <span>Слайдер: найди точку рычага</span>
-          </div>
-          <div class="lesson-item">
-            <div class="lesson-num">04</div>
-            <span>Сортировка: симптом или причина?</span>
-          </div>
-          <div class="lesson-item">
-            <div class="lesson-num">05</div>
-            <span>Таймлайн: когда проявится ошибка?</span>
-          </div>
+      <div class="hero-right-inner">
+        <div class="hero-badge">программа курса</div>
+        <div class="hero-lessons">
+          <div class="hero-lesson"><div class="hero-lesson-num">01</div><div><div class="hero-lesson-title">Почему умные люди принимают тупые решения</div><div class="hero-lesson-desc">Линейное vs системное. Модель айсберга.</div></div></div>
+          <div class="hero-lesson"><div class="hero-lesson-num">02</div><div><div class="hero-lesson-title">Эффект домино, которого ты не видишь</div><div class="hero-lesson-desc">Причинно-следственные цепочки. Эффект кобры.</div></div></div>
+          <div class="hero-lesson"><div class="hero-lesson-num">03</div><div><div class="hero-lesson-title">Петли, которые управляют твоей жизнью</div><div class="hero-lesson-desc">Усиливающие и балансирующие петли обратной связи.</div></div></div>
+          <div class="hero-lesson"><div class="hero-lesson-num">04</div><div><div class="hero-lesson-title">Где нажать, чтобы всё изменилось</div><div class="hero-lesson-desc">Точки рычага по Донелле Медоуз.</div></div></div>
+          <div class="hero-lesson"><div class="hero-lesson-num">05</div><div><div class="hero-lesson-title">Почему твоё решение сработает через полгода</div><div class="hero-lesson-desc">Задержки в системах. Системные архетипы.</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN 1: SWIPE — системно или нет? -->
-<!-- ============================================================ -->
+<!-- ===== LESSON 1 ===== -->
 <div class="screen" id="screen-1">
-  <div class="lesson-screen">
-    <div class="lesson-num-big">урок 01 · свайп</div>
-    <h1 class="lesson-title">Системно или нет?</h1>
-    <p class="lesson-subtitle">Прочитай утверждение. Реши: это системное мышление или нет?</p>
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 01 из 05</div>
+    <h1 class="lesson-title">Почему умные люди принимают тупые решения</h1>
+    <div class="article">
+      <p>Представь: тебе холодно. Ты подходишь к термостату и ставишь 30°C. Ждёшь 5 минут. Всё ещё холодно. Ставишь 35°C. Ждёшь ещё. Ставишь 40°C. Через полчаса ты сидишь в сауне, потеешь и думаешь: <strong>«Какого чёрта?»</strong></p>
 
-    <div class="situation-box">
-      <div class="situation-label">контекст</div>
-      <div class="situation-text">
-        Компания не растёт 8 месяцев. Команда работает. Продукт есть. Деньги есть. Но что-то не так. Разные люди предлагают разные решения. Твоя задача — отличить системное мышление от линейного.
+      <div class="illustration">
+        <svg width="400" height="200" viewBox="0 0 400 200">
+          <circle cx="80" cy="60" r="18" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="80" y1="78" x2="80" y2="130" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="80" y1="95" x2="60" y2="115" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="80" y1="95" x2="110" y2="85" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="80" y1="130" x2="65" y2="165" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="80" y1="130" x2="95" y2="165" stroke="#c8ff00" stroke-width="2"/>
+          <rect x="115" y="55" width="40" height="60" fill="none" stroke="#888" stroke-width="1.5"/>
+          <text x="135" y="90" text-anchor="middle" fill="#ff3b3b" font-size="16" font-weight="700">40°</text>
+          <circle cx="65" cy="50" r="3" fill="#00ff88"/>
+          <circle cx="95" cy="45" r="3" fill="#00ff88"/>
+          <circle cx="70" cy="70" r="2" fill="#00ff88"/>
+          <rect x="180" y="30" width="200" height="50" rx="4" fill="#1a1a1a" stroke="#2a2a2a"/>
+          <text x="280" y="55" text-anchor="middle" fill="#fff" font-size="12">«Не работает! Ещё крутану!»</text>
+          <polygon points="175,55 180,50 180,60" fill="#1a1a1a"/>
+          <text x="200" y="140" fill="#888" font-size="11" letter-spacing="1">ЗАДЕРЖКА: 20 МИНУТ</text>
+          <line x1="200" y1="150" x2="370" y2="150" stroke="#888" stroke-width="1" stroke-dasharray="4"/>
+          <circle cx="340" cy="60" r="18" fill="none" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="340" y1="78" x2="340" y2="130" stroke="#ff3b3b" stroke-width="2"/>
+          <text x="340" y="175" text-anchor="middle" fill="#ff3b3b" font-size="11">+40°C 🥵</text>
+        </svg>
+        <div class="caption">Классическая ошибка: не учитывать задержку в системе</div>
       </div>
+
+      <p>Это не история про термостат. Это история про то, как работает твой мозг.</p>
+
+      <p>Твой мозг заточен на <strong>линейное мышление</strong>: увидел проблему → нашёл причину → исправил. A → B. Просто. Быстро. Эффективно. И в 90% случаев — <em>неправильно</em>.</p>
+
+      <p>Потому что мир — не линейный. Мир — это система. А системы работают по другим правилам.</p>
+
+      <h3>Что такое система?</h3>
+
+      <p>Система — это набор элементов, связанных между собой так, что они создают поведение, которое <strong>невозможно предсказать, глядя на отдельные части</strong>.</p>
+
+      <p>Твоё тело — система. Компания — система. Семья — система. Город — система. Даже твоя привычка прокрастинировать — это система с петлями обратной связи.</p>
+
+      <div class="metaphor">
+        Представь оркестр. Ты можешь изучить каждый инструмент по отдельности. Знать всё про скрипку, всё про трубу, всё про барабаны. Но это не объяснит тебе, почему оркестр звучит красиво или ужасно. Потому что музыка — это не инструменты. Музыка — это <strong>связи между ними</strong>. Это система.
+      </div>
+
+      <p>И вот главная проблема: <strong>мы обучены думать про элементы, а не про связи.</strong></p>
+
+      <p>Продажи падают? «Наймём больше продавцов.» (Элемент.)<br>
+      Команда устала? «Дадим выходной.» (Элемент.)<br>
+      Ребёнок плохо учится? «Наймём репетитора.» (Элемент.)</p>
+
+      <p>А системный мыслитель спрашивает: <em>«Почему это происходит снова и снова? Что в структуре создаёт этот результат?»</em></p>
+
+      <h3>Модель айсберга</h3>
+
+      <p>В системном мышлении есть мощная модель — <strong>айсберг</strong> (Iceberg Model). Она была разработана в рамках системной динамики Джея Форрестера в MIT и показывает 4 уровня глубины, на которых можно анализировать любую ситуацию:</p>
+
+      <div class="iceberg">
+        <div class="iceberg-level"><span class="depth">события</span><span>«Что произошло?» — Продажи упали на 20%</span></div>
+        <div class="iceberg-divider">— — — линия воды — — —</div>
+        <div class="iceberg-level"><span class="depth">паттерны</span><span>«Это повторяется?» — Каждый Q3 падение</span></div>
+        <div class="iceberg-level"><span class="depth">структура</span><span>«Что создаёт паттерн?» — Бонусы привязаны к Q4</span></div>
+        <div class="iceberg-level"><span class="depth">менталки</span><span>«Почему так устроено?» — «Люди работают только за деньги»</span></div>
+      </div>
+
+      <p>Большинство людей живут на уровне <strong>событий</strong>. Они реагируют на то, что произошло. Тушат пожары. Латают дыры. И удивляются, почему проблемы возвращаются.</p>
+
+      <p>Системный мыслитель ныряет глубже. Он видит <strong>паттерны</strong> (это повторяется!), находит <strong>структуру</strong> (вот что создаёт повторение) и меняет <strong>ментальные модели</strong> (вот какое убеждение держит эту структуру).</p>
+
+      <p>Питер Сенге в «Пятой дисциплине» пишет:</p>
+
+      <div class="highlight">
+        <strong>«Структура системы определяет поведение. Измени структуру — и поведение изменится автоматически.»</strong> — Это принцип #1 системного мышления.
+      </div>
+
+      <p>Если проблема повторяется — ты лечишь симптом. Причина глубже. Ныряй.</p>
+
+      <p>Давай проверим, видишь ли ты разницу между линейным и системным мышлением. Вот 6 утверждений. Определи: это линейное мышление или системное?</p>
     </div>
 
-    <div class="question-text" id="swipe-question">Оцени каждое утверждение:</div>
-
-    <div class="swipe-container">
-      <div class="swipe-progress" id="swipeProgress"></div>
-      <div class="swipe-card" id="swipeCard"></div>
-      <div class="swipe-hint">← НЕ СИСТЕМНО &nbsp;&nbsp;&nbsp; СИСТЕМНО →</div>
-      <div class="swipe-buttons">
-        <button class="swipe-btn no" onclick="swipeAnswer(false)">✗ Не системно</button>
-        <button class="swipe-btn yes" onclick="swipeAnswer(true)">✓ Системно</button>
-      </div>
-    </div>
-
-    <div class="feedback-wrong" id="swipe-feedback-wrong"></div>
-    <div class="feedback-correct" id="swipe-feedback-correct"></div>
-
-    <div class="insight-card" id="insight-1">
-      <div class="insight-badge">💡 инсайт · урок 01</div>
-      <h2 class="insight-title">Линейное мышление видит причину.<br>Системное — структуру.</h2>
-      <div class="insight-body">
-        <p>Линейное мышление работает так: <strong>А → Б</strong>. Продажи падают? Значит, нужно больше продавцов. Команда устала? Значит, нужен отдых. Логично. Просто. Неправильно.</p>
-
-        <div class="insight-illustration">
-<span class="gray">линейное мышление:</span>
-<span class="red">продажи ↓</span>  →  <span class="red">нанять продавцов</span>  →  <span class="red">???</span>
-
-<span class="gray">системное мышление:</span>
-<span class="yellow">продажи ↓</span>  →  <span class="yellow">почему повторяется?</span>  →  <span class="yellow">структура</span>  →  <span class="green">решение</span>
+    <div class="game-section">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Линейное или системное?</div>
+      <div class="game-desc">Прочитай утверждение. Определи тип мышления. 6 карточек.</div>
+      <div class="swipe-area" id="swipeArea">
+        <div class="swipe-progress" id="swipeProgress"></div>
+        <div class="swipe-card" id="swipeCard"></div>
+        <div class="swipe-hint" id="swipeHint">← ЛИНЕЙНОЕ &nbsp;|&nbsp; СИСТЕМНОЕ →</div>
+        <div class="swipe-btns" id="swipeBtns">
+          <button class="swipe-btn no" onclick="swipeAnswer(false)">линейное</button>
+          <button class="swipe-btn yes" onclick="swipeAnswer(true)">системное</button>
         </div>
-
-        <p>Системное мышление задаёт другой вопрос: <em>«Почему это происходит снова и снова?»</em> Если проблема повторяется — это не случайность. Это структура системы. И пока ты не меняешь структуру — ты просто тушишь пожары.</p>
-
-        <div class="insight-quote">«Нельзя решить проблему на том же уровне мышления, на котором она была создана.» — Альберт Эйнштейн</div>
-
-        <p>Вот почему компания не растёт 8 месяцев, хотя все работают. Проблема не в людях. Проблема в <strong>структуре</strong>: в том, как устроены процессы, стимулы, обратная связь.</p>
       </div>
-      <div class="insight-principle">
-        <div class="insight-principle-label">принцип #1</div>
-        <div class="insight-principle-text">Если проблема повторяется — ищи структуру, не виновного.</div>
-      </div>
-      <div class="insight-apply">
-        <div class="insight-apply-label">применяй сейчас</div>
-        <div class="insight-apply-text">Вспомни проблему, которая повторяется в твоей жизни. Задай вопрос: <strong>«Что в структуре моей системы создаёт этот результат снова и снова?»</strong></div>
-      </div>
-      <button class="next-btn" onclick="goToScreen(2)">урок 02 →</button>
+      <div class="feedback wrong" id="fb1w"></div>
+      <div class="feedback correct" id="fb1c"></div>
+    </div>
+
+    <div class="next-lesson" id="next1" style="display:none;">
+      <button class="next-btn" onclick="goTo(2)">урок 02: Эффект домино →</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN 2: CHAIN REACTION -->
-<!-- ============================================================ -->
+<!-- ===== LESSON 2 ===== -->
 <div class="screen" id="screen-2">
-  <div class="lesson-screen">
-    <div class="lesson-num-big">урок 02 · цепная реакция</div>
-    <h1 class="lesson-title">Предскажи последствия.</h1>
-    <p class="lesson-subtitle">Выбери цепочку: что произойдёт на самом деле?</p>
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 02 из 05</div>
+    <h1 class="lesson-title">Эффект домино, которого ты не видишь</h1>
+    <div class="article">
+      <p>В 1902 году британское правительство в Индии столкнулось с проблемой: слишком много ядовитых кобр в Дели. Решение? Гениальное: <strong>платить людям за каждую убитую кобру</strong>. Принеси мёртвую кобру — получи деньги.</p>
 
-    <div class="situation-box">
-      <div class="situation-label">ситуация</div>
-      <div class="situation-text">
-        Стартап получил инвестиции. CEO принимает решение: <strong>«Вложим 80% бюджета в рекламу — покажем рост инвесторам!»</strong> Продукт — MVP. Поддержка — 1 человек. Команда — 5 человек.
+      <p>Сначала всё работало. Люди несли кобр. Популяция падала. Чиновники радовались.</p>
+
+      <p>А потом люди поняли: зачем ловить диких кобр, если можно <em>разводить</em> их? Дешевле, безопаснее, прибыльнее.</p>
+
+      <div class="illustration">
+        <svg width="440" height="180" viewBox="0 0 440 180">
+          <circle cx="60" cy="50" r="16" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="60" y1="66" x2="60" y2="110" stroke="#c8ff00" stroke-width="2"/>
+          <text x="60" y="135" text-anchor="middle" fill="#888" font-size="10">чиновник</text>
+          <text x="60" y="150" text-anchor="middle" fill="#888" font-size="10">«гениально!»</text>
+          <text x="130" y="80" fill="#888" font-size="20">→</text>
+          <rect x="160" y="40" width="80" height="60" fill="none" stroke="#888" stroke-width="1"/>
+          <text x="200" y="65" text-anchor="middle" fill="#fff" font-size="11">ферма кобр</text>
+          <text x="200" y="82" text-anchor="middle" fill="#c8ff00" font-size="14">🐍🐍🐍🐍</text>
+          <text x="200" y="125" text-anchor="middle" fill="#888" font-size="10">люди разводят</text>
+          <text x="200" y="140" text-anchor="middle" fill="#888" font-size="10">кобр за деньги</text>
+          <text x="270" y="80" fill="#888" font-size="20">→</text>
+          <text x="340" y="55" text-anchor="middle" fill="#ff3b3b" font-size="11">программу</text>
+          <text x="340" y="70" text-anchor="middle" fill="#ff3b3b" font-size="11">отменили</text>
+          <text x="340" y="95" fill="#888" font-size="16">↓</text>
+          <text x="340" y="125" text-anchor="middle" fill="#ff3b3b" font-size="11">все выпустили</text>
+          <text x="340" y="140" text-anchor="middle" fill="#ff3b3b" font-size="11">кобр на волю</text>
+          <text x="340" y="165" text-anchor="middle" fill="#ff3b3b" font-size="13" font-weight="700">КОБР СТАЛО БОЛЬШЕ</text>
+        </svg>
+        <div class="caption">«Эффект кобры» — когда решение создаёт проблему хуже исходной</div>
       </div>
+
+      <p>Когда правительство узнало про фермы и отменило программу — люди выпустили всех кобр на волю. Итог: кобр стало <strong>больше, чем до начала</strong>.</p>
+
+      <p>Это называется <strong>«эффект кобры»</strong> (cobra effect) — ситуация, когда решение проблемы делает её хуже. Термин ввёл экономист Хорст Зиберт. И это происходит постоянно. Не только с кобрами.</p>
+
+      <h3>Почему так происходит?</h3>
+
+      <p>Потому что в системах <strong>нет изолированных решений</strong>. Каждое действие запускает цепочку последствий. И эта цепочка часто возвращается к тебе — с другой стороны, в другом виде, через другое время.</p>
+
+      <p>Линейное мышление видит: <strong>A → B</strong>. Заплатим за кобр → кобр станет меньше.</p>
+
+      <p>Системное мышление видит: <strong>A → B → C → D → ... → A</strong>. Заплатим за кобр → люди начнут разводить → отменим программу → кобр станет больше.</p>
+
+      <div class="metaphor">
+        Это как шахматы. Новичок видит один ход вперёд. Гроссмейстер — пять. Но в жизни мы все играем как новички: делаем ход и не думаем, что будет через 3 хода. Системное мышление — это тренировка видеть на 3 хода вперёд в реальной жизни.
+      </div>
+
+      <h3>Примеры из реальной жизни</h3>
+
+      <p><strong>Здоровье:</strong> Садишься на жёсткую диету → голодаешь → срываешься → чувствуешь вину → садишься на ещё более жёсткую диету → ещё сильнее срываешься. Через год весишь больше, чем до диеты. Это называется «yo-yo dieting» — и это системный эффект, а не слабая воля.</p>
+
+      <p><strong>Отношения:</strong> Партнёр отдаляется → ты давишь и требуешь внимания → он отдаляется ещё больше → ты давишь сильнее → он уходит. Твоё «решение» ускорило то, чего ты боялся. Терапевты называют это «pursuer-distancer dynamic».</p>
+
+      <p><strong>Бизнес:</strong> Продажи падают → даёшь скидки → клиенты привыкают → без скидок не покупают → даёшь больше скидок → маржа = 0 → бизнес умирает. JCPenney в 2012 попытались отменить скидки — потеряли 25% выручки за квартал, потому что клиенты были «обучены» ждать распродаж.</p>
+
+      <h3>Архетип «Пределы роста»</h3>
+
+      <p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Он работает так:</p>
+
+      <p>Ты нашёл что-то, что работает. Растёшь. Всё отлично. Ты делаешь больше того же самого. Растёшь быстрее. А потом — <em>бам</em>. Стена. Рост останавливается. Или хуже — всё рушится.</p>
+
+      <div class="illustration">
+        <svg width="400" height="160" viewBox="0 0 400 160">
+          <path d="M 40 140 Q 100 130, 150 100 Q 200 70, 230 50 Q 260 35, 280 35 Q 300 35, 320 50 Q 340 65, 360 100" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="40" y1="35" x2="380" y2="35" stroke="#ff3b3b" stroke-width="1" stroke-dasharray="6"/>
+          <text x="385" y="38" fill="#ff3b3b" font-size="10">предел</text>
+          <text x="100" y="155" fill="#888" font-size="10">«работает!»</text>
+          <text x="200" y="155" fill="#888" font-size="10">«ещё больше!»</text>
+          <text x="310" y="155" fill="#ff3b3b" font-size="10">«почему?!»</text>
+        </svg>
+        <div class="caption">Архетип «Пределы роста»: то, что работало — перестаёт работать</div>
+      </div>
+
+      <p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint) — узкое горлышко. Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
+
+      <p>Стартап растёт на рекламе. Но продукт — MVP. Поддержка — 1 человек. Рост ×10 → продукт ломается → клиенты злятся → отзывы 1★ → реклама перестаёт работать → деньги кончились. Это не «невезение». Это предсказуемый системный архетип.</p>
+
+      <div class="highlight">
+        <strong>Принцип #2: В системе нет изолированных решений.</strong> Прослеживай цепочку на 2-3 шага вперёд. Спрашивай: «А потом что? А потом?» Если цепочка возвращается к началу — ты нашёл петлю.
+      </div>
+
+      <p>Давай проверим. Вот ситуация. Предскажи, что произойдёт.</p>
     </div>
 
-    <div class="question-text">Что произойдёт через 3 месяца?</div>
-
-    <div class="chain-options" id="chainOptions">
-      <div class="chain-option" onclick="selectChain(0)">
-        <div class="chain-label">вариант А</div>
-        <div class="chain-steps">
-          <div class="chain-step">Реклама работает</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Поток клиентов ×10</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Выручка растёт</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Инвесторы довольны</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Следующий раунд</div>
+    <div class="game-section">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Предскажи цепочку</div>
+      <div class="game-desc">Стартап получил $2M инвестиций. CEO решает: «Вложим 80% в рекламу — покажем рост!» Продукт — MVP с багами. Поддержка — 1 человек. Что произойдёт?</div>
+      <div id="chainGame">
+        <div class="chain-option" onclick="selectChain(0)">
+          <div class="chain-label">вариант А — линейный прогноз</div>
+          <div class="chain-steps">
+            <span class="chain-step">Реклама ×10</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Клиенты приходят</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Выручка растёт</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Инвесторы довольны</span>
+          </div>
+        </div>
+        <div class="chain-option" onclick="selectChain(1)">
+          <div class="chain-label">вариант Б — системный прогноз</div>
+          <div class="chain-steps">
+            <span class="chain-step">Реклама ×10</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Продукт ломается</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Поддержка не справляется</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Отзывы 1★</span><span class="chain-arrow">→</span>
+            <span class="chain-step">CAC ×5</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Деньги кончились</span>
+          </div>
+        </div>
+        <div class="chain-option" onclick="selectChain(2)">
+          <div class="chain-label">вариант В — промежуточный</div>
+          <div class="chain-steps">
+            <span class="chain-step">Реклама работает</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Команда перегружена</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Нанимают людей</span><span class="chain-arrow">→</span>
+            <span class="chain-step">Рост замедляется, но ок</span>
+          </div>
         </div>
       </div>
-      <div class="chain-option" onclick="selectChain(1)" id="chain-correct">
-        <div class="chain-label">вариант Б</div>
-        <div class="chain-steps">
-          <div class="chain-step">Поток ×10</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Продукт ломается</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Поддержка не справляется</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">1★ отзывы</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">CAC ×5</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Деньги кончились</div>
-        </div>
-      </div>
-      <div class="chain-option" onclick="selectChain(2)">
-        <div class="chain-label">вариант В</div>
-        <div class="chain-steps">
-          <div class="chain-step">Реклама привлекает</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Команда перегружена</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Рост замедляется</div>
-          <div class="chain-arrow">→</div>
-          <div class="chain-step">Инвесторы недовольны</div>
-        </div>
-      </div>
+      <div class="feedback wrong" id="fb2w"></div>
+      <div class="feedback correct" id="fb2c"></div>
     </div>
 
-    <div class="feedback-wrong" id="chain-feedback-wrong"></div>
-    <div class="feedback-correct" id="chain-feedback-correct"></div>
-
-    <div class="insight-card" id="insight-2">
-      <div class="insight-badge">💡 инсайт · урок 02</div>
-      <h2 class="insight-title">Рост быстрее системы — это не рост. Это саморазрушение.</h2>
-      <div class="insight-body">
-        <p>Представь: ты открыл ресторан на 10 столиков. Дал рекламу на весь город. Пришло 200 человек. Кухня не справляется, еда холодная, люди ждут час.</p>
-
-        <div class="insight-illustration">
-<span class="gray">ресторан на 10 столиков + реклама на 200 человек =</span>
-
-<span class="red">не «популярный ресторан»</span>
-<span class="red">а 200 злых отзывов</span>
-<span class="red">и больше никто не придёт</span>
-
-<span class="yellow">вывод: система должна быть готова ДО нагрузки</span>
-        </div>
-
-        <p>Это называется <em>«Пределы роста»</em> — один из архетипов системного мышления. У каждой системы есть <strong>ограничивающий фактор</strong> — самое слабое звено. Рекламный бюджет не убирает это ограничение. Он просто быстрее в него врезается.</p>
-
-        <div class="insight-quote">«Быстрый рост на слабом фундаменте — это не ракета. Это воздушный шарик. Чем быстрее надуваешь — тем громче хлопнет.»</div>
-
-        <p>Системный мыслитель перед масштабированием спрашивает: <strong>«Что сломается первым?»</strong> И чинит это до того, как дать газ.</p>
-      </div>
-      <div class="insight-principle">
-        <div class="insight-principle-label">принцип #2</div>
-        <div class="insight-principle-text">Найди ограничивающий фактор до того, как масштабировать. Иначе масштабируешь проблему.</div>
-      </div>
-      <div class="insight-apply">
-        <div class="insight-apply-label">применяй сейчас</div>
-        <div class="insight-apply-text">Что ты сейчас хочешь масштабировать или ускорить? Задай вопрос: <strong>«Что сломается первым, если я увеличу нагрузку в 10 раз?»</strong></div>
-      </div>
-      <button class="next-btn" onclick="goToScreen(3)">урок 03 →</button>
+    <div class="next-lesson" id="next2" style="display:none;">
+      <button class="next-btn" onclick="goTo(3)">урок 03: Петли обратной связи →</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN 3: SLIDER — найди точку рычага -->
-<!-- ============================================================ -->
+<!-- ===== LESSON 3 ===== -->
 <div class="screen" id="screen-3">
-  <div class="lesson-screen">
-    <div class="lesson-num-big">урок 03 · слайдер</div>
-    <h1 class="lesson-title">Найди точку рычага.</h1>
-    <p class="lesson-subtitle">Распредели 100 единиц внимания между вмешательствами. Где реальный рычаг?</p>
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 03 из 05</div>
+    <h1 class="lesson-title">Петли, которые управляют твоей жизнью</h1>
+    <div class="article">
+      <p>Вот вопрос, который мучает людей тысячи лет: <strong>почему богатые богатеют, а бедные беднеют?</strong></p>
 
-    <div class="situation-box">
-      <div class="situation-label">ситуация</div>
-      <div class="situation-text">
-        Команда работает много, но результаты не растут. Есть 4 варианта вмешательства. У тебя <strong>100 единиц внимания</strong>. Как ты их распределишь?
+      <p>Можно объяснять это талантом, удачей, привилегиями. Но есть более глубокий ответ — <em>структурный</em>. И он связан с самым важным концептом системного мышления: петлями обратной связи.</p>
+
+      <p>Смотри: у тебя есть деньги → ты инвестируешь → получаешь доход → у тебя больше денег → инвестируешь больше → доход больше → ... Это <strong>усиливающая петля</strong>. Снежный ком. Чем больше — тем больше.</p>
+
+      <p>А если денег нет? Нет денег → нет инвестиций → нет дохода → нет денег → ... Та же петля, но в другую сторону. Снежный ком катится вниз.</p>
+
+      <div class="illustration">
+        <svg width="440" height="220" viewBox="0 0 440 220">
+          <text x="110" y="20" text-anchor="middle" fill="#c8ff00" font-size="12" font-weight="700">УСИЛИВАЮЩАЯ (R)</text>
+          <circle cx="110" cy="100" r="45" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <polygon points="155,95 150,105 145,95" fill="#c8ff00"/>
+          <text x="110" y="55" text-anchor="middle" fill="#fff" font-size="10">больше денег</text>
+          <text x="165" y="105" text-anchor="middle" fill="#fff" font-size="10">инвестиции</text>
+          <text x="110" y="155" text-anchor="middle" fill="#fff" font-size="10">доход</text>
+          <text x="55" y="105" text-anchor="middle" fill="#fff" font-size="10">рост</text>
+          <text x="110" y="190" text-anchor="middle" fill="#888" font-size="10">снежный ком ↑↑↑</text>
+          <text x="330" y="20" text-anchor="middle" fill="#00ff88" font-size="12" font-weight="700">БАЛАНСИРУЮЩАЯ (B)</text>
+          <circle cx="330" cy="100" r="45" fill="none" stroke="#00ff88" stroke-width="2"/>
+          <polygon points="375,95 370,105 365,95" fill="#00ff88"/>
+          <text x="330" y="55" text-anchor="middle" fill="#fff" font-size="10">голод</text>
+          <text x="385" y="105" text-anchor="middle" fill="#fff" font-size="10">ешь</text>
+          <text x="330" y="155" text-anchor="middle" fill="#fff" font-size="10">сыт</text>
+          <text x="275" y="105" text-anchor="middle" fill="#fff" font-size="10">стоп</text>
+          <text x="330" y="190" text-anchor="middle" fill="#888" font-size="10">термостат ⚖️</text>
+        </svg>
+        <div class="caption">Два типа петель: усиливающая (R) разгоняет, балансирующая (B) стабилизирует</div>
+      </div>
+
+      <h3>Два типа петель</h3>
+
+      <p>В системном мышлении есть только два фундаментальных типа петель обратной связи (feedback loops). Это основа всей системной динамики — дисциплины, созданной Джеем Форрестером в MIT в 1950-х:</p>
+
+      <p><strong>1. Усиливающая петля (R — Reinforcing)</strong><br>
+      Работает как снежный ком. Больше → ещё больше. Или меньше → ещё меньше. Она <em>разгоняет</em> процесс в одном направлении. Может быть «добродетельным кругом» (вверх) или «порочным кругом» (вниз).</p>
+
+      <p>Примеры усиливающих петель:</p>
+      <p>• <strong>Прокрастинация:</strong> откладываешь → тревога растёт → ещё сложнее начать → откладываешь → тревога ещё больше → ...<br>
+      • <strong>Сарафанное радио:</strong> хороший продукт → рекомендации → больше клиентов → больше рекомендаций → ...<br>
+      • <strong>Паника на рынке:</strong> акции падают → люди продают → акции падают сильнее → больше людей продают → ...<br>
+      • <strong>Обучение:</strong> учишься → становишься лучше → получаешь интересные задачи → мотивация растёт → учишься больше → ...</p>
+
+      <p><strong>2. Балансирующая петля (B — Balancing)</strong><br>
+      Работает как термостат. Система стремится к определённому состоянию (goal). Отклонилась — возвращается назад. Это механизм стабильности.</p>
+
+      <p>Примеры балансирующих петель:</p>
+      <p>• <strong>Температура тела:</strong> жарко → потеешь → охлаждаешься → нормально → перестаёшь потеть<br>
+      • <strong>Рынок:</strong> цена высокая → спрос падает → цена снижается → спрос растёт → цена растёт<br>
+      • <strong>Усталость:</strong> работаешь → устаёшь → продуктивность падает → вынужден отдыхать → восстанавливаешься</p>
+
+      <h3>Почему это меняет всё?</h3>
+
+      <p>Потому что <strong>вся твоя жизнь — это набор петель</strong>. Одни тебя разгоняют вверх, другие — вниз. Одни стабилизируют (и иногда мешают расти), другие раскачивают.</p>
+
+      <p>Системный мыслитель видит эти петли. Он спрашивает:</p>
+      <p>• Какие усиливающие петли работают <em>на меня</em>? (Как их усилить?)<br>
+      • Какие усиливающие петли работают <em>против меня</em>? (Как их разорвать?)<br>
+      • Какие балансирующие петли <em>мешают</em> моему росту? (Это «стеклянный потолок»)</p>
+
+      <div class="metaphor">
+        Вот почему «просто работать больше» часто не помогает. Ты давишь на усиливающую петлю, но балансирующая петля (усталость, выгорание, потеря фокуса) тянет тебя назад. Это как жать на газ с поднятым ручником. Системный мыслитель сначала опускает ручник.
+      </div>
+
+      <div class="highlight">
+        <strong>Принцип #3: Найди петли.</strong> Усиль те, что работают на тебя. Разорви те, что работают против. И найди балансирующие петли, которые держат тебя на месте — это твой «стеклянный потолок».
+      </div>
+
+      <p>Давай попрактикуемся. Вот ситуация с несколькими стратегиями. Определи, какие из них запускают усиливающую петлю с растущей отдачей.</p>
+    </div>
+
+    <div class="game-section">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Запусти правильную петлю</div>
+      <div class="game-desc">Ты — фрилансер. Работаешь 60 часов в неделю, но доход не растёт. У тебя есть 100 условных единиц внимания. Как распределишь между стратегиями?</div>
+      <div id="sliderGame">
+        <div class="slider-item">
+          <div class="slider-row"><span class="slider-name">Брать больше заказов (обмен времени на деньги)</span><span class="slider-val" id="sv0">25</span></div>
+          <input type="range" min="0" max="100" value="25" id="sl0" oninput="updSlider(0)">
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-row"><span class="slider-name">Повысить цену (и потерять часть клиентов)</span><span class="slider-val" id="sv1">25</span></div>
+          <input type="range" min="0" max="100" value="25" id="sl1" oninput="updSlider(1)">
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-row"><span class="slider-name">Создать продукт (курс / шаблон / сервис)</span><span class="slider-val" id="sv2">25</span></div>
+          <input type="range" min="0" max="100" value="25" id="sl2" oninput="updSlider(2)">
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-row"><span class="slider-name">Строить аудиторию / личный бренд</span><span class="slider-val" id="sv3">25</span></div>
+          <input type="range" min="0" max="100" value="25" id="sl3" oninput="updSlider(3)">
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitSliders()">проверить →</button>
+      </div>
+      <div class="feedback wrong" id="fb3w"></div>
+      <div class="feedback correct" id="fb3c"></div>
+      <div id="sliderInsight" style="display:none;margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);">
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
+          <strong style="color:var(--w);">Разбор:</strong> «Брать больше заказов» — это <span style="color:var(--r)">линейная стратегия</span>. Ты обмениваешь время на деньги 1:1. Предел = 24 часа в сутках. Это балансирующая петля — ты упрёшься в потолок. Всегда.
+        </p>
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
+          «Создать продукт» и «Строить аудиторию» — это <span style="color:var(--gr)">усиливающие петли</span>. Продукт продаётся без твоего времени (1 час создания → бесконечные продажи). Аудитория приводит клиентов без рекламы (каждый подписчик может привести ещё). Каждый вложенный час даёт <em style="color:var(--y)">растущую</em> отдачу.
+        </p>
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;">
+          Системный мыслитель инвестирует в петли с растущей отдачей, даже если краткосрочно это больно. Это как посадить дерево: первый год — ничего, через 5 лет — тень и плоды.
+        </p>
       </div>
     </div>
 
-    <div class="question-text">Сколько внимания ты уделишь каждому?</div>
-
-    <div class="slider-container" id="sliderContainer">
-      <div class="slider-item">
-        <div class="slider-label-row">
-          <div class="slider-name">💼 Нанять ещё людей</div>
-          <div class="slider-value" id="val0">25</div>
-        </div>
-        <input type="range" min="0" max="100" value="25" id="slider0" oninput="updateSlider(0)">
-        <div class="slider-ends"><span>0</span><span>100</span></div>
-      </div>
-      <div class="slider-item">
-        <div class="slider-label-row">
-          <div class="slider-name">📊 Добавить KPI и отчётность</div>
-          <div class="slider-value" id="val1">25</div>
-        </div>
-        <input type="range" min="0" max="100" value="25" id="slider1" oninput="updateSlider(1)">
-        <div class="slider-ends"><span>0</span><span>100</span></div>
-      </div>
-      <div class="slider-item">
-        <div class="slider-label-row">
-          <div class="slider-name">🔄 Изменить структуру процессов</div>
-          <div class="slider-value" id="val2">25</div>
-        </div>
-        <input type="range" min="0" max="100" value="25" id="slider2" oninput="updateSlider(2)">
-        <div class="slider-ends"><span>0</span><span>100</span></div>
-      </div>
-      <div class="slider-item">
-        <div class="slider-label-row">
-          <div class="slider-name">🎯 Изменить цель команды</div>
-          <div class="slider-value" id="val3">25</div>
-        </div>
-        <input type="range" min="0" max="100" value="25" id="slider3" oninput="updateSlider(3)">
-        <div class="slider-ends"><span>0</span><span>100</span></div>
-      </div>
-      <button class="slider-submit" onclick="submitSlider()">посмотреть результат →</button>
-    </div>
-
-    <div class="insight-card" id="insight-3">
-      <div class="insight-badge">💡 инсайт · урок 03</div>
-      <h2 class="insight-title">Не все точки воздействия равны. Цель системы — мощнее всего.</h2>
-      <div class="insight-body">
-        <p>Донелла Медоуз в книге «Мышление системами» описала иерархию точек воздействия. Вот они от слабых к сильным:</p>
-
-        <div class="insight-illustration">
-<span class="gray">слабые (много усилий, мало эффекта):</span>
-<span class="red">💼 Нанять людей</span>  ←  <span class="red">меняет параметры</span>
-<span class="red">📊 Добавить KPI</span>  ←  <span class="red">меняет потоки</span>
-
-<span class="gray">сильные (мало усилий, большой эффект):</span>
-<span class="yellow">🔄 Изменить процессы</span>  ←  <span class="yellow">меняет структуру</span>
-<span class="green">🎯 Изменить цель</span>  ←  <span class="green">меняет всё</span>
-        </div>
-
-        <p>Большинство менеджеров работают с <em>параметрами</em> (нанять, уволить, добавить KPI). Это самые слабые точки воздействия. Они требуют много усилий и дают мало эффекта.</p>
-
-        <p>Самая мощная точка — <strong>цель системы</strong>. Если команда оптимизирует не то (например, количество задач вместо ценности для клиента) — никакое количество людей и KPI не поможет.</p>
-
-        <div class="insight-quote">«Дай мне точку опоры, и я переверну Землю.» — Архимед. В системах эта точка — цель.</div>
-      </div>
-      <div class="insight-principle">
-        <div class="insight-principle-label">принцип #3</div>
-        <div class="insight-principle-text">Прежде чем добавлять ресурсы — проверь, правильную ли цель оптимизирует система.</div>
-      </div>
-      <div class="insight-apply">
-        <div class="insight-apply-label">применяй сейчас</div>
-        <div class="insight-apply-text">Что ты сейчас пытаешься улучшить? Задай вопрос: <strong>«Правильную ли вещь я оптимизирую? Или я очень эффективно делаю не то?»</strong></div>
-      </div>
-      <button class="next-btn" onclick="goToScreen(4)">урок 04 →</button>
+    <div class="next-lesson" id="next3" style="display:none;">
+      <button class="next-btn" onclick="goTo(4)">урок 04: Точки рычага →</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN 4: SORT — симптом или причина? -->
-<!-- ============================================================ -->
+<!-- ===== LESSON 4 ===== -->
 <div class="screen" id="screen-4">
-  <div class="lesson-screen">
-    <div class="lesson-num-big">урок 04 · сортировка</div>
-    <h1 class="lesson-title">Симптом или причина?</h1>
-    <p class="lesson-subtitle">Перетащи каждый элемент в правильную колонку.</p>
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 04 из 05</div>
+    <h1 class="lesson-title">Где нажать, чтобы всё изменилось</h1>
+    <div class="article">
+      <p>Представь: ты толкаешь дверь. Она не открывается. Ты толкаешь сильнее. Ещё сильнее. Упираешься плечом. Разбегаешься. Бьёшь ногой.</p>
 
-    <div class="situation-box">
-      <div class="situation-label">ситуация</div>
-      <div class="situation-text">
-        Основатель компании контролирует каждое решение. Утверждает макеты, тексты, найм. «Без меня накосячат». Вот список наблюдений. Что из этого — симптом, а что — причина?
+      <p>Потом замечаешь табличку: <strong>«НА СЕБЯ»</strong>.</p>
+
+      <div class="illustration">
+        <svg width="360" height="180" viewBox="0 0 360 180">
+          <rect x="160" y="20" width="60" height="140" fill="none" stroke="#888" stroke-width="2"/>
+          <circle cx="210" cy="90" r="4" fill="#888"/>
+          <text x="190" y="170" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">PULL / НА СЕБЯ</text>
+          <circle cx="100" cy="55" r="16" fill="none" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="100" y1="71" x2="100" y2="115" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="100" y1="90" x2="155" y2="80" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="100" y1="90" x2="140" y2="100" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="100" y1="115" x2="85" y2="150" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="100" y1="115" x2="115" y2="150" stroke="#ff3b3b" stroke-width="2"/>
+          <text x="130" y="60" fill="#ff3b3b" font-size="14">→→→</text>
+          <rect x="20" y="10" width="70" height="30" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/>
+          <text x="55" y="28" text-anchor="middle" fill="#ff3b3b" font-size="9">СИЛЬНЕЕ!!!</text>
+          <circle cx="300" cy="55" r="16" fill="none" stroke="#00ff88" stroke-width="2"/>
+          <line x1="300" y1="71" x2="300" y2="115" stroke="#00ff88" stroke-width="2"/>
+          <rect x="260" y="10" width="80" height="30" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/>
+          <text x="300" y="28" text-anchor="middle" fill="#00ff88" font-size="9">а может, не туда?</text>
+        </svg>
+        <div class="caption">Большинство давят сильнее. Системный мыслитель ищет правильное место.</div>
       </div>
+
+      <p>Это метафора того, как большинство людей решают проблемы. Они давят <em>сильнее</em> в том же месте. Больше усилий. Больше ресурсов. Больше людей. Больше денег.</p>
+
+      <p>А нужно было — <strong>найти правильное место</strong>.</p>
+
+      <h3>12 точек рычага Донеллы Медоуз</h3>
+
+      <p>Донелла Медоуз — одна из основательниц системного мышления, автор «Thinking in Systems» (1999) — составила знаменитый список из 12 мест, где можно воздействовать на систему. Они расположены от <strong>слабых</strong> (много усилий, мало эффекта) к <strong>сильным</strong> (мало усилий, огромный эффект).</p>
+
+      <p>Я упрощу до 4 уровней:</p>
+
+      <div class="iceberg">
+        <div class="iceberg-level"><span class="depth" style="color:#ff3b3b">слабые</span><span style="color:#ff8888">Параметры: числа, бюджеты, KPI, зарплаты</span></div>
+        <div class="iceberg-level"><span class="depth" style="color:#ffaa44">средние</span><span style="color:#ffcc88">Потоки: скорость процессов, размер буферов</span></div>
+        <div class="iceberg-level"><span class="depth" style="color:#c8ff00">сильные</span><span style="color:#e8ff88">Структура: правила, связи, архитектура, петли</span></div>
+        <div class="iceberg-level"><span class="depth" style="color:#00ff88">мощнейшие</span><span style="color:#88ffbb">Цель / парадигма: зачем система существует</span></div>
+      </div>
+
+      <p><strong>Пример — образование:</strong></p>
+      <p>• Параметр (слабый): повысить зарплату учителей на 10%<br>
+      • Поток (средний): уменьшить размер классов с 30 до 15<br>
+      • Структура (сильный): заменить лекции на проектное обучение<br>
+      • Цель (мощнейший): изменить определение «образованного человека» — не «сдал ЕГЭ», а «умеет учиться и решать новые задачи»</p>
+
+      <p><strong>Пример — здоровье:</strong></p>
+      <p>• Параметр: считать калории (работает 2 недели)<br>
+      • Поток: изменить режим питания (работает 2 месяца)<br>
+      • Структура: изменить окружение — убрать вредное из дома, готовить заранее (работает год)<br>
+      • Цель: изменить идентичность — «я человек, который заботится о здоровье» (работает всю жизнь)</p>
+
+      <div class="metaphor">
+        Вот почему диеты не работают. Они воздействуют на параметры (калории) и потоки (режим). Но не трогают структуру (окружение, привычки) и цель (идентичность). Через месяц система возвращается в прежнее состояние. Медоуз называла это «resilience» — система сопротивляется изменениям на поверхностном уровне.
+      </div>
+
+      <div class="highlight">
+        <strong>Принцип #4: Не дави сильнее — дави в правильном месте.</strong> Чем глубже точка воздействия (от параметров к цели), тем меньше усилий нужно для изменения. Но тем больше смелости требуется.
+      </div>
+
+      <p>Теперь практика. Вот 6 вмешательств в одну систему. Расставь их по силе воздействия.</p>
     </div>
 
-    <div class="question-text">Распредели по колонкам:</div>
-
-    <div class="sort-container">
-      <div class="sort-source">
-        <div class="sort-source-title">перетащи отсюда</div>
-        <div class="sort-source-items" id="sortSource">
-          <div class="sort-item" draggable="true" data-id="0" data-correct="symptom" ondragstart="dragStart(event)">Команда не принимает решений</div>
-          <div class="sort-item" draggable="true" data-id="1" data-correct="cause" ondragstart="dragStart(event)">Нет культуры автономии</div>
-          <div class="sort-item" draggable="true" data-id="2" data-correct="symptom" ondragstart="dragStart(event)">Очередь задач на одобрение растёт</div>
-          <div class="sort-item" draggable="true" data-id="3" data-correct="cause" ondragstart="dragStart(event)">Основатель не доверяет системе</div>
-          <div class="sort-item" draggable="true" data-id="4" data-correct="symptom" ondragstart="dragStart(event)">A-players уходят</div>
-          <div class="sort-item" draggable="true" data-id="5" data-correct="cause" ondragstart="dragStart(event)">Нет механизма передачи знаний</div>
+    <div class="game-section">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Расставь по силе воздействия</div>
+      <div class="game-desc">Компания теряет клиентов. Вот 6 предложений. Перетащи в правильную колонку: «слабое воздействие» (параметры/потоки) или «сильное воздействие» (структура/цель).</div>
+      <div class="sort-source" id="sortSource">
+        <div class="sort-source-label">перетащи в колонки ↓</div>
+        <div class="sort-source-items" id="sortSourceItems">
+          <div class="sort-item" draggable="true" data-id="0" data-correct="weak">Увеличить бюджет на рекламу</div>
+          <div class="sort-item" draggable="true" data-id="1" data-correct="strong">Изменить метрику успеха с «продажи» на «retention»</div>
+          <div class="sort-item" draggable="true" data-id="2" data-correct="weak">Нанять ещё 3 продавцов</div>
+          <div class="sort-item" draggable="true" data-id="3" data-correct="strong">Перестроить продукт вокруг Jobs-to-be-Done клиента</div>
+          <div class="sort-item" draggable="true" data-id="4" data-correct="weak">Дать скидку 20% новым клиентам</div>
+          <div class="sort-item" draggable="true" data-id="5" data-correct="strong">Создать петлю: довольный клиент → рекомендация → новый клиент</div>
         </div>
       </div>
-      <div class="sort-columns">
-        <div class="sort-col" ondragover="dragOver(event)" ondrop="dropItem(event, 'symptom')">
-          <div class="sort-col-title symptom">⚡ СИМПТОМ</div>
-          <div class="sort-items" id="sortSymptom"></div>
+      <div class="sort-cols">
+        <div class="sort-col" id="sortWeak" ondragover="event.preventDefault()" ondrop="dropSort(event,'weak')">
+          <div class="sort-col-title a">⚡ СЛАБОЕ (параметры)</div>
+          <div class="sort-col-items" id="sortWeakItems"></div>
         </div>
-        <div class="sort-col" ondragover="dragOver(event)" ondrop="dropItem(event, 'cause')">
-          <div class="sort-col-title cause">🔍 ПРИЧИНА</div>
-          <div class="sort-items" id="sortCause"></div>
+        <div class="sort-col" id="sortStrong" ondragover="event.preventDefault()" ondrop="dropSort(event,'strong')">
+          <div class="sort-col-title b">🎯 СИЛЬНОЕ (структура/цель)</div>
+          <div class="sort-col-items" id="sortStrongItems"></div>
         </div>
       </div>
-      <button class="sort-submit" onclick="submitSort()">проверить →</button>
+      <button class="submit-btn" onclick="submitSort()">проверить →</button>
+      <div class="feedback wrong" id="fb4w"></div>
+      <div class="feedback correct" id="fb4c"></div>
     </div>
 
-    <div class="feedback-wrong" id="sort-feedback-wrong"></div>
-    <div class="feedback-correct" id="sort-feedback-correct"></div>
-
-    <div class="insight-card" id="insight-4">
-      <div class="insight-badge">💡 инсайт · урок 04</div>
-      <h2 class="insight-title">Контроль — это симптом недоверия к системе. А не решение.</h2>
-      <div class="insight-body">
-        <p>Вот что происходит в петле контроля:</p>
-
-        <div class="insight-illustration">
-<span class="yellow">Основатель контролирует</span>
-         ↓
-<span class="red">Люди не учатся решать</span>
-         ↓
-<span class="red">Делают ошибки</span>
-         ↓
-<span class="yellow">«Видите? Без меня косячат!»</span>
-         ↓
-<span class="red">Контролирует ещё больше</span>
-         ↓
-<span class="gray">... и так по кругу</span>
-        </div>
-
-        <p>Это <em>усиливающая петля</em> — один из базовых архетипов системного мышления. Каждый виток делает проблему хуже. Самое коварное: основатель <strong>прав</strong> — без него действительно косячат. Но не потому что люди плохие. А потому что система не даёт им научиться.</p>
-
-        <div class="insight-quote">«Это как учить ребёнка ходить, но держать за руку до 30 лет. Потом удивляться: почему он не может сам?»</div>
-
-        <p>Симптомы (очередь задач, уход людей) — это сигналы системы. Они говорят: <strong>«Структура сломана»</strong>. Лечить симптомы бесполезно, пока петля работает.</p>
-      </div>
-      <div class="insight-principle">
-        <div class="insight-principle-label">принцип #4</div>
-        <div class="insight-principle-text">Усиливающая петля не остановится сама. Нужно разорвать петлю — изменить структуру, а не давить на симптомы.</div>
-      </div>
-      <div class="insight-apply">
-        <div class="insight-apply-label">применяй сейчас</div>
-        <div class="insight-apply-text">Есть ли в твоей жизни ситуация, которая «крутится по кругу»? Задай вопрос: <strong>«Что в структуре создаёт эту петлю? Что нужно изменить, чтобы разорвать её?»</strong></div>
-      </div>
-      <button class="next-btn" onclick="goToScreen(5)">урок 05 →</button>
+    <div class="next-lesson" id="next4" style="display:none;">
+      <button class="next-btn" onclick="goTo(5)">урок 05: Задержки в системах →</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN 5: TIMELINE — когда проявится ошибка? -->
-<!-- ============================================================ -->
+<!-- ===== LESSON 5 ===== -->
 <div class="screen" id="screen-5">
-  <div class="lesson-screen">
-    <div class="lesson-num-big">урок 05 · таймлайн</div>
-    <h1 class="lesson-title">Когда проявится ошибка?</h1>
-    <p class="lesson-subtitle">Выбери момент, когда последствия решения станут видны.</p>
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 05 из 05</div>
+    <h1 class="lesson-title">Почему твоё решение сработает через полгода</h1>
+    <div class="article">
+      <p>Ты посадил дерево. Через неделю — ничего. Через месяц — маленький росток. Ты думаешь: <strong>«Не работает. Попробую другое дерево.»</strong> Выкапываешь. Сажаешь новое. Через месяц — ничего. Выкапываешь...</p>
 
-    <div class="situation-box">
-      <div class="situation-label">ситуация</div>
-      <div class="situation-text">
-        CFO сокращает бюджет поддержки с 10 до 4 человек. <strong>«Экономим 1.2 млн/мес — логично!»</strong> Когда это решение «аукнется»?
+      <p>А твой сосед посадил то же дерево 3 года назад. И сейчас сидит в тени.</p>
+
+      <div class="illustration">
+        <svg width="440" height="180" viewBox="0 0 440 180">
+          <circle cx="80" cy="60" r="16" fill="none" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="80" y1="76" x2="80" y2="115" stroke="#ff3b3b" stroke-width="2"/>
+          <line x1="50" y1="140" x2="50" y2="130" stroke="#888" stroke-width="1.5"/>
+          <line x1="70" y1="140" x2="70" y2="132" stroke="#888" stroke-width="1.5"/>
+          <line x1="90" y1="140" x2="90" y2="128" stroke="#888" stroke-width="1.5"/>
+          <line x1="110" y1="140" x2="110" y2="134" stroke="#888" stroke-width="1.5"/>
+          <text x="80" y="165" text-anchor="middle" fill="#ff3b3b" font-size="10">4 попытки за год</text>
+          <line x1="30" y1="140" x2="140" y2="140" stroke="#888" stroke-width="1"/>
+          <text x="210" y="110" text-anchor="middle" fill="#888" font-size="14" font-weight="700">vs</text>
+          <circle cx="330" cy="90" r="16" fill="none" stroke="#00ff88" stroke-width="2"/>
+          <line x1="330" y1="106" x2="330" y2="145" stroke="#00ff88" stroke-width="2"/>
+          <line x1="330" y1="145" x2="315" y2="170" stroke="#00ff88" stroke-width="2"/>
+          <line x1="330" y1="145" x2="345" y2="170" stroke="#00ff88" stroke-width="2"/>
+          <line x1="360" y1="170" x2="360" y2="80" stroke="#888" stroke-width="3"/>
+          <circle cx="360" cy="55" r="35" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <circle cx="345" cy="45" r="20" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
+          <circle cx="375" cy="50" r="22" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
+          <text x="360" y="58" text-anchor="middle" fill="#c8ff00" font-size="9">3 года</text>
+          <line x1="280" y1="170" x2="410" y2="170" stroke="#888" stroke-width="1"/>
+          <text x="350" y="185" text-anchor="middle" fill="#00ff88" font-size="10">1 попытка + терпение</text>
+        </svg>
+        <div class="caption">Задержка наказывает нетерпеливых и награждает тех, кто понимает тайминг</div>
       </div>
+
+      <p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную и недооценённую особенность сложных систем.</p>
+
+      <h3>Что такое задержка?</h3>
+
+      <p><strong>Задержка</strong> — это время между действием и его результатом. В простых системах задержка маленькая: нажал выключатель → свет загорелся. Но в сложных системах задержка может быть <em>месяцы и годы</em>.</p>
+
+      <p>Донелла Медоуз писала: «Задержки в петлях обратной связи — одна из главных причин колебаний в системах. Если ты пытаешься скорректировать систему, не учитывая задержку — ты гарантированно перекомпенсируешь.»</p>
+
+      <p>И это создаёт две огромные проблемы:</p>
+
+      <p><strong>Проблема 1: Перекомпенсация (overshooting)</strong><br>
+      Ты сделал что-то правильное. Ждёшь результат. Не видишь. Думаешь: «Не работает». Делаешь что-то другое. Или делаешь то же самое, но в 10 раз сильнее. А потом система «взрывается» — потому что все твои действия пришли одновременно.</p>
+
+      <p>Это как горячий душ в отеле. Крутишь кран — холодно. Крутишь сильнее — холодно. Ещё сильнее — КИПЯТОК. Потому что вода шла по трубам 30 секунд. Ты не учёл задержку.</p>
+
+      <p><strong>Проблема 2: Ложная атрибуция</strong><br>
+      Ты принял решение в январе. Последствия пришли в июле. К июлю ты уже забыл про январское решение. И когда всё ломается — ты винишь «рынок», «конкурентов», «невезение». А на самом деле — это ты. Полгода назад.</p>
+
+      <div class="metaphor">
+        Задержка — это невидимый убийца решений. Ты стреляешь себе в ногу в январе, а боль приходит в июле. И ты думаешь: «Наверное, наступил на что-то в июле.» А потом делаешь то же самое в августе — и удивляешься в феврале.
+      </div>
+
+      <h3>Примеры задержек</h3>
+
+      <p><strong>Здоровье:</strong> Начал бегать → результат через 2-3 месяца. Большинство бросают через 2 недели: «Не работает». А оно работает. Просто с задержкой.</p>
+
+      <p><strong>Образование:</strong> Начал учить английский → свободно говоришь через 1-2 года. Большинство бросают через месяц и пробуют «новый метод». И так 10 лет — 10 методов, 0 результата.</p>
+
+      <p><strong>Бизнес:</strong> Сократил поддержку → экономия видна сразу (в этом месяце!). Отток клиентов — через 4-6 месяцев. К тому моменту связь уже не очевидна. CFO получил бонус за «оптимизацию».</p>
+
+      <p><strong>Отношения:</strong> Перестал уделять внимание партнёру → всё нормально месяцами. Потом — «мы расстаёмся». Кажется внезапным. Но процесс шёл год. Просто с задержкой.</p>
+
+      <div class="highlight">
+        <strong>Принцип #5: Учитывай задержку.</strong> Всегда спрашивай: «Когда придут последствия этого решения?» Системы с задержкой наказывают нетерпеливых и награждают тех, кто понимает тайминг. Не бросай стратегию раньше, чем она успела сработать.
+      </div>
+
+      <p>Последнее задание. Вот реальная бизнес-ситуация. Определи, когда последствия станут необратимыми.</p>
     </div>
 
-    <div class="question-text">На каком месяце последствия станут очевидны?</div>
-
-    <div class="timeline-container">
-      <div class="timeline-line"></div>
-      <div class="timeline-items" id="timelineItems">
-        <div class="timeline-item" onclick="selectTimeline(0)" data-month="0">
+    <div class="game-section">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Когда «аукнется»?</div>
+      <div class="game-desc">CFO компании (SaaS, 500 клиентов) сокращает отдел поддержки с 10 до 4 человек. «Экономим 1.2 млн/мес — отличное решение!» На каком этапе последствия станут необратимыми?</div>
+      <div class="timeline" id="timelineGame">
+        <div class="timeline-item" onclick="selectTL(0)">
           <div class="timeline-month">Месяц 1</div>
-          <div class="timeline-text">Экономия видна сразу</div>
-          <div class="timeline-sub">−1.2 млн в отчёте. Все довольны.</div>
+          <div class="timeline-text">Экономия 1.2 млн видна в отчёте</div>
+          <div class="timeline-sub">Все довольны. CFO получает бонус. Тикеты копятся.</div>
         </div>
-        <div class="timeline-item" onclick="selectTimeline(1)" data-month="1">
-          <div class="timeline-month">Месяц 2</div>
-          <div class="timeline-text">Время ответа поддержки растёт</div>
-          <div class="timeline-sub">Клиенты ждут дольше. Пока терпят.</div>
+        <div class="timeline-item" onclick="selectTL(1)">
+          <div class="timeline-month">Месяц 2-3</div>
+          <div class="timeline-text">Время ответа: 4 часа → 2 дня</div>
+          <div class="timeline-sub">Клиенты недовольны, но пока терпят. Churn +3%.</div>
         </div>
-        <div class="timeline-item" onclick="selectTimeline(2)" data-month="2">
-          <div class="timeline-month">Месяц 3</div>
-          <div class="timeline-text">NPS начинает падать</div>
-          <div class="timeline-sub">Первые жалобы. Но кажется — случайность.</div>
+        <div class="timeline-item" onclick="selectTL(2)">
+          <div class="timeline-month">Месяц 4-6</div>
+          <div class="timeline-text">NPS -40. Churn +15%. Потери 8 млн/мес.</div>
+          <div class="timeline-sub">Потери превышают экономию в 6 раз. Связь с решением размыта.</div>
         </div>
-        <div class="timeline-item" onclick="selectTimeline(3)" data-month="3" id="timeline-correct">
-          <div class="timeline-month">Месяц 4–6 ✓</div>
-          <div class="timeline-text">Отток клиентов +15%</div>
-          <div class="timeline-sub">Потери 8 млн > экономия 7.2 млн. Связь с решением уже не очевидна.</div>
-        </div>
-        <div class="timeline-item" onclick="selectTimeline(4)" data-month="4">
-          <div class="timeline-month">Месяц 12</div>
-          <div class="timeline-text">Репутация подорвана</div>
-          <div class="timeline-sub">Отзывы, отток, CAC вырос. Но «рынок изменился».</div>
+        <div class="timeline-item" onclick="selectTL(3)">
+          <div class="timeline-month">Месяц 9-12</div>
+          <div class="timeline-text">Репутация подорвана. Отзывы 2★. CAC ×3.</div>
+          <div class="timeline-sub">Восстановление: 1-2 года, стоимость ×10 от «экономии».</div>
         </div>
       </div>
-      <button class="timeline-submit" onclick="submitTimeline()">проверить →</button>
+      <button class="submit-btn" onclick="submitTL()">проверить →</button>
+      <div class="feedback wrong" id="fb5w"></div>
+      <div class="feedback correct" id="fb5c"></div>
+      <div id="tlInsight" style="display:none;margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);">
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
+          <strong style="color:var(--w);">Правильный ответ: месяц 4-6.</strong> Именно тогда задержка делает своё дело. Экономия была видна <em style="color:var(--y)">сразу</em> (месяц 1). А потери приходят <em style="color:var(--r)">через 4-6 месяцев</em>. К этому моменту CFO уже получил бонус и забыл про решение.
+        </p>
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
+          Это системная ловушка: <strong style="color:var(--w)">выгода приходит быстро, а расплата — медленно</strong>. Поэтому люди снова и снова принимают решения, которые выглядят умными сегодня и катастрофичны через полгода. Медоуз называла это «policy resistance» — сопротивление системы.
+        </p>
+        <p style="font-size:15px;color:var(--lg);line-height:1.7;">
+          Месяц 9-12 — это уже необратимые последствия. Но <strong style="color:var(--y)">точка невозврата — месяц 4-6</strong>, когда ещё можно было исправить, но связь с решением уже потеряна.
+        </p>
+      </div>
     </div>
 
-    <div class="feedback-wrong" id="timeline-feedback-wrong"></div>
-    <div class="feedback-correct" id="timeline-feedback-correct"></div>
-
-    <div class="insight-card" id="insight-5">
-      <div class="insight-badge">💡 инсайт · урок 05</div>
-      <h2 class="insight-title">Задержка разрывает связь между причиной и следствием.</h2>
-      <div class="insight-body">
-        <p>Это самая коварная особенность систем. Ты принимаешь решение сейчас — а платишь за него через 4–6 месяцев. К тому моменту ты уже забыл, что держал пистолет.</p>
-
-        <div class="insight-illustration">
-<span class="yellow">Январь:</span> сокращаем поддержку  →  <span class="green">экономия видна!</span>
-<span class="gray">Февраль–март:</span> всё нормально  →  <span class="gray">решение кажется правильным</span>
-<span class="red">Апрель–июнь:</span> отток клиентов  →  <span class="red">«рынок изменился»</span>
-<span class="red">Июль:</span> потери > экономии  →  <span class="red">причину уже не помнят</span>
-        </div>
-
-        <p>В системах с задержкой люди делают одну из двух ошибок:</p>
-        <p><strong>1. Перекомпенсация</strong> — видят что «ничего не происходит» и усиливают воздействие. Потом система «взрывается».</p>
-        <p><strong>2. Ложная атрибуция</strong> — когда последствия приходят, связь с причиной уже не очевидна. Винят «рынок», «конкурентов», «команду».</p>
-
-        <div class="insight-quote">«Задержка — это невидимый убийца решений. Ты стреляешь себе в ногу в январе, а боль приходит в июле.»</div>
-
-        <p>Системный мыслитель учитывает задержки заранее. Он спрашивает: <em>«Когда я увижу последствия этого решения? Как я буду знать, что оно сработало?»</em></p>
-      </div>
-      <div class="insight-principle">
-        <div class="insight-principle-label">принцип #5</div>
-        <div class="insight-principle-text">Всегда спрашивай: «Когда придут последствия?» Системы с задержкой наказывают тех, кто ждёт немедленного результата.</div>
-      </div>
-      <div class="insight-apply">
-        <div class="insight-apply-label">применяй сейчас</div>
-        <div class="insight-apply-text">Какое решение ты принял 3–6 месяцев назад? Задай вопрос: <strong>«Я сейчас пожинаю последствия каких своих прошлых решений?»</strong></div>
-      </div>
-      <button class="next-btn" onclick="goToResult()">посмотреть результат →</button>
+    <div class="next-lesson" id="next5" style="display:none;">
+      <button class="next-btn" onclick="showResult()">посмотреть результат →</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCREEN RESULT -->
-<!-- ============================================================ -->
+<!-- ===== RESULT ===== -->
 <div class="screen" id="screen-result">
-  <div class="result-container">
-    <div class="result-score-ring">
-      <div class="result-score-num" id="resultScore">0</div>
-      <div class="result-score-label">из 5</div>
+  <div class="result-wrap">
+    <div class="result-ring">
+      <div class="result-num" id="rScore">0</div>
+      <div class="result-of">из 5</div>
     </div>
-    <div class="result-level" id="resultLevel">ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ</div>
-    <h1 class="result-title" id="resultTitle">Ты прошёл курс.</h1>
-    <p class="result-desc" id="resultDesc">За 5 уроков ты столкнулся с 5 принципами системного мышления.</p>
-
-    <div class="result-insights">
-      <div class="result-insight-item">
-        <div class="result-insight-num">принцип 01</div>
-        <div class="result-insight-name">Ищи структуру, не виновного</div>
-        <div class="result-insight-sub">Повторяющаяся проблема = системная</div>
-      </div>
-      <div class="result-insight-item">
-        <div class="result-insight-num">принцип 02</div>
-        <div class="result-insight-name">Пределы роста</div>
-        <div class="result-insight-sub">Найди ограничение до масштабирования</div>
-      </div>
-      <div class="result-insight-item">
-        <div class="result-insight-num">принцип 03</div>
-        <div class="result-insight-name">Точки рычага</div>
-        <div class="result-insight-sub">Цель системы сильнее параметров</div>
-      </div>
-      <div class="result-insight-item">
-        <div class="result-insight-num">принцип 04</div>
-        <div class="result-insight-name">Усиливающая петля</div>
-        <div class="result-insight-sub">Разорви петлю, не дави симптомы</div>
-      </div>
-      <div class="result-insight-item" style="grid-column: 1 / -1;">
-        <div class="result-insight-num">принцип 05</div>
-        <div class="result-insight-name">Задержка в системе</div>
-        <div class="result-insight-sub">Последствия приходят позже причины</div>
-      </div>
+    <div class="result-level" id="rLevel"></div>
+    <h1 class="result-title" id="rTitle"></h1>
+    <p class="result-desc" id="rDesc"></p>
+    <div class="result-principles">
+      <div class="result-principle"><div class="result-principle-num">01</div><div class="result-principle-name">Ныряй глубже</div><div class="result-principle-sub">Повторяющаяся проблема = проблема структуры</div></div>
+      <div class="result-principle"><div class="result-principle-num">02</div><div class="result-principle-name">Думай на 3 шага</div><div class="result-principle-sub">Нет изолированных решений. «А потом что?»</div></div>
+      <div class="result-principle"><div class="result-principle-num">03</div><div class="result-principle-name">Видь петли</div><div class="result-principle-sub">Усиливай нужные, разрывай вредные</div></div>
+      <div class="result-principle"><div class="result-principle-num">04</div><div class="result-principle-name">Ищи рычаг</div><div class="result-principle-sub">Не сильнее — а в правильном месте</div></div>
+      <div class="result-principle" style="grid-column:1/-1"><div class="result-principle-num">05</div><div class="result-principle-name">Учитывай задержку</div><div class="result-principle-sub">Когда придут последствия? Не бросай раньше</div></div>
     </div>
-
-    <div class="result-cta-box">
+    <div class="result-cta">
       <div class="result-cta-label">следующий шаг</div>
       <h2 class="result-cta-title">Это была верхушка айсберга.</h2>
-      <p class="result-cta-desc">
-        За 15 минут ты увидел 5 принципов. В реальности их десятки. В школе DISTILL — 12 недель практики системного мышления на реальных кейсах. Ты научишься видеть петли до того, как они сработают.
-      </p>
+      <p class="result-cta-desc">За 20 минут ты познакомился с 5 принципами системного мышления из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах: бизнес, отношения, здоровье, карьера. Спиральная динамика, системные архетипы, ментальные модели.</p>
       <a href="https://www.distill-school.ru" class="result-cta-btn">узнать про школу DISTILL →</a>
     </div>
-
-    <button class="result-retry" onclick="restartCourse()">↺ пройти заново</button>
+    <button class="result-retry" onclick="restart()">↺ пройти заново</button>
   </div>
 </div>
 
 <script>
-  // ============================================================
-  // STATE
-  // ============================================================
-  let score = 0;
-  let currentScreen = 'hero';
+let score=0;
+function goTo(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');window.scrollTo(0,0);updateDots(n-1)}
+function startCourse(){goTo(1);initSwipe()}
+function updateDots(a){for(let i=0;i<5;i++){const d=document.getElementById('dot'+i);d.className='nav-dot'+(i<a?' done':i===a?' active':'')}}
+function restart(){score=0;swipeIdx=0;swipeDone=false;chainDone=false;sliderDone=false;sortDone=false;tlDone=false;selectedTL=-1;document.querySelectorAll('.feedback').forEach(f=>{f.classList.remove('show');f.textContent=''});document.querySelectorAll('.next-lesson').forEach(n=>n.style.display='none');document.querySelectorAll('.chain-option').forEach(o=>o.className='chain-option');document.querySelectorAll('.timeline-item').forEach(i=>i.className='timeline-item');document.querySelectorAll('.submit-btn').forEach(b=>{b.disabled=false;b.style.opacity='1'});document.getElementById('sliderInsight').style.display='none';document.getElementById('tlInsight').style.display='none';document.getElementById('swipeCard').style.display='block';document.getElementById('swipeBtns').style.display='flex';document.getElementById('swipeHint').style.display='block';resetSortItems();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-hero').classList.add('active');for(let i=0;i<5;i++)document.getElementById('dot'+i).className='nav-dot'}
 
-  // SWIPE STATE
-  const swipeCards = [
-    { text: '«Продажи падают — нужно срочно нанять продавцов»', isSystemic: false, feedback: 'Это линейное мышление: симптом → быстрое решение. Системный мыслитель сначала спросит: почему продажи падают структурно?' },
-    { text: '«Эта проблема повторяется третий квартал — значит, дело не в людях, а в структуре»', isSystemic: true, feedback: 'Точно! Повторяющаяся проблема = системная. Ищи структуру, не виновного.' },
-    { text: '«Команда устала — дадим выходной и всё наладится»', isSystemic: false, feedback: 'Это лечение симптома. Системный вопрос: почему команда постоянно устаёт? Что в системе создаёт эту усталость?' },
-    { text: '«Мы оптимизируем скорость разработки, но клиенты всё равно уходят — значит, мы оптимизируем не то»', isSystemic: true, feedback: 'Отлично! Это про точки рычага. Эффективно делать не то — хуже, чем делать правильное медленно.' },
-    { text: '«Конкуренты выросли — нам тоже нужно вырасти»', isSystemic: false, feedback: 'Это реактивное мышление. Системный мыслитель спросит: что в нашей системе ограничивает рост? И готовы ли мы к нему?' },
-  ];
-  let swipeIndex = 0;
-  let swipeScore = 0;
-  let swipeDone = false;
+// SWIPE
+const swipeData=[
+{text:'«Продажи падают — надо срочно нанять ещё продавцов»',sys:false,why:'Линейное: реакция на событие. Не спрашивает «почему падают?» и «это повторяется?»'},
+{text:'«Эта проблема повторяется третий квартал — значит, дело в структуре, а не в людях»',sys:true,why:'Системное: видит паттерн, ищет структурную причину под поверхностью.'},
+{text:'«Если мы удвоим рекламный бюджет, продажи удвоятся»',sys:false,why:'Линейное: предполагает прямую пропорцию. Не учитывает пределы роста, насыщение рынка и ограничивающие факторы.'},
+{text:'«Мы оптимизируем скорость доставки, но клиенты всё равно уходят — может, мы оптимизируем не то?»',sys:true,why:'Системное: ставит под вопрос цель системы. Это самая мощная точка рычага по Медоуз.'},
+{text:'«Команда устала — дадим выходной, и всё наладится»',sys:false,why:'Линейное: лечит симптом. Не спрашивает: что в системе создаёт хроническую усталость? Какая петля?'},
+{text:'«Каждый раз, когда мы даём скидку — через месяц продажи падают ещё сильнее. Тут усиливающая петля.»',sys:true,why:'Системное: видит усиливающую петлю и причинно-следственную связь с задержкой.'}
+];
+let swipeIdx=0,swipeDone=false,swipeCorrect=0;
+function initSwipe(){swipeIdx=0;swipeDone=false;swipeCorrect=0;renderSwipe()}
+function renderSwipe(){const p=document.getElementById('swipeProgress');p.innerHTML=swipeData.map((_,i)=>`<div class="swipe-dot${i<swipeIdx?' correct':i===swipeIdx?' current':''}"></div>`).join('');if(swipeIdx<swipeData.length)document.getElementById('swipeCard').textContent=swipeData[swipeIdx].text}
+function swipeAnswer(isSys){if(swipeDone)return;const card=swipeData[swipeIdx];const ok=card.sys===isSys;const el=document.getElementById('swipeCard');const w=document.getElementById('fb1w');const c=document.getElementById('fb1c');w.classList.remove('show');c.classList.remove('show');if(ok){swipeCorrect++;el.classList.add('right');c.textContent='✓ Верно! '+card.why;c.classList.add('show')}else{el.classList.add('left');w.textContent='✗ Неверно. '+card.why;w.classList.add('show')}setTimeout(()=>{el.classList.remove('left','right');w.classList.remove('show');c.classList.remove('show');swipeIdx++;if(swipeIdx>=swipeData.length){finishSwipe();return}renderSwipe()},2200)}
+function finishSwipe(){swipeDone=true;if(swipeCorrect>=4)score++;const c=document.getElementById('fb1c');const w=document.getElementById('fb1w');if(swipeCorrect>=4){c.textContent=`✓ ${swipeCorrect}/6 правильно! Ты чувствуешь разницу.`;c.classList.add('show')}else{w.textContent=`${swipeCorrect}/6. Ничего — теперь ты знаешь модель айсберга. Перечитай и попробуй снова.`;w.classList.add('show')}document.getElementById('swipeCard').style.display='none';document.getElementById('swipeBtns').style.display='none';document.getElementById('swipeHint').style.display='none';document.getElementById('next1').style.display='block'}
 
-  // CHAIN STATE
-  let chainDone = false;
+// CHAIN
+let chainDone=false;
+function selectChain(idx){if(chainDone)return;chainDone=true;const opts=document.querySelectorAll('#chainGame .chain-option');const w=document.getElementById('fb2w');const c=document.getElementById('fb2c');if(idx===1){score++;opts[1].classList.add('correct');c.textContent='✓ Правильно! Ты предвидел архетип «Пределы роста». Рост быстрее инфраструктуры = саморазрушение.';c.classList.add('show')}else{opts[idx].classList.add('wrong');opts[1].classList.add('reveal');w.textContent='✗ Это линейное мышление. Правильный ответ — вариант Б. С ограничивающим фактором (1 человек поддержки, MVP) рост ×10 = катастрофа. Это архетип «Пределы роста».';w.classList.add('show')}document.getElementById('next2').style.display='block'}
 
-  // SLIDER STATE
-  let sliderDone = false;
+// SLIDERS
+let sliderDone=false;
+function updSlider(i){document.getElementById('sv'+i).textContent=document.getElementById('sl'+i).value}
+function submitSliders(){if(sliderDone)return;sliderDone=true;const v=[0,1,2,3].map(i=>parseInt(document.getElementById('sl'+i).value));const w=document.getElementById('fb3w');const c=document.getElementById('fb3c');const best=v[2]+v[3];const worst=v[0];if(best>worst&&(v[2]>=30||v[3]>=30)){score++;c.textContent='✓ Ты выбрал усиливающие петли! Продукт и аудитория — стратегии с растущей отдачей.';c.classList.add('show')}else{w.textContent='✗ «Брать больше заказов» — ловушка линейного мышления. Ты обмениваешь время на деньги 1:1. Потолок = 24 часа. Смотри разбор ниже.';w.classList.add('show')}document.getElementById('sliderInsight').style.display='block';document.getElementById('next3').style.display='block';document.querySelector('#sliderGame .submit-btn').disabled=true;document.querySelector('#sliderGame .submit-btn').style.opacity='0.4'}
 
-  // SORT STATE
-  let draggedItem = null;
-  let sortDone = false;
+// SORT
+let sortDone=false,draggedEl=null;
+document.addEventListener('dragstart',e=>{if(e.target.classList.contains('sort-item')){draggedEl=e.target;e.target.classList.add('dragging')}});
+document.addEventListener('dragend',e=>{if(e.target.classList.contains('sort-item'))e.target.classList.remove('dragging')});
+function dropSort(e,col){e.preventDefault();if(!draggedEl||sortDone)return;document.getElementById(col==='weak'?'sortWeakItems':'sortStrongItems').appendChild(draggedEl);draggedEl=null}
+function submitSort(){if(sortDone)return;sortDone=true;let ok=0;document.getElementById('sortWeakItems').querySelectorAll('.sort-item').forEach(i=>{if(i.dataset.correct==='weak'){i.classList.add('correct');ok++}else i.classList.add('wrong')});document.getElementById('sortStrongItems').querySelectorAll('.sort-item').forEach(i=>{if(i.dataset.correct==='strong'){i.classList.add('correct');ok++}else i.classList.add('wrong')});const w=document.getElementById('fb4w');const c=document.getElementById('fb4c');if(ok>=5){score++;c.textContent=`✓ ${ok}/6 правильно! Ты видишь разницу между параметрами и структурой.`;c.classList.add('show')}else{w.textContent=`${ok}/6. Бюджет, найм и скидки — параметры (слабые). Метрика, продукт и петля рекомендаций — структура/цель (сильные).`;w.classList.add('show')}document.getElementById('next4').style.display='block';document.querySelector('#screen-4 .submit-btn').disabled=true;document.querySelector('#screen-4 .submit-btn').style.opacity='0.4'}
+function resetSortItems(){const s=document.getElementById('sortSourceItems');const w=document.getElementById('sortWeakItems');const st=document.getElementById('sortStrongItems');if(!s||!w||!st)return;[...w.children,...st.children].forEach(i=>{i.classList.remove('correct','wrong');s.appendChild(i)});sortDone=false}
 
-  // TIMELINE STATE
-  let selectedTimeline = -1;
-  let timelineDone = false;
+// TIMELINE
+let selectedTL=-1,tlDone=false;
+function selectTL(idx){if(tlDone)return;selectedTL=idx;document.querySelectorAll('.timeline-item').forEach((item,i)=>{item.classList.remove('selected');if(i===idx)item.classList.add('selected')})}
+function submitTL(){if(tlDone)return;if(selectedTL===-1){document.getElementById('fb5w').textContent='Выбери момент на таймлайне.';document.getElementById('fb5w').classList.add('show');return}tlDone=true;const items=document.querySelectorAll('.timeline-item');const w=document.getElementById('fb5w');const c=document.getElementById('fb5c');if(selectedTL===2){score++;items[2].classList.remove('selected');items[2].classList.add('correct');c.textContent='✓ Правильно! Месяц 4-6 — точка невозврата. Потери превышают экономию, но связь с решением размыта задержкой.';c.classList.add('show')}else{items[selectedTL].classList.remove('selected');items[selectedTL].classList.add('wrong');items[2].classList.add('correct');w.textContent='✗ Правильный ответ — месяц 4-6. Именно тогда потери превышают экономию, но задержка размыла связь с решением.';w.classList.add('show')}document.getElementById('tlInsight').style.display='block';document.getElementById('next5').style.display='block';document.querySelector('#screen-5 .submit-btn').disabled=true;document.querySelector('#screen-5 .submit-btn').style.opacity='0.4'}
 
-  // ============================================================
-  // NAVIGATION
-  // ============================================================
-  function goToScreen(n) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen-' + n).classList.add('active');
-    window.scrollTo(0, 0);
-    updateNav(n - 1);
-    currentScreen = n;
-    if (n === 1) initSwipe();
-  }
-
-  function startCourse() { goToScreen(1); }
-  function scrollToLessons() { goToScreen(1); }
-
-  function goToResult() {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen-result').classList.add('active');
-    window.scrollTo(0, 0);
-    showResult();
-  }
-
-  function updateNav(active) {
-    for (let i = 0; i < 5; i++) {
-      const dot = document.getElementById('dot' + i);
-      dot.classList.remove('done', 'active');
-      if (i < active) dot.classList.add('done');
-      else if (i === active) dot.classList.add('active');
-    }
-  }
-
-  function restartCourse() {
-    score = 0; swipeIndex = 0; swipeScore = 0; swipeDone = false;
-    chainDone = false; sliderDone = false; sortDone = false;
-    selectedTimeline = -1; timelineDone = false;
-    document.querySelectorAll('.insight-card').forEach(c => c.classList.remove('show'));
-    document.querySelectorAll('.feedback-wrong, .feedback-correct').forEach(f => { f.classList.remove('show'); f.textContent = ''; });
-    document.querySelectorAll('.chain-option').forEach(o => o.classList.remove('selected-correct', 'selected-wrong', 'reveal-correct'));
-    document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('selected', 'correct', 'wrong'));
-    resetSort();
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen-hero').classList.add('active');
-    window.scrollTo(0, 0);
-    for (let i = 0; i < 5; i++) {
-      const dot = document.getElementById('dot' + i);
-      dot.classList.remove('done', 'active');
-    }
-  }
-
-  // ============================================================
-  // SWIPE MECHANIC
-  // ============================================================
-  function initSwipe() {
-    swipeIndex = 0; swipeScore = 0; swipeDone = false;
-    renderSwipeCard();
-    renderSwipeProgress();
-  }
-
-  function renderSwipeCard() {
-    if (swipeIndex >= swipeCards.length) {
-      showSwipeResult();
-      return;
-    }
-    const card = document.getElementById('swipeCard');
-    card.textContent = swipeCards[swipeIndex].text;
-    card.className = 'swipe-card';
-  }
-
-  function renderSwipeProgress() {
-    const prog = document.getElementById('swipeProgress');
-    prog.innerHTML = swipeCards.map((c, i) => {
-      let cls = 'swipe-dot';
-      if (i < swipeIndex) cls += ' done';
-      return `<div class="${cls}"></div>`;
-    }).join('');
-  }
-
-  function swipeAnswer(isSystemic) {
-    if (swipeDone) return;
-    const card = swipeCards[swipeIndex];
-    const correct = card.isSystemic === isSystemic;
-    const cardEl = document.getElementById('swipeCard');
-    const wrongEl = document.getElementById('swipe-feedback-wrong');
-    const correctEl = document.getElementById('swipe-feedback-correct');
-
-    wrongEl.classList.remove('show');
-    correctEl.classList.remove('show');
-
-    if (correct) {
-      swipeScore++;
-      cardEl.classList.add('swipe-right');
-      correctEl.textContent = '✓ ' + card.feedback;
-      correctEl.classList.add('show');
-    } else {
-      cardEl.classList.add('swipe-left');
-      wrongEl.textContent = '✗ ' + card.feedback;
-      wrongEl.classList.add('show');
-    }
-
-    setTimeout(() => {
-      swipeIndex++;
-      renderSwipeCard();
-      renderSwipeProgress();
-      wrongEl.classList.remove('show');
-      correctEl.classList.remove('show');
-    }, 1400);
-  }
-
-  function showSwipeResult() {
-    swipeDone = true;
-    if (swipeScore >= 4) score++;
-    const insight = document.getElementById('insight-1');
-    insight.classList.add('show');
-    const wrongEl = document.getElementById('swipe-feedback-wrong');
-    const correctEl = document.getElementById('swipe-feedback-correct');
-    wrongEl.classList.remove('show');
-    if (swipeScore >= 4) {
-      correctEl.textContent = `✓ Отлично! ${swipeScore}/5 правильно. Ты хорошо чувствуешь разницу между линейным и системным мышлением.`;
-      correctEl.classList.add('show');
-    } else {
-      wrongEl.textContent = `${swipeScore}/5 правильно. Граница между линейным и системным мышлением тонкая. Читай инсайт ниже.`;
-      wrongEl.classList.add('show');
-    }
-    document.getElementById('swipeCard').style.display = 'none';
-    document.querySelector('.swipe-buttons').style.display = 'none';
-    document.querySelector('.swipe-hint').style.display = 'none';
-  }
-
-  // ============================================================
-  // CHAIN MECHANIC
-  // ============================================================
-  function selectChain(idx) {
-    if (chainDone) return;
-    chainDone = true;
-    const options = document.querySelectorAll('.chain-option');
-    const wrongEl = document.getElementById('chain-feedback-wrong');
-    const correctEl = document.getElementById('chain-feedback-correct');
-
-    if (idx === 1) {
-      options[idx].classList.add('selected-correct');
-      score++;
-      correctEl.textContent = '✓ Правильно! Ты предвидел системную катастрофу. Рост без готовой инфраструктуры убивает компанию.';
-      correctEl.classList.add('show');
-    } else {
-      options[idx].classList.add('selected-wrong');
-      options[1].classList.add('reveal-correct');
-      wrongEl.textContent = '✗ Это линейное мышление. Реальная цепочка — вариант Б. Смотри инсайт ниже.';
-      wrongEl.classList.add('show');
-    }
-
-    setTimeout(() => {
-      document.getElementById('insight-2').classList.add('show');
-    }, 600);
-  }
-
-  // ============================================================
-  // SLIDER MECHANIC
-  // ============================================================
-  function updateSlider(idx) {
-    document.getElementById('val' + idx).textContent = document.getElementById('slider' + idx).value;
-  }
-
-  function submitSlider() {
-    if (sliderDone) return;
-    sliderDone = true;
-    const vals = [0,1,2,3].map(i => parseInt(document.getElementById('slider' + i).value));
-    // Correct: slider2 (процессы) and slider3 (цель) should be highest
-    const maxIdx = vals.indexOf(Math.max(...vals));
-    const wrongEl = document.getElementById('slider-feedback-wrong') || createFeedback('slider');
-    const correctEl = document.getElementById('slider-feedback-correct') || createFeedback('slider', true);
-
-    // Find slider-submit and insert feedback after it
-    const submitBtn = document.querySelector('.slider-submit');
-    let wEl = document.getElementById('slider-feedback-wrong');
-    let cEl = document.getElementById('slider-feedback-correct');
-    if (!wEl) {
-      wEl = document.createElement('div');
-      wEl.id = 'slider-feedback-wrong';
-      wEl.className = 'feedback-wrong';
-      submitBtn.parentNode.insertBefore(wEl, submitBtn.nextSibling);
-    }
-    if (!cEl) {
-      cEl = document.createElement('div');
-      cEl.id = 'slider-feedback-correct';
-      cEl.className = 'feedback-correct';
-      wEl.parentNode.insertBefore(cEl, wEl.nextSibling);
-    }
-
-    if (maxIdx >= 2) {
-      score++;
-      cEl.textContent = '✓ Правильно! Структура процессов и цель — самые мощные точки воздействия.';
-      cEl.classList.add('show');
-    } else {
-      wEl.textContent = '✗ Большинство ставят на найм и KPI — это самые слабые точки. Настоящий рычаг — цель и структура. Смотри инсайт.';
-      wEl.classList.add('show');
-    }
-
-    document.getElementById('insight-3').classList.add('show');
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.5';
-  }
-
-  // ============================================================
-  // SORT MECHANIC
-  // ============================================================
-  function dragStart(e) {
-    draggedItem = e.target;
-    e.dataTransfer.effectAllowed = 'move';
-    setTimeout(() => e.target.classList.add('dragging'), 0);
-  }
-
-  function dragOver(e) {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  }
-
-  function dropItem(e, col) {
-    e.preventDefault();
-    if (!draggedItem) return;
-    draggedItem.classList.remove('dragging');
-    const target = document.getElementById('sort' + col.charAt(0).toUpperCase() + col.slice(1));
-    target.appendChild(draggedItem);
-    draggedItem = null;
-  }
-
-  function resetSort() {
-    const source = document.getElementById('sortSource');
-    const symptom = document.getElementById('sortSymptom');
-    const cause = document.getElementById('sortCause');
-    if (!source || !symptom || !cause) return;
-    [...symptom.children, ...cause.children].forEach(item => {
-      item.classList.remove('correct-place', 'wrong-place');
-      source.appendChild(item);
-    });
-    sortDone = false;
-  }
-
-  function submitSort() {
-    if (sortDone) return;
-    sortDone = true;
-    let correct = 0;
-    const symptomItems = document.getElementById('sortSymptom').querySelectorAll('.sort-item');
-    const causeItems = document.getElementById('sortCause').querySelectorAll('.sort-item');
-    const wrongEl = document.getElementById('sort-feedback-wrong');
-    const correctEl = document.getElementById('sort-feedback-correct');
-
-    symptomItems.forEach(item => {
-      if (item.dataset.correct === 'symptom') { item.classList.add('correct-place'); correct++; }
-      else item.classList.add('wrong-place');
-    });
-    causeItems.forEach(item => {
-      if (item.dataset.correct === 'cause') { item.classList.add('correct-place'); correct++; }
-      else item.classList.add('wrong-place');
-    });
-
-    if (correct >= 5) {
-      score++;
-      correctEl.textContent = `✓ Отлично! ${correct}/6 правильно. Ты видишь разницу между симптомами и причинами.`;
-      correctEl.classList.add('show');
-    } else {
-      wrongEl.textContent = `${correct}/6 правильно. Симптомы — это то, что видно. Причины — то, что создаёт симптомы. Смотри инсайт.`;
-      wrongEl.classList.add('show');
-    }
-
-    document.getElementById('insight-4').classList.add('show');
-    document.querySelector('.sort-submit').disabled = true;
-    document.querySelector('.sort-submit').style.opacity = '0.5';
-  }
-
-  // ============================================================
-  // TIMELINE MECHANIC
-  // ============================================================
-  function selectTimeline(idx) {
-    if (timelineDone) return;
-    selectedTimeline = idx;
-    document.querySelectorAll('.timeline-item').forEach((item, i) => {
-      item.classList.remove('selected');
-      if (i === idx) item.classList.add('selected');
-    });
-  }
-
-  function submitTimeline() {
-    if (timelineDone || selectedTimeline === -1) {
-      if (selectedTimeline === -1) {
-        const wrongEl = document.getElementById('timeline-feedback-wrong');
-        wrongEl.textContent = 'Выбери месяц на таймлайне.';
-        wrongEl.classList.add('show');
-        return;
-      }
-    }
-    timelineDone = true;
-    const items = document.querySelectorAll('.timeline-item');
-    const wrongEl = document.getElementById('timeline-feedback-wrong');
-    const correctEl = document.getElementById('timeline-feedback-correct');
-
-    if (selectedTimeline === 3) {
-      score++;
-      items[selectedTimeline].classList.remove('selected');
-      items[selectedTimeline].classList.add('correct');
-      correctEl.textContent = '✓ Правильно! 4–6 месяцев — именно тогда задержка делает связь неочевидной. Это самое опасное время.';
-      correctEl.classList.add('show');
-    } else {
-      items[selectedTimeline].classList.remove('selected');
-      items[selectedTimeline].classList.add('wrong');
-      items[3].classList.add('correct');
-      wrongEl.textContent = '✗ Правильный ответ — месяц 4–6. Именно тогда задержка разрывает связь между решением и последствием. Смотри инсайт.';
-      wrongEl.classList.add('show');
-    }
-
-    document.getElementById('insight-5').classList.add('show');
-    document.querySelector('.timeline-submit').disabled = true;
-    document.querySelector('.timeline-submit').style.opacity = '0.5';
-  }
-
-  // ============================================================
-  // RESULT
-  // ============================================================
-  function showResult() {
-    document.getElementById('resultScore').textContent = score;
-
-    let level, title, desc;
-    if (score <= 1) {
-      level = 'ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ';
-      title = 'Ты думаешь как большинство.';
-      desc = 'Линейное мышление — это норма. Мозг эволюционно заточен на простые причинно-следственные связи. Но сложные системы так не работают. Хорошая новость: системному мышлению можно научиться.';
-    } else if (score <= 3) {
-      level = 'НАЧИНАЮЩИЙ СИСТЕМЩИК';
-      title = 'Ты видишь паттерны.';
-      desc = 'Ты уже замечаешь, что «очевидные» решения часто не работают. Ты на правильном пути. Следующий шаг — научиться видеть петли и задержки до того, как они сработают.';
-    } else {
-      level = 'АРХИТЕКТОР СИСТЕМ';
-      title = 'Ты мыслишь системно.';
-      desc = 'Ты видишь структуры там, где другие видят хаос. Ты понимаешь разницу между симптомами и причинами. Ты готов к следующему уровню — проектированию систем.';
-    }
-
-    document.getElementById('resultLevel').textContent = level;
-    document.getElementById('resultTitle').textContent = title;
-    document.getElementById('resultDesc').textContent = desc;
-  }
-
-  // Init swipe on load if needed
-  initSwipe();
+// RESULT
+function showResult(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-result').classList.add('active');window.scrollTo(0,0);document.getElementById('rScore').textContent=score;let level,title,desc;if(score<=1){level='ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ';title='Ты думаешь как большинство.';desc='Это нормально — мозг эволюционно заточен на линейные связи. Но теперь ты знаешь 5 принципов. Перечитай уроки и попробуй применить к своей ситуации.'}else if(score<=3){level='НАЧИНАЮЩИЙ СИСТЕМЩИК';title='Ты видишь паттерны.';desc='Ты уже замечаешь петли и задержки. Это больше, чем 90% людей. Следующий шаг — научиться проектировать системы, а не только анализировать.'}else{level='СИСТЕМНЫЙ АРХИТЕКТОР';title='Ты мыслишь структурами.';desc='Ты видишь петли, находишь рычаги и учитываешь задержки. Ты готов к следующему уровню — системным архетипам и проектированию.'}document.getElementById('rLevel').textContent=level;document.getElementById('rTitle').textContent=title;document.getElementById('rDesc').textContent=desc;updateDots(5)}
 </script>
 </body>
 </html>
