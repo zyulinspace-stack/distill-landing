@@ -104,9 +104,7 @@
     .slider-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
     .slider-name{font-size:15px;font-weight:600}
     .slider-val{font-size:24px;font-weight:900;color:var(--y);letter-spacing:-1px;min-width:40px;text-align:right}
-    .slider-type{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-    .slider-type.linear{color:var(--r)}
-    .slider-type.systemic{color:var(--gr)}
+
     input[type="range"]{width:100%;height:4px;background:var(--brd);outline:none;cursor:pointer;-webkit-appearance:none;border-radius:0}
     input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--y);cursor:pointer}
     .budget-bar{background:var(--dk);border:1px solid var(--brd);padding:16px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px}
@@ -116,24 +114,21 @@
     .budget-fill.over{background:var(--r)}
     .budget-num{font-size:20px;font-weight:900;color:var(--y);min-width:60px;text-align:right}
     .budget-num.over{color:var(--r)}
-    /* Sort - click based */
-    .sort-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-    .sort-item{background:var(--card);border:1.5px solid var(--brd);padding:12px 18px;font-size:14px;cursor:pointer;user-select:none;transition:all .2s}
-    .sort-item:hover{border-color:var(--y)}
-    .sort-item.selected{border-color:var(--y);background:rgba(200,255,0,.05)}
-    .sort-item.placed{opacity:.3;cursor:default;pointer-events:none}
-    .sort-item.correct{border-color:var(--gr);color:var(--gr)}
-    .sort-item.wrong{border-color:var(--r);color:var(--r)}
-    .sort-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-    .sort-col{background:var(--dk);border:1.5px solid var(--brd);padding:20px;min-height:180px;transition:border-color .2s}
-    .sort-col.highlight{border-color:var(--y)}
-    .sort-col-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-    .sort-col-title.a{color:var(--r)}
-    .sort-col-title.b{color:var(--gr)}
-    .sort-col-items{display:flex;flex-direction:column;gap:8px;min-height:80px}
-    .sort-placed-item{background:var(--card);border:1px solid var(--brd);padding:10px 16px;font-size:13px;transition:all .2s}
-    .sort-placed-item.correct{border-color:var(--gr);color:var(--gr)}
-    .sort-placed-item.wrong{border-color:var(--r);color:var(--r)}
+    /* Rating mechanic (lesson 4) */
+    .rating-item{background:var(--dk);border:1px solid var(--brd);padding:20px 24px;margin-bottom:10px;transition:border-color .2s}
+    .rating-item.rated{border-color:var(--brd)}
+    .rating-item.result-correct{border-color:var(--gr)}
+    .rating-item.result-wrong{border-color:var(--r)}
+    .rating-action{font-size:15px;font-weight:600;margin-bottom:14px}
+    .rating-stars{display:flex;gap:6px;align-items:center}
+    .star-btn{width:38px;height:38px;border:1.5px solid var(--brd);background:transparent;color:var(--g);font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .star-btn:hover{border-color:var(--y);color:var(--y)}
+    .star-btn.active{background:var(--y);border-color:var(--y);color:#000;font-weight:900}
+    .rating-label{font-size:11px;color:var(--g);margin-left:10px;letter-spacing:.5px}
+    .rating-result{font-size:12px;margin-top:10px;font-weight:600;display:none}
+    .rating-result.show{display:block}
+    .rating-result.ok{color:var(--gr)}
+    .rating-result.bad{color:var(--r)}
     /* Timeline */
     .timeline{position:relative;padding-left:40px}
     .timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:var(--brd)}
@@ -608,7 +603,6 @@
       <div class="slider-item">
         <div class="slider-row">
           <div>
-            <div class="slider-type linear">линейная стратегия</div>
             <div class="slider-name">🔨 Брать больше заказов</div>
           </div>
           <div class="slider-val" id="sv0">25</div>
@@ -618,7 +612,6 @@
       <div class="slider-item">
         <div class="slider-row">
           <div>
-            <div class="slider-type linear">линейная стратегия</div>
             <div class="slider-name">📢 Искать клиентов активнее</div>
           </div>
           <div class="slider-val" id="sv1">25</div>
@@ -628,7 +621,6 @@
       <div class="slider-item">
         <div class="slider-row">
           <div>
-            <div class="slider-type systemic">системная стратегия</div>
             <div class="slider-name">📦 Создать продукт (шаблоны, курс)</div>
           </div>
           <div class="slider-val" id="sv2">25</div>
@@ -638,7 +630,6 @@
       <div class="slider-item">
         <div class="slider-row">
           <div>
-            <div class="slider-type systemic">системная стратегия</div>
             <div class="slider-name">🎯 Строить аудиторию (блог, YouTube)</div>
           </div>
           <div class="slider-val" id="sv3">25</div>
@@ -744,24 +735,14 @@
         <strong>Принцип #4: Ищи рычаг.</strong> Не «работай сильнее» — а «работай в правильном месте». Большинство людей крутят параметры (бюджет, найм, скидки). Системный мыслитель меняет структуру и цель.
       </div>
 
-      <p>Давай проверим. Вот 6 действий. Рассортируй их: какие — слабые рычаги (параметры), а какие — сильные (структура/цель). Кликни на действие, затем кликни на колонку.</p>
+      <p>Давай проверим. Вот 6 действий для компании, которая хочет расти. Оцени каждое: насколько сильный это рычаг? 1 — почти ничего не изменит, 5 — изменит всё.</p>
     </div>
 
     <div class="game-section" id="sortGame">
       <div class="game-label">✦ практика</div>
-      <div class="game-title">Слабый или сильный рычаг?</div>
-      <div class="game-desc">Кликни на действие → кликни на колонку, куда его поместить. Рассортируй все 6.</div>
-      <div class="sort-pool" id="sortPool"></div>
-      <div class="sort-cols">
-        <div class="sort-col" id="sortWeakCol" onclick="placeInCol('weak')">
-          <div class="sort-col-title a">🔴 СЛАБОЕ (параметры)</div>
-          <div class="sort-col-items" id="sortWeakItems"></div>
-        </div>
-        <div class="sort-col" id="sortStrongCol" onclick="placeInCol('strong')">
-          <div class="sort-col-title b">🎯 СИЛЬНОЕ (структура/цель)</div>
-          <div class="sort-col-items" id="sortStrongItems"></div>
-        </div>
-      </div>
+      <div class="game-title">Оцени силу рычага</div>
+      <div class="game-desc">Для каждого действия выбери оценку от 1 до 5. Насколько сильно это изменит систему?</div>
+      <div id="ratingPool"></div>
       <button class="submit-btn" id="sortSubmitBtn" onclick="submitSort()">проверить →</button>
       <div class="feedback wrong" id="fb4w"></div>
       <div class="feedback correct" id="fb4c"></div>
@@ -1312,94 +1293,81 @@ function submitSliders() {
   document.getElementById('next3').style.display = 'block';
 }
 
-// ===== LESSON 4: SORT (click-based) =====
-const sortItems = [
-  { text: 'Увеличить рекламный бюджет на 30%', correct: 'weak' },
-  { text: 'Изменить метрику: с «выручка» на «LTV клиента»', correct: 'strong' },
-  { text: 'Нанять 5 новых продавцов', correct: 'weak' },
-  { text: 'Встроить петлю рекомендаций в продукт', correct: 'strong' },
-  { text: 'Дать скидку 20% на следующий месяц', correct: 'weak' },
-  { text: 'Переформулировать миссию компании', correct: 'strong' }
+// ===== LESSON 4: RATING MECHANIC =====
+// Correct answers: 1-2 = weak (score 1-2), 3-4 = medium (score 3-4), 5 = strong (score 5)
+// Items: budget(weak=1), metric(strong=5), hire(weak=1), loop(strong=5), discount(weak=1), mission(strong=4)
+const ratingItems = [
+  { text: 'Увеличить рекламный бюджет на 30%', correctMin: 1, correctMax: 2, explain: 'Бюджет — это параметр. Убрал бюджет — всё вернулось на место.' },
+  { text: 'Изменить метрику: с «выручка» на «LTV клиента»', correctMin: 4, correctMax: 5, explain: 'Метрика меняет поведение всей команды. Это структурный рычаг.' },
+  { text: 'Нанять 5 новых продавцов', correctMin: 1, correctMax: 2, explain: 'Найм — это параметр (количество людей). Уволь — всё вернётся на место.' },
+  { text: 'Встроить петлю рекомендаций в продукт', correctMin: 4, correctMax: 5, explain: 'Петля рекомендаций — усиливающая петля. Меняет структуру роста.' },
+  { text: 'Дать скидку 20% на следующий месяц', correctMin: 1, correctMax: 2, explain: 'Скидка — параметр (цена). Временный эффект, не меняет систему.' },
+  { text: 'Переформулировать миссию компании', correctMin: 3, correctMax: 5, explain: 'Миссия — цель системы. Изменить цель — один из самых сильных рычагов.' }
 ];
 
-let sortDone = false, selectedSortItem = null;
+const ratingVals = new Array(ratingItems.length).fill(0);
+let sortDone = false;
 
 function initSortItems() {
-  const pool = document.getElementById('sortPool');
-  pool.innerHTML = sortItems.map((item, i) =>
-    `<div class="sort-item" data-idx="${i}" data-correct="${item.correct}" onclick="selectSortItem(this)">${item.text}</div>`
-  ).join('');
-  document.getElementById('sortWeakItems').innerHTML = '';
-  document.getElementById('sortStrongItems').innerHTML = '';
-  selectedSortItem = null;
+  const pool = document.getElementById('ratingPool');
+  pool.innerHTML = ratingItems.map((item, i) => `
+    <div class="rating-item" id="ri${i}">
+      <div class="rating-action">${item.text}</div>
+      <div class="rating-stars">
+        ${[1,2,3,4,5].map(n => `<button class="star-btn" id="rb${i}_${n}" onclick="setRating(${i},${n})">${n}</button>`).join('')}
+        <span class="rating-label" id="rl${i}">не оценено</span>
+      </div>
+      <div class="rating-result" id="rr${i}"></div>
+    </div>`).join('');
 }
 
-function selectSortItem(el) {
-  if (sortDone || el.classList.contains('placed')) return;
-  document.querySelectorAll('.sort-item').forEach(i => i.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedSortItem = el;
-  // Highlight columns
-  document.getElementById('sortWeakCol').classList.add('highlight');
-  document.getElementById('sortStrongCol').classList.add('highlight');
-}
-
-function placeInCol(col) {
-  if (!selectedSortItem || sortDone) return;
-  const targetEl = document.getElementById(col === 'weak' ? 'sortWeakItems' : 'sortStrongItems');
-  const text = selectedSortItem.textContent;
-  const correct = selectedSortItem.dataset.correct;
-  // Create placed item
-  const placed = document.createElement('div');
-  placed.className = 'sort-placed-item';
-  placed.textContent = text;
-  placed.dataset.correct = correct;
-  placed.dataset.placed = col;
-  targetEl.appendChild(placed);
-  // Mark original as placed
-  selectedSortItem.classList.remove('selected');
-  selectedSortItem.classList.add('placed');
-  selectedSortItem = null;
-  // Remove highlights
-  document.getElementById('sortWeakCol').classList.remove('highlight');
-  document.getElementById('sortStrongCol').classList.remove('highlight');
+function setRating(itemIdx, val) {
+  if (sortDone) return;
+  ratingVals[itemIdx] = val;
+  [1,2,3,4,5].forEach(n => {
+    const btn = document.getElementById(`rb${itemIdx}_${n}`);
+    btn.classList.toggle('active', n <= val);
+  });
+  const labels = ['слабый','слабый','средний','сильный','очень сильный'];
+  document.getElementById(`rl${itemIdx}`).textContent = labels[val-1];
 }
 
 function submitSort() {
   if (sortDone) return;
-  // Check if all items placed
-  const placedCount = document.querySelectorAll('.sort-item.placed').length;
-  if (placedCount < sortItems.length) {
+  const unrated = ratingVals.filter(v => v === 0).length;
+  if (unrated > 0) {
     const w = document.getElementById('fb4w');
-    w.textContent = 'Рассортируй все 6 действий, потом нажми «проверить».';
+    w.textContent = `Оцени все 6 действий, потом нажми «проверить». Осталось: ${unrated}.`;
     w.classList.add('show');
     return;
   }
   sortDone = true;
   let ok = 0;
-  document.querySelectorAll('.sort-placed-item').forEach(item => {
-    if (item.dataset.correct === item.dataset.placed) {
-      item.classList.add('correct');
-      ok++;
-    } else {
-      item.classList.add('wrong');
-    }
+  ratingItems.forEach((item, i) => {
+    const val = ratingVals[i];
+    const correct = val >= item.correctMin && val <= item.correctMax;
+    if (correct) ok++;
+    const ri = document.getElementById(`ri${i}`);
+    ri.classList.add(correct ? 'result-correct' : 'result-wrong');
+    const rr = document.getElementById(`rr${i}`);
+    rr.className = 'rating-result show ' + (correct ? 'ok' : 'bad');
+    rr.textContent = (correct ? '✓ ' : '✗ ') + item.explain;
   });
   const w = document.getElementById('fb4w');
   const c = document.getElementById('fb4c');
   if (ok >= 5) {
     score++;
-    c.textContent = `✓ ${ok}/6 правильно! Ты видишь разницу между параметрами и структурой.`;
+    c.textContent = `✓ ${ok}/6 верно! Ты чувствуешь иерархию рычагов.`;
     c.classList.add('show');
   } else {
-    w.textContent = `${ok}/6. Бюджет, найм и скидки — параметры (слабые). Метрика, петля рекомендаций и миссия — структура/цель (сильные).`;
+    w.textContent = `${ok}/6. Смотри разбор по каждому пункту ниже.`;
     w.classList.add('show');
   }
   // Recommendation
   const rec = document.getElementById('rec4');
   const recText = document.getElementById('rec4text');
   if (ok <= 3) {
-    recText.innerHTML = '<strong>Ты путаешь параметры и структуру.</strong> Это самая частая ошибка. Параметры — это числа, которые можно крутить (бюджет, зарплата, цена). Структура — это правила игры (метрики, петли, цели). Практика: когда предлагаешь решение, спроси себя: «Это изменение числа или изменение правил?» Если числа — ищи глубже.';
+    recText.innerHTML = '<strong>Ты путаешь параметры и структуру.</strong> Это самая частая ошибка. Параметры — это числа, которые можно крутить (бюджет, зарплата, цена). Структура — это правила игры (метрики, петли, цели). Практика: когда предлагаешь решение, спроси себя: «Это изменение числа или изменение правила?» Если числа — ищи глубже.';
   } else if (ok <= 5) {
     recText.innerHTML = '<strong>Ты почти безошибочно различаешь уровни.</strong> Ты понимаешь, что бюджет — это параметр, а метрика — это структура. Следующий уровень: научиться находить рычаги в реальных ситуациях, где границы размыты. Практика: в следующем рабочем совещании, когда кто-то предложит «увеличить/уменьшить X» — спроси: «А что, если изменить правило, по которому мы определяем X?»';
   } else {
