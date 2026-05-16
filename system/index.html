@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--y:#c8ff00;--bk:#0a0a0a;--dk:#111;--card:#1a1a1a;--brd:#2a2a2a;--w:#fff;--g:#888;--lg:#bbb;--r:#ff3b3b;--gr:#00ff88}
+    :root{--y:#c8ff00;--bk:#0a0a0a;--dk:#111;--card:#1a1a1a;--brd:#2a2a2a;--w:#fff;--g:#888;--lg:#bbb;--r:#ff3b3b;--gr:#00ff88;--blue:#4488ff}
     html{scroll-behavior:smooth}
     body{background:var(--bk);color:var(--w);font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;overflow-x:hidden}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bk);border-bottom:1px solid var(--brd);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
@@ -75,48 +75,66 @@
     .swipe-dot.correct{background:var(--gr)}
     .swipe-dot.wrong{background:var(--r)}
     .swipe-dot.current{background:var(--y);box-shadow:0 0 6px var(--y)}
-    .swipe-card{width:100%;max-width:520px;background:var(--dk);border:1.5px solid var(--brd);padding:36px;font-size:18px;line-height:1.6;text-align:center;transition:transform .2s,border-color .2s}
-    .swipe-card.left{transform:translateX(-15px) rotate(-2deg);border-color:var(--r)}
-    .swipe-card.right{transform:translateX(15px) rotate(2deg);border-color:var(--gr)}
+    .swipe-card{width:100%;max-width:520px;background:var(--dk);border:1.5px solid var(--brd);padding:36px;font-size:18px;line-height:1.6;text-align:center;transition:transform .3s,border-color .3s}
+    .swipe-card.left{transform:translateX(-20px) rotate(-3deg);border-color:var(--r)}
+    .swipe-card.right{transform:translateX(20px) rotate(3deg);border-color:var(--gr)}
     .swipe-hint{font-size:12px;color:var(--g)}
     .swipe-btns{display:flex;gap:16px}
     .swipe-btn{padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:opacity .2s}
     .swipe-btn:hover{opacity:.85}
     .swipe-btn.no{background:var(--r);color:#fff}
     .swipe-btn.yes{background:var(--gr);color:#000}
-    .chain-option{border:1.5px solid var(--brd);padding:24px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,background .2s}
-    .chain-option:hover{border-color:var(--y);background:rgba(200,255,0,.03)}
-    .chain-option.correct{border-color:var(--gr);background:rgba(0,255,136,.05)}
-    .chain-option.wrong{border-color:var(--r);background:rgba(255,59,59,.05)}
-    .chain-option.reveal{border-color:var(--gr);background:rgba(0,255,136,.05)}
-    .chain-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--g);text-transform:uppercase;margin-bottom:10px}
-    .chain-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-    .chain-step{background:var(--bk);border:1px solid var(--brd);padding:6px 12px;font-size:13px;font-weight:500}
+    /* Chain game v2 - step by step */
+    .chain-board{display:flex;flex-direction:column;gap:16px}
+    .chain-built{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:20px;background:var(--dk);border:1px solid var(--brd);min-height:60px}
+    .chain-step{background:var(--bk);border:1px solid var(--brd);padding:8px 14px;font-size:13px;font-weight:600;transition:all .3s}
+    .chain-step.locked{border-color:var(--y);color:var(--y)}
+    .chain-step.correct{border-color:var(--gr);color:var(--gr)}
+    .chain-step.wrong{border-color:var(--r);color:var(--r)}
     .chain-arrow{color:var(--g);font-size:14px}
-    .chain-option.correct .chain-step{border-color:var(--gr);color:var(--gr)}
-    .chain-option.wrong .chain-step{border-color:var(--r);color:var(--r)}
-    .chain-option.reveal .chain-step{border-color:var(--gr);color:var(--gr)}
+    .chain-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .chain-choice{border:1.5px solid var(--brd);padding:16px 20px;cursor:pointer;transition:all .2s;font-size:15px}
+    .chain-choice:hover{border-color:var(--y);background:rgba(200,255,0,.03)}
+    .chain-choice.correct{border-color:var(--gr);background:rgba(0,255,136,.05);cursor:default}
+    .chain-choice.wrong{border-color:var(--r);background:rgba(255,59,59,.05);cursor:default;opacity:.5}
+    .chain-choice.disabled{opacity:.4;cursor:default;pointer-events:none}
+    .chain-step-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--g);text-transform:uppercase;margin-bottom:8px}
+    /* Slider with budget constraint */
     .slider-item{background:var(--dk);border:1px solid var(--brd);padding:24px;margin-bottom:12px}
     .slider-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
     .slider-name{font-size:15px;font-weight:600}
-    .slider-val{font-size:24px;font-weight:900;color:var(--y);letter-spacing:-1px}
+    .slider-val{font-size:24px;font-weight:900;color:var(--y);letter-spacing:-1px;min-width:40px;text-align:right}
+    .slider-type{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+    .slider-type.linear{color:var(--r)}
+    .slider-type.systemic{color:var(--gr)}
     input[type="range"]{width:100%;height:4px;background:var(--brd);outline:none;cursor:pointer;-webkit-appearance:none;border-radius:0}
     input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--y);cursor:pointer}
-    .slider-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--g);margin-top:6px}
-    .sort-source{background:var(--dk);border:1.5px dashed var(--brd);padding:24px;margin-bottom:20px}
-    .sort-source-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g);text-transform:uppercase;margin-bottom:14px}
-    .sort-source-items{display:flex;flex-wrap:wrap;gap:8px}
-    .sort-item{background:var(--card);border:1px solid var(--brd);padding:10px 16px;font-size:14px;cursor:grab;user-select:none;transition:border-color .2s}
+    .budget-bar{background:var(--dk);border:1px solid var(--brd);padding:16px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px}
+    .budget-label{font-size:13px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:1px}
+    .budget-track{flex:1;height:8px;background:var(--brd);position:relative;overflow:hidden}
+    .budget-fill{height:100%;background:var(--y);transition:width .2s}
+    .budget-fill.over{background:var(--r)}
+    .budget-num{font-size:20px;font-weight:900;color:var(--y);min-width:60px;text-align:right}
+    .budget-num.over{color:var(--r)}
+    /* Sort - click based */
+    .sort-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+    .sort-item{background:var(--card);border:1.5px solid var(--brd);padding:12px 18px;font-size:14px;cursor:pointer;user-select:none;transition:all .2s}
     .sort-item:hover{border-color:var(--y)}
-    .sort-item.dragging{opacity:.4}
+    .sort-item.selected{border-color:var(--y);background:rgba(200,255,0,.05)}
+    .sort-item.placed{opacity:.3;cursor:default;pointer-events:none}
     .sort-item.correct{border-color:var(--gr);color:var(--gr)}
     .sort-item.wrong{border-color:var(--r);color:var(--r)}
     .sort-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-    .sort-col{background:var(--dk);border:1.5px solid var(--brd);padding:20px;min-height:160px}
+    .sort-col{background:var(--dk);border:1.5px solid var(--brd);padding:20px;min-height:180px;transition:border-color .2s}
+    .sort-col.highlight{border-color:var(--y)}
     .sort-col-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
     .sort-col-title.a{color:var(--r)}
     .sort-col-title.b{color:var(--gr)}
     .sort-col-items{display:flex;flex-direction:column;gap:8px;min-height:80px}
+    .sort-placed-item{background:var(--card);border:1px solid var(--brd);padding:10px 16px;font-size:13px;transition:all .2s}
+    .sort-placed-item.correct{border-color:var(--gr);color:var(--gr)}
+    .sort-placed-item.wrong{border-color:var(--r);color:var(--r)}
+    /* Timeline */
     .timeline{position:relative;padding-left:40px}
     .timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:var(--brd)}
     .timeline-item{position:relative;padding:20px 24px;border:1px solid var(--brd);margin-bottom:2px;cursor:pointer;transition:all .2s}
@@ -131,10 +149,16 @@
     .timeline-month{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--y);text-transform:uppercase;margin-bottom:4px}
     .timeline-text{font-size:15px;font-weight:600}
     .timeline-sub{font-size:13px;color:var(--g);margin-top:4px}
-    .feedback{padding:16px 20px;margin-top:16px;font-size:14px;display:none}
+    .feedback{padding:16px 20px;margin-top:16px;font-size:14px;display:none;line-height:1.7}
     .feedback.show{display:block}
-    .feedback.wrong{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.3);color:#ff8888}
-    .feedback.correct{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);color:var(--gr)}
+    .feedback.wrong{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.2);color:#ffaaaa}
+    .feedback.correct{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:#aaffcc}
+    .recommendation{margin-top:20px;padding:24px;background:var(--dk);border:1px solid var(--brd);display:none}
+    .recommendation.show{display:block}
+    .recommendation h4{font-size:14px;font-weight:700;color:var(--y);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+    .recommendation p{font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:12px}
+    .recommendation p:last-child{margin-bottom:0}
+    .recommendation strong{color:var(--w)}
     .submit-btn{background:var(--y);color:#000;border:none;padding:16px 40px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-top:20px;transition:opacity .2s}
     .submit-btn:hover{opacity:.85}
     .submit-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -160,6 +184,11 @@
     .result-cta-btn{display:inline-block;background:#000;color:var(--y);padding:18px 40px;font-size:16px;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif}
     .result-retry{margin-top:24px;background:transparent;border:1.5px solid var(--brd);color:var(--g);padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
     .result-retry:hover{border-color:var(--w);color:var(--w)}
+    .insight-box{margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);display:none}
+    .insight-box.show{display:block}
+    .insight-box p{font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px}
+    .insight-box p:last-child{margin-bottom:0}
+    .insight-box strong{color:var(--w)}
     @media(max-width:768px){
       .hero{grid-template-columns:1fr}
       .hero-right{display:none}
@@ -169,6 +198,7 @@
       .sort-cols{grid-template-columns:1fr}
       .result-principles{grid-template-columns:1fr}
       .result-cta{padding:32px 20px}
+      .chain-built{flex-wrap:wrap}
     }
   </style>
 </head>
@@ -219,26 +249,51 @@
       <p>Представь: тебе холодно. Ты подходишь к термостату и ставишь 30°C. Ждёшь 5 минут. Всё ещё холодно. Ставишь 35°C. Ждёшь ещё. Ставишь 40°C. Через полчаса ты сидишь в сауне, потеешь и думаешь: <strong>«Какого чёрта?»</strong></p>
 
       <div class="illustration">
-        <svg width="400" height="200" viewBox="0 0 400 200">
-          <circle cx="80" cy="60" r="18" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="80" y1="78" x2="80" y2="130" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="80" y1="95" x2="60" y2="115" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="80" y1="95" x2="110" y2="85" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="80" y1="130" x2="65" y2="165" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="80" y1="130" x2="95" y2="165" stroke="#c8ff00" stroke-width="2"/>
-          <rect x="115" y="55" width="40" height="60" fill="none" stroke="#888" stroke-width="1.5"/>
-          <text x="135" y="90" text-anchor="middle" fill="#ff3b3b" font-size="16" font-weight="700">40°</text>
-          <circle cx="65" cy="50" r="3" fill="#00ff88"/>
-          <circle cx="95" cy="45" r="3" fill="#00ff88"/>
-          <circle cx="70" cy="70" r="2" fill="#00ff88"/>
-          <rect x="180" y="30" width="200" height="50" rx="4" fill="#1a1a1a" stroke="#2a2a2a"/>
-          <text x="280" y="55" text-anchor="middle" fill="#fff" font-size="12">«Не работает! Ещё крутану!»</text>
-          <polygon points="175,55 180,50 180,60" fill="#1a1a1a"/>
-          <text x="200" y="140" fill="#888" font-size="11" letter-spacing="1">ЗАДЕРЖКА: 20 МИНУТ</text>
-          <line x1="200" y1="150" x2="370" y2="150" stroke="#888" stroke-width="1" stroke-dasharray="4"/>
-          <circle cx="340" cy="60" r="18" fill="none" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="340" y1="78" x2="340" y2="130" stroke="#ff3b3b" stroke-width="2"/>
-          <text x="340" y="175" text-anchor="middle" fill="#ff3b3b" font-size="11">+40°C 🥵</text>
+        <svg width="500" height="240" viewBox="0 0 500 240">
+          <!-- Person 1 - frustrated -->
+          <circle cx="80" cy="65" r="22" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <circle cx="72" cy="60" r="2" fill="#c8ff00"/>
+          <circle cx="88" cy="60" r="2" fill="#c8ff00"/>
+          <path d="M70 73 Q80 68 90 73" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="80" y1="87" x2="80" y2="140" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="80" y1="105" x2="55" y2="130" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="80" y1="105" x2="120" y2="95" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="65" y2="180" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="80" y1="140" x2="95" y2="180" stroke="#c8ff00" stroke-width="2.5"/>
+          <!-- Sweat drops -->
+          <circle cx="55" cy="55" r="3" fill="#4488ff" opacity=".7"/>
+          <circle cx="105" cy="50" r="3" fill="#4488ff" opacity=".7"/>
+          <circle cx="60" cy="75" r="2.5" fill="#4488ff" opacity=".6"/>
+          <!-- Thermostat -->
+          <rect x="125" y="50" width="50" height="70" rx="6" fill="none" stroke="#888" stroke-width="2"/>
+          <rect x="130" y="55" width="40" height="30" rx="3" fill="#1a1a1a"/>
+          <text x="150" y="76" text-anchor="middle" fill="#ff3b3b" font-size="20" font-weight="900">40°</text>
+          <circle cx="150" cy="105" r="8" fill="none" stroke="#888" stroke-width="1.5"/>
+          <line x1="150" y1="100" x2="150" y2="97" stroke="#888" stroke-width="2"/>
+          <!-- Speech bubble -->
+          <rect x="195" y="25" width="200" height="55" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
+          <polygon points="195,52 185,60 195,58" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
+          <text x="295" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="500">«Не работает! Ещё крутану!»</text>
+          <text x="295" y="68" text-anchor="middle" fill="#888" font-size="11">— каждый из нас, всегда</text>
+          <!-- Delay arrow -->
+          <text x="250" y="140" text-anchor="middle" fill="#888" font-size="10" font-weight="700" letter-spacing="2">ЗАДЕРЖКА 20 МИНУТ</text>
+          <line x1="200" y1="150" x2="380" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <polygon points="380,146 390,150 380,154" fill="#888"/>
+          <!-- Person 2 - melting -->
+          <circle cx="420" cy="65" r="22" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
+          <circle cx="412" cy="60" r="2" fill="#ff3b3b"/>
+          <circle cx="428" cy="60" r="2" fill="#ff3b3b"/>
+          <path d="M410 75 Q420 80 430 75" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
+          <line x1="420" y1="87" x2="420" y2="140" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="420" y1="105" x2="395" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="420" y1="105" x2="445" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="420" y1="140" x2="405" y2="180" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="420" y1="140" x2="435" y2="180" stroke="#ff3b3b" stroke-width="2.5"/>
+          <!-- Heat waves -->
+          <path d="M400 35 Q405 25 410 35" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
+          <path d="M420 30 Q425 20 430 30" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
+          <path d="M440 35 Q445 25 450 35" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
+          <text x="420" y="200" text-anchor="middle" fill="#ff3b3b" font-size="13" font-weight="700">+40°C</text>
         </svg>
         <div class="caption">Классическая ошибка: не учитывать задержку в системе</div>
       </div>
@@ -291,13 +346,13 @@
 
       <p>Если проблема повторяется — ты лечишь симптом. Причина глубже. Ныряй.</p>
 
-      <p>Давай проверим, видишь ли ты разницу между линейным и системным мышлением. Вот 6 утверждений. Определи: это линейное мышление или системное?</p>
+      <p>Давай проверим. Вот 6 ситуаций. Некоторые из них <em>выглядят</em> системными, но на самом деле — линейные. Другие кажутся простыми, но содержат глубокий системный анализ. Определи.</p>
     </div>
 
     <div class="game-section">
       <div class="game-label">✦ практика</div>
       <div class="game-title">Линейное или системное?</div>
-      <div class="game-desc">Прочитай утверждение. Определи тип мышления. 6 карточек.</div>
+      <div class="game-desc">Прочитай утверждение. Определи тип мышления. 6 карточек. Осторожно — есть ловушки.</div>
       <div class="swipe-area" id="swipeArea">
         <div class="swipe-progress" id="swipeProgress"></div>
         <div class="swipe-card" id="swipeCard"></div>
@@ -309,6 +364,10 @@
       </div>
       <div class="feedback wrong" id="fb1w"></div>
       <div class="feedback correct" id="fb1c"></div>
+      <div class="recommendation" id="rec1">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec1text"></p>
+      </div>
     </div>
 
     <div class="next-lesson" id="next1" style="display:none;">
@@ -330,24 +389,49 @@
       <p>А потом люди поняли: зачем ловить диких кобр, если можно <em>разводить</em> их? Дешевле, безопаснее, прибыльнее.</p>
 
       <div class="illustration">
-        <svg width="440" height="180" viewBox="0 0 440 180">
-          <circle cx="60" cy="50" r="16" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="60" y1="66" x2="60" y2="110" stroke="#c8ff00" stroke-width="2"/>
-          <text x="60" y="135" text-anchor="middle" fill="#888" font-size="10">чиновник</text>
-          <text x="60" y="150" text-anchor="middle" fill="#888" font-size="10">«гениально!»</text>
-          <text x="130" y="80" fill="#888" font-size="20">→</text>
-          <rect x="160" y="40" width="80" height="60" fill="none" stroke="#888" stroke-width="1"/>
-          <text x="200" y="65" text-anchor="middle" fill="#fff" font-size="11">ферма кобр</text>
-          <text x="200" y="82" text-anchor="middle" fill="#c8ff00" font-size="14">🐍🐍🐍🐍</text>
-          <text x="200" y="125" text-anchor="middle" fill="#888" font-size="10">люди разводят</text>
-          <text x="200" y="140" text-anchor="middle" fill="#888" font-size="10">кобр за деньги</text>
-          <text x="270" y="80" fill="#888" font-size="20">→</text>
-          <text x="340" y="55" text-anchor="middle" fill="#ff3b3b" font-size="11">программу</text>
-          <text x="340" y="70" text-anchor="middle" fill="#ff3b3b" font-size="11">отменили</text>
-          <text x="340" y="95" fill="#888" font-size="16">↓</text>
-          <text x="340" y="125" text-anchor="middle" fill="#ff3b3b" font-size="11">все выпустили</text>
-          <text x="340" y="140" text-anchor="middle" fill="#ff3b3b" font-size="11">кобр на волю</text>
-          <text x="340" y="165" text-anchor="middle" fill="#ff3b3b" font-size="13" font-weight="700">КОБР СТАЛО БОЛЬШЕ</text>
+        <svg width="520" height="220" viewBox="0 0 520 220">
+          <!-- Bureaucrat -->
+          <circle cx="60" cy="55" r="20" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <circle cx="53" cy="50" r="2" fill="#c8ff00"/>
+          <circle cx="67" cy="50" r="2" fill="#c8ff00"/>
+          <path d="M52 62 Q60 67 68 62" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="60" y1="75" x2="60" y2="125" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="60" y1="95" x2="40" y2="115" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="60" y1="95" x2="80" y2="115" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="60" y1="125" x2="45" y2="160" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="60" y1="125" x2="75" y2="160" stroke="#c8ff00" stroke-width="2.5"/>
+          <!-- Top hat -->
+          <rect x="47" y="25" width="26" height="12" rx="2" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <rect x="50" y="12" width="20" height="15" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <text x="60" y="185" text-anchor="middle" fill="#888" font-size="10">чиновник</text>
+          <text x="60" y="198" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">«гениально!»</text>
+          <!-- Arrow 1 -->
+          <line x1="100" y1="90" x2="140" y2="90" stroke="#888" stroke-width="2"/>
+          <polygon points="140,86 150,90 140,94" fill="#888"/>
+          <!-- Cobra farm -->
+          <rect x="160" y="45" width="100" height="90" rx="4" fill="none" stroke="#888" stroke-width="2"/>
+          <text x="210" y="70" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ферма кобр</text>
+          <path d="M180 85 Q185 80 190 85 Q195 90 200 85" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <path d="M200 95 Q205 90 210 95 Q215 100 220 95" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <path d="M185 105 Q190 100 195 105 Q200 110 205 105" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <text x="210" y="145" text-anchor="middle" fill="#888" font-size="10">люди разводят</text>
+          <text x="210" y="158" text-anchor="middle" fill="#888" font-size="10">кобр за деньги</text>
+          <!-- Arrow 2 -->
+          <line x1="270" y1="90" x2="310" y2="90" stroke="#888" stroke-width="2"/>
+          <polygon points="310,86 320,90 310,94" fill="#888"/>
+          <!-- Cancel -->
+          <rect x="330" y="45" width="80" height="40" rx="4" fill="none" stroke="#ff3b3b" stroke-width="2"/>
+          <text x="370" y="62" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">ОТМЕНА</text>
+          <text x="370" y="76" text-anchor="middle" fill="#ff3b3b" font-size="10">программы</text>
+          <!-- Arrow down -->
+          <line x1="370" y1="90" x2="370" y2="110" stroke="#ff3b3b" stroke-width="2"/>
+          <polygon points="366,110 370,120 374,110" fill="#ff3b3b"/>
+          <!-- Released cobras -->
+          <text x="370" y="140" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">все кобры</text>
+          <text x="370" y="155" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">на воле!</text>
+          <!-- Result -->
+          <rect x="340" y="170" width="160" height="35" rx="4" fill="rgba(255,59,59,.1)" stroke="#ff3b3b" stroke-width="2"/>
+          <text x="420" y="192" text-anchor="middle" fill="#ff3b3b" font-size="14" font-weight="900">КОБР СТАЛО ×3</text>
         </svg>
         <div class="caption">«Эффект кобры» — когда решение создаёт проблему хуже исходной</div>
       </div>
@@ -372,76 +456,65 @@
 
       <p><strong>Здоровье:</strong> Садишься на жёсткую диету → голодаешь → срываешься → чувствуешь вину → садишься на ещё более жёсткую диету → ещё сильнее срываешься. Через год весишь больше, чем до диеты. Это называется «yo-yo dieting» — и это системный эффект, а не слабая воля.</p>
 
-      <p><strong>Отношения:</strong> Партнёр отдаляется → ты давишь и требуешь внимания → он отдаляется ещё больше → ты давишь сильнее → он уходит. Твоё «решение» ускорило то, чего ты боялся. Терапевты называют это «pursuer-distancer dynamic».</p>
-
-      <p><strong>Бизнес:</strong> Продажи падают → даёшь скидки → клиенты привыкают → без скидок не покупают → даёшь больше скидок → маржа = 0 → бизнес умирает. JCPenney в 2012 попытались отменить скидки — потеряли 25% выручки за квартал, потому что клиенты были «обучены» ждать распродаж.</p>
+      <p><strong>Бизнес:</strong> Продажи падают → даёшь скидки → клиенты привыкают → без скидок не покупают → даёшь больше скидок → маржа = 0 → бизнес умирает. JCPenney в 2012 попытались отменить скидки — потеряли 25% выручки за квартал.</p>
 
       <h3>Архетип «Пределы роста»</h3>
 
-      <p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Он работает так:</p>
-
-      <p>Ты нашёл что-то, что работает. Растёшь. Всё отлично. Ты делаешь больше того же самого. Растёшь быстрее. А потом — <em>бам</em>. Стена. Рост останавливается. Или хуже — всё рушится.</p>
+      <p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Ты нашёл что-то, что работает. Растёшь. Всё отлично. А потом — <em>бам</em>. Стена.</p>
 
       <div class="illustration">
-        <svg width="400" height="160" viewBox="0 0 400 160">
-          <path d="M 40 140 Q 100 130, 150 100 Q 200 70, 230 50 Q 260 35, 280 35 Q 300 35, 320 50 Q 340 65, 360 100" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="40" y1="35" x2="380" y2="35" stroke="#ff3b3b" stroke-width="1" stroke-dasharray="6"/>
-          <text x="385" y="38" fill="#ff3b3b" font-size="10">предел</text>
-          <text x="100" y="155" fill="#888" font-size="10">«работает!»</text>
-          <text x="200" y="155" fill="#888" font-size="10">«ещё больше!»</text>
-          <text x="310" y="155" fill="#ff3b3b" font-size="10">«почему?!»</text>
+        <svg width="460" height="200" viewBox="0 0 460 200">
+          <!-- Graph -->
+          <line x1="50" y1="170" x2="420" y2="170" stroke="#888" stroke-width="1.5"/>
+          <line x1="50" y1="170" x2="50" y2="30" stroke="#888" stroke-width="1.5"/>
+          <!-- Growth curve -->
+          <path d="M60 165 Q120 155 160 130 Q200 100 230 65 Q250 45 270 40 Q290 38 310 45 Q340 60 370 100 Q390 130 410 160" fill="none" stroke="#c8ff00" stroke-width="3"/>
+          <!-- Limit line -->
+          <line x1="50" y1="40" x2="420" y2="40" stroke="#ff3b3b" stroke-width="1.5" stroke-dasharray="8 4"/>
+          <text x="425" y="44" fill="#ff3b3b" font-size="11" font-weight="700">предел</text>
+          <!-- Labels -->
+          <text x="110" y="190" fill="#c8ff00" font-size="11" font-weight="600">«работает!»</text>
+          <text x="220" y="190" fill="#c8ff00" font-size="11" font-weight="600">«ещё больше!»</text>
+          <text x="340" y="190" fill="#ff3b3b" font-size="11" font-weight="600">«почему?!»</text>
+          <!-- Stickman at peak -->
+          <circle cx="270" cy="20" r="8" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
+          <line x1="270" y1="28" x2="270" y2="38" stroke="#c8ff00" stroke-width="1.5"/>
+          <!-- Stickman falling -->
+          <circle cx="380" cy="85" r="8" fill="none" stroke="#ff3b3b" stroke-width="1.5"/>
+          <line x1="380" y1="93" x2="380" y2="103" stroke="#ff3b3b" stroke-width="1.5"/>
+          <line x1="380" y1="97" x2="372" y2="105" stroke="#ff3b3b" stroke-width="1.5"/>
+          <line x1="380" y1="97" x2="388" y2="105" stroke="#ff3b3b" stroke-width="1.5"/>
+          <text x="395" y="90" fill="#ff3b3b" font-size="10">!!!</text>
         </svg>
         <div class="caption">Архетип «Пределы роста»: то, что работало — перестаёт работать</div>
       </div>
 
-      <p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint) — узкое горлышко. Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
-
-      <p>Стартап растёт на рекламе. Но продукт — MVP. Поддержка — 1 человек. Рост ×10 → продукт ломается → клиенты злятся → отзывы 1★ → реклама перестаёт работать → деньги кончились. Это не «невезение». Это предсказуемый системный архетип.</p>
+      <p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint). Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
 
       <div class="highlight">
         <strong>Принцип #2: В системе нет изолированных решений.</strong> Прослеживай цепочку на 2-3 шага вперёд. Спрашивай: «А потом что? А потом?» Если цепочка возвращается к началу — ты нашёл петлю.
       </div>
 
-      <p>Давай проверим. Вот ситуация. Предскажи, что произойдёт.</p>
+      <p>Давай проверим. Вот реальная ситуация. Тебе нужно <strong>построить цепочку последствий шаг за шагом</strong>. На каждом шаге — выбери, что произойдёт дальше.</p>
     </div>
 
     <div class="game-section">
       <div class="game-label">✦ практика</div>
-      <div class="game-title">Предскажи цепочку</div>
-      <div class="game-desc">Стартап получил $2M инвестиций. CEO решает: «Вложим 80% в рекламу — покажем рост!» Продукт — MVP с багами. Поддержка — 1 человек. Что произойдёт?</div>
-      <div id="chainGame">
-        <div class="chain-option" onclick="selectChain(0)">
-          <div class="chain-label">вариант А — линейный прогноз</div>
-          <div class="chain-steps">
-            <span class="chain-step">Реклама ×10</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Клиенты приходят</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Выручка растёт</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Инвесторы довольны</span>
-          </div>
+      <div class="game-title">Построй цепочку последствий</div>
+      <div class="game-desc">Стартап получил $2M. CEO решает: «80% — в рекламу! Покажем рост!» Продукт — MVP с багами. Поддержка — 1 человек. Строй цепочку шаг за шагом.</div>
+      <div class="chain-board" id="chainBoard">
+        <div class="chain-built" id="chainBuilt">
+          <span class="chain-step locked">Реклама ×10</span>
         </div>
-        <div class="chain-option" onclick="selectChain(1)">
-          <div class="chain-label">вариант Б — системный прогноз</div>
-          <div class="chain-steps">
-            <span class="chain-step">Реклама ×10</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Продукт ломается</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Поддержка не справляется</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Отзывы 1★</span><span class="chain-arrow">→</span>
-            <span class="chain-step">CAC ×5</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Деньги кончились</span>
-          </div>
-        </div>
-        <div class="chain-option" onclick="selectChain(2)">
-          <div class="chain-label">вариант В — промежуточный</div>
-          <div class="chain-steps">
-            <span class="chain-step">Реклама работает</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Команда перегружена</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Нанимают людей</span><span class="chain-arrow">→</span>
-            <span class="chain-step">Рост замедляется, но ок</span>
-          </div>
-        </div>
+        <div class="chain-step-label" id="chainLabel">Шаг 1: Что произойдёт после ×10 рекламы?</div>
+        <div class="chain-choices" id="chainChoices"></div>
       </div>
       <div class="feedback wrong" id="fb2w"></div>
       <div class="feedback correct" id="fb2c"></div>
+      <div class="recommendation" id="rec2">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec2text"></p>
+      </div>
     </div>
 
     <div class="next-lesson" id="next2" style="display:none;">
@@ -462,110 +535,127 @@
 
       <p>Смотри: у тебя есть деньги → ты инвестируешь → получаешь доход → у тебя больше денег → инвестируешь больше → доход больше → ... Это <strong>усиливающая петля</strong>. Снежный ком. Чем больше — тем больше.</p>
 
-      <p>А если денег нет? Нет денег → нет инвестиций → нет дохода → нет денег → ... Та же петля, но в другую сторону. Снежный ком катится вниз.</p>
-
       <div class="illustration">
-        <svg width="440" height="220" viewBox="0 0 440 220">
-          <text x="110" y="20" text-anchor="middle" fill="#c8ff00" font-size="12" font-weight="700">УСИЛИВАЮЩАЯ (R)</text>
-          <circle cx="110" cy="100" r="45" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <polygon points="155,95 150,105 145,95" fill="#c8ff00"/>
-          <text x="110" y="55" text-anchor="middle" fill="#fff" font-size="10">больше денег</text>
-          <text x="165" y="105" text-anchor="middle" fill="#fff" font-size="10">инвестиции</text>
-          <text x="110" y="155" text-anchor="middle" fill="#fff" font-size="10">доход</text>
-          <text x="55" y="105" text-anchor="middle" fill="#fff" font-size="10">рост</text>
-          <text x="110" y="190" text-anchor="middle" fill="#888" font-size="10">снежный ком ↑↑↑</text>
-          <text x="330" y="20" text-anchor="middle" fill="#00ff88" font-size="12" font-weight="700">БАЛАНСИРУЮЩАЯ (B)</text>
-          <circle cx="330" cy="100" r="45" fill="none" stroke="#00ff88" stroke-width="2"/>
-          <polygon points="375,95 370,105 365,95" fill="#00ff88"/>
-          <text x="330" y="55" text-anchor="middle" fill="#fff" font-size="10">голод</text>
-          <text x="385" y="105" text-anchor="middle" fill="#fff" font-size="10">ешь</text>
-          <text x="330" y="155" text-anchor="middle" fill="#fff" font-size="10">сыт</text>
-          <text x="275" y="105" text-anchor="middle" fill="#fff" font-size="10">стоп</text>
-          <text x="330" y="190" text-anchor="middle" fill="#888" font-size="10">термостат ⚖️</text>
+        <svg width="520" height="260" viewBox="0 0 520 260">
+          <!-- Reinforcing loop -->
+          <text x="130" y="22" text-anchor="middle" fill="#c8ff00" font-size="13" font-weight="900" letter-spacing="1">УСИЛИВАЮЩАЯ (R)</text>
+          <circle cx="130" cy="120" r="55" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <!-- Arrow on circle -->
+          <polygon points="175,110 180,120 170,120" fill="#c8ff00"/>
+          <!-- Labels around R loop -->
+          <text x="130" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">больше денег</text>
+          <text x="195" y="125" text-anchor="start" fill="#fff" font-size="12" font-weight="600">инвестиции</text>
+          <text x="130" y="185" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">доход</text>
+          <text x="65" y="125" text-anchor="end" fill="#fff" font-size="12" font-weight="600">рост</text>
+          <!-- Snowball stickman -->
+          <circle cx="130" cy="215" r="10" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <line x1="130" y1="225" x2="130" y2="245" stroke="#c8ff00" stroke-width="2"/>
+          <text x="130" y="258" text-anchor="middle" fill="#888" font-size="10">снежный ком ↑↑↑</text>
+
+          <!-- Balancing loop -->
+          <text x="390" y="22" text-anchor="middle" fill="#00ff88" font-size="13" font-weight="900" letter-spacing="1">БАЛАНСИРУЮЩАЯ (B)</text>
+          <circle cx="390" cy="120" r="55" fill="none" stroke="#00ff88" stroke-width="2.5"/>
+          <polygon points="435,110 440,120 430,120" fill="#00ff88"/>
+          <!-- Labels around B loop -->
+          <text x="390" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">голод</text>
+          <text x="455" y="125" text-anchor="start" fill="#fff" font-size="12" font-weight="600">ешь</text>
+          <text x="390" y="185" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">сыт</text>
+          <text x="325" y="125" text-anchor="end" fill="#fff" font-size="12" font-weight="600">стоп</text>
+          <!-- Thermostat icon -->
+          <rect x="375" y="205" width="30" height="40" rx="4" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+          <line x1="383" y1="225" x2="407" y2="225" stroke="#00ff88" stroke-width="1"/>
+          <text x="390" y="258" text-anchor="middle" fill="#888" font-size="10">термостат ⚖️</text>
         </svg>
         <div class="caption">Два типа петель: усиливающая (R) разгоняет, балансирующая (B) стабилизирует</div>
       </div>
 
       <h3>Два типа петель</h3>
 
-      <p>В системном мышлении есть только два фундаментальных типа петель обратной связи (feedback loops). Это основа всей системной динамики — дисциплины, созданной Джеем Форрестером в MIT в 1950-х:</p>
+      <p>В системном мышлении есть только два фундаментальных типа петель обратной связи. Это основа всей системной динамики — дисциплины, созданной Джеем Форрестером в MIT в 1950-х:</p>
 
       <p><strong>1. Усиливающая петля (R — Reinforcing)</strong><br>
-      Работает как снежный ком. Больше → ещё больше. Или меньше → ещё меньше. Она <em>разгоняет</em> процесс в одном направлении. Может быть «добродетельным кругом» (вверх) или «порочным кругом» (вниз).</p>
+      Работает как снежный ком. Больше → ещё больше. Или меньше → ещё меньше. Она <em>разгоняет</em> процесс. Может быть «добродетельным кругом» (вверх) или «порочным кругом» (вниз).</p>
 
-      <p>Примеры усиливающих петель:</p>
-      <p>• <strong>Прокрастинация:</strong> откладываешь → тревога растёт → ещё сложнее начать → откладываешь → тревога ещё больше → ...<br>
+      <p>Примеры:<br>
+      • <strong>Прокрастинация:</strong> откладываешь → тревога растёт → ещё сложнее начать → откладываешь → ...<br>
       • <strong>Сарафанное радио:</strong> хороший продукт → рекомендации → больше клиентов → больше рекомендаций → ...<br>
-      • <strong>Паника на рынке:</strong> акции падают → люди продают → акции падают сильнее → больше людей продают → ...<br>
-      • <strong>Обучение:</strong> учишься → становишься лучше → получаешь интересные задачи → мотивация растёт → учишься больше → ...</p>
+      • <strong>Обучение:</strong> учишься → становишься лучше → интересные задачи → мотивация → учишься больше → ...</p>
 
       <p><strong>2. Балансирующая петля (B — Balancing)</strong><br>
-      Работает как термостат. Система стремится к определённому состоянию (goal). Отклонилась — возвращается назад. Это механизм стабильности.</p>
+      Работает как термостат. Стремится к цели. Отклонение → коррекция → возврат. Она <em>стабилизирует</em> систему.</p>
 
-      <p>Примеры балансирующих петель:</p>
-      <p>• <strong>Температура тела:</strong> жарко → потеешь → охлаждаешься → нормально → перестаёшь потеть<br>
-      • <strong>Рынок:</strong> цена высокая → спрос падает → цена снижается → спрос растёт → цена растёт<br>
-      • <strong>Усталость:</strong> работаешь → устаёшь → продуктивность падает → вынужден отдыхать → восстанавливаешься</p>
-
-      <h3>Почему это меняет всё?</h3>
-
-      <p>Потому что <strong>вся твоя жизнь — это набор петель</strong>. Одни тебя разгоняют вверх, другие — вниз. Одни стабилизируют (и иногда мешают расти), другие раскачивают.</p>
-
-      <p>Системный мыслитель видит эти петли. Он спрашивает:</p>
-      <p>• Какие усиливающие петли работают <em>на меня</em>? (Как их усилить?)<br>
-      • Какие усиливающие петли работают <em>против меня</em>? (Как их разорвать?)<br>
-      • Какие балансирующие петли <em>мешают</em> моему росту? (Это «стеклянный потолок»)</p>
-
-      <div class="metaphor">
-        Вот почему «просто работать больше» часто не помогает. Ты давишь на усиливающую петлю, но балансирующая петля (усталость, выгорание, потеря фокуса) тянет тебя назад. Это как жать на газ с поднятым ручником. Системный мыслитель сначала опускает ручник.
-      </div>
+      <p>Примеры:<br>
+      • <strong>Голод:</strong> голоден → ешь → сыт → перестаёшь есть → голоден → ...<br>
+      • <strong>Рынок:</strong> цена растёт → спрос падает → цена падает → спрос растёт → ...<br>
+      • <strong>Температура тела:</strong> жарко → потеешь → охлаждаешься → перестаёшь потеть → ...</p>
 
       <div class="highlight">
-        <strong>Принцип #3: Найди петли.</strong> Усиль те, что работают на тебя. Разорви те, что работают против. И найди балансирующие петли, которые держат тебя на месте — это твой «стеклянный потолок».
+        <strong>Принцип #3: Каждая система управляется петлями.</strong> Усиливающие петли разгоняют (рост или падение). Балансирующие — стабилизируют. Хочешь изменить систему? Найди петлю. Усиль нужную. Разорви вредную.
       </div>
 
-      <p>Давай попрактикуемся. Вот ситуация с несколькими стратегиями. Определи, какие из них запускают усиливающую петлю с растущей отдачей.</p>
+      <p>Теперь практика. Ты — фрилансер-дизайнер. Зарабатываешь 150 тыс/мес, работаешь 60 часов в неделю. Хочешь 500 тыс/мес. У тебя <strong>ровно 100 часов в неделю</strong> — распредели их между 4 стратегиями. Прибавишь в одном — убавится в другом.</p>
     </div>
 
-    <div class="game-section">
+    <div class="game-section" id="sliderGame">
       <div class="game-label">✦ практика</div>
-      <div class="game-title">Запусти правильную петлю</div>
-      <div class="game-desc">Ты — фрилансер. Работаешь 60 часов в неделю, но доход не растёт. У тебя есть 100 условных единиц внимания. Как распределишь между стратегиями?</div>
-      <div id="sliderGame">
-        <div class="slider-item">
-          <div class="slider-row"><span class="slider-name">Брать больше заказов (обмен времени на деньги)</span><span class="slider-val" id="sv0">25</span></div>
-          <input type="range" min="0" max="100" value="25" id="sl0" oninput="updSlider(0)">
-          <div class="slider-ends"><span>0</span><span>100</span></div>
-        </div>
-        <div class="slider-item">
-          <div class="slider-row"><span class="slider-name">Повысить цену (и потерять часть клиентов)</span><span class="slider-val" id="sv1">25</span></div>
-          <input type="range" min="0" max="100" value="25" id="sl1" oninput="updSlider(1)">
-          <div class="slider-ends"><span>0</span><span>100</span></div>
-        </div>
-        <div class="slider-item">
-          <div class="slider-row"><span class="slider-name">Создать продукт (курс / шаблон / сервис)</span><span class="slider-val" id="sv2">25</span></div>
-          <input type="range" min="0" max="100" value="25" id="sl2" oninput="updSlider(2)">
-          <div class="slider-ends"><span>0</span><span>100</span></div>
-        </div>
-        <div class="slider-item">
-          <div class="slider-row"><span class="slider-name">Строить аудиторию / личный бренд</span><span class="slider-val" id="sv3">25</span></div>
-          <input type="range" min="0" max="100" value="25" id="sl3" oninput="updSlider(3)">
-          <div class="slider-ends"><span>0</span><span>100</span></div>
-        </div>
-        <button class="submit-btn" onclick="submitSliders()">проверить →</button>
+      <div class="game-title">Распредели 100 часов</div>
+      <div class="game-desc">Ты фрилансер. 100 часов в неделю — это всё, что у тебя есть. Как распределишь время, чтобы выйти на 500 тыс/мес?</div>
+      <div class="budget-bar">
+        <span class="budget-label">Осталось:</span>
+        <div class="budget-track"><div class="budget-fill" id="budgetFill"></div></div>
+        <span class="budget-num" id="budgetNum">100</span>
       </div>
+      <div class="slider-item">
+        <div class="slider-row">
+          <div>
+            <div class="slider-type linear">линейная стратегия</div>
+            <div class="slider-name">🔨 Брать больше заказов</div>
+          </div>
+          <div class="slider-val" id="sv0">25</div>
+        </div>
+        <input type="range" id="sl0" min="0" max="100" value="25" oninput="updSliders()">
+      </div>
+      <div class="slider-item">
+        <div class="slider-row">
+          <div>
+            <div class="slider-type linear">линейная стратегия</div>
+            <div class="slider-name">📢 Искать клиентов активнее</div>
+          </div>
+          <div class="slider-val" id="sv1">25</div>
+        </div>
+        <input type="range" id="sl1" min="0" max="100" value="25" oninput="updSliders()">
+      </div>
+      <div class="slider-item">
+        <div class="slider-row">
+          <div>
+            <div class="slider-type systemic">системная стратегия</div>
+            <div class="slider-name">📦 Создать продукт (шаблоны, курс)</div>
+          </div>
+          <div class="slider-val" id="sv2">25</div>
+        </div>
+        <input type="range" id="sl2" min="0" max="100" value="25" oninput="updSliders()">
+      </div>
+      <div class="slider-item">
+        <div class="slider-row">
+          <div>
+            <div class="slider-type systemic">системная стратегия</div>
+            <div class="slider-name">🎯 Строить аудиторию (блог, YouTube)</div>
+          </div>
+          <div class="slider-val" id="sv3">25</div>
+        </div>
+        <input type="range" id="sl3" min="0" max="100" value="25" oninput="updSliders()">
+      </div>
+      <button class="submit-btn" id="sliderSubmitBtn" onclick="submitSliders()">проверить →</button>
       <div class="feedback wrong" id="fb3w"></div>
       <div class="feedback correct" id="fb3c"></div>
-      <div id="sliderInsight" style="display:none;margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);">
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
-          <strong style="color:var(--w);">Разбор:</strong> «Брать больше заказов» — это <span style="color:var(--r)">линейная стратегия</span>. Ты обмениваешь время на деньги 1:1. Предел = 24 часа в сутках. Это балансирующая петля — ты упрёшься в потолок. Всегда.
-        </p>
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
-          «Создать продукт» и «Строить аудиторию» — это <span style="color:var(--gr)">усиливающие петли</span>. Продукт продаётся без твоего времени (1 час создания → бесконечные продажи). Аудитория приводит клиентов без рекламы (каждый подписчик может привести ещё). Каждый вложенный час даёт <em style="color:var(--y)">растущую</em> отдачу.
-        </p>
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;">
-          Системный мыслитель инвестирует в петли с растущей отдачей, даже если краткосрочно это больно. Это как посадить дерево: первый год — ничего, через 5 лет — тень и плоды.
-        </p>
+      <div class="insight-box" id="sliderInsight">
+        <p><strong style="color:var(--y)">Разбор:</strong> «Брать больше заказов» и «Искать клиентов» — это <strong>линейные стратегии</strong>. Ты обмениваешь время на деньги 1:1. Потолок = 24 часа в сутках. Больше часов → больше денег, но <em>только пока работаешь</em>.</p>
+        <p>«Создать продукт» и «Строить аудиторию» — это <strong>усиливающие петли</strong>. Продукт продаётся, пока ты спишь. Аудитория растёт сама (сарафанное радио). Это стратегии с <em>растущей отдачей</em>.</p>
+        <p>Системный мыслитель инвестирует в петли, а не в линейный обмен. Да, результат приходит позже (задержка!). Но потолок — бесконечность.</p>
+      </div>
+      <div class="recommendation" id="rec3">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec3text"></p>
       </div>
     </div>
 
@@ -581,100 +671,104 @@
     <div class="lesson-num">урок 04 из 05</div>
     <h1 class="lesson-title">Где нажать, чтобы всё изменилось</h1>
     <div class="article">
-      <p>Представь: ты толкаешь дверь. Она не открывается. Ты толкаешь сильнее. Ещё сильнее. Упираешься плечом. Разбегаешься. Бьёшь ногой.</p>
-
-      <p>Потом замечаешь табличку: <strong>«НА СЕБЯ»</strong>.</p>
+      <p>Представь: ты стоишь перед огромным валуном. Он загораживает дорогу. Ты можешь толкать его изо всех сил — и сдвинуть на сантиметр. Или ты можешь найти <strong>правильную точку</strong>, подставить рычаг — и сдвинуть его одним движением.</p>
 
       <div class="illustration">
-        <svg width="360" height="180" viewBox="0 0 360 180">
-          <rect x="160" y="20" width="60" height="140" fill="none" stroke="#888" stroke-width="2"/>
-          <circle cx="210" cy="90" r="4" fill="#888"/>
-          <text x="190" y="170" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">PULL / НА СЕБЯ</text>
-          <circle cx="100" cy="55" r="16" fill="none" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="100" y1="71" x2="100" y2="115" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="100" y1="90" x2="155" y2="80" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="100" y1="90" x2="140" y2="100" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="100" y1="115" x2="85" y2="150" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="100" y1="115" x2="115" y2="150" stroke="#ff3b3b" stroke-width="2"/>
-          <text x="130" y="60" fill="#ff3b3b" font-size="14">→→→</text>
-          <rect x="20" y="10" width="70" height="30" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/>
-          <text x="55" y="28" text-anchor="middle" fill="#ff3b3b" font-size="9">СИЛЬНЕЕ!!!</text>
-          <circle cx="300" cy="55" r="16" fill="none" stroke="#00ff88" stroke-width="2"/>
-          <line x1="300" y1="71" x2="300" y2="115" stroke="#00ff88" stroke-width="2"/>
-          <rect x="260" y="10" width="80" height="30" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/>
-          <text x="300" y="28" text-anchor="middle" fill="#00ff88" font-size="9">а может, не туда?</text>
+        <svg width="500" height="220" viewBox="0 0 500 220">
+          <!-- Person pushing (wrong way) -->
+          <circle cx="60" cy="80" r="18" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
+          <circle cx="53" cy="76" r="2" fill="#ff3b3b"/>
+          <circle cx="67" cy="76" r="2" fill="#ff3b3b"/>
+          <path d="M53 87 Q60 92 67 87" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
+          <line x1="60" y1="98" x2="60" y2="140" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="60" y1="115" x2="85" y2="100" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="60" y1="140" x2="45" y2="175" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="60" y1="140" x2="75" y2="175" stroke="#ff3b3b" stroke-width="2.5"/>
+          <!-- Sweat -->
+          <circle cx="40" cy="70" r="3" fill="#4488ff" opacity=".6"/>
+          <circle cx="80" cy="65" r="2.5" fill="#4488ff" opacity=".5"/>
+          <!-- Boulder -->
+          <ellipse cx="120" cy="130" rx="35" ry="45" fill="none" stroke="#888" stroke-width="3"/>
+          <text x="120" y="135" text-anchor="middle" fill="#888" font-size="12" font-weight="700">проблема</text>
+          <!-- Tiny movement -->
+          <text x="120" y="195" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">сдвиг: 1 см</text>
+
+          <!-- VS -->
+          <text x="220" y="130" text-anchor="middle" fill="#888" font-size="18" font-weight="900">vs</text>
+
+          <!-- Person with lever (right way) -->
+          <circle cx="300" cy="100" r="18" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <circle cx="293" cy="96" r="2" fill="#c8ff00"/>
+          <circle cx="307" cy="96" r="2" fill="#c8ff00"/>
+          <path d="M293 107 Q300 112 307 107" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="300" y1="118" x2="300" y2="155" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="300" y1="135" x2="325" y2="120" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="300" y1="155" x2="285" y2="185" stroke="#c8ff00" stroke-width="2.5"/>
+          <line x1="300" y1="155" x2="315" y2="185" stroke="#c8ff00" stroke-width="2.5"/>
+          <!-- Lever -->
+          <line x1="325" y1="120" x2="400" y2="160" stroke="#c8ff00" stroke-width="3"/>
+          <!-- Fulcrum -->
+          <polygon points="360,170 370,185 350,185" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <!-- Boulder moving -->
+          <ellipse cx="420" cy="130" rx="35" ry="45" fill="none" stroke="#888" stroke-width="3"/>
+          <text x="420" y="135" text-anchor="middle" fill="#888" font-size="12" font-weight="700">проблема</text>
+          <!-- Big movement arrow -->
+          <line x1="430" y1="80" x2="470" y2="60" stroke="#c8ff00" stroke-width="2.5"/>
+          <polygon points="468,52 478,56 470,64" fill="#c8ff00"/>
+          <text x="420" y="195" text-anchor="middle" fill="#c8ff00" font-size="11" font-weight="700">сдвиг: 10 метров</text>
         </svg>
-        <div class="caption">Большинство давят сильнее. Системный мыслитель ищет правильное место.</div>
+        <div class="caption">Не сильнее — а в правильном месте</div>
       </div>
 
-      <p>Это метафора того, как большинство людей решают проблемы. Они давят <em>сильнее</em> в том же месте. Больше усилий. Больше ресурсов. Больше людей. Больше денег.</p>
+      <p>Это метафора одного из самых мощных концептов в системном мышлении — <strong>точки рычага</strong> (leverage points).</p>
 
-      <p>А нужно было — <strong>найти правильное место</strong>.</p>
+      <p>Донелла Медоуз — одна из величайших системных мыслителей XX века — составила список из <strong>12 точек рычага</strong>, ранжированных по силе воздействия. Это, возможно, самая важная классификация в системном мышлении.</p>
 
-      <h3>12 точек рычага Донеллы Медоуз</h3>
+      <h3>Иерархия точек рычага (упрощённо)</h3>
 
-      <p>Донелла Медоуз — одна из основательниц системного мышления, автор «Thinking in Systems» (1999) — составила знаменитый список из 12 мест, где можно воздействовать на систему. Они расположены от <strong>слабых</strong> (много усилий, мало эффекта) к <strong>сильным</strong> (мало усилий, огромный эффект).</p>
+      <p>Медоуз выделила 12 уровней, но для практики важно понять 4 категории:</p>
 
-      <p>Я упрощу до 4 уровней:</p>
+      <p><strong>🔴 Слабые рычаги (параметры)</strong><br>
+      Числа: бюджеты, зарплаты, цены, KPI. Это то, что все крутят первым делом. И это почти никогда не работает надолго. Ты можешь увеличить бюджет на рекламу — но если продукт плохой, это не поможет.</p>
 
-      <div class="iceberg">
-        <div class="iceberg-level"><span class="depth" style="color:#ff3b3b">слабые</span><span style="color:#ff8888">Параметры: числа, бюджеты, KPI, зарплаты</span></div>
-        <div class="iceberg-level"><span class="depth" style="color:#ffaa44">средние</span><span style="color:#ffcc88">Потоки: скорость процессов, размер буферов</span></div>
-        <div class="iceberg-level"><span class="depth" style="color:#c8ff00">сильные</span><span style="color:#e8ff88">Структура: правила, связи, архитектура, петли</span></div>
-        <div class="iceberg-level"><span class="depth" style="color:#00ff88">мощнейшие</span><span style="color:#88ffbb">Цель / парадигма: зачем система существует</span></div>
-      </div>
+      <p><strong>🟡 Средние рычаги (потоки и запасы)</strong><br>
+      Скорость процессов, размер буферов. Нанять больше людей, ускорить конвейер. Лучше, чем параметры, но всё ещё не меняет структуру.</p>
 
-      <p><strong>Пример — образование:</strong></p>
-      <p>• Параметр (слабый): повысить зарплату учителей на 10%<br>
-      • Поток (средний): уменьшить размер классов с 30 до 15<br>
-      • Структура (сильный): заменить лекции на проектное обучение<br>
-      • Цель (мощнейший): изменить определение «образованного человека» — не «сдал ЕГЭ», а «умеет учиться и решать новые задачи»</p>
+      <p><strong>🟢 Сильные рычаги (структура и правила)</strong><br>
+      Как устроена система. Какие петли работают. Какие метрики определяют поведение. Изменить метрику, по которой оценивают людей — это сильный рычаг. Toyota сделала это, когда перешла от «количество произведённых машин» к «количество дефектов на миллион» — и обогнала GM.</p>
 
-      <p><strong>Пример — здоровье:</strong></p>
-      <p>• Параметр: считать калории (работает 2 недели)<br>
-      • Поток: изменить режим питания (работает 2 месяца)<br>
-      • Структура: изменить окружение — убрать вредное из дома, готовить заранее (работает год)<br>
-      • Цель: изменить идентичность — «я человек, который заботится о здоровье» (работает всю жизнь)</p>
-
-      <div class="metaphor">
-        Вот почему диеты не работают. Они воздействуют на параметры (калории) и потоки (режим). Но не трогают структуру (окружение, привычки) и цель (идентичность). Через месяц система возвращается в прежнее состояние. Медоуз называла это «resilience» — система сопротивляется изменениям на поверхностном уровне.
-      </div>
+      <p><strong>🔵 Самые сильные рычаги (цель и парадигма)</strong><br>
+      Зачем система существует? Какие убеждения лежат в её основе? Изменить цель системы — это самый мощный рычаг. Но и самый сложный.</p>
 
       <div class="highlight">
-        <strong>Принцип #4: Не дави сильнее — дави в правильном месте.</strong> Чем глубже точка воздействия (от параметров к цели), тем меньше усилий нужно для изменения. Но тем больше смелости требуется.
+        <strong>Принцип #4: Ищи рычаг.</strong> Не «работай сильнее» — а «работай в правильном месте». Большинство людей крутят параметры (бюджет, найм, скидки). Системный мыслитель меняет структуру и цель.
       </div>
 
-      <p>Теперь практика. Вот 6 вмешательств в одну систему. Расставь их по силе воздействия.</p>
+      <p>Давай проверим. Вот 6 действий. Рассортируй их: какие — слабые рычаги (параметры), а какие — сильные (структура/цель). Кликни на действие, затем кликни на колонку.</p>
     </div>
 
-    <div class="game-section">
+    <div class="game-section" id="sortGame">
       <div class="game-label">✦ практика</div>
-      <div class="game-title">Расставь по силе воздействия</div>
-      <div class="game-desc">Компания теряет клиентов. Вот 6 предложений. Перетащи в правильную колонку: «слабое воздействие» (параметры/потоки) или «сильное воздействие» (структура/цель).</div>
-      <div class="sort-source" id="sortSource">
-        <div class="sort-source-label">перетащи в колонки ↓</div>
-        <div class="sort-source-items" id="sortSourceItems">
-          <div class="sort-item" draggable="true" data-id="0" data-correct="weak">Увеличить бюджет на рекламу</div>
-          <div class="sort-item" draggable="true" data-id="1" data-correct="strong">Изменить метрику успеха с «продажи» на «retention»</div>
-          <div class="sort-item" draggable="true" data-id="2" data-correct="weak">Нанять ещё 3 продавцов</div>
-          <div class="sort-item" draggable="true" data-id="3" data-correct="strong">Перестроить продукт вокруг Jobs-to-be-Done клиента</div>
-          <div class="sort-item" draggable="true" data-id="4" data-correct="weak">Дать скидку 20% новым клиентам</div>
-          <div class="sort-item" draggable="true" data-id="5" data-correct="strong">Создать петлю: довольный клиент → рекомендация → новый клиент</div>
-        </div>
-      </div>
+      <div class="game-title">Слабый или сильный рычаг?</div>
+      <div class="game-desc">Кликни на действие → кликни на колонку, куда его поместить. Рассортируй все 6.</div>
+      <div class="sort-pool" id="sortPool"></div>
       <div class="sort-cols">
-        <div class="sort-col" id="sortWeak" ondragover="event.preventDefault()" ondrop="dropSort(event,'weak')">
-          <div class="sort-col-title a">⚡ СЛАБОЕ (параметры)</div>
+        <div class="sort-col" id="sortWeakCol" onclick="placeInCol('weak')">
+          <div class="sort-col-title a">🔴 СЛАБОЕ (параметры)</div>
           <div class="sort-col-items" id="sortWeakItems"></div>
         </div>
-        <div class="sort-col" id="sortStrong" ondragover="event.preventDefault()" ondrop="dropSort(event,'strong')">
+        <div class="sort-col" id="sortStrongCol" onclick="placeInCol('strong')">
           <div class="sort-col-title b">🎯 СИЛЬНОЕ (структура/цель)</div>
           <div class="sort-col-items" id="sortStrongItems"></div>
         </div>
       </div>
-      <button class="submit-btn" onclick="submitSort()">проверить →</button>
+      <button class="submit-btn" id="sortSubmitBtn" onclick="submitSort()">проверить →</button>
       <div class="feedback wrong" id="fb4w"></div>
       <div class="feedback correct" id="fb4c"></div>
+      <div class="recommendation" id="rec4">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec4text"></p>
+      </div>
     </div>
 
     <div class="next-lesson" id="next4" style="display:none;">
@@ -694,65 +788,79 @@
       <p>А твой сосед посадил то же дерево 3 года назад. И сейчас сидит в тени.</p>
 
       <div class="illustration">
-        <svg width="440" height="180" viewBox="0 0 440 180">
-          <circle cx="80" cy="60" r="16" fill="none" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="80" y1="76" x2="80" y2="115" stroke="#ff3b3b" stroke-width="2"/>
-          <line x1="50" y1="140" x2="50" y2="130" stroke="#888" stroke-width="1.5"/>
-          <line x1="70" y1="140" x2="70" y2="132" stroke="#888" stroke-width="1.5"/>
-          <line x1="90" y1="140" x2="90" y2="128" stroke="#888" stroke-width="1.5"/>
-          <line x1="110" y1="140" x2="110" y2="134" stroke="#888" stroke-width="1.5"/>
-          <text x="80" y="165" text-anchor="middle" fill="#ff3b3b" font-size="10">4 попытки за год</text>
-          <line x1="30" y1="140" x2="140" y2="140" stroke="#888" stroke-width="1"/>
-          <text x="210" y="110" text-anchor="middle" fill="#888" font-size="14" font-weight="700">vs</text>
-          <circle cx="330" cy="90" r="16" fill="none" stroke="#00ff88" stroke-width="2"/>
-          <line x1="330" y1="106" x2="330" y2="145" stroke="#00ff88" stroke-width="2"/>
-          <line x1="330" y1="145" x2="315" y2="170" stroke="#00ff88" stroke-width="2"/>
-          <line x1="330" y1="145" x2="345" y2="170" stroke="#00ff88" stroke-width="2"/>
-          <line x1="360" y1="170" x2="360" y2="80" stroke="#888" stroke-width="3"/>
-          <circle cx="360" cy="55" r="35" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <circle cx="345" cy="45" r="20" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
-          <circle cx="375" cy="50" r="22" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
-          <text x="360" y="58" text-anchor="middle" fill="#c8ff00" font-size="9">3 года</text>
-          <line x1="280" y1="170" x2="410" y2="170" stroke="#888" stroke-width="1"/>
-          <text x="350" y="185" text-anchor="middle" fill="#00ff88" font-size="10">1 попытка + терпение</text>
+        <svg width="500" height="220" viewBox="0 0 500 220">
+          <!-- Person 1 - digging up -->
+          <circle cx="80" cy="70" r="18" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
+          <circle cx="73" cy="66" r="2" fill="#ff3b3b"/>
+          <circle cx="87" cy="66" r="2" fill="#ff3b3b"/>
+          <path d="M73 77 Q80 72 87 77" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
+          <line x1="80" y1="88" x2="80" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="80" y1="108" x2="55" y2="125" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="80" y1="108" x2="105" y2="100" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="80" y1="130" x2="65" y2="165" stroke="#ff3b3b" stroke-width="2.5"/>
+          <line x1="80" y1="130" x2="95" y2="165" stroke="#ff3b3b" stroke-width="2.5"/>
+          <!-- Dead seedlings -->
+          <line x1="40" y1="170" x2="40" y2="155" stroke="#888" stroke-width="1.5"/>
+          <line x1="60" y1="170" x2="60" y2="158" stroke="#888" stroke-width="1.5"/>
+          <line x1="100" y1="170" x2="100" y2="160" stroke="#888" stroke-width="1.5"/>
+          <line x1="120" y1="170" x2="120" y2="156" stroke="#888" stroke-width="1.5"/>
+          <line x1="30" y1="170" x2="140" y2="170" stroke="#888" stroke-width="1.5"/>
+          <text x="80" y="190" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">4 попытки за год</text>
+          <text x="80" y="205" text-anchor="middle" fill="#888" font-size="10">результат: 0</text>
+
+          <!-- VS -->
+          <text x="220" y="130" text-anchor="middle" fill="#888" font-size="18" font-weight="900">vs</text>
+
+          <!-- Person 2 - relaxing under tree -->
+          <circle cx="340" cy="110" r="18" fill="none" stroke="#00ff88" stroke-width="2.5"/>
+          <circle cx="333" cy="106" r="2" fill="#00ff88"/>
+          <circle cx="347" cy="106" r="2" fill="#00ff88"/>
+          <path d="M333 117 Q340 122 347 117" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+          <line x1="340" y1="128" x2="340" y2="160" stroke="#00ff88" stroke-width="2.5"/>
+          <line x1="340" y1="145" x2="320" y2="155" stroke="#00ff88" stroke-width="2.5"/>
+          <line x1="340" y1="145" x2="360" y2="155" stroke="#00ff88" stroke-width="2.5"/>
+          <line x1="340" y1="160" x2="325" y2="185" stroke="#00ff88" stroke-width="2.5"/>
+          <line x1="340" y1="160" x2="355" y2="185" stroke="#00ff88" stroke-width="2.5"/>
+          <!-- Tree -->
+          <line x1="400" y1="185" x2="400" y2="80" stroke="#888" stroke-width="4"/>
+          <circle cx="400" cy="55" r="40" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+          <circle cx="380" cy="45" r="25" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <circle cx="420" cy="50" r="28" fill="none" stroke="#c8ff00" stroke-width="2"/>
+          <text x="400" y="60" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">3 года</text>
+          <line x1="300" y1="185" x2="460" y2="185" stroke="#888" stroke-width="1.5"/>
+          <text x="400" y="205" text-anchor="middle" fill="#00ff88" font-size="11" font-weight="700">1 попытка + терпение</text>
         </svg>
         <div class="caption">Задержка наказывает нетерпеливых и награждает тех, кто понимает тайминг</div>
       </div>
 
-      <p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную и недооценённую особенность сложных систем.</p>
+      <p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную особенность сложных систем.</p>
 
       <h3>Что такое задержка?</h3>
 
       <p><strong>Задержка</strong> — это время между действием и его результатом. В простых системах задержка маленькая: нажал выключатель → свет загорелся. Но в сложных системах задержка может быть <em>месяцы и годы</em>.</p>
 
-      <p>Донелла Медоуз писала: «Задержки в петлях обратной связи — одна из главных причин колебаний в системах. Если ты пытаешься скорректировать систему, не учитывая задержку — ты гарантированно перекомпенсируешь.»</p>
+      <p>Донелла Медоуз: «Задержки в петлях обратной связи — одна из главных причин колебаний в системах. Если ты пытаешься скорректировать систему, не учитывая задержку — ты гарантированно перекомпенсируешь.»</p>
 
-      <p>И это создаёт две огромные проблемы:</p>
+      <p><strong>Проблема 1: Перекомпенсация</strong><br>
+      Ты сделал что-то правильное. Ждёшь результат. Не видишь. Думаешь: «Не работает». Делаешь что-то другое. Или то же самое, но в 10 раз сильнее. А потом система «взрывается» — все действия пришли одновременно.</p>
 
-      <p><strong>Проблема 1: Перекомпенсация (overshooting)</strong><br>
-      Ты сделал что-то правильное. Ждёшь результат. Не видишь. Думаешь: «Не работает». Делаешь что-то другое. Или делаешь то же самое, но в 10 раз сильнее. А потом система «взрывается» — потому что все твои действия пришли одновременно.</p>
-
-      <p>Это как горячий душ в отеле. Крутишь кран — холодно. Крутишь сильнее — холодно. Ещё сильнее — КИПЯТОК. Потому что вода шла по трубам 30 секунд. Ты не учёл задержку.</p>
+      <p>Это как горячий душ в отеле. Крутишь кран — холодно. Крутишь сильнее — холодно. Ещё сильнее — КИПЯТОК. Потому что вода шла по трубам 30 секунд.</p>
 
       <p><strong>Проблема 2: Ложная атрибуция</strong><br>
-      Ты принял решение в январе. Последствия пришли в июле. К июлю ты уже забыл про январское решение. И когда всё ломается — ты винишь «рынок», «конкурентов», «невезение». А на самом деле — это ты. Полгода назад.</p>
+      Ты принял решение в январе. Последствия пришли в июле. К июлю ты уже забыл про январское решение. И когда всё ломается — ты винишь «рынок», «конкурентов», «невезение».</p>
 
       <div class="metaphor">
-        Задержка — это невидимый убийца решений. Ты стреляешь себе в ногу в январе, а боль приходит в июле. И ты думаешь: «Наверное, наступил на что-то в июле.» А потом делаешь то же самое в августе — и удивляешься в феврале.
+        Задержка — это невидимый убийца решений. Ты стреляешь себе в ногу в январе, а боль приходит в июле. И ты думаешь: «Наверное, наступил на что-то в июле.»
       </div>
 
       <h3>Примеры задержек</h3>
 
-      <p><strong>Здоровье:</strong> Начал бегать → результат через 2-3 месяца. Большинство бросают через 2 недели: «Не работает». А оно работает. Просто с задержкой.</p>
-
-      <p><strong>Образование:</strong> Начал учить английский → свободно говоришь через 1-2 года. Большинство бросают через месяц и пробуют «новый метод». И так 10 лет — 10 методов, 0 результата.</p>
-
-      <p><strong>Бизнес:</strong> Сократил поддержку → экономия видна сразу (в этом месяце!). Отток клиентов — через 4-6 месяцев. К тому моменту связь уже не очевидна. CFO получил бонус за «оптимизацию».</p>
-
-      <p><strong>Отношения:</strong> Перестал уделять внимание партнёру → всё нормально месяцами. Потом — «мы расстаёмся». Кажется внезапным. Но процесс шёл год. Просто с задержкой.</p>
+      <p><strong>Здоровье:</strong> Начал бегать → результат через 2-3 месяца. Большинство бросают через 2 недели.</p>
+      <p><strong>Образование:</strong> Начал учить английский → свободно говоришь через 1-2 года. Большинство бросают через месяц и пробуют «новый метод».</p>
+      <p><strong>Бизнес:</strong> Сократил поддержку → экономия видна сразу. Отток клиентов — через 4-6 месяцев.</p>
 
       <div class="highlight">
-        <strong>Принцип #5: Учитывай задержку.</strong> Всегда спрашивай: «Когда придут последствия этого решения?» Системы с задержкой наказывают нетерпеливых и награждают тех, кто понимает тайминг. Не бросай стратегию раньше, чем она успела сработать.
+        <strong>Принцип #5: Учитывай задержку.</strong> Всегда спрашивай: «Когда придут последствия этого решения?» Системы с задержкой наказывают нетерпеливых и награждают тех, кто понимает тайминг.
       </div>
 
       <p>Последнее задание. Вот реальная бизнес-ситуация. Определи, когда последствия станут необратимыми.</p>
@@ -761,7 +869,7 @@
     <div class="game-section">
       <div class="game-label">✦ практика</div>
       <div class="game-title">Когда «аукнется»?</div>
-      <div class="game-desc">CFO компании (SaaS, 500 клиентов) сокращает отдел поддержки с 10 до 4 человек. «Экономим 1.2 млн/мес — отличное решение!» На каком этапе последствия станут необратимыми?</div>
+      <div class="game-desc">CFO компании (SaaS, 500 клиентов) сокращает отдел поддержки с 10 до 4 человек. «Экономим 1.2 млн/мес!» На каком этапе последствия станут необратимыми?</div>
       <div class="timeline" id="timelineGame">
         <div class="timeline-item" onclick="selectTL(0)">
           <div class="timeline-month">Месяц 1</div>
@@ -784,19 +892,16 @@
           <div class="timeline-sub">Восстановление: 1-2 года, стоимость ×10 от «экономии».</div>
         </div>
       </div>
-      <button class="submit-btn" onclick="submitTL()">проверить →</button>
+      <button class="submit-btn" id="tlSubmitBtn" onclick="submitTL()">проверить →</button>
       <div class="feedback wrong" id="fb5w"></div>
       <div class="feedback correct" id="fb5c"></div>
-      <div id="tlInsight" style="display:none;margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);">
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
-          <strong style="color:var(--w);">Правильный ответ: месяц 4-6.</strong> Именно тогда задержка делает своё дело. Экономия была видна <em style="color:var(--y)">сразу</em> (месяц 1). А потери приходят <em style="color:var(--r)">через 4-6 месяцев</em>. К этому моменту CFO уже получил бонус и забыл про решение.
-        </p>
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px;">
-          Это системная ловушка: <strong style="color:var(--w)">выгода приходит быстро, а расплата — медленно</strong>. Поэтому люди снова и снова принимают решения, которые выглядят умными сегодня и катастрофичны через полгода. Медоуз называла это «policy resistance» — сопротивление системы.
-        </p>
-        <p style="font-size:15px;color:var(--lg);line-height:1.7;">
-          Месяц 9-12 — это уже необратимые последствия. Но <strong style="color:var(--y)">точка невозврата — месяц 4-6</strong>, когда ещё можно было исправить, но связь с решением уже потеряна.
-        </p>
+      <div class="insight-box" id="tlInsight">
+        <p><strong style="color:var(--y)">Правильный ответ: месяц 4-6.</strong> Именно тогда задержка делает своё дело. Экономия была видна <em style="color:var(--y)">сразу</em> (месяц 1). А потери приходят <em style="color:var(--r)">через 4-6 месяцев</em>. К этому моменту CFO уже получил бонус и забыл про решение.</p>
+        <p>Это системная ловушка: <strong>выгода приходит быстро, а расплата — медленно</strong>. Поэтому люди снова и снова принимают решения, которые выглядят умными сегодня и катастрофичны через полгода.</p>
+      </div>
+      <div class="recommendation" id="rec5">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec5text"></p>
       </div>
     </div>
 
@@ -826,7 +931,7 @@
     <div class="result-cta">
       <div class="result-cta-label">следующий шаг</div>
       <h2 class="result-cta-title">Это была верхушка айсберга.</h2>
-      <p class="result-cta-desc">За 20 минут ты познакомился с 5 принципами системного мышления из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах: бизнес, отношения, здоровье, карьера. Спиральная динамика, системные архетипы, ментальные модели.</p>
+      <p class="result-cta-desc">За 20 минут ты познакомился с 5 принципами системного мышления из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах.</p>
       <a href="https://www.distill-school.ru" class="result-cta-btn">узнать про школу DISTILL →</a>
     </div>
     <button class="result-retry" onclick="restart()">↺ пройти заново</button>
@@ -834,51 +939,559 @@
 </div>
 
 <script>
-let score=0;
-function goTo(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');window.scrollTo(0,0);updateDots(n-1)}
-function startCourse(){goTo(1);initSwipe()}
-function updateDots(a){for(let i=0;i<5;i++){const d=document.getElementById('dot'+i);d.className='nav-dot'+(i<a?' done':i===a?' active':'')}}
-function restart(){score=0;swipeIdx=0;swipeDone=false;chainDone=false;sliderDone=false;sortDone=false;tlDone=false;selectedTL=-1;document.querySelectorAll('.feedback').forEach(f=>{f.classList.remove('show');f.textContent=''});document.querySelectorAll('.next-lesson').forEach(n=>n.style.display='none');document.querySelectorAll('.chain-option').forEach(o=>o.className='chain-option');document.querySelectorAll('.timeline-item').forEach(i=>i.className='timeline-item');document.querySelectorAll('.submit-btn').forEach(b=>{b.disabled=false;b.style.opacity='1'});document.getElementById('sliderInsight').style.display='none';document.getElementById('tlInsight').style.display='none';document.getElementById('swipeCard').style.display='block';document.getElementById('swipeBtns').style.display='flex';document.getElementById('swipeHint').style.display='block';resetSortItems();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-hero').classList.add('active');for(let i=0;i<5;i++)document.getElementById('dot'+i).className='nav-dot'}
+// ===== GLOBALS =====
+let score = 0;
 
-// SWIPE
-const swipeData=[
-{text:'«Продажи падают — надо срочно нанять ещё продавцов»',sys:false,why:'Линейное: реакция на событие. Не спрашивает «почему падают?» и «это повторяется?»'},
-{text:'«Эта проблема повторяется третий квартал — значит, дело в структуре, а не в людях»',sys:true,why:'Системное: видит паттерн, ищет структурную причину под поверхностью.'},
-{text:'«Если мы удвоим рекламный бюджет, продажи удвоятся»',sys:false,why:'Линейное: предполагает прямую пропорцию. Не учитывает пределы роста, насыщение рынка и ограничивающие факторы.'},
-{text:'«Мы оптимизируем скорость доставки, но клиенты всё равно уходят — может, мы оптимизируем не то?»',sys:true,why:'Системное: ставит под вопрос цель системы. Это самая мощная точка рычага по Медоуз.'},
-{text:'«Команда устала — дадим выходной, и всё наладится»',sys:false,why:'Линейное: лечит симптом. Не спрашивает: что в системе создаёт хроническую усталость? Какая петля?'},
-{text:'«Каждый раз, когда мы даём скидку — через месяц продажи падают ещё сильнее. Тут усиливающая петля.»',sys:true,why:'Системное: видит усиливающую петлю и причинно-следственную связь с задержкой.'}
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + n).classList.add('active');
+  window.scrollTo(0, 0);
+  updateDots(n - 1);
+}
+
+function startCourse() {
+  goTo(1);
+  initSwipe();
+}
+
+function updateDots(a) {
+  for (let i = 0; i < 5; i++) {
+    const d = document.getElementById('dot' + i);
+    d.className = 'nav-dot' + (i < a ? ' done' : i === a ? ' active' : '');
+  }
+}
+
+function restart() {
+  score = 0;
+  // Reset lesson 1
+  swipeIdx = 0; swipeDone = false; swipeCorrect = 0;
+  document.getElementById('swipeCard').style.display = 'block';
+  document.getElementById('swipeBtns').style.display = 'flex';
+  document.getElementById('swipeHint').style.display = 'block';
+  // Reset lesson 2
+  chainStep = 0; chainCorrect = 0; chainDone = false;
+  // Reset lesson 3
+  sliderDone = false;
+  [0,1,2,3].forEach(i => { document.getElementById('sl'+i).value = 25; document.getElementById('sv'+i).textContent = '25'; });
+  document.getElementById('sliderSubmitBtn').disabled = false;
+  document.getElementById('sliderSubmitBtn').style.opacity = '1';
+  // Reset lesson 4
+  sortDone = false; selectedSortItem = null;
+  initSortItems();
+  document.getElementById('sortSubmitBtn').disabled = false;
+  document.getElementById('sortSubmitBtn').style.opacity = '1';
+  // Reset lesson 5
+  selectedTL = -1; tlDone = false;
+  document.querySelectorAll('.timeline-item').forEach(i => i.className = 'timeline-item');
+  document.getElementById('tlSubmitBtn').disabled = false;
+  document.getElementById('tlSubmitBtn').style.opacity = '1';
+  // Reset all feedback, recommendations, insights
+  document.querySelectorAll('.feedback').forEach(f => { f.classList.remove('show'); f.textContent = ''; });
+  document.querySelectorAll('.recommendation').forEach(r => r.classList.remove('show'));
+  document.querySelectorAll('.insight-box').forEach(r => r.classList.remove('show'));
+  document.querySelectorAll('.next-lesson').forEach(n => n.style.display = 'none');
+  // Go to hero
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-hero').classList.add('active');
+  for (let i = 0; i < 5; i++) document.getElementById('dot' + i).className = 'nav-dot';
+  updSliders();
+}
+
+// ===== LESSON 1: SWIPE =====
+const swipeData = [
+  {
+    text: '«Мы внедрили KPI для каждого отдела, но общая эффективность компании упала. Видимо, отделы оптимизируют свои метрики за счёт друг друга.»',
+    sys: true,
+    why: 'Системное: видит, что локальная оптимизация разрушает глобальную. Это классический системный эффект — субоптимизация.'
+  },
+  {
+    text: '«Конкуренты выпустили новый продукт — нам нужно срочно выпустить аналог, иначе потеряем рынок.»',
+    sys: false,
+    why: 'Линейное: реакция на событие без анализа структуры. Не спрашивает: «Почему конкуренты опередили? Что в нашей системе разработки создаёт отставание?»'
+  },
+  {
+    text: '«Каждый раз, когда мы нанимаем нового менеджера, первые 3 месяца продуктивность падает, потом растёт. Это паттерн — нужно заложить это в планирование.»',
+    sys: true,
+    why: 'Системное: видит паттерн (повторение), учитывает задержку (3 месяца адаптации), и предлагает изменить структуру планирования.'
+  },
+  {
+    text: '«Сотрудники выгорают — давайте введём корпоративного психолога и фрукты в офис.»',
+    sys: false,
+    why: 'Линейное: лечит симптом, не причину. Системный вопрос: «Что в структуре работы создаёт хроническое выгорание? Какая петля?»'
+  },
+  {
+    text: '«Мы тратим на маркетинг в 3 раза больше конкурентов, но растём медленнее. Проблема не в бюджете — проблема в воронке.»',
+    sys: true,
+    why: 'Системное: отвергает линейную логику «больше денег = больше рост» и ищет структурную причину (воронка = система).'
+  },
+  {
+    text: '«Текучка кадров 40% — нужно поднять зарплаты на 15%, и люди перестанут уходить.»',
+    sys: false,
+    why: 'Линейное: крутит параметр (зарплата) вместо анализа структуры. Почему уходят? Может, дело в культуре, управлении, отсутствии роста — а зарплата лишь повод.'
+  }
 ];
-let swipeIdx=0,swipeDone=false,swipeCorrect=0;
-function initSwipe(){swipeIdx=0;swipeDone=false;swipeCorrect=0;renderSwipe()}
-function renderSwipe(){const p=document.getElementById('swipeProgress');p.innerHTML=swipeData.map((_,i)=>`<div class="swipe-dot${i<swipeIdx?' correct':i===swipeIdx?' current':''}"></div>`).join('');if(swipeIdx<swipeData.length)document.getElementById('swipeCard').textContent=swipeData[swipeIdx].text}
-function swipeAnswer(isSys){if(swipeDone)return;const card=swipeData[swipeIdx];const ok=card.sys===isSys;const el=document.getElementById('swipeCard');const w=document.getElementById('fb1w');const c=document.getElementById('fb1c');w.classList.remove('show');c.classList.remove('show');if(ok){swipeCorrect++;el.classList.add('right');c.textContent='✓ Верно! '+card.why;c.classList.add('show')}else{el.classList.add('left');w.textContent='✗ Неверно. '+card.why;w.classList.add('show')}setTimeout(()=>{el.classList.remove('left','right');w.classList.remove('show');c.classList.remove('show');swipeIdx++;if(swipeIdx>=swipeData.length){finishSwipe();return}renderSwipe()},2200)}
-function finishSwipe(){swipeDone=true;if(swipeCorrect>=4)score++;const c=document.getElementById('fb1c');const w=document.getElementById('fb1w');if(swipeCorrect>=4){c.textContent=`✓ ${swipeCorrect}/6 правильно! Ты чувствуешь разницу.`;c.classList.add('show')}else{w.textContent=`${swipeCorrect}/6. Ничего — теперь ты знаешь модель айсберга. Перечитай и попробуй снова.`;w.classList.add('show')}document.getElementById('swipeCard').style.display='none';document.getElementById('swipeBtns').style.display='none';document.getElementById('swipeHint').style.display='none';document.getElementById('next1').style.display='block'}
 
-// CHAIN
-let chainDone=false;
-function selectChain(idx){if(chainDone)return;chainDone=true;const opts=document.querySelectorAll('#chainGame .chain-option');const w=document.getElementById('fb2w');const c=document.getElementById('fb2c');if(idx===1){score++;opts[1].classList.add('correct');c.textContent='✓ Правильно! Ты предвидел архетип «Пределы роста». Рост быстрее инфраструктуры = саморазрушение.';c.classList.add('show')}else{opts[idx].classList.add('wrong');opts[1].classList.add('reveal');w.textContent='✗ Это линейное мышление. Правильный ответ — вариант Б. С ограничивающим фактором (1 человек поддержки, MVP) рост ×10 = катастрофа. Это архетип «Пределы роста».';w.classList.add('show')}document.getElementById('next2').style.display='block'}
+let swipeIdx = 0, swipeDone = false, swipeCorrect = 0;
 
-// SLIDERS
-let sliderDone=false;
-function updSlider(i){document.getElementById('sv'+i).textContent=document.getElementById('sl'+i).value}
-function submitSliders(){if(sliderDone)return;sliderDone=true;const v=[0,1,2,3].map(i=>parseInt(document.getElementById('sl'+i).value));const w=document.getElementById('fb3w');const c=document.getElementById('fb3c');const best=v[2]+v[3];const worst=v[0];if(best>worst&&(v[2]>=30||v[3]>=30)){score++;c.textContent='✓ Ты выбрал усиливающие петли! Продукт и аудитория — стратегии с растущей отдачей.';c.classList.add('show')}else{w.textContent='✗ «Брать больше заказов» — ловушка линейного мышления. Ты обмениваешь время на деньги 1:1. Потолок = 24 часа. Смотри разбор ниже.';w.classList.add('show')}document.getElementById('sliderInsight').style.display='block';document.getElementById('next3').style.display='block';document.querySelector('#sliderGame .submit-btn').disabled=true;document.querySelector('#sliderGame .submit-btn').style.opacity='0.4'}
+function initSwipe() {
+  swipeIdx = 0; swipeDone = false; swipeCorrect = 0;
+  renderSwipe();
+}
 
-// SORT
-let sortDone=false,draggedEl=null;
-document.addEventListener('dragstart',e=>{if(e.target.classList.contains('sort-item')){draggedEl=e.target;e.target.classList.add('dragging')}});
-document.addEventListener('dragend',e=>{if(e.target.classList.contains('sort-item'))e.target.classList.remove('dragging')});
-function dropSort(e,col){e.preventDefault();if(!draggedEl||sortDone)return;document.getElementById(col==='weak'?'sortWeakItems':'sortStrongItems').appendChild(draggedEl);draggedEl=null}
-function submitSort(){if(sortDone)return;sortDone=true;let ok=0;document.getElementById('sortWeakItems').querySelectorAll('.sort-item').forEach(i=>{if(i.dataset.correct==='weak'){i.classList.add('correct');ok++}else i.classList.add('wrong')});document.getElementById('sortStrongItems').querySelectorAll('.sort-item').forEach(i=>{if(i.dataset.correct==='strong'){i.classList.add('correct');ok++}else i.classList.add('wrong')});const w=document.getElementById('fb4w');const c=document.getElementById('fb4c');if(ok>=5){score++;c.textContent=`✓ ${ok}/6 правильно! Ты видишь разницу между параметрами и структурой.`;c.classList.add('show')}else{w.textContent=`${ok}/6. Бюджет, найм и скидки — параметры (слабые). Метрика, продукт и петля рекомендаций — структура/цель (сильные).`;w.classList.add('show')}document.getElementById('next4').style.display='block';document.querySelector('#screen-4 .submit-btn').disabled=true;document.querySelector('#screen-4 .submit-btn').style.opacity='0.4'}
-function resetSortItems(){const s=document.getElementById('sortSourceItems');const w=document.getElementById('sortWeakItems');const st=document.getElementById('sortStrongItems');if(!s||!w||!st)return;[...w.children,...st.children].forEach(i=>{i.classList.remove('correct','wrong');s.appendChild(i)});sortDone=false}
+function renderSwipe() {
+  const p = document.getElementById('swipeProgress');
+  p.innerHTML = swipeData.map((_, i) => {
+    let cls = 'swipe-dot';
+    if (i < swipeIdx) cls += swipeResults[i] ? ' correct' : ' wrong';
+    else if (i === swipeIdx) cls += ' current';
+    return `<div class="${cls}"></div>`;
+  }).join('');
+  if (swipeIdx < swipeData.length) {
+    document.getElementById('swipeCard').textContent = swipeData[swipeIdx].text;
+  }
+}
 
-// TIMELINE
-let selectedTL=-1,tlDone=false;
-function selectTL(idx){if(tlDone)return;selectedTL=idx;document.querySelectorAll('.timeline-item').forEach((item,i)=>{item.classList.remove('selected');if(i===idx)item.classList.add('selected')})}
-function submitTL(){if(tlDone)return;if(selectedTL===-1){document.getElementById('fb5w').textContent='Выбери момент на таймлайне.';document.getElementById('fb5w').classList.add('show');return}tlDone=true;const items=document.querySelectorAll('.timeline-item');const w=document.getElementById('fb5w');const c=document.getElementById('fb5c');if(selectedTL===2){score++;items[2].classList.remove('selected');items[2].classList.add('correct');c.textContent='✓ Правильно! Месяц 4-6 — точка невозврата. Потери превышают экономию, но связь с решением размыта задержкой.';c.classList.add('show')}else{items[selectedTL].classList.remove('selected');items[selectedTL].classList.add('wrong');items[2].classList.add('correct');w.textContent='✗ Правильный ответ — месяц 4-6. Именно тогда потери превышают экономию, но задержка размыла связь с решением.';w.classList.add('show')}document.getElementById('tlInsight').style.display='block';document.getElementById('next5').style.display='block';document.querySelector('#screen-5 .submit-btn').disabled=true;document.querySelector('#screen-5 .submit-btn').style.opacity='0.4'}
+let swipeResults = [];
 
-// RESULT
-function showResult(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-result').classList.add('active');window.scrollTo(0,0);document.getElementById('rScore').textContent=score;let level,title,desc;if(score<=1){level='ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ';title='Ты думаешь как большинство.';desc='Это нормально — мозг эволюционно заточен на линейные связи. Но теперь ты знаешь 5 принципов. Перечитай уроки и попробуй применить к своей ситуации.'}else if(score<=3){level='НАЧИНАЮЩИЙ СИСТЕМЩИК';title='Ты видишь паттерны.';desc='Ты уже замечаешь петли и задержки. Это больше, чем 90% людей. Следующий шаг — научиться проектировать системы, а не только анализировать.'}else{level='СИСТЕМНЫЙ АРХИТЕКТОР';title='Ты мыслишь структурами.';desc='Ты видишь петли, находишь рычаги и учитываешь задержки. Ты готов к следующему уровню — системным архетипам и проектированию.'}document.getElementById('rLevel').textContent=level;document.getElementById('rTitle').textContent=title;document.getElementById('rDesc').textContent=desc;updateDots(5)}
+function swipeAnswer(isSys) {
+  if (swipeDone) return;
+  const card = swipeData[swipeIdx];
+  const ok = card.sys === isSys;
+  const el = document.getElementById('swipeCard');
+  const w = document.getElementById('fb1w');
+  const c = document.getElementById('fb1c');
+  w.classList.remove('show');
+  c.classList.remove('show');
+  swipeResults.push(ok);
+  if (ok) {
+    swipeCorrect++;
+    el.classList.add('right');
+    c.innerHTML = '✓ Верно! ' + card.why;
+    c.classList.add('show');
+  } else {
+    el.classList.add('left');
+    w.innerHTML = '✗ Неверно. ' + card.why;
+    w.classList.add('show');
+  }
+  setTimeout(() => {
+    el.classList.remove('left', 'right');
+    w.classList.remove('show');
+    c.classList.remove('show');
+    swipeIdx++;
+    if (swipeIdx >= swipeData.length) { finishSwipe(); return; }
+    renderSwipe();
+  }, 3000);
+}
+
+function finishSwipe() {
+  swipeDone = true;
+  if (swipeCorrect >= 4) score++;
+  const c = document.getElementById('fb1c');
+  const w = document.getElementById('fb1w');
+  if (swipeCorrect >= 5) {
+    c.textContent = `✓ ${swipeCorrect}/6 правильно! Отличное чутьё на системное мышление.`;
+    c.classList.add('show');
+  } else if (swipeCorrect >= 4) {
+    c.textContent = `✓ ${swipeCorrect}/6 правильно! Ты чувствуешь разницу.`;
+    c.classList.add('show');
+  } else {
+    w.textContent = `${swipeCorrect}/6. Не страшно — теперь ты знаешь модель айсберга. Перечитай и попробуй снова.`;
+    w.classList.add('show');
+  }
+  document.getElementById('swipeCard').style.display = 'none';
+  document.getElementById('swipeBtns').style.display = 'none';
+  document.getElementById('swipeHint').style.display = 'none';
+  // Personalized recommendation
+  const rec = document.getElementById('rec1');
+  const recText = document.getElementById('rec1text');
+  if (swipeCorrect <= 2) {
+    recText.innerHTML = '<strong>Твоя ловушка: реактивное мышление.</strong> Ты часто реагируешь на события, а не на структуру. Это нормально — мозг так устроен. Практика: когда сталкиваешься с проблемой, задай себе 3 вопроса: «Это повторяется?» → «Что создаёт повторение?» → «Какое убеждение держит эту структуру?» Это модель айсберга. Используй её каждый день.';
+  } else if (swipeCorrect <= 4) {
+    recText.innerHTML = '<strong>Ты на верном пути.</strong> Ты видишь разницу между симптомом и причиной, но иногда ловушки «очевидных решений» ещё работают. Практика: заведи привычку спрашивать «А что создаёт эту ситуацию?» перед каждым решением. Не «что делать?», а «почему так?»';
+  } else {
+    recText.innerHTML = '<strong>Ты уже мыслишь системно.</strong> Ты видишь паттерны, структуры и ментальные модели. Следующий уровень — научиться <em>проектировать</em> системы, а не только анализировать. Это тема уроков 3-5.';
+  }
+  rec.classList.add('show');
+  document.getElementById('next1').style.display = 'block';
+}
+
+// ===== LESSON 2: CHAIN GAME (step by step) =====
+const chainSteps = [
+  {
+    label: 'Шаг 1: Что произойдёт после ×10 рекламы при MVP-продукте?',
+    choices: [
+      { text: 'Клиенты приходят → всё отлично, выручка растёт', correct: false },
+      { text: 'Клиенты приходят → продукт не справляется с нагрузкой', correct: true },
+      { text: 'Реклама не работает — рынок перенасыщен', correct: false }
+    ],
+    correctStep: 'Продукт ломается'
+  },
+  {
+    label: 'Шаг 2: Продукт ломается. 1 человек в поддержке. Что дальше?',
+    choices: [
+      { text: 'Быстро нанимают ещё людей и всё чинят', correct: false },
+      { text: 'Тикеты копятся, время ответа → 3 дня, клиенты злятся', correct: true },
+      { text: 'Клиенты терпеливо ждут — продукт-то хороший', correct: false }
+    ],
+    correctStep: 'Поддержка не справляется'
+  },
+  {
+    label: 'Шаг 3: Клиенты злятся, поддержка не отвечает. Что происходит?',
+    choices: [
+      { text: 'Пишут гневные отзывы → рейтинг 1★ → новые клиенты не приходят', correct: true },
+      { text: 'Тихо уходят, но без последствий для репутации', correct: false },
+      { text: 'Дают второй шанс и ждут обновления', correct: false }
+    ],
+    correctStep: 'Отзывы 1★, CAC ×5'
+  },
+  {
+    label: 'Шаг 4: Рейтинг 1★, реклама не конвертирует. Итог?',
+    choices: [
+      { text: 'Привлекают новый раунд инвестиций и всё исправляют', correct: false },
+      { text: 'Переключаются на другой канал — SEO спасёт', correct: false },
+      { text: 'Деньги кончились. $1.6M потрачено. Стартап мёртв.', correct: true }
+    ],
+    correctStep: 'Деньги кончились 💀'
+  }
+];
+
+let chainStep = 0, chainCorrect = 0, chainDone = false;
+
+function initChain() {
+  chainStep = 0; chainCorrect = 0; chainDone = false;
+  renderChainStep();
+}
+
+function renderChainStep() {
+  if (chainStep >= chainSteps.length) { finishChain(); return; }
+  const step = chainSteps[chainStep];
+  document.getElementById('chainLabel').textContent = step.label;
+  const choicesEl = document.getElementById('chainChoices');
+  choicesEl.innerHTML = step.choices.map((ch, i) =>
+    `<div class="chain-choice" onclick="selectChainChoice(${i})">${ch.text}</div>`
+  ).join('');
+}
+
+function selectChainChoice(idx) {
+  if (chainDone) return;
+  const step = chainSteps[chainStep];
+  const choicesEl = document.querySelectorAll('#chainChoices .chain-choice');
+  const chosen = step.choices[idx];
+  const w = document.getElementById('fb2w');
+  const c = document.getElementById('fb2c');
+  w.classList.remove('show');
+  c.classList.remove('show');
+
+  // Disable all choices
+  choicesEl.forEach((el, i) => {
+    if (i === idx) {
+      el.classList.add(chosen.correct ? 'correct' : 'wrong');
+    } else if (step.choices[i].correct && !chosen.correct) {
+      el.classList.add('correct');
+    } else {
+      el.classList.add('disabled');
+    }
+  });
+
+  if (chosen.correct) {
+    chainCorrect++;
+    c.textContent = '✓ Верно! Ты видишь следующее звено цепочки.';
+    c.classList.add('show');
+  } else {
+    w.textContent = '✗ Это линейный прогноз. Правильный ответ подсвечен.';
+    w.classList.add('show');
+  }
+
+  // Add step to built chain
+  const built = document.getElementById('chainBuilt');
+  built.innerHTML += `<span class="chain-arrow">→</span><span class="chain-step ${chosen.correct ? 'correct' : 'wrong'}">${step.correctStep}</span>`;
+
+  setTimeout(() => {
+    w.classList.remove('show');
+    c.classList.remove('show');
+    chainStep++;
+    renderChainStep();
+  }, 2000);
+}
+
+function finishChain() {
+  chainDone = true;
+  if (chainCorrect >= 3) score++;
+  const c = document.getElementById('fb2c');
+  const w = document.getElementById('fb2w');
+  document.getElementById('chainLabel').textContent = 'Цепочка построена!';
+  document.getElementById('chainChoices').innerHTML = '';
+  if (chainCorrect >= 3) {
+    c.textContent = `✓ ${chainCorrect}/4 правильно! Ты предвидел архетип «Пределы роста».`;
+    c.classList.add('show');
+  } else {
+    w.textContent = `${chainCorrect}/4. Цепочка оказалась длиннее, чем ты думал. Это нормально — мозг привык думать на 1 шаг.`;
+    w.classList.add('show');
+  }
+  // Recommendation
+  const rec = document.getElementById('rec2');
+  const recText = document.getElementById('rec2text');
+  if (chainCorrect <= 1) {
+    recText.innerHTML = '<strong>Ты думаешь на 1 ход вперёд.</strong> Это как новичок в шахматах. Практика: перед каждым важным решением задай себе вопрос «А потом что?» три раза подряд. Буквально. A → B → C → D. Запиши цепочку на бумаге. Ты удивишься, сколько «неожиданных» последствий станут очевидными.';
+  } else if (chainCorrect <= 3) {
+    recText.innerHTML = '<strong>Ты видишь 2-3 шага вперёд.</strong> Это уже лучше, чем 90% людей. Но системы коварны — самые разрушительные последствия обычно на 4-5 шаге. Практика: когда строишь цепочку, всегда спрашивай «А что, если цепочка вернётся к началу?» Если вернулась — ты нашёл петлю.';
+  } else {
+    recText.innerHTML = '<strong>Ты мыслишь цепочками.</strong> Ты видишь, как одно решение запускает каскад. Следующий уровень — видеть, когда цепочка замыкается в петлю. Это тема урока 3.';
+  }
+  rec.classList.add('show');
+  document.getElementById('next2').style.display = 'block';
+}
+
+// Init chain on lesson 2 entry
+const origGoTo = goTo;
+goTo = function(n) {
+  origGoTo(n);
+  if (n === 2 && !chainDone) initChain();
+  if (n === 4 && !sortDone) initSortItems();
+};
+
+// ===== LESSON 3: SLIDERS WITH BUDGET =====
+let sliderDone = false;
+
+function updSliders() {
+  const vals = [0,1,2,3].map(i => parseInt(document.getElementById('sl'+i).value));
+  const total = vals.reduce((a,b) => a+b, 0);
+  const remaining = 100 - total;
+  vals.forEach((v, i) => document.getElementById('sv'+i).textContent = v);
+  const budgetFill = document.getElementById('budgetFill');
+  const budgetNum = document.getElementById('budgetNum');
+  budgetFill.style.width = Math.min(total, 100) + '%';
+  budgetNum.textContent = remaining;
+  if (remaining < 0) {
+    budgetFill.classList.add('over');
+    budgetNum.classList.add('over');
+  } else {
+    budgetFill.classList.remove('over');
+    budgetNum.classList.remove('over');
+  }
+}
+
+function submitSliders() {
+  if (sliderDone) return;
+  const vals = [0,1,2,3].map(i => parseInt(document.getElementById('sl'+i).value));
+  const total = vals.reduce((a,b) => a+b, 0);
+  if (total > 100) {
+    const w = document.getElementById('fb3w');
+    w.textContent = 'У тебя только 100 часов! Сейчас распределено ' + total + '. Убери лишнее.';
+    w.classList.add('show');
+    return;
+  }
+  sliderDone = true;
+  const w = document.getElementById('fb3w');
+  const c = document.getElementById('fb3c');
+  const systemic = vals[2] + vals[3];
+  const linear = vals[0] + vals[1];
+
+  if (systemic > linear && (vals[2] >= 25 || vals[3] >= 25)) {
+    score++;
+    c.textContent = '✓ Ты выбрал усиливающие петли! Продукт и аудитория — стратегии с растущей отдачей.';
+    c.classList.add('show');
+  } else {
+    w.textContent = '✗ Ты вложил большую часть времени в линейные стратегии. Это ловушка «больше работаешь = больше получаешь».';
+    w.classList.add('show');
+  }
+  document.getElementById('sliderInsight').classList.add('show');
+  // Recommendation
+  const rec = document.getElementById('rec3');
+  const recText = document.getElementById('rec3text');
+  if (linear >= 70) {
+    recText.innerHTML = '<strong>Ты в ловушке линейного обмена.</strong> Время на деньги 1:1 — это потолок. Сколько бы ты ни работал, больше 24 часов в сутках не будет. Практика: выдели хотя бы 20% времени на «инвестиционные» активности — те, которые дают отдачу даже когда ты не работаешь. Это и есть усиливающая петля.';
+  } else if (systemic > linear) {
+    recText.innerHTML = '<strong>Ты инвестируешь в петли — это правильно.</strong> Продукт и аудитория создают усиливающие петли: продукт продаётся сам, аудитория привлекает аудиторию. Помни: результат придёт с задержкой (урок 5). Не бросай раньше, чем петля раскрутится.';
+  } else {
+    recText.innerHTML = '<strong>Ты балансируешь между линейным и системным.</strong> Это прагматичный подход — линейные стратегии дают деньги сейчас, системные — в будущем. Но следи за пропорцией: если 80% времени уходит на «тушение пожаров», ты никогда не построишь систему.';
+  }
+  rec.classList.add('show');
+  document.getElementById('sliderSubmitBtn').disabled = true;
+  document.getElementById('sliderSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next3').style.display = 'block';
+}
+
+// ===== LESSON 4: SORT (click-based) =====
+const sortItems = [
+  { text: 'Увеличить рекламный бюджет на 30%', correct: 'weak' },
+  { text: 'Изменить метрику: с «выручка» на «LTV клиента»', correct: 'strong' },
+  { text: 'Нанять 5 новых продавцов', correct: 'weak' },
+  { text: 'Встроить петлю рекомендаций в продукт', correct: 'strong' },
+  { text: 'Дать скидку 20% на следующий месяц', correct: 'weak' },
+  { text: 'Переформулировать миссию компании', correct: 'strong' }
+];
+
+let sortDone = false, selectedSortItem = null;
+
+function initSortItems() {
+  const pool = document.getElementById('sortPool');
+  pool.innerHTML = sortItems.map((item, i) =>
+    `<div class="sort-item" data-idx="${i}" data-correct="${item.correct}" onclick="selectSortItem(this)">${item.text}</div>`
+  ).join('');
+  document.getElementById('sortWeakItems').innerHTML = '';
+  document.getElementById('sortStrongItems').innerHTML = '';
+  selectedSortItem = null;
+}
+
+function selectSortItem(el) {
+  if (sortDone || el.classList.contains('placed')) return;
+  document.querySelectorAll('.sort-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSortItem = el;
+  // Highlight columns
+  document.getElementById('sortWeakCol').classList.add('highlight');
+  document.getElementById('sortStrongCol').classList.add('highlight');
+}
+
+function placeInCol(col) {
+  if (!selectedSortItem || sortDone) return;
+  const targetEl = document.getElementById(col === 'weak' ? 'sortWeakItems' : 'sortStrongItems');
+  const text = selectedSortItem.textContent;
+  const correct = selectedSortItem.dataset.correct;
+  // Create placed item
+  const placed = document.createElement('div');
+  placed.className = 'sort-placed-item';
+  placed.textContent = text;
+  placed.dataset.correct = correct;
+  placed.dataset.placed = col;
+  targetEl.appendChild(placed);
+  // Mark original as placed
+  selectedSortItem.classList.remove('selected');
+  selectedSortItem.classList.add('placed');
+  selectedSortItem = null;
+  // Remove highlights
+  document.getElementById('sortWeakCol').classList.remove('highlight');
+  document.getElementById('sortStrongCol').classList.remove('highlight');
+}
+
+function submitSort() {
+  if (sortDone) return;
+  // Check if all items placed
+  const placedCount = document.querySelectorAll('.sort-item.placed').length;
+  if (placedCount < sortItems.length) {
+    const w = document.getElementById('fb4w');
+    w.textContent = 'Рассортируй все 6 действий, потом нажми «проверить».';
+    w.classList.add('show');
+    return;
+  }
+  sortDone = true;
+  let ok = 0;
+  document.querySelectorAll('.sort-placed-item').forEach(item => {
+    if (item.dataset.correct === item.dataset.placed) {
+      item.classList.add('correct');
+      ok++;
+    } else {
+      item.classList.add('wrong');
+    }
+  });
+  const w = document.getElementById('fb4w');
+  const c = document.getElementById('fb4c');
+  if (ok >= 5) {
+    score++;
+    c.textContent = `✓ ${ok}/6 правильно! Ты видишь разницу между параметрами и структурой.`;
+    c.classList.add('show');
+  } else {
+    w.textContent = `${ok}/6. Бюджет, найм и скидки — параметры (слабые). Метрика, петля рекомендаций и миссия — структура/цель (сильные).`;
+    w.classList.add('show');
+  }
+  // Recommendation
+  const rec = document.getElementById('rec4');
+  const recText = document.getElementById('rec4text');
+  if (ok <= 3) {
+    recText.innerHTML = '<strong>Ты путаешь параметры и структуру.</strong> Это самая частая ошибка. Параметры — это числа, которые можно крутить (бюджет, зарплата, цена). Структура — это правила игры (метрики, петли, цели). Практика: когда предлагаешь решение, спроси себя: «Это изменение числа или изменение правил?» Если числа — ищи глубже.';
+  } else if (ok <= 5) {
+    recText.innerHTML = '<strong>Ты почти безошибочно различаешь уровни.</strong> Ты понимаешь, что бюджет — это параметр, а метрика — это структура. Следующий уровень: научиться находить рычаги в реальных ситуациях, где границы размыты. Практика: в следующем рабочем совещании, когда кто-то предложит «увеличить/уменьшить X» — спроси: «А что, если изменить правило, по которому мы определяем X?»';
+  } else {
+    recText.innerHTML = '<strong>Ты мыслишь как системный архитектор.</strong> Ты видишь иерархию рычагов и выбираешь структурные изменения. Это редкий навык. Следующий уровень — самый высокий рычаг: изменение парадигмы (ментальных моделей). Это тема школы DISTILL.';
+  }
+  rec.classList.add('show');
+  document.getElementById('sortSubmitBtn').disabled = true;
+  document.getElementById('sortSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next4').style.display = 'block';
+}
+
+// ===== LESSON 5: TIMELINE =====
+let selectedTL = -1, tlDone = false;
+
+function selectTL(idx) {
+  if (tlDone) return;
+  selectedTL = idx;
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.classList.remove('selected');
+    if (i === idx) item.classList.add('selected');
+  });
+}
+
+function submitTL() {
+  if (tlDone) return;
+  if (selectedTL === -1) {
+    document.getElementById('fb5w').textContent = 'Выбери момент на таймлайне.';
+    document.getElementById('fb5w').classList.add('show');
+    return;
+  }
+  tlDone = true;
+  const items = document.querySelectorAll('.timeline-item');
+  const w = document.getElementById('fb5w');
+  const c = document.getElementById('fb5c');
+  if (selectedTL === 2) {
+    score++;
+    items[2].classList.remove('selected');
+    items[2].classList.add('correct');
+    c.textContent = '✓ Правильно! Месяц 4-6 — точка невозврата. Потери превышают экономию, но связь с решением размыта задержкой.';
+    c.classList.add('show');
+  } else {
+    items[selectedTL].classList.remove('selected');
+    items[selectedTL].classList.add('wrong');
+    items[2].classList.add('correct');
+    w.textContent = '✗ Правильный ответ — месяц 4-6. Именно тогда потери превышают экономию, но задержка размыла связь с решением.';
+    w.classList.add('show');
+  }
+  document.getElementById('tlInsight').classList.add('show');
+  // Recommendation
+  const rec = document.getElementById('rec5');
+  const recText = document.getElementById('rec5text');
+  if (selectedTL === 0 || selectedTL === 1) {
+    recText.innerHTML = '<strong>Ты переоцениваешь скорость последствий.</strong> Ты выбрал слишком ранний момент. В реальности системы инертны — последствия накапливаются медленно, а потом обрушиваются лавиной. Практика: для каждого важного решения составляй «карту задержек» — когда ожидать первые сигналы, когда точку невозврата, когда полные последствия.';
+  } else if (selectedTL === 2) {
+    recText.innerHTML = '<strong>Ты чувствуешь тайминг системы.</strong> Ты понимаешь, что выгода приходит быстро, а расплата — медленно. Это ключевой навык. Практика: перед каждым «оптимизационным» решением спрашивай: «Через сколько месяцев придут последствия? И буду ли я помнить связь?»';
+  } else {
+    recText.innerHTML = '<strong>Ты видишь последствия, но слишком поздно.</strong> Месяц 9-12 — это уже необратимые последствия. Но точка невозврата — раньше (месяц 4-6). Системный мыслитель ищет момент, когда ещё можно исправить, но связь с решением уже теряется. Практика: ищи не «когда всё сломается», а «когда ещё можно починить, но уже не очевидно что».';
+  }
+  rec.classList.add('show');
+  document.getElementById('tlSubmitBtn').disabled = true;
+  document.getElementById('tlSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next5').style.display = 'block';
+}
+
+// ===== RESULT =====
+function showResult() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-result').classList.add('active');
+  window.scrollTo(0, 0);
+  document.getElementById('rScore').textContent = score;
+  let level, title, desc;
+  if (score <= 1) {
+    level = 'ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ';
+    title = 'Ты думаешь как большинство.';
+    desc = 'Это нормально — мозг эволюционно заточен на линейные связи. Но теперь ты знаешь 5 принципов. Перечитай уроки и попробуй применить к своей ситуации.';
+  } else if (score <= 3) {
+    level = 'НАЧИНАЮЩИЙ СИСТЕМЩИК';
+    title = 'Ты видишь паттерны.';
+    desc = 'Ты уже замечаешь петли и задержки. Это больше, чем 90% людей. Следующий шаг — научиться проектировать системы, а не только анализировать.';
+  } else {
+    level = 'СИСТЕМНЫЙ АРХИТЕКТОР';
+    title = 'Ты мыслишь структурами.';
+    desc = 'Ты видишь петли, находишь рычаги и учитываешь задержки. Ты готов к следующему уровню — системным архетипам и проектированию.';
+  }
+  document.getElementById('rLevel').textContent = level;
+  document.getElementById('rTitle').textContent = title;
+  document.getElementById('rDesc').textContent = desc;
+  updateDots(5);
+}
+
+// Init budget display
+updSliders();
 </script>
 </body>
 </html>
