@@ -207,6 +207,8 @@
     <div class="nav-dot" id="dot2"></div>
     <div class="nav-dot" id="dot3"></div>
     <div class="nav-dot" id="dot4"></div>
+    <div class="nav-dot" id="dot5"></div>
+    <div class="nav-dot" id="dot6"></div>
   </div>
 </nav>
 
@@ -214,10 +216,10 @@
 <div class="screen active" id="screen-hero">
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-tag">бесплатный мини-курс · 5 уроков · ~20 мин</div>
+      <div class="hero-tag">бесплатный мини-курс · 6 уроков · ~25 мин</div>
       <h1 class="hero-title">ты думаешь<br>линейно.<br><em>это проблема.</em></h1>
       <p class="hero-sub"><strong>Системное мышление</strong> — это не абстрактная теория. Это способ видеть, почему одни и те же проблемы повторяются в твоей жизни, работе и отношениях. И как это изменить.</p>
-      <p class="hero-sub" style="margin-top:12px;font-size:15px;color:#444;">5 уроков. 5 механик. Реальная методология Медоуз, Сенге и Форрестера. Без воды.</p>
+      <p class="hero-sub" style="margin-top:12px;font-size:15px;color:#444;">6 уроков. 6 механик. Реальная методология Медоуз, Сенге и Форрестера. Без воды.</p>
       <button class="hero-start" onclick="startCourse()">начать курс →</button>
     </div>
     <div class="hero-right">
@@ -229,6 +231,7 @@
           <div class="hero-lesson"><div class="hero-lesson-num">03</div><div><div class="hero-lesson-title">Петли, которые управляют твоей жизнью</div><div class="hero-lesson-desc">Усиливающие и балансирующие петли обратной связи.</div></div></div>
           <div class="hero-lesson"><div class="hero-lesson-num">04</div><div><div class="hero-lesson-title">Где нажать, чтобы всё изменилось</div><div class="hero-lesson-desc">Точки рычага по Донелле Медоуз.</div></div></div>
           <div class="hero-lesson"><div class="hero-lesson-num">05</div><div><div class="hero-lesson-title">Почему твоё решение сработает через полгода</div><div class="hero-lesson-desc">Задержки в системах. Системные архетипы.</div></div></div>
+          <div class="hero-lesson"><div class="hero-lesson-num">06</div><div><div class="hero-lesson-title">Почему 1+1=3</div><div class="hero-lesson-desc">Эмерджентность и вложенность систем.</div></div></div>
         </div>
       </div>
     </div>
@@ -735,6 +738,10 @@
         <strong>Принцип #4: Ищи рычаг.</strong> Не «работай сильнее» — а «работай в правильном месте». Большинство людей крутят параметры (бюджет, найм, скидки). Системный мыслитель меняет структуру и цель.
       </div>
 
+      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Вложенность: рычаг на одном уровне ≠ рычаг на другом</h3>
+      <p>Ты внутри команды. Команда внутри компании. Компания внутри рынка. Рынок внутри экономики. Каждый уровень — система со своими петлями, задержками и рычагами.</p>
+      <p>И вот парадокс: <strong>то, что является сильным рычагом внутри команды, может быть слабым рычагом для компании</strong>. Пример: оптимизация работы одного отдела может ухудшать работу соседнего. Повышение KPI одного подразделения может разрушать систему в целом. Поэтому системный мыслитель всегда спрашивает: <em>«Рычаг для какой системы?»</em></p>
+
       <p>Давай проверим. Вот 6 действий для компании, которая хочет расти. Оцени каждое: насколько сильный это рычаг? 1 — почти ничего не изменит, 5 — изменит всё.</p>
     </div>
 
@@ -887,6 +894,128 @@
     </div>
 
     <div class="next-lesson" id="next5" style="display:none;">
+      <button class="next-btn" onclick="goTo(6)">урок 06: Почему 1+1=3 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LESSON 6: EMERGENCE ===== -->
+<div class="screen" id="screen-6">
+  <div class="lesson-wrap">
+    <div class="lesson-num">урок 06 из 06</div>
+    <h1 class="lesson-title">Почему 1+1=3</h1>
+    <div class="article">
+      <p>В 1970-х учёные изучали муравьев. Каждый муравей в отдельности — примитивное существо. Он ходит по прямой. Ищет еду. Иногда сталкивается с другим. Без никакого плана.</p>
+
+      <p>Но поставь 100 муравьёв в одно место — и возникнет нечто, чего не было ни в одном муравье. Колония. Она строит дороги, мосты, организует защиту, распределяет роли. Без менеджера. Без плана. Без центрального командования.</p>
+
+      <p>Это — <strong>эмерджентность</strong>. Свойство, которое возникает в системе, но отсутствует в отдельных её элементах.</p>
+
+      <div class="illustration">
+        <svg width="500" height="200" viewBox="0 0 500 200">
+          <!-- Single ant -->
+          <ellipse cx="60" cy="120" rx="12" ry="7" fill="none" stroke="#888" stroke-width="2"/>
+          <circle cx="60" cy="110" r="5" fill="none" stroke="#888" stroke-width="2"/>
+          <line x1="52" y1="118" x2="44" y2="128" stroke="#888" stroke-width="1.5"/>
+          <line x1="60" y1="127" x2="60" y2="140" stroke="#888" stroke-width="1.5"/>
+          <line x1="68" y1="118" x2="76" y2="128" stroke="#888" stroke-width="1.5"/>
+          <text x="60" y="158" text-anchor="middle" fill="#888" font-size="11" font-family="Inter">1 муравей</text>
+          <text x="60" y="172" text-anchor="middle" fill="#555" font-size="10" font-family="Inter">просто ходит</text>
+          <!-- Arrow -->
+          <text x="150" y="115" text-anchor="middle" fill="#c8ff00" font-size="28" font-weight="900">+</text>
+          <!-- Colony -->
+          <g transform="translate(220, 70)">
+            <!-- Bridge structure -->
+            <path d="M0 80 Q30 40 60 80" fill="none" stroke="#c8ff00" stroke-width="3"/>
+            <!-- Ants on bridge -->
+            <circle cx="15" cy="65" r="4" fill="#c8ff00"/>
+            <circle cx="30" cy="55" r="4" fill="#c8ff00"/>
+            <circle cx="45" cy="60" r="4" fill="#c8ff00"/>
+            <!-- Ground ants -->
+            <circle cx="5" cy="85" r="3" fill="#c8ff00"/>
+            <circle cx="55" cy="85" r="3" fill="#c8ff00"/>
+            <circle cx="30" cy="90" r="3" fill="#c8ff00"/>
+            <!-- Tunnel entrance -->
+            <ellipse cx="30" cy="95" rx="15" ry="6" fill="none" stroke="#c8ff00" stroke-width="2"/>
+            <text x="30" y="115" text-anchor="middle" fill="#c8ff00" font-size="11" font-family="Inter">100 муравьёв</text>
+            <text x="30" y="129" text-anchor="middle" fill="#c8ff00" font-size="10" font-family="Inter">колония</text>
+          </g>
+          <!-- Equals -->
+          <text x="340" y="115" text-anchor="middle" fill="#c8ff00" font-size="28" font-weight="900">=</text>
+          <!-- Emergent properties -->
+          <g transform="translate(380, 60)">
+            <text x="0" y="20" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">дороги</text>
+            <text x="0" y="40" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">мосты</text>
+            <text x="0" y="60" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">защита</text>
+            <text x="0" y="80" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">роли</text>
+            <text x="0" y="105" fill="#888" font-size="10" font-family="Inter">эмерджентность</text>
+          </g>
+        </svg>
+      </div>
+
+      <p>Другие примеры эмерджентности:</p>
+      <ul style="margin:16px 0 16px 24px;line-height:2">
+        <li><strong>Мозг</strong>: 86 млрд нейронов. Ни один нейрон не «думает». Но в системе — сознание.</li>
+        <li><strong>Рынок</strong>: миллионы покупателей и продавцов. Никто не управляет ценой. Но цена возникает.</li>
+        <li><strong>Команда</strong>: каждый делает свою работу. Но возникает культура — нечто, чего нет ни в одном человеке.</li>
+      </ul>
+
+      <div class="highlight">
+        <strong>Почему это важно?</strong> Потому что эмерджентные свойства нельзя увидеть, анализируя элементы по отдельности. Поэтому линейное мышление всегда будет удивляться: «Почему мы поняли каждого сотрудника, а команда всё равно не работает?» Потому что проблема — в взаимодействиях, а не в людях.
+      </div>
+
+      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Что это меняет на практике</h3>
+      <p>Если проблема эмерджентная — её нельзя решить, меняя отдельных людей. Нужно менять среду, в которой они взаимодействуют. Если проблема в команде — смотри на правила взаимодействия, а не на людей. Если проблема в компании — смотри на структуру стимулов и правил, а не на отдельных сотрудников.</p>
+    </div>
+
+    <div class="game-section" id="emergeGame">
+      <div class="game-label">✦ практика</div>
+      <div class="game-title">Эмерджентное или нет?</div>
+      <div class="game-desc">Какое из этих свойств является эмерджентным — то есть возникает в системе, но отсутствует в отдельных элементах?</div>
+      <div id="emergePool"></div>
+      <button class="submit-btn" id="emergeSubmitBtn" onclick="submitEmerge()">проверить →</button>
+      <div class="feedback wrong" id="fb6w"></div>
+      <div class="feedback correct" id="fb6c"></div>
+      <div class="insight-box" id="emergeInsight">
+        <p><strong style="color:var(--y)">Разбор:</strong> Сознание, рыночная цена, культура команды и пробки в дорожном движении — эмерджентные. Ни один участник не «имеет» эти свойства — они возникают из взаимодействия. Температура воды — не эмерджентная: это свойство каждой молекулы H₂O. Скорость автомобиля — не эмерджентная: это свойство самого автомобиля.</p>
+      </div>
+      <div class="recommendation" id="rec6">
+        <h4>📋 Твоя рекомендация</h4>
+        <p id="rec6text"></p>
+      </div>
+    </div>
+
+    <div class="next-lesson" id="next6" style="display:none;">
+      <button class="next-btn" onclick="goTo('impossible')">финальный вызов →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== IMPOSSIBLE CASE ===== -->
+<div class="screen" id="screen-impossible">
+  <div class="lesson-wrap">
+    <div class="lesson-num" style="color:var(--r)">★ финальный вызов</div>
+    <h1 class="lesson-title">Невозможный кейс</h1>
+    <div class="article">
+      <p>Ты прошёл 6 уроков. Ты знаешь про петли, задержки, рычаги, эмерджентность. Теперь попробуй применить всё это одновременно.</p>
+      <div class="highlight" style="border-color:var(--r);margin-bottom:32px">
+        <strong style="color:var(--r)">Кейс:</strong> Компания растёт. Но чем быстрее она растёт — тем хуже становится качество. Чем хуже качество — тем быстрее компания растёт (чтобы компенсировать отток). Круг замкнулся. Что делать?
+      </div>
+      <p>Выбери один вариант — тот, который кажется тебе наиболее сильным рычагом:</p>
+    </div>
+
+    <div class="game-section" id="impossibleGame">
+      <div class="game-label">★ вызов</div>
+      <div class="game-title">Архетип «Пределы роста»</div>
+      <div class="game-desc">Выбери наиболее сильный рычаг для разрыва петли.</div>
+      <div id="impossibleOptions" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px"></div>
+      <button class="submit-btn" id="impossibleSubmitBtn" onclick="submitImpossible()">проверить →</button>
+      <div class="feedback wrong" id="fbIw"></div>
+      <div class="feedback correct" id="fbIc"></div>
+      <div class="insight-box" id="impossibleInsight"></div>
+    </div>
+
+    <div class="next-lesson" id="nextImpossible" style="display:none;">
       <button class="next-btn" onclick="showResult()">посмотреть результат →</button>
     </div>
   </div>
@@ -895,27 +1024,68 @@
 <!-- ===== RESULT ===== -->
 <div class="screen" id="screen-result">
   <div class="result-wrap">
+    <!-- PROFILE -->
     <div class="result-ring">
       <div class="result-num" id="rScore">0</div>
-      <div class="result-of">из 5</div>
+      <div class="result-of">из 6</div>
     </div>
     <div class="result-level" id="rLevel"></div>
     <h1 class="result-title" id="rTitle"></h1>
     <p class="result-desc" id="rDesc"></p>
+
+    <!-- PERSONALIZED PROFILE -->
+    <div id="rProfile" style="background:var(--card);padding:28px;margin-bottom:32px;text-align:left">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">твой профиль мышления</div>
+      <div id="rProfileItems" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+
+    <!-- TERRITORY MAP -->
+    <div style="margin-bottom:48px;text-align:left">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px">карта территории</div>
+      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:24px">За 25 минут ты прошёл <strong style="color:var(--w)">6 принципов</strong> из всего поля системного мышления. Вот что ещё есть:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+        <div style="background:var(--y);padding:16px 20px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:6px">прошёл в курсе</div>
+          <div style="font-size:13px;font-weight:700;color:#000;line-height:1.6">Модель айсберга · Петли R/B · 12 точек рычага · Задержки · Эмерджентность · Вложенность</div>
+        </div>
+        <div style="background:var(--card);padding:16px 20px;border:1px solid var(--brd)">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--g);text-transform:uppercase;margin-bottom:6px">не вошло в курс</div>
+          <div style="font-size:13px;font-weight:700;color:var(--g);line-height:1.6">12 системных архетипов · Stock-and-flow · Системное моделирование · Динамическая сложность · Ментальные модели · Теория ограничений · Проектирование систем</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRINCIPLES -->
     <div class="result-principles">
       <div class="result-principle"><div class="result-principle-num">01</div><div class="result-principle-name">Ныряй глубже</div><div class="result-principle-sub">Повторяющаяся проблема = проблема структуры</div></div>
       <div class="result-principle"><div class="result-principle-num">02</div><div class="result-principle-name">Думай на 3 шага</div><div class="result-principle-sub">Нет изолированных решений. «А потом что?»</div></div>
       <div class="result-principle"><div class="result-principle-num">03</div><div class="result-principle-name">Видь петли</div><div class="result-principle-sub">Усиливай нужные, разрывай вредные</div></div>
       <div class="result-principle"><div class="result-principle-num">04</div><div class="result-principle-name">Ищи рычаг</div><div class="result-principle-sub">Не сильнее — а в правильном месте</div></div>
-      <div class="result-principle" style="grid-column:1/-1"><div class="result-principle-num">05</div><div class="result-principle-name">Учитывай задержку</div><div class="result-principle-sub">Когда придут последствия? Не бросай раньше</div></div>
+      <div class="result-principle"><div class="result-principle-num">05</div><div class="result-principle-name">Учитывай задержку</div><div class="result-principle-sub">Когда придут последствия? Не бросай раньше</div></div>
+      <div class="result-principle"><div class="result-principle-num">06</div><div class="result-principle-name">Смотри на взаимодействия</div><div class="result-principle-sub">Проблема может быть в среде, а не в людях</div></div>
     </div>
+
+    <!-- OBSERVATION TASK -->
+    <div style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">задание на неделю</div>
+      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Включи линзу</h3>
+      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:16px">Теперь ты видишь системы. И это нельзя развидеть.</p>
+      <p style="font-size:15px;color:var(--w);line-height:1.7;font-weight:600">В ближайшие 7 дней — запиши 3 примера из своей жизни или работы, где ты видишь:</p>
+      <ul style="margin:12px 0 0 24px;line-height:2;font-size:14px;color:var(--g)">
+        <li>Петлю обратной связи (усиливающую или балансирующую)</li>
+        <li>Задержку между действием и результатом</li>
+        <li>Свойство, которое возникло из взаимодействия, а не из отдельных частей</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
     <div class="result-cta">
       <div class="result-cta-label">следующий шаг</div>
       <h2 class="result-cta-title">Это была верхушка айсберга.</h2>
-      <p class="result-cta-desc">За 20 минут ты познакомился с 5 принципами системного мышления из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах.</p>
+      <p class="result-cta-desc">За 25 минут ты прошёл 6 принципов из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах: архетипы, моделирование, проектирование систем.</p>
       <a href="https://www.distill-school.ru" class="result-cta-btn">узнать про школу DISTILL →</a>
     </div>
-    <button class="result-retry" onclick="restart()">↺ пройти заново</button>
+    <button class="result-retry" onclick="restart()">&#8635; пройти заново</button>
   </div>
 </div>
 
@@ -923,11 +1093,15 @@
 // ===== GLOBALS =====
 let score = 0;
 
+// Track per-lesson correctness for profile
+const lessonCorrect = {1: null, 2: null, 3: null, 4: null, 5: null, 6: null};
+
 function goTo(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + n).classList.add('active');
   window.scrollTo(0, 0);
-  updateDots(n - 1);
+  if (typeof n === 'number') updateDots(n - 1);
+  else updateDots(6); // impossible/result
 }
 
 function startCourse() {
@@ -936,9 +1110,9 @@ function startCourse() {
 }
 
 function updateDots(a) {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 7; i++) {
     const d = document.getElementById('dot' + i);
-    d.className = 'nav-dot' + (i < a ? ' done' : i === a ? ' active' : '');
+    if (d) d.className = 'nav-dot' + (i < a ? ' done' : i === a ? ' active' : '');
   }
 }
 
@@ -966,6 +1140,18 @@ function restart() {
   document.querySelectorAll('.timeline-item').forEach(i => i.className = 'timeline-item');
   document.getElementById('tlSubmitBtn').disabled = false;
   document.getElementById('tlSubmitBtn').style.opacity = '1';
+  // Reset lesson 6
+  emergeDone = false;
+  initEmerge();
+  document.getElementById('emergeSubmitBtn').disabled = false;
+  document.getElementById('emergeSubmitBtn').style.opacity = '1';
+  // Reset impossible
+  impossibleDone = false;
+  initImpossible();
+  document.getElementById('impossibleSubmitBtn').disabled = false;
+  document.getElementById('impossibleSubmitBtn').style.opacity = '1';
+  // Reset profile tracking
+  Object.keys(lessonCorrect).forEach(k => lessonCorrect[k] = null);
   // Reset all feedback, recommendations, insights
   document.querySelectorAll('.feedback').forEach(f => { f.classList.remove('show'); f.textContent = ''; });
   document.querySelectorAll('.recommendation').forEach(r => r.classList.remove('show'));
@@ -974,7 +1160,7 @@ function restart() {
   // Go to hero
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-hero').classList.add('active');
-  for (let i = 0; i < 5; i++) document.getElementById('dot' + i).className = 'nav-dot';
+  for (let i = 0; i < 7; i++) { const d = document.getElementById('dot' + i); if(d) d.className = 'nav-dot'; }
   updSliders();
 }
 
@@ -1066,7 +1252,7 @@ function swipeAnswer(isSys) {
 
 function finishSwipe() {
   swipeDone = true;
-  if (swipeCorrect >= 4) score++;
+  if (swipeCorrect >= 4) { score++; lessonCorrect[1] = true; } else { lessonCorrect[1] = false; }
   const c = document.getElementById('fb1c');
   const w = document.getElementById('fb1w');
   if (swipeCorrect >= 5) {
@@ -1197,7 +1383,7 @@ function selectChainChoice(idx) {
 
 function finishChain() {
   chainDone = true;
-  if (chainCorrect >= 3) score++;
+  if (chainCorrect >= 3) { score++; lessonCorrect[2] = true; } else { lessonCorrect[2] = false; }
   const c = document.getElementById('fb2c');
   const w = document.getElementById('fb2w');
   document.getElementById('chainLabel').textContent = 'Цепочка построена!';
@@ -1269,11 +1455,12 @@ function submitSliders() {
   const linear = vals[0] + vals[1];
 
   if (systemic > linear && (vals[2] >= 25 || vals[3] >= 25)) {
-    score++;
+    score++; lessonCorrect[3] = true;
     c.textContent = '✓ Ты выбрал усиливающие петли! Продукт и аудитория — стратегии с растущей отдачей.';
     c.classList.add('show');
   } else {
-    w.textContent = '✗ Ты вложил большую часть времени в линейные стратегии. Это ловушка «больше работаешь = больше получаешь».';
+    lessonCorrect[3] = false;
+    w.textContent = '✕ Ты вложил большую часть времени в линейные стратегии. Это ловушка «больше работаешь = больше получаешь».';
     w.classList.add('show');
   }
   document.getElementById('sliderInsight').classList.add('show');
@@ -1356,10 +1543,11 @@ function submitSort() {
   const w = document.getElementById('fb4w');
   const c = document.getElementById('fb4c');
   if (ok >= 5) {
-    score++;
+    score++; lessonCorrect[4] = true;
     c.textContent = `✓ ${ok}/6 верно! Ты чувствуешь иерархию рычагов.`;
     c.classList.add('show');
   } else {
+    lessonCorrect[4] = false;
     w.textContent = `${ok}/6. Смотри разбор по каждому пункту ниже.`;
     w.classList.add('show');
   }
@@ -1403,16 +1591,17 @@ function submitTL() {
   const w = document.getElementById('fb5w');
   const c = document.getElementById('fb5c');
   if (selectedTL === 2) {
-    score++;
+    score++; lessonCorrect[5] = true;
     items[2].classList.remove('selected');
     items[2].classList.add('correct');
     c.textContent = '✓ Правильно! Месяц 4-6 — точка невозврата. Потери превышают экономию, но связь с решением размыта задержкой.';
     c.classList.add('show');
   } else {
+    lessonCorrect[5] = false;
     items[selectedTL].classList.remove('selected');
     items[selectedTL].classList.add('wrong');
     items[2].classList.add('correct');
-    w.textContent = '✗ Правильный ответ — месяц 4-6. Именно тогда потери превышают экономию, но задержка размыла связь с решением.';
+    w.textContent = '✕ Правильный ответ — месяц 4-6. Именно тогда потери превышают экономию, но задержка размыла связь с решением.';
     w.classList.add('show');
   }
   document.getElementById('tlInsight').classList.add('show');
@@ -1439,11 +1628,11 @@ function showResult() {
   window.scrollTo(0, 0);
   document.getElementById('rScore').textContent = score;
   let level, title, desc;
-  if (score <= 1) {
+  if (score <= 2) {
     level = 'ЛИНЕЙНЫЙ МЫСЛИТЕЛЬ';
     title = 'Ты думаешь как большинство.';
-    desc = 'Это нормально — мозг эволюционно заточен на линейные связи. Но теперь ты знаешь 5 принципов. Перечитай уроки и попробуй применить к своей ситуации.';
-  } else if (score <= 3) {
+    desc = 'Это нормально — мозг эволюционно заточен на линейные связи. Но теперь ты знаешь 6 принципов. Перечитай уроки и попробуй применить к своей ситуации.';
+  } else if (score <= 4) {
     level = 'НАЧИНАЮЩИЙ СИСТЕМЩИК';
     title = 'Ты видишь паттерны.';
     desc = 'Ты уже замечаешь петли и задержки. Это больше, чем 90% людей. Следующий шаг — научиться проектировать системы, а не только анализировать.';
@@ -1455,11 +1644,188 @@ function showResult() {
   document.getElementById('rLevel').textContent = level;
   document.getElementById('rTitle').textContent = title;
   document.getElementById('rDesc').textContent = desc;
-  updateDots(5);
+
+  // Build personalized profile
+  const profileDefs = [
+    { lesson: 1, topic: 'Линейное vs системное', ok: 'Видишь разницу между событием и структурой. Хорошо.', fail: 'Трудно отличить системное от линейного. Сосредоточься на вопросе: «Есть ли здесь паттерн?»' },
+    { lesson: 2, topic: 'Причинно-следственные цепочки', ok: 'Видишь непрямые последствия. Хорошо.', fail: 'Цепочки последствий даются с трудом. Практика: перед каждым решением спрашивай «А потом что?» 3 раза.' },
+    { lesson: 3, topic: 'Петли обратной связи', ok: 'Чувствуешь баланс между усиливающими и балансирующими петлями.', fail: 'Петли — слабое место. Практика: в любой ситуации спрашивай «Что усиливает это? Что балансирует?»' },
+    { lesson: 4, topic: 'Точки рычага', ok: 'Чувствуешь разницу между слабыми и сильными рычагами.', fail: 'Рычаги — слабое место. Практика: для каждой идеи спрашивай «Это параметр или структура?»' },
+    { lesson: 5, topic: 'Задержки в системах', ok: 'Чувствуешь тайминг системы. Хорошо.', fail: 'Задержки — слабое место. Практика: для каждого важного решения спрашивай: «Когда придут последствия?»' },
+    { lesson: 6, topic: 'Эмерджентность', ok: 'Видишь разницу между свойствами элементов и системы.', fail: 'Эмерджентность — слабое место. Практика: в проблеме спрашивай «В чём здесь взаимодействие?»' }
+  ];
+  const container = document.getElementById('rProfileItems');
+  container.innerHTML = '';
+  profileDefs.forEach(p => {
+    const isOk = lessonCorrect[p.lesson];
+    const color = isOk === null ? '#666' : isOk ? '#4ade80' : '#f87171';
+    const icon = isOk === null ? '○' : isOk ? '✓' : '✕';
+    const text = isOk === null ? 'не пройдено' : isOk ? p.ok : p.fail;
+    container.innerHTML += `<div style="display:flex;gap:12px;align-items:flex-start">
+      <div style="color:${color};font-weight:900;font-size:16px;min-width:20px;margin-top:1px">${icon}</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--w);margin-bottom:2px">${p.topic}</div><div style="font-size:13px;color:${color};line-height:1.5">${text}</div></div>
+    </div>`;
+  });
+
+  updateDots(7);
+}
+
+// ===== LESSON 6: EMERGE =====
+const emergeData = [
+  { text: 'Сознание (мозг)', emerge: true },
+  { text: 'Рыночная цена', emerge: true },
+  { text: 'Культура команды', emerge: true },
+  { text: 'Пробки на дороге', emerge: true },
+  { text: 'Температура воды', emerge: false },
+  { text: 'Скорость автомобиля', emerge: false }
+];
+let emergeDone = false;
+let emergeSelected = null;
+
+function initEmerge() {
+  emergeSelected = null;
+  const pool = document.getElementById('emergePool');
+  pool.innerHTML = '';
+  // Show all 6 as checkboxes - user picks which are emergent
+  emergeData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--card);border:1.5px solid var(--brd);cursor:pointer;margin-bottom:8px;transition:border-color .15s';
+    div.dataset.idx = i;
+    div.dataset.checked = 'false';
+    div.innerHTML = `<div class="emerge-check" style="width:20px;height:20px;border:2px solid var(--brd);flex-shrink:0"></div><span style="font-size:15px">${item.text}</span>`;
+    div.onclick = function() {
+      if (emergeDone) return;
+      const checked = this.dataset.checked === 'true';
+      this.dataset.checked = checked ? 'false' : 'true';
+      this.querySelector('.emerge-check').style.background = checked ? '' : 'var(--y)';
+      this.querySelector('.emerge-check').style.borderColor = checked ? 'var(--brd)' : 'var(--y)';
+      this.style.borderColor = checked ? 'var(--brd)' : 'var(--y)';
+    };
+    pool.appendChild(div);
+  });
+}
+
+function submitEmerge() {
+  if (emergeDone) return;
+  const items = document.querySelectorAll('#emergePool > div');
+  const selected = [];
+  items.forEach((item, i) => { if (item.dataset.checked === 'true') selected.push(i); });
+  if (selected.length === 0) {
+    document.getElementById('fb6w').textContent = 'Выбери хотя бы одно свойство.';
+    document.getElementById('fb6w').classList.add('show');
+    return;
+  }
+  emergeDone = true;
+  let correct = 0;
+  items.forEach((item, i) => {
+    const isEmerge = emergeData[i].emerge;
+    const wasChecked = item.dataset.checked === 'true';
+    if (isEmerge && wasChecked) {
+      item.style.borderColor = '#4ade80';
+      item.querySelector('.emerge-check').style.background = '#4ade80';
+      correct++;
+    } else if (!isEmerge && wasChecked) {
+      item.style.borderColor = '#f87171';
+      item.querySelector('.emerge-check').style.background = '#f87171';
+    } else if (isEmerge && !wasChecked) {
+      item.style.borderColor = '#facc15';
+      item.style.opacity = '0.7';
+    }
+  });
+  const allCorrect = correct === 4 && selected.length === 4;
+  const c = document.getElementById('fb6c');
+  const w = document.getElementById('fb6w');
+  if (allCorrect) {
+    score++;
+    lessonCorrect[6] = true;
+    c.textContent = '✓ Правильно! Сознание, цена, культура и пробки — эмерджентные свойства.';
+    c.classList.add('show');
+  } else {
+    lessonCorrect[6] = false;
+    w.textContent = '✕ Не совсем. Смотри разбор ниже.';
+    w.classList.add('show');
+  }
+  document.getElementById('emergeInsight').classList.add('show');
+  // Recommendation
+  const rec = document.getElementById('rec6');
+  const recText = document.getElementById('rec6text');
+  if (allCorrect) {
+    recText.innerHTML = '<strong>Ты чётко видишь разницу.</strong> Свойство элемента vs свойство системы — фундаментальное различие. Практика: в любой проблеме спрашивай «Это свойство части или системы?»';
+  } else {
+    recText.innerHTML = '<strong>Эмерджентность путает.</strong> Ключ: если свойство есть у каждого элемента отдельно — не эмерджентное. Если возникает только в системе — эмерджентное. Практика: спрашивай «Есть ли это свойство у отдельного элемента?»';
+  }
+  rec.classList.add('show');
+  document.getElementById('emergeSubmitBtn').disabled = true;
+  document.getElementById('emergeSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next6').style.display = 'block';
+}
+
+// ===== IMPOSSIBLE CASE =====
+const impossibleOptions = [
+  { text: 'Уволить гендиректора по продукту и нанять нового', level: 'weak', why: 'Параметр (уровень 9). Новый человек попадёт в ту же структуру и будет делать то же самое. Петля не разорвана.' },
+  { text: 'Снизить темп роста до 20% в год и сосредоточиться на качестве', level: 'medium', why: 'Структура (уровень 4-5). Сильнее: меняешь соотношение между ростом и качеством. Но петля всё ещё замкнута.' },
+  { text: 'Изменить цель системы: расти не любой ценой, а только если качество выше X', level: 'strong', why: 'Цель (уровень 3). Самый сильный рычаг. Если система оптимизирует рост любой ценой — она будет жертвовать качеством. Но если цель — расти только с хорошим качеством — петля разрывается.' }
+];
+let impossibleDone = false;
+let impossibleSelected = null;
+
+function initImpossible() {
+  impossibleSelected = null;
+  const container = document.getElementById('impossibleOptions');
+  container.innerHTML = '';
+  impossibleOptions.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:18px 20px;background:var(--card);border:1.5px solid var(--brd);cursor:pointer;font-size:15px;line-height:1.6;transition:border-color .15s';
+    div.textContent = opt.text;
+    div.dataset.idx = i;
+    div.onclick = function() {
+      if (impossibleDone) return;
+      document.querySelectorAll('#impossibleOptions > div').forEach(d => d.style.borderColor = 'var(--brd)');
+      this.style.borderColor = 'var(--y)';
+      impossibleSelected = i;
+    };
+    container.appendChild(div);
+  });
+}
+
+function submitImpossible() {
+  if (impossibleDone) return;
+  if (impossibleSelected === null) {
+    document.getElementById('fbIw').textContent = 'Выбери вариант.';
+    document.getElementById('fbIw').classList.add('show');
+    return;
+  }
+  impossibleDone = true;
+  const opt = impossibleOptions[impossibleSelected];
+  const items = document.querySelectorAll('#impossibleOptions > div');
+  const c = document.getElementById('fbIc');
+  const w = document.getElementById('fbIw');
+  const insight = document.getElementById('impossibleInsight');
+  if (opt.level === 'strong') {
+    items[impossibleSelected].style.borderColor = '#4ade80';
+    c.textContent = '✓ Ты выбрал самый сильный рычаг — цель системы.';
+    c.classList.add('show');
+  } else {
+    items[impossibleSelected].style.borderColor = '#f87171';
+    items[2].style.borderColor = '#4ade80';
+    w.textContent = '✕ Самый сильный рычаг — цель системы (3).';
+    w.classList.add('show');
+  }
+  insight.innerHTML = `<p><strong style="color:var(--y)">Разбор по уровням Медоуз:</strong></p>
+    <p>• <strong>Уволить гендиректора</strong> — уровень 9 (параметр). ${impossibleOptions[0].why}</p>
+    <p>• <strong>Снизить темп роста</strong> — уровень 4-5 (структура). ${impossibleOptions[1].why}</p>
+    <p>• <strong>Изменить цель</strong> — уровень 3 (цель). ${impossibleOptions[2].why}</p>
+    <p style="margin-top:16px"><strong>Но вот что важно:</strong> даже изменение цели — не гарантия. Если новая цель не воспринимается системой — она будет саботироваться. Именно поэтому системные архетипы — следующий уровень после этого курса. В школе DISTILL мы разбираем 12 архетипов и учимся проектировать системы, а не только анализировать.</p>`;
+  insight.classList.add('show');
+  document.getElementById('impossibleSubmitBtn').disabled = true;
+  document.getElementById('impossibleSubmitBtn').style.opacity = '0.4';
+  document.getElementById('nextImpossible').style.display = 'block';
 }
 
 // Init budget display
 updSliders();
+initEmerge();
+initImpossible();
 </script>
 </body>
 </html>
