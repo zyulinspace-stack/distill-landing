@@ -1,0 +1,98 @@
+<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" style="background:#111">
+  <!-- Tim Urban style: clean stick figures with personality, thick lines, expressive faces, thought bubbles -->
+  
+  <!-- Person 1: confused, scratching head -->
+  <g transform="translate(60, 20)">
+    <!-- Head -->
+    <circle cx="40" cy="40" r="24" fill="none" stroke="#c8ff00" stroke-width="3"/>
+    <!-- Eyes: confused, one raised eyebrow -->
+    <circle cx="32" cy="36" r="3" fill="#c8ff00"/>
+    <circle cx="48" cy="36" r="3" fill="#c8ff00"/>
+    <line x1="27" y1="28" x2="37" y2="30" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M43 28 Q48 25 53 29" fill="none" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Mouth: confused squiggle -->
+    <path d="M30 50 Q35 54 40 50 Q45 46 50 50" fill="none" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Body -->
+    <line x1="40" y1="64" x2="40" y2="130" stroke="#c8ff00" stroke-width="3"/>
+    <!-- Arms: one scratching head -->
+    <path d="M40 85 L15 110" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M40 80 L60 60 L55 35" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <!-- Legs -->
+    <line x1="40" y1="130" x2="25" y2="175" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="130" x2="55" y2="175" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <!-- Question marks floating -->
+    <text x="70" y="25" fill="#c8ff00" font-size="18" font-weight="900" opacity="0.8">?</text>
+    <text x="80" y="45" fill="#c8ff00" font-size="14" font-weight="900" opacity="0.5">?</text>
+  </g>
+
+  <!-- Arrow: linear thinking -->
+  <g transform="translate(155, 70)">
+    <line x1="0" y1="40" x2="60" y2="40" stroke="#555" stroke-width="2" stroke-dasharray="6 4"/>
+    <polygon points="60,35 72,40 60,45" fill="#555"/>
+    <text x="36" y="25" text-anchor="middle" fill="#555" font-size="10" font-weight="700" letter-spacing="1">A → B</text>
+    <text x="36" y="60" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ЛИНЕЙНО</text>
+  </g>
+
+  <!-- Simple box: "solution" that doesn't work -->
+  <g transform="translate(230, 50)">
+    <rect x="0" y="20" width="70" height="50" rx="4" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="35" y="42" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">РЕШЕНИЕ</text>
+    <text x="35" y="57" text-anchor="middle" fill="#f87171" font-size="9">«нанять ещё»</text>
+    <!-- X mark -->
+    <line x1="55" y1="25" x2="65" y2="35" stroke="#f87171" stroke-width="2.5"/>
+    <line x1="65" y1="25" x2="55" y2="35" stroke="#f87171" stroke-width="2.5"/>
+  </g>
+
+  <!-- VS divider -->
+  <text x="250" y="150" text-anchor="middle" fill="#333" font-size="12" font-weight="900" letter-spacing="3">VS</text>
+
+  <!-- Person 2: enlightened, seeing the system -->
+  <g transform="translate(340, 20)">
+    <!-- Head -->
+    <circle cx="40" cy="40" r="24" fill="none" stroke="#c8ff00" stroke-width="3"/>
+    <!-- Eyes: wide open, seeing -->
+    <circle cx="32" cy="36" r="4" fill="none" stroke="#c8ff00" stroke-width="2"/>
+    <circle cx="32" cy="36" r="2" fill="#c8ff00"/>
+    <circle cx="48" cy="36" r="4" fill="none" stroke="#c8ff00" stroke-width="2"/>
+    <circle cx="48" cy="36" r="2" fill="#c8ff00"/>
+    <!-- Eyebrows: raised -->
+    <path d="M26 26 Q32 22 38 26" fill="none" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M42 26 Q48 22 54 26" fill="none" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Mouth: small 'o' of understanding -->
+    <circle cx="40" cy="52" r="5" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
+    <!-- Body -->
+    <line x1="40" y1="64" x2="40" y2="130" stroke="#c8ff00" stroke-width="3"/>
+    <!-- Arms: pointing at the system -->
+    <path d="M40 85 L15 105" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M40 85 L70 75" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <!-- Legs -->
+    <line x1="40" y1="130" x2="25" y2="175" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="130" x2="55" y2="175" stroke="#c8ff00" stroke-width="3" stroke-linecap="round"/>
+    <!-- Lightbulb -->
+    <circle cx="65" cy="15" r="10" fill="none" stroke="#c8ff00" stroke-width="2"/>
+    <line x1="65" y1="8" x2="65" y2="4" stroke="#c8ff00" stroke-width="2"/>
+    <line x1="58" y1="10" x2="55" y2="7" stroke="#c8ff00" stroke-width="1.5"/>
+    <line x1="72" y1="10" x2="75" y2="7" stroke="#c8ff00" stroke-width="1.5"/>
+    <!-- Rays -->
+    <line x1="65" y1="0" x2="65" y2="-4" stroke="#c8ff00" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- System loops: circular arrows -->
+  <g transform="translate(410, 60)">
+    <!-- Loop circle -->
+    <circle cx="40" cy="45" r="28" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+    <!-- Arrowhead on circle -->
+    <polygon points="55,20 65,25 57,30" fill="#4ade80"/>
+    <!-- Inner connections -->
+    <circle cx="30" cy="35" r="4" fill="#4ade80" opacity="0.6"/>
+    <circle cx="50" cy="35" r="4" fill="#4ade80" opacity="0.6"/>
+    <circle cx="40" cy="60" r="4" fill="#4ade80" opacity="0.6"/>
+    <line x1="32" y1="37" x2="48" y2="37" stroke="#4ade80" stroke-width="1.5" opacity="0.6"/>
+    <line x1="49" y1="37" x2="41" y2="58" stroke="#4ade80" stroke-width="1.5" opacity="0.6"/>
+    <line x1="39" y1="58" x2="31" y2="37" stroke="#4ade80" stroke-width="1.5" opacity="0.6"/>
+    <text x="40" y="90" text-anchor="middle" fill="#4ade80" font-size="10" font-weight="700">СИСТЕМНО</text>
+  </g>
+
+  <!-- Bottom caption -->
+  <text x="250" y="210" text-anchor="middle" fill="#666" font-size="11" font-weight="500">Линейный мыслитель ищет виноватого. Системный — ищет структуру.</text>
+</svg>

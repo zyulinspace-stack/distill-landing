@@ -50,8 +50,9 @@
     .article .highlight strong{color:var(--y)}
     .article .metaphor{background:var(--card);border:1px solid var(--brd);padding:28px 32px;margin:32px 0;font-size:16px;color:var(--lg);line-height:1.8}
     .article .metaphor::before{content:'💡';display:block;margin-bottom:12px;font-size:24px}
-    .illustration{background:#0d0d0d;border:1px solid var(--brd);padding:40px;margin:40px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .illustration{background:#0d0d0d;border:1px solid var(--brd);padding:24px;margin:40px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
     .illustration svg{max-width:100%;height:auto}
+    .illustration img{max-width:100%;height:auto;border-radius:4px}
     .illustration .caption{font-size:13px;color:var(--g);margin-top:12px;font-style:italic}
     .iceberg{background:#0d0d0d;border:1px solid var(--brd);padding:40px 32px;margin:40px 0}
     .iceberg-level{padding:16px 24px;margin-bottom:2px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:16px}
@@ -247,53 +248,8 @@
       <p>Представь: тебе холодно. Ты подходишь к термостату и ставишь 30°C. Ждёшь 5 минут. Всё ещё холодно. Ставишь 35°C. Ждёшь ещё. Ставишь 40°C. Через полчаса ты сидишь в сауне, потеешь и думаешь: <strong>«Какого чёрта?»</strong></p>
 
       <div class="illustration">
-        <svg width="500" height="240" viewBox="0 0 500 240">
-          <!-- Person 1 - frustrated -->
-          <circle cx="80" cy="65" r="22" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <circle cx="72" cy="60" r="2" fill="#c8ff00"/>
-          <circle cx="88" cy="60" r="2" fill="#c8ff00"/>
-          <path d="M70 73 Q80 68 90 73" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
-          <line x1="80" y1="87" x2="80" y2="140" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="80" y1="105" x2="55" y2="130" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="80" y1="105" x2="120" y2="95" stroke="#c8ff00" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="80" y1="140" x2="65" y2="180" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="80" y1="140" x2="95" y2="180" stroke="#c8ff00" stroke-width="2.5"/>
-          <!-- Sweat drops -->
-          <circle cx="55" cy="55" r="3" fill="#4488ff" opacity=".7"/>
-          <circle cx="105" cy="50" r="3" fill="#4488ff" opacity=".7"/>
-          <circle cx="60" cy="75" r="2.5" fill="#4488ff" opacity=".6"/>
-          <!-- Thermostat -->
-          <rect x="125" y="50" width="50" height="70" rx="6" fill="none" stroke="#888" stroke-width="2"/>
-          <rect x="130" y="55" width="40" height="30" rx="3" fill="#1a1a1a"/>
-          <text x="150" y="76" text-anchor="middle" fill="#ff3b3b" font-size="20" font-weight="900">40°</text>
-          <circle cx="150" cy="105" r="8" fill="none" stroke="#888" stroke-width="1.5"/>
-          <line x1="150" y1="100" x2="150" y2="97" stroke="#888" stroke-width="2"/>
-          <!-- Speech bubble -->
-          <rect x="195" y="25" width="200" height="55" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
-          <polygon points="195,52 185,60 195,58" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
-          <text x="295" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="500">«Не работает! Ещё крутану!»</text>
-          <text x="295" y="68" text-anchor="middle" fill="#888" font-size="11">— каждый из нас, всегда</text>
-          <!-- Delay arrow -->
-          <text x="250" y="140" text-anchor="middle" fill="#888" font-size="10" font-weight="700" letter-spacing="2">ЗАДЕРЖКА 20 МИНУТ</text>
-          <line x1="200" y1="150" x2="380" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <polygon points="380,146 390,150 380,154" fill="#888"/>
-          <!-- Person 2 - melting -->
-          <circle cx="420" cy="65" r="22" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
-          <circle cx="412" cy="60" r="2" fill="#ff3b3b"/>
-          <circle cx="428" cy="60" r="2" fill="#ff3b3b"/>
-          <path d="M410 75 Q420 80 430 75" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="420" y1="87" x2="420" y2="140" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="420" y1="105" x2="395" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="420" y1="105" x2="445" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="420" y1="140" x2="405" y2="180" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="420" y1="140" x2="435" y2="180" stroke="#ff3b3b" stroke-width="2.5"/>
-          <!-- Heat waves -->
-          <path d="M400 35 Q405 25 410 35" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
-          <path d="M420 30 Q425 20 430 30" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
-          <path d="M440 35 Q445 25 450 35" fill="none" stroke="#ff3b3b" stroke-width="1.5" opacity=".6"/>
-          <text x="420" y="200" text-anchor="middle" fill="#ff3b3b" font-size="13" font-weight="700">+40°C</text>
-        </svg>
-        <div class="caption">Классическая ошибка: не учитывать задержку в системе</div>
+        <img src="illus_sample.png" alt="Линейное vs системное мышление" style="width:100%;max-width:700px">
+        <div class="caption">Линейный мыслитель ищет виноватого. Системный — ищет структуру.</div>
       </div>
 
       <p>Это не история про термостат. Это история про то, как работает твой мозг.</p>
@@ -387,51 +343,8 @@
       <p>А потом люди поняли: зачем ловить диких кобр, если можно <em>разводить</em> их? Дешевле, безопаснее, прибыльнее.</p>
 
       <div class="illustration">
-        <svg width="520" height="220" viewBox="0 0 520 220">
-          <!-- Bureaucrat -->
-          <circle cx="60" cy="55" r="20" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <circle cx="53" cy="50" r="2" fill="#c8ff00"/>
-          <circle cx="67" cy="50" r="2" fill="#c8ff00"/>
-          <path d="M52 62 Q60 67 68 62" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
-          <line x1="60" y1="75" x2="60" y2="125" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="60" y1="95" x2="40" y2="115" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="60" y1="95" x2="80" y2="115" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="60" y1="125" x2="45" y2="160" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="60" y1="125" x2="75" y2="160" stroke="#c8ff00" stroke-width="2.5"/>
-          <!-- Top hat -->
-          <rect x="47" y="25" width="26" height="12" rx="2" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <rect x="50" y="12" width="20" height="15" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <text x="60" y="185" text-anchor="middle" fill="#888" font-size="10">чиновник</text>
-          <text x="60" y="198" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">«гениально!»</text>
-          <!-- Arrow 1 -->
-          <line x1="100" y1="90" x2="140" y2="90" stroke="#888" stroke-width="2"/>
-          <polygon points="140,86 150,90 140,94" fill="#888"/>
-          <!-- Cobra farm -->
-          <rect x="160" y="45" width="100" height="90" rx="4" fill="none" stroke="#888" stroke-width="2"/>
-          <text x="210" y="70" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ферма кобр</text>
-          <path d="M180 85 Q185 80 190 85 Q195 90 200 85" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <path d="M200 95 Q205 90 210 95 Q215 100 220 95" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <path d="M185 105 Q190 100 195 105 Q200 110 205 105" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <text x="210" y="145" text-anchor="middle" fill="#888" font-size="10">люди разводят</text>
-          <text x="210" y="158" text-anchor="middle" fill="#888" font-size="10">кобр за деньги</text>
-          <!-- Arrow 2 -->
-          <line x1="270" y1="90" x2="310" y2="90" stroke="#888" stroke-width="2"/>
-          <polygon points="310,86 320,90 310,94" fill="#888"/>
-          <!-- Cancel -->
-          <rect x="330" y="45" width="80" height="40" rx="4" fill="none" stroke="#ff3b3b" stroke-width="2"/>
-          <text x="370" y="62" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">ОТМЕНА</text>
-          <text x="370" y="76" text-anchor="middle" fill="#ff3b3b" font-size="10">программы</text>
-          <!-- Arrow down -->
-          <line x1="370" y1="90" x2="370" y2="110" stroke="#ff3b3b" stroke-width="2"/>
-          <polygon points="366,110 370,120 374,110" fill="#ff3b3b"/>
-          <!-- Released cobras -->
-          <text x="370" y="140" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">все кобры</text>
-          <text x="370" y="155" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">на воле!</text>
-          <!-- Result -->
-          <rect x="340" y="170" width="160" height="35" rx="4" fill="rgba(255,59,59,.1)" stroke="#ff3b3b" stroke-width="2"/>
-          <text x="420" y="192" text-anchor="middle" fill="#ff3b3b" font-size="14" font-weight="900">КОБР СТАЛО ×3</text>
-        </svg>
-        <div class="caption">«Эффект кобры» — когда решение создаёт проблему хуже исходной</div>
+        <img src="illus_l2.png" alt="Цепочка последствий — эффект домино" style="width:100%;max-width:700px">
+        <div class="caption">Каждое действие создаёт цепочку последствий. Видишь ли ты её конец?</div>
       </div>
 
       <p>Когда правительство узнало про фермы и отменило программу — люди выпустили всех кобр на волю. Итог: кобр стало <strong>больше, чем до начала</strong>.</p>
@@ -461,30 +374,8 @@
       <p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Ты нашёл что-то, что работает. Растёшь. Всё отлично. А потом — <em>бам</em>. Стена.</p>
 
       <div class="illustration">
-        <svg width="460" height="200" viewBox="0 0 460 200">
-          <!-- Graph -->
-          <line x1="50" y1="170" x2="420" y2="170" stroke="#888" stroke-width="1.5"/>
-          <line x1="50" y1="170" x2="50" y2="30" stroke="#888" stroke-width="1.5"/>
-          <!-- Growth curve -->
-          <path d="M60 165 Q120 155 160 130 Q200 100 230 65 Q250 45 270 40 Q290 38 310 45 Q340 60 370 100 Q390 130 410 160" fill="none" stroke="#c8ff00" stroke-width="3"/>
-          <!-- Limit line -->
-          <line x1="50" y1="40" x2="420" y2="40" stroke="#ff3b3b" stroke-width="1.5" stroke-dasharray="8 4"/>
-          <text x="425" y="44" fill="#ff3b3b" font-size="11" font-weight="700">предел</text>
-          <!-- Labels -->
-          <text x="110" y="190" fill="#c8ff00" font-size="11" font-weight="600">«работает!»</text>
-          <text x="220" y="190" fill="#c8ff00" font-size="11" font-weight="600">«ещё больше!»</text>
-          <text x="340" y="190" fill="#ff3b3b" font-size="11" font-weight="600">«почему?!»</text>
-          <!-- Stickman at peak -->
-          <circle cx="270" cy="20" r="8" fill="none" stroke="#c8ff00" stroke-width="1.5"/>
-          <line x1="270" y1="28" x2="270" y2="38" stroke="#c8ff00" stroke-width="1.5"/>
-          <!-- Stickman falling -->
-          <circle cx="380" cy="85" r="8" fill="none" stroke="#ff3b3b" stroke-width="1.5"/>
-          <line x1="380" y1="93" x2="380" y2="103" stroke="#ff3b3b" stroke-width="1.5"/>
-          <line x1="380" y1="97" x2="372" y2="105" stroke="#ff3b3b" stroke-width="1.5"/>
-          <line x1="380" y1="97" x2="388" y2="105" stroke="#ff3b3b" stroke-width="1.5"/>
-          <text x="395" y="90" fill="#ff3b3b" font-size="10">!!!</text>
-        </svg>
-        <div class="caption">Архетип «Пределы роста»: то, что работало — перестаёт работать</div>
+        <img src="illus_l3.png" alt="Петли обратной связи R и B" style="width:100%;max-width:700px">
+        <div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
       </div>
 
       <p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint). Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
@@ -534,37 +425,8 @@
       <p>Смотри: у тебя есть деньги → ты инвестируешь → получаешь доход → у тебя больше денег → инвестируешь больше → доход больше → ... Это <strong>усиливающая петля</strong>. Снежный ком. Чем больше — тем больше.</p>
 
       <div class="illustration">
-        <svg width="520" height="260" viewBox="0 0 520 260">
-          <!-- Reinforcing loop -->
-          <text x="130" y="22" text-anchor="middle" fill="#c8ff00" font-size="13" font-weight="900" letter-spacing="1">УСИЛИВАЮЩАЯ (R)</text>
-          <circle cx="130" cy="120" r="55" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <!-- Arrow on circle -->
-          <polygon points="175,110 180,120 170,120" fill="#c8ff00"/>
-          <!-- Labels around R loop -->
-          <text x="130" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">больше денег</text>
-          <text x="195" y="125" text-anchor="start" fill="#fff" font-size="12" font-weight="600">инвестиции</text>
-          <text x="130" y="185" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">доход</text>
-          <text x="65" y="125" text-anchor="end" fill="#fff" font-size="12" font-weight="600">рост</text>
-          <!-- Snowball stickman -->
-          <circle cx="130" cy="215" r="10" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <line x1="130" y1="225" x2="130" y2="245" stroke="#c8ff00" stroke-width="2"/>
-          <text x="130" y="258" text-anchor="middle" fill="#888" font-size="10">снежный ком ↑↑↑</text>
-
-          <!-- Balancing loop -->
-          <text x="390" y="22" text-anchor="middle" fill="#00ff88" font-size="13" font-weight="900" letter-spacing="1">БАЛАНСИРУЮЩАЯ (B)</text>
-          <circle cx="390" cy="120" r="55" fill="none" stroke="#00ff88" stroke-width="2.5"/>
-          <polygon points="435,110 440,120 430,120" fill="#00ff88"/>
-          <!-- Labels around B loop -->
-          <text x="390" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">голод</text>
-          <text x="455" y="125" text-anchor="start" fill="#fff" font-size="12" font-weight="600">ешь</text>
-          <text x="390" y="185" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">сыт</text>
-          <text x="325" y="125" text-anchor="end" fill="#fff" font-size="12" font-weight="600">стоп</text>
-          <!-- Thermostat icon -->
-          <rect x="375" y="205" width="30" height="40" rx="4" fill="none" stroke="#00ff88" stroke-width="1.5"/>
-          <line x1="383" y1="225" x2="407" y2="225" stroke="#00ff88" stroke-width="1"/>
-          <text x="390" y="258" text-anchor="middle" fill="#888" font-size="10">термостат ⚖️</text>
-        </svg>
-        <div class="caption">Два типа петель: усиливающая (R) разгоняет, балансирующая (B) стабилизирует</div>
+        <img src="illus_l3.png" alt="Петли обратной связи R и B" style="width:100%;max-width:700px">
+        <div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
       </div>
 
       <h3>Два типа петель</h3>
@@ -668,50 +530,8 @@
       <p>Представь: ты стоишь перед огромным валуном. Он загораживает дорогу. Ты можешь толкать его изо всех сил — и сдвинуть на сантиметр. Или ты можешь найти <strong>правильную точку</strong>, подставить рычаг — и сдвинуть его одним движением.</p>
 
       <div class="illustration">
-        <svg width="500" height="220" viewBox="0 0 500 220">
-          <!-- Person pushing (wrong way) -->
-          <circle cx="60" cy="80" r="18" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
-          <circle cx="53" cy="76" r="2" fill="#ff3b3b"/>
-          <circle cx="67" cy="76" r="2" fill="#ff3b3b"/>
-          <path d="M53 87 Q60 92 67 87" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="60" y1="98" x2="60" y2="140" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="60" y1="115" x2="85" y2="100" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="60" y1="140" x2="45" y2="175" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="60" y1="140" x2="75" y2="175" stroke="#ff3b3b" stroke-width="2.5"/>
-          <!-- Sweat -->
-          <circle cx="40" cy="70" r="3" fill="#4488ff" opacity=".6"/>
-          <circle cx="80" cy="65" r="2.5" fill="#4488ff" opacity=".5"/>
-          <!-- Boulder -->
-          <ellipse cx="120" cy="130" rx="35" ry="45" fill="none" stroke="#888" stroke-width="3"/>
-          <text x="120" y="135" text-anchor="middle" fill="#888" font-size="12" font-weight="700">проблема</text>
-          <!-- Tiny movement -->
-          <text x="120" y="195" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">сдвиг: 1 см</text>
-
-          <!-- VS -->
-          <text x="220" y="130" text-anchor="middle" fill="#888" font-size="18" font-weight="900">vs</text>
-
-          <!-- Person with lever (right way) -->
-          <circle cx="300" cy="100" r="18" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <circle cx="293" cy="96" r="2" fill="#c8ff00"/>
-          <circle cx="307" cy="96" r="2" fill="#c8ff00"/>
-          <path d="M293 107 Q300 112 307 107" fill="none" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/>
-          <line x1="300" y1="118" x2="300" y2="155" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="300" y1="135" x2="325" y2="120" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="300" y1="155" x2="285" y2="185" stroke="#c8ff00" stroke-width="2.5"/>
-          <line x1="300" y1="155" x2="315" y2="185" stroke="#c8ff00" stroke-width="2.5"/>
-          <!-- Lever -->
-          <line x1="325" y1="120" x2="400" y2="160" stroke="#c8ff00" stroke-width="3"/>
-          <!-- Fulcrum -->
-          <polygon points="360,170 370,185 350,185" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <!-- Boulder moving -->
-          <ellipse cx="420" cy="130" rx="35" ry="45" fill="none" stroke="#888" stroke-width="3"/>
-          <text x="420" y="135" text-anchor="middle" fill="#888" font-size="12" font-weight="700">проблема</text>
-          <!-- Big movement arrow -->
-          <line x1="430" y1="80" x2="470" y2="60" stroke="#c8ff00" stroke-width="2.5"/>
-          <polygon points="468,52 478,56 470,64" fill="#c8ff00"/>
-          <text x="420" y="195" text-anchor="middle" fill="#c8ff00" font-size="11" font-weight="700">сдвиг: 10 метров</text>
-        </svg>
-        <div class="caption">Не сильнее — а в правильном месте</div>
+        <img src="illus_l4.png" alt="12 точек рычага по Медоуз" style="width:100%;max-width:700px">
+        <div class="caption">Не сильнее — а в правильном месте. Медоуз: 12 точек рычага.</div>
       </div>
 
       <p>Это метафора одного из самых мощных концептов в системном мышлении — <strong>точки рычага</strong> (leverage points).</p>
@@ -776,49 +596,8 @@
       <p>А твой сосед посадил то же дерево 3 года назад. И сейчас сидит в тени.</p>
 
       <div class="illustration">
-        <svg width="500" height="220" viewBox="0 0 500 220">
-          <!-- Person 1 - digging up -->
-          <circle cx="80" cy="70" r="18" fill="none" stroke="#ff3b3b" stroke-width="2.5"/>
-          <circle cx="73" cy="66" r="2" fill="#ff3b3b"/>
-          <circle cx="87" cy="66" r="2" fill="#ff3b3b"/>
-          <path d="M73 77 Q80 72 87 77" fill="none" stroke="#ff3b3b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="80" y1="88" x2="80" y2="130" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="80" y1="108" x2="55" y2="125" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="80" y1="108" x2="105" y2="100" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="80" y1="130" x2="65" y2="165" stroke="#ff3b3b" stroke-width="2.5"/>
-          <line x1="80" y1="130" x2="95" y2="165" stroke="#ff3b3b" stroke-width="2.5"/>
-          <!-- Dead seedlings -->
-          <line x1="40" y1="170" x2="40" y2="155" stroke="#888" stroke-width="1.5"/>
-          <line x1="60" y1="170" x2="60" y2="158" stroke="#888" stroke-width="1.5"/>
-          <line x1="100" y1="170" x2="100" y2="160" stroke="#888" stroke-width="1.5"/>
-          <line x1="120" y1="170" x2="120" y2="156" stroke="#888" stroke-width="1.5"/>
-          <line x1="30" y1="170" x2="140" y2="170" stroke="#888" stroke-width="1.5"/>
-          <text x="80" y="190" text-anchor="middle" fill="#ff3b3b" font-size="11" font-weight="700">4 попытки за год</text>
-          <text x="80" y="205" text-anchor="middle" fill="#888" font-size="10">результат: 0</text>
-
-          <!-- VS -->
-          <text x="220" y="130" text-anchor="middle" fill="#888" font-size="18" font-weight="900">vs</text>
-
-          <!-- Person 2 - relaxing under tree -->
-          <circle cx="340" cy="110" r="18" fill="none" stroke="#00ff88" stroke-width="2.5"/>
-          <circle cx="333" cy="106" r="2" fill="#00ff88"/>
-          <circle cx="347" cy="106" r="2" fill="#00ff88"/>
-          <path d="M333 117 Q340 122 347 117" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
-          <line x1="340" y1="128" x2="340" y2="160" stroke="#00ff88" stroke-width="2.5"/>
-          <line x1="340" y1="145" x2="320" y2="155" stroke="#00ff88" stroke-width="2.5"/>
-          <line x1="340" y1="145" x2="360" y2="155" stroke="#00ff88" stroke-width="2.5"/>
-          <line x1="340" y1="160" x2="325" y2="185" stroke="#00ff88" stroke-width="2.5"/>
-          <line x1="340" y1="160" x2="355" y2="185" stroke="#00ff88" stroke-width="2.5"/>
-          <!-- Tree -->
-          <line x1="400" y1="185" x2="400" y2="80" stroke="#888" stroke-width="4"/>
-          <circle cx="400" cy="55" r="40" fill="none" stroke="#c8ff00" stroke-width="2.5"/>
-          <circle cx="380" cy="45" r="25" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <circle cx="420" cy="50" r="28" fill="none" stroke="#c8ff00" stroke-width="2"/>
-          <text x="400" y="60" text-anchor="middle" fill="#c8ff00" font-size="10" font-weight="700">3 года</text>
-          <line x1="300" y1="185" x2="460" y2="185" stroke="#888" stroke-width="1.5"/>
-          <text x="400" y="205" text-anchor="middle" fill="#00ff88" font-size="11" font-weight="700">1 попытка + терпение</text>
-        </svg>
-        <div class="caption">Задержка наказывает нетерпеливых и награждает тех, кто понимает тайминг</div>
+        <img src="illus_l5.png" alt="Задержки в системах" style="width:100%;max-width:700px">
+        <div class="caption">Системы реагируют с задержкой. Ты уже посеял то, что пожнёшь через полгода.</div>
       </div>
 
       <p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную особенность сложных систем.</p>
@@ -912,45 +691,8 @@
       <p>Это — <strong>эмерджентность</strong>. Свойство, которое возникает в системе, но отсутствует в отдельных её элементах.</p>
 
       <div class="illustration">
-        <svg width="500" height="200" viewBox="0 0 500 200">
-          <!-- Single ant -->
-          <ellipse cx="60" cy="120" rx="12" ry="7" fill="none" stroke="#888" stroke-width="2"/>
-          <circle cx="60" cy="110" r="5" fill="none" stroke="#888" stroke-width="2"/>
-          <line x1="52" y1="118" x2="44" y2="128" stroke="#888" stroke-width="1.5"/>
-          <line x1="60" y1="127" x2="60" y2="140" stroke="#888" stroke-width="1.5"/>
-          <line x1="68" y1="118" x2="76" y2="128" stroke="#888" stroke-width="1.5"/>
-          <text x="60" y="158" text-anchor="middle" fill="#888" font-size="11" font-family="Inter">1 муравей</text>
-          <text x="60" y="172" text-anchor="middle" fill="#555" font-size="10" font-family="Inter">просто ходит</text>
-          <!-- Arrow -->
-          <text x="150" y="115" text-anchor="middle" fill="#c8ff00" font-size="28" font-weight="900">+</text>
-          <!-- Colony -->
-          <g transform="translate(220, 70)">
-            <!-- Bridge structure -->
-            <path d="M0 80 Q30 40 60 80" fill="none" stroke="#c8ff00" stroke-width="3"/>
-            <!-- Ants on bridge -->
-            <circle cx="15" cy="65" r="4" fill="#c8ff00"/>
-            <circle cx="30" cy="55" r="4" fill="#c8ff00"/>
-            <circle cx="45" cy="60" r="4" fill="#c8ff00"/>
-            <!-- Ground ants -->
-            <circle cx="5" cy="85" r="3" fill="#c8ff00"/>
-            <circle cx="55" cy="85" r="3" fill="#c8ff00"/>
-            <circle cx="30" cy="90" r="3" fill="#c8ff00"/>
-            <!-- Tunnel entrance -->
-            <ellipse cx="30" cy="95" rx="15" ry="6" fill="none" stroke="#c8ff00" stroke-width="2"/>
-            <text x="30" y="115" text-anchor="middle" fill="#c8ff00" font-size="11" font-family="Inter">100 муравьёв</text>
-            <text x="30" y="129" text-anchor="middle" fill="#c8ff00" font-size="10" font-family="Inter">колония</text>
-          </g>
-          <!-- Equals -->
-          <text x="340" y="115" text-anchor="middle" fill="#c8ff00" font-size="28" font-weight="900">=</text>
-          <!-- Emergent properties -->
-          <g transform="translate(380, 60)">
-            <text x="0" y="20" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">дороги</text>
-            <text x="0" y="40" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">мосты</text>
-            <text x="0" y="60" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">защита</text>
-            <text x="0" y="80" fill="#c8ff00" font-size="12" font-family="Inter" font-weight="700">роли</text>
-            <text x="0" y="105" fill="#888" font-size="10" font-family="Inter">эмерджентность</text>
-          </g>
-        </svg>
+        <img src="illus_l6.png" alt="Эмерджентность — целое больше суммы частей" style="width:100%;max-width:700px">
+        <div class="caption">Эмерджентность: целое больше суммы частей. Это не метафора — это факт.</div>
       </div>
 
       <p>Другие примеры эмерджентности:</p>
