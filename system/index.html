@@ -196,6 +196,7 @@
       .result-cta{padding:32px 20px}
       .chain-built{flex-wrap:wrap}
     }
+  @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -818,6 +819,27 @@
         <li>Задержку между действием и результатом</li>
         <li>Свойство, которое возникло из взаимодействия, а не из отдельных частей</li>
       </ul>
+    </div>
+
+    <!-- GPT DIAGNOSIS -->
+    <div id="gpt-block" style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">персональный системный разбор</div>
+      <h3 style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Опиши свою повторяющуюся проблему</h3>
+      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:20px">Напиши 2–3 предложения о проблеме, которая не решается. Я сделаю системный разбор — найду петлю, задержку или архетип, и покажу точку рычага.</p>
+      <div id="gpt-form">
+        <textarea id="gpt-problem" placeholder="Например: я постоянно нанимаю людей, но через 3–4 месяца они уходят. Повышаю зарплаты — не помогает. Уже третий раз за год..." style="width:100%;min-height:110px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:var(--w);font-family:inherit;font-size:15px;line-height:1.6;padding:16px;resize:vertical;outline:none;box-sizing:border-box;margin-bottom:14px" oninput="gptValidate()"></textarea>
+        <button id="gpt-btn" onclick="runDiagnosis()" disabled style="background:var(--y);color:#000;border:none;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;cursor:pointer;opacity:.4;transition:opacity .2s">получить разбор →</button>
+      </div>
+      <div id="gpt-loading" style="display:none;padding:24px 0;text-align:center">
+        <div style="display:inline-block;width:28px;height:28px;border:3px solid rgba(200,255,0,.2);border-top-color:var(--y);border-radius:50%;animation:spin .8s linear infinite"></div>
+        <p style="margin-top:12px;font-size:14px;color:var(--g)">Анализирую структуру проблемы...</p>
+      </div>
+      <div id="gpt-result" style="display:none">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px;margin-top:8px">системный разбор</div>
+        <div id="gpt-text" style="font-size:16px;line-height:1.8;color:var(--w);white-space:pre-wrap"></div>
+        <button onclick="resetDiagnosis()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--g);font-family:inherit;font-size:13px;padding:10px 20px;cursor:pointer">← разобрать другую проблему</button>
+      </div>
+      <div id="gpt-error" style="display:none;padding:16px;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff8080;font-size:14px;margin-top:12px"></div>
     </div>
 
     <!-- CTA -->
@@ -1568,6 +1590,78 @@ function submitImpossible() {
 updSliders();
 initEmerge();
 initImpossible();
+
+// ===== GPT DIAGNOSIS =====
+function gptValidate() {
+  const val = document.getElementById('gpt-problem').value.trim();
+  const btn = document.getElementById('gpt-btn');
+  const ready = val.length >= 20;
+  btn.disabled = !ready;
+  btn.style.opacity = ready ? '1' : '.4';
+  btn.style.cursor = ready ? 'pointer' : 'default';
+}
+
+function buildProfile() {
+  const labels = {
+    1: 'Линейное vs системное',
+    2: 'Причинно-следственные цепочки',
+    3: 'Петли обратной связи',
+    4: 'Точки рычага',
+    5: 'Задержки в системах',
+    6: 'Эмерджентность'
+  };
+  const parts = [];
+  for (let i = 1; i <= 6; i++) {
+    const v = lessonCorrect[i];
+    const mark = v === true ? 'верно' : v === false ? 'ошибка' : 'не пройден';
+    parts.push(labels[i] + ': ' + mark);
+  }
+  return parts.join('; ');
+}
+
+async function runDiagnosis() {
+  const problem = document.getElementById('gpt-problem').value.trim();
+  if (problem.length < 20) return;
+
+  document.getElementById('gpt-form').style.display = 'none';
+  document.getElementById('gpt-loading').style.display = 'block';
+  document.getElementById('gpt-result').style.display = 'none';
+  document.getElementById('gpt-error').style.display = 'none';
+
+  const profile = buildProfile();
+
+  try {
+    const res = await fetch('/api/diagnose', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ problem, profile })
+    });
+
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (!data.diagnosis) throw new Error('Empty response');
+
+    document.getElementById('gpt-loading').style.display = 'none';
+    document.getElementById('gpt-text').textContent = data.diagnosis;
+    document.getElementById('gpt-result').style.display = 'block';
+  } catch (err) {
+    document.getElementById('gpt-loading').style.display = 'none';
+    document.getElementById('gpt-form').style.display = 'block';
+    const errEl = document.getElementById('gpt-error');
+    errEl.textContent = 'Что-то пошло не так. Попробуй ещё раз.';
+    errEl.style.display = 'block';
+    console.error('GPT error:', err);
+  }
+}
+
+function resetDiagnosis() {
+  document.getElementById('gpt-problem').value = '';
+  document.getElementById('gpt-btn').disabled = true;
+  document.getElementById('gpt-btn').style.opacity = '.4';
+  document.getElementById('gpt-result').style.display = 'none';
+  document.getElementById('gpt-error').style.display = 'none';
+  document.getElementById('gpt-form').style.display = 'block';
+}
 </script>
 </body>
 </html>
