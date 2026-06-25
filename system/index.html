@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Системное мышление — бесплатный мини-курс · DISTILL</title>
-  <meta name="description" content="5 уроков системного мышления с интерактивными механиками. Глубокий разбор методологии. Бесплатно.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Системное мышление — бесплатный мини-курс · DISTILL</title>
+<meta content="5 уроков системного мышления с интерактивными механиками. Глубокий разбор методологии. Бесплатно." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--y:#c8ff00;--bk:#0a0a0a;--dk:#111;--card:#1a1a1a;--brd:#2a2a2a;--w:#fff;--g:#888;--lg:#bbb;--r:#ff3b3b;--gr:#00ff88;--blue:#4488ff}
     html{scroll-behavior:smooth}
@@ -198,661 +199,559 @@
     }
   @keyframes spin { to { transform: rotate(360deg); } }
   </style>
-</head>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Системное мышление — бесплатный мини-курс · DISTILL",
+  "url": "https://www.distill-school.ru/",
+  "description": "5 уроков системного мышления с интерактивными механиками. Глубокий разбор методологии. Бесплатно.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "DISTILL — Школа метанавыков",
+    "url": "https://www.distill-school.ru"
+  }
+}</script></head>
 <body>
-
 <nav>
-  <a href="https://www.distill-school.ru" class="nav-logo">distill<span>.</span></a>
-  <div class="nav-progress" id="navProgress">
-    <div class="nav-dot" id="dot0"></div>
-    <div class="nav-dot" id="dot1"></div>
-    <div class="nav-dot" id="dot2"></div>
-    <div class="nav-dot" id="dot3"></div>
-    <div class="nav-dot" id="dot4"></div>
-    <div class="nav-dot" id="dot5"></div>
-    <div class="nav-dot" id="dot6"></div>
-  </div>
+<a class="nav-logo" href="https://www.distill-school.ru">distill<span>.</span></a>
+<div class="nav-progress" id="navProgress">
+<div class="nav-dot" id="dot0"></div>
+<div class="nav-dot" id="dot1"></div>
+<div class="nav-dot" id="dot2"></div>
+<div class="nav-dot" id="dot3"></div>
+<div class="nav-dot" id="dot4"></div>
+<div class="nav-dot" id="dot5"></div>
+<div class="nav-dot" id="dot6"></div>
+</div>
 </nav>
-
 <!-- ===== HERO ===== -->
 <div class="screen active" id="screen-hero">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-tag">бесплатный мини-курс · 6 уроков · ~25 мин</div>
-      <h1 class="hero-title">ты думаешь<br>линейно.<br><em>это проблема.</em></h1>
-      <p class="hero-sub"><strong>Системное мышление</strong> — это не абстрактная теория. Это способ видеть, почему одни и те же проблемы повторяются в твоей жизни, работе и отношениях. И как это изменить.</p>
-      <p class="hero-sub" style="margin-top:12px;font-size:15px;color:#444;">6 уроков. 6 механик. Реальная методология Медоуз, Сенге и Форрестера. Без воды.</p>
-      <button class="hero-start" onclick="startCourse()">начать курс →</button>
-    </div>
-    <div class="hero-right">
-      <div class="hero-right-inner">
-        <div class="hero-badge">программа курса</div>
-        <div class="hero-lessons">
-          <div class="hero-lesson"><div class="hero-lesson-num">01</div><div><div class="hero-lesson-title">Почему умные люди принимают тупые решения</div><div class="hero-lesson-desc">Линейное vs системное. Модель айсберга.</div></div></div>
-          <div class="hero-lesson"><div class="hero-lesson-num">02</div><div><div class="hero-lesson-title">Эффект домино, которого ты не видишь</div><div class="hero-lesson-desc">Причинно-следственные цепочки. Эффект кобры.</div></div></div>
-          <div class="hero-lesson"><div class="hero-lesson-num">03</div><div><div class="hero-lesson-title">Петли, которые управляют твоей жизнью</div><div class="hero-lesson-desc">Усиливающие и балансирующие петли обратной связи.</div></div></div>
-          <div class="hero-lesson"><div class="hero-lesson-num">04</div><div><div class="hero-lesson-title">Где нажать, чтобы всё изменилось</div><div class="hero-lesson-desc">Точки рычага по Донелле Медоуз.</div></div></div>
-          <div class="hero-lesson"><div class="hero-lesson-num">05</div><div><div class="hero-lesson-title">Почему твоё решение сработает через полгода</div><div class="hero-lesson-desc">Задержки в системах. Системные архетипы.</div></div></div>
-          <div class="hero-lesson"><div class="hero-lesson-num">06</div><div><div class="hero-lesson-title">Почему 1+1=3</div><div class="hero-lesson-desc">Эмерджентность и вложенность систем.</div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="hero">
+<div class="hero-left">
+<div class="hero-tag">бесплатный мини-курс · 6 уроков · ~25 мин</div>
+<h1 class="hero-title">ты думаешь<br/>линейно.<br/><em>это проблема.</em></h1>
+<p class="hero-sub"><strong>Системное мышление</strong> — это не абстрактная теория. Это способ видеть, почему одни и те же проблемы повторяются в твоей жизни, работе и отношениях. И как это изменить.</p>
+<p class="hero-sub" style="margin-top:12px;font-size:15px;color:#444;">6 уроков. 6 механик. Реальная методология Медоуз, Сенге и Форрестера. Без воды.</p>
+<button class="hero-start" onclick="startCourse()">начать курс →</button>
 </div>
-
+<div class="hero-right">
+<div class="hero-right-inner">
+<div class="hero-badge">программа курса</div>
+<div class="hero-lessons">
+<div class="hero-lesson"><div class="hero-lesson-num">01</div><div><div class="hero-lesson-title">Почему умные люди принимают тупые решения</div><div class="hero-lesson-desc">Линейное vs системное. Модель айсберга.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">02</div><div><div class="hero-lesson-title">Эффект домино, которого ты не видишь</div><div class="hero-lesson-desc">Причинно-следственные цепочки. Эффект кобры.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">03</div><div><div class="hero-lesson-title">Петли, которые управляют твоей жизнью</div><div class="hero-lesson-desc">Усиливающие и балансирующие петли обратной связи.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">04</div><div><div class="hero-lesson-title">Где нажать, чтобы всё изменилось</div><div class="hero-lesson-desc">Точки рычага по Донелле Медоуз.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">05</div><div><div class="hero-lesson-title">Почему твоё решение сработает через полгода</div><div class="hero-lesson-desc">Задержки в системах. Системные архетипы.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">06</div><div><div class="hero-lesson-title">Почему 1+1=3</div><div class="hero-lesson-desc">Эмерджентность и вложенность систем.</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 1 ===== -->
 <div class="screen" id="screen-1">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 01 из 05</div>
-    <h1 class="lesson-title">Почему умные люди принимают тупые решения</h1>
-    <div class="article">
-      <p>Представь: тебе холодно. Ты подходишь к термостату и ставишь 30°C. Ждёшь 5 минут. Всё ещё холодно. Ставишь 35°C. Ждёшь ещё. Ставишь 40°C. Через полчаса ты сидишь в сауне, потеешь и думаешь: <strong>«Какого чёрта?»</strong></p>
-
-      <div class="illustration">
-        <img src="illus_sample.png" alt="Линейное vs системное мышление" style="width:100%;max-width:700px">
-        <div class="caption">Линейный мыслитель ищет виноватого. Системный — ищет структуру.</div>
-      </div>
-
-      <p>Это не история про термостат. Это история про то, как работает твой мозг.</p>
-
-      <p>Твой мозг заточен на <strong>линейное мышление</strong>: увидел проблему → нашёл причину → исправил. A → B. Просто. Быстро. Эффективно. И в 90% случаев — <em>неправильно</em>.</p>
-
-      <p>Потому что мир — не линейный. Мир — это система. А системы работают по другим правилам.</p>
-
-      <h3>Что такое система?</h3>
-
-      <p>Система — это набор элементов, связанных между собой так, что они создают поведение, которое <strong>невозможно предсказать, глядя на отдельные части</strong>.</p>
-
-      <p>Твоё тело — система. Компания — система. Семья — система. Город — система. Даже твоя привычка прокрастинировать — это система с петлями обратной связи.</p>
-
-      <div class="metaphor">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 01 из 05</div>
+<h1 class="lesson-title">Почему умные люди принимают тупые решения</h1>
+<div class="article">
+<p>Представь: тебе холодно. Ты подходишь к термостату и ставишь 30°C. Ждёшь 5 минут. Всё ещё холодно. Ставишь 35°C. Ждёшь ещё. Ставишь 40°C. Через полчаса ты сидишь в сауне, потеешь и думаешь: <strong>«Какого чёрта?»</strong></p>
+<div class="illustration">
+<img alt="Линейное vs системное мышление" src="illus_sample.png" style="width:100%;max-width:700px"/>
+<div class="caption">Линейный мыслитель ищет виноватого. Системный — ищет структуру.</div>
+</div>
+<p>Это не история про термостат. Это история про то, как работает твой мозг.</p>
+<p>Твой мозг заточен на <strong>линейное мышление</strong>: увидел проблему → нашёл причину → исправил. A → B. Просто. Быстро. Эффективно. И в 90% случаев — <em>неправильно</em>.</p>
+<p>Потому что мир — не линейный. Мир — это система. А системы работают по другим правилам.</p>
+<h3>Что такое система?</h3>
+<p>Система — это набор элементов, связанных между собой так, что они создают поведение, которое <strong>невозможно предсказать, глядя на отдельные части</strong>.</p>
+<p>Твоё тело — система. Компания — система. Семья — система. Город — система. Даже твоя привычка прокрастинировать — это система с петлями обратной связи.</p>
+<div class="metaphor">
         Представь оркестр. Ты можешь изучить каждый инструмент по отдельности. Знать всё про скрипку, всё про трубу, всё про барабаны. Но это не объяснит тебе, почему оркестр звучит красиво или ужасно. Потому что музыка — это не инструменты. Музыка — это <strong>связи между ними</strong>. Это система.
       </div>
-
-      <p>И вот главная проблема: <strong>мы обучены думать про элементы, а не про связи.</strong></p>
-
-      <p>Продажи падают? «Наймём больше продавцов.» (Элемент.)<br>
-      Команда устала? «Дадим выходной.» (Элемент.)<br>
+<p>И вот главная проблема: <strong>мы обучены думать про элементы, а не про связи.</strong></p>
+<p>Продажи падают? «Наймём больше продавцов.» (Элемент.)<br/>
+      Команда устала? «Дадим выходной.» (Элемент.)<br/>
       Ребёнок плохо учится? «Наймём репетитора.» (Элемент.)</p>
-
-      <p>А системный мыслитель спрашивает: <em>«Почему это происходит снова и снова? Что в структуре создаёт этот результат?»</em></p>
-
-      <h3>Модель айсберга</h3>
-
-      <p>В системном мышлении есть мощная модель — <strong>айсберг</strong> (Iceberg Model). Она была разработана в рамках системной динамики Джея Форрестера в MIT и показывает 4 уровня глубины, на которых можно анализировать любую ситуацию:</p>
-
-      <div class="iceberg">
-        <div class="iceberg-level"><span class="depth">события</span><span>«Что произошло?» — Продажи упали на 20%</span></div>
-        <div class="iceberg-divider">— — — линия воды — — —</div>
-        <div class="iceberg-level"><span class="depth">паттерны</span><span>«Это повторяется?» — Каждый Q3 падение</span></div>
-        <div class="iceberg-level"><span class="depth">структура</span><span>«Что создаёт паттерн?» — Бонусы привязаны к Q4</span></div>
-        <div class="iceberg-level"><span class="depth">менталки</span><span>«Почему так устроено?» — «Люди работают только за деньги»</span></div>
-      </div>
-
-      <p>Большинство людей живут на уровне <strong>событий</strong>. Они реагируют на то, что произошло. Тушат пожары. Латают дыры. И удивляются, почему проблемы возвращаются.</p>
-
-      <p>Системный мыслитель ныряет глубже. Он видит <strong>паттерны</strong> (это повторяется!), находит <strong>структуру</strong> (вот что создаёт повторение) и меняет <strong>ментальные модели</strong> (вот какое убеждение держит эту структуру).</p>
-
-      <p>Питер Сенге в «Пятой дисциплине» пишет:</p>
-
-      <div class="highlight">
-        <strong>«Структура системы определяет поведение. Измени структуру — и поведение изменится автоматически.»</strong> — Это принцип #1 системного мышления.
-      </div>
-
-      <p>Если проблема повторяется — ты лечишь симптом. Причина глубже. Ныряй.</p>
-
-      <p>Давай проверим. Вот 6 ситуаций. Некоторые из них <em>выглядят</em> системными, но на самом деле — линейные. Другие кажутся простыми, но содержат глубокий системный анализ. Определи.</p>
-    </div>
-
-    <div class="game-section">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Линейное или системное?</div>
-      <div class="game-desc">Прочитай утверждение. Определи тип мышления. 6 карточек. Осторожно — есть ловушки.</div>
-      <div class="swipe-area" id="swipeArea">
-        <div class="swipe-progress" id="swipeProgress"></div>
-        <div class="swipe-card" id="swipeCard"></div>
-        <div class="swipe-hint" id="swipeHint">← ЛИНЕЙНОЕ &nbsp;|&nbsp; СИСТЕМНОЕ →</div>
-        <div class="swipe-btns" id="swipeBtns">
-          <button class="swipe-btn no" onclick="swipeAnswer(false)">линейное</button>
-          <button class="swipe-btn yes" onclick="swipeAnswer(true)">системное</button>
-        </div>
-      </div>
-      <div class="feedback wrong" id="fb1w"></div>
-      <div class="feedback correct" id="fb1c"></div>
-      <div class="recommendation" id="rec1">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec1text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next1" style="display:none;">
-      <button class="next-btn" onclick="goTo(2)">урок 02: Эффект домино →</button>
-    </div>
-  </div>
+<p>А системный мыслитель спрашивает: <em>«Почему это происходит снова и снова? Что в структуре создаёт этот результат?»</em></p>
+<h3>Модель айсберга</h3>
+<p>В системном мышлении есть мощная модель — <strong>айсберг</strong> (Iceberg Model). Она была разработана в рамках системной динамики Джея Форрестера в MIT и показывает 4 уровня глубины, на которых можно анализировать любую ситуацию:</p>
+<div class="iceberg">
+<div class="iceberg-level"><span class="depth">события</span><span>«Что произошло?» — Продажи упали на 20%</span></div>
+<div class="iceberg-divider">— — — линия воды — — —</div>
+<div class="iceberg-level"><span class="depth">паттерны</span><span>«Это повторяется?» — Каждый Q3 падение</span></div>
+<div class="iceberg-level"><span class="depth">структура</span><span>«Что создаёт паттерн?» — Бонусы привязаны к Q4</span></div>
+<div class="iceberg-level"><span class="depth">менталки</span><span>«Почему так устроено?» — «Люди работают только за деньги»</span></div>
 </div>
-
+<p>Большинство людей живут на уровне <strong>событий</strong>. Они реагируют на то, что произошло. Тушат пожары. Латают дыры. И удивляются, почему проблемы возвращаются.</p>
+<p>Системный мыслитель ныряет глубже. Он видит <strong>паттерны</strong> (это повторяется!), находит <strong>структуру</strong> (вот что создаёт повторение) и меняет <strong>ментальные модели</strong> (вот какое убеждение держит эту структуру).</p>
+<p>Питер Сенге в «Пятой дисциплине» пишет:</p>
+<div class="highlight">
+<strong>«Структура системы определяет поведение. Измени структуру — и поведение изменится автоматически.»</strong> — Это принцип #1 системного мышления.
+      </div>
+<p>Если проблема повторяется — ты лечишь симптом. Причина глубже. Ныряй.</p>
+<p>Давай проверим. Вот 6 ситуаций. Некоторые из них <em>выглядят</em> системными, но на самом деле — линейные. Другие кажутся простыми, но содержат глубокий системный анализ. Определи.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Линейное или системное?</div>
+<div class="game-desc">Прочитай утверждение. Определи тип мышления. 6 карточек. Осторожно — есть ловушки.</div>
+<div class="swipe-area" id="swipeArea">
+<div class="swipe-progress" id="swipeProgress"></div>
+<div class="swipe-card" id="swipeCard"></div>
+<div class="swipe-hint" id="swipeHint">← ЛИНЕЙНОЕ  |  СИСТЕМНОЕ →</div>
+<div class="swipe-btns" id="swipeBtns">
+<button class="swipe-btn no" onclick="swipeAnswer(false)">линейное</button>
+<button class="swipe-btn yes" onclick="swipeAnswer(true)">системное</button>
+</div>
+</div>
+<div class="feedback wrong" id="fb1w"></div>
+<div class="feedback correct" id="fb1c"></div>
+<div class="recommendation" id="rec1">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec1text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next1" style="display:none;">
+<button class="next-btn" onclick="goTo(2)">урок 02: Эффект домино →</button>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 2 ===== -->
 <div class="screen" id="screen-2">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 02 из 05</div>
-    <h1 class="lesson-title">Эффект домино, которого ты не видишь</h1>
-    <div class="article">
-      <p>В 1902 году британское правительство в Индии столкнулось с проблемой: слишком много ядовитых кобр в Дели. Решение? Гениальное: <strong>платить людям за каждую убитую кобру</strong>. Принеси мёртвую кобру — получи деньги.</p>
-
-      <p>Сначала всё работало. Люди несли кобр. Популяция падала. Чиновники радовались.</p>
-
-      <p>А потом люди поняли: зачем ловить диких кобр, если можно <em>разводить</em> их? Дешевле, безопаснее, прибыльнее.</p>
-
-      <div class="illustration">
-        <img src="illus_l2.png" alt="Цепочка последствий — эффект домино" style="width:100%;max-width:700px">
-        <div class="caption">Каждое действие создаёт цепочку последствий. Видишь ли ты её конец?</div>
-      </div>
-
-      <p>Когда правительство узнало про фермы и отменило программу — люди выпустили всех кобр на волю. Итог: кобр стало <strong>больше, чем до начала</strong>.</p>
-
-      <p>Это называется <strong>«эффект кобры»</strong> (cobra effect) — ситуация, когда решение проблемы делает её хуже. Термин ввёл экономист Хорст Зиберт. И это происходит постоянно. Не только с кобрами.</p>
-
-      <h3>Почему так происходит?</h3>
-
-      <p>Потому что в системах <strong>нет изолированных решений</strong>. Каждое действие запускает цепочку последствий. И эта цепочка часто возвращается к тебе — с другой стороны, в другом виде, через другое время.</p>
-
-      <p>Линейное мышление видит: <strong>A → B</strong>. Заплатим за кобр → кобр станет меньше.</p>
-
-      <p>Системное мышление видит: <strong>A → B → C → D → ... → A</strong>. Заплатим за кобр → люди начнут разводить → отменим программу → кобр станет больше.</p>
-
-      <div class="metaphor">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 02 из 05</div>
+<h1 class="lesson-title">Эффект домино, которого ты не видишь</h1>
+<div class="article">
+<p>В 1902 году британское правительство в Индии столкнулось с проблемой: слишком много ядовитых кобр в Дели. Решение? Гениальное: <strong>платить людям за каждую убитую кобру</strong>. Принеси мёртвую кобру — получи деньги.</p>
+<p>Сначала всё работало. Люди несли кобр. Популяция падала. Чиновники радовались.</p>
+<p>А потом люди поняли: зачем ловить диких кобр, если можно <em>разводить</em> их? Дешевле, безопаснее, прибыльнее.</p>
+<div class="illustration">
+<img alt="Цепочка последствий — эффект домино" src="illus_l2.png" style="width:100%;max-width:700px"/>
+<div class="caption">Каждое действие создаёт цепочку последствий. Видишь ли ты её конец?</div>
+</div>
+<p>Когда правительство узнало про фермы и отменило программу — люди выпустили всех кобр на волю. Итог: кобр стало <strong>больше, чем до начала</strong>.</p>
+<p>Это называется <strong>«эффект кобры»</strong> (cobra effect) — ситуация, когда решение проблемы делает её хуже. Термин ввёл экономист Хорст Зиберт. И это происходит постоянно. Не только с кобрами.</p>
+<h3>Почему так происходит?</h3>
+<p>Потому что в системах <strong>нет изолированных решений</strong>. Каждое действие запускает цепочку последствий. И эта цепочка часто возвращается к тебе — с другой стороны, в другом виде, через другое время.</p>
+<p>Линейное мышление видит: <strong>A → B</strong>. Заплатим за кобр → кобр станет меньше.</p>
+<p>Системное мышление видит: <strong>A → B → C → D → ... → A</strong>. Заплатим за кобр → люди начнут разводить → отменим программу → кобр станет больше.</p>
+<div class="metaphor">
         Это как шахматы. Новичок видит один ход вперёд. Гроссмейстер — пять. Но в жизни мы все играем как новички: делаем ход и не думаем, что будет через 3 хода. Системное мышление — это тренировка видеть на 3 хода вперёд в реальной жизни.
       </div>
-
-      <h3>Примеры из реальной жизни</h3>
-
-      <p><strong>Здоровье:</strong> Садишься на жёсткую диету → голодаешь → срываешься → чувствуешь вину → садишься на ещё более жёсткую диету → ещё сильнее срываешься. Через год весишь больше, чем до диеты. Это называется «yo-yo dieting» — и это системный эффект, а не слабая воля.</p>
-
-      <p><strong>Бизнес:</strong> Продажи падают → даёшь скидки → клиенты привыкают → без скидок не покупают → даёшь больше скидок → маржа = 0 → бизнес умирает. JCPenney в 2012 попытались отменить скидки — потеряли 25% выручки за квартал.</p>
-
-      <h3>Архетип «Пределы роста»</h3>
-
-      <p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Ты нашёл что-то, что работает. Растёшь. Всё отлично. А потом — <em>бам</em>. Стена.</p>
-
-      <div class="illustration">
-        <img src="illus_l3.png" alt="Петли обратной связи R и B" style="width:100%;max-width:700px">
-        <div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
-      </div>
-
-      <p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint). Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
-
-      <div class="highlight">
-        <strong>Принцип #2: В системе нет изолированных решений.</strong> Прослеживай цепочку на 2-3 шага вперёд. Спрашивай: «А потом что? А потом?» Если цепочка возвращается к началу — ты нашёл петлю.
-      </div>
-
-      <p>Давай проверим. Вот реальная ситуация. Тебе нужно <strong>построить цепочку последствий шаг за шагом</strong>. На каждом шаге — выбери, что произойдёт дальше.</p>
-    </div>
-
-    <div class="game-section">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Построй цепочку последствий</div>
-      <div class="game-desc">Стартап получил $2M. CEO решает: «80% — в рекламу! Покажем рост!» Продукт — MVP с багами. Поддержка — 1 человек. Строй цепочку шаг за шагом.</div>
-      <div class="chain-board" id="chainBoard">
-        <div class="chain-built" id="chainBuilt">
-          <span class="chain-step locked">Реклама ×10</span>
-        </div>
-        <div class="chain-step-label" id="chainLabel">Шаг 1: Что произойдёт после ×10 рекламы?</div>
-        <div class="chain-choices" id="chainChoices"></div>
-      </div>
-      <div class="feedback wrong" id="fb2w"></div>
-      <div class="feedback correct" id="fb2c"></div>
-      <div class="recommendation" id="rec2">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec2text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next2" style="display:none;">
-      <button class="next-btn" onclick="goTo(3)">урок 03: Петли обратной связи →</button>
-    </div>
-  </div>
+<h3>Примеры из реальной жизни</h3>
+<p><strong>Здоровье:</strong> Садишься на жёсткую диету → голодаешь → срываешься → чувствуешь вину → садишься на ещё более жёсткую диету → ещё сильнее срываешься. Через год весишь больше, чем до диеты. Это называется «yo-yo dieting» — и это системный эффект, а не слабая воля.</p>
+<p><strong>Бизнес:</strong> Продажи падают → даёшь скидки → клиенты привыкают → без скидок не покупают → даёшь больше скидок → маржа = 0 → бизнес умирает. JCPenney в 2012 попытались отменить скидки — потеряли 25% выручки за квартал.</p>
+<h3>Архетип «Пределы роста»</h3>
+<p>Один из важнейших системных архетипов (описан Питером Сенге) — <strong>«Пределы роста»</strong> (Limits to Growth). Ты нашёл что-то, что работает. Растёшь. Всё отлично. А потом — <em>бам</em>. Стена.</p>
+<div class="illustration">
+<img alt="Петли обратной связи R и B" src="illus_l3.png" style="width:100%;max-width:700px"/>
+<div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
 </div>
-
+<p>Почему? Потому что у каждой системы есть <strong>ограничивающий фактор</strong> (constraint). Пока ты маленький — оно не мешает. Но когда растёшь — ты в него врезаешься.</p>
+<div class="highlight">
+<strong>Принцип #2: В системе нет изолированных решений.</strong> Прослеживай цепочку на 2-3 шага вперёд. Спрашивай: «А потом что? А потом?» Если цепочка возвращается к началу — ты нашёл петлю.
+      </div>
+<p>Давай проверим. Вот реальная ситуация. Тебе нужно <strong>построить цепочку последствий шаг за шагом</strong>. На каждом шаге — выбери, что произойдёт дальше.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Построй цепочку последствий</div>
+<div class="game-desc">Стартап получил $2M. CEO решает: «80% — в рекламу! Покажем рост!» Продукт — MVP с багами. Поддержка — 1 человек. Строй цепочку шаг за шагом.</div>
+<div class="chain-board" id="chainBoard">
+<div class="chain-built" id="chainBuilt">
+<span class="chain-step locked">Реклама ×10</span>
+</div>
+<div class="chain-step-label" id="chainLabel">Шаг 1: Что произойдёт после ×10 рекламы?</div>
+<div class="chain-choices" id="chainChoices"></div>
+</div>
+<div class="feedback wrong" id="fb2w"></div>
+<div class="feedback correct" id="fb2c"></div>
+<div class="recommendation" id="rec2">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec2text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next2" style="display:none;">
+<button class="next-btn" onclick="goTo(3)">урок 03: Петли обратной связи →</button>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 3 ===== -->
 <div class="screen" id="screen-3">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 03 из 05</div>
-    <h1 class="lesson-title">Петли, которые управляют твоей жизнью</h1>
-    <div class="article">
-      <p>Вот вопрос, который мучает людей тысячи лет: <strong>почему богатые богатеют, а бедные беднеют?</strong></p>
-
-      <p>Можно объяснять это талантом, удачей, привилегиями. Но есть более глубокий ответ — <em>структурный</em>. И он связан с самым важным концептом системного мышления: петлями обратной связи.</p>
-
-      <p>Смотри: у тебя есть деньги → ты инвестируешь → получаешь доход → у тебя больше денег → инвестируешь больше → доход больше → ... Это <strong>усиливающая петля</strong>. Снежный ком. Чем больше — тем больше.</p>
-
-      <div class="illustration">
-        <img src="illus_l3.png" alt="Петли обратной связи R и B" style="width:100%;max-width:700px">
-        <div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
-      </div>
-
-      <h3>Два типа петель</h3>
-
-      <p>В системном мышлении есть только два фундаментальных типа петель обратной связи. Это основа всей системной динамики — дисциплины, созданной Джеем Форрестером в MIT в 1950-х:</p>
-
-      <p><strong>1. Усиливающая петля (R — Reinforcing)</strong><br>
-      Работает как снежный ком. Больше → ещё больше. Или меньше → ещё меньше. Она <em>разгоняет</em> процесс. Может быть «добродетельным кругом» (вверх) или «порочным кругом» (вниз).</p>
-
-      <p>Примеры:<br>
-      • <strong>Прокрастинация:</strong> откладываешь → тревога растёт → ещё сложнее начать → откладываешь → ...<br>
-      • <strong>Сарафанное радио:</strong> хороший продукт → рекомендации → больше клиентов → больше рекомендаций → ...<br>
-      • <strong>Обучение:</strong> учишься → становишься лучше → интересные задачи → мотивация → учишься больше → ...</p>
-
-      <p><strong>2. Балансирующая петля (B — Balancing)</strong><br>
-      Работает как термостат. Стремится к цели. Отклонение → коррекция → возврат. Она <em>стабилизирует</em> систему.</p>
-
-      <p>Примеры:<br>
-      • <strong>Голод:</strong> голоден → ешь → сыт → перестаёшь есть → голоден → ...<br>
-      • <strong>Рынок:</strong> цена растёт → спрос падает → цена падает → спрос растёт → ...<br>
-      • <strong>Температура тела:</strong> жарко → потеешь → охлаждаешься → перестаёшь потеть → ...</p>
-
-      <div class="highlight">
-        <strong>Принцип #3: Каждая система управляется петлями.</strong> Усиливающие петли разгоняют (рост или падение). Балансирующие — стабилизируют. Хочешь изменить систему? Найди петлю. Усиль нужную. Разорви вредную.
-      </div>
-
-      <p>Теперь практика. Ты — фрилансер-дизайнер. Зарабатываешь 150 тыс/мес, работаешь 60 часов в неделю. Хочешь 500 тыс/мес. У тебя <strong>ровно 100 часов в неделю</strong> — распредели их между 4 стратегиями. Прибавишь в одном — убавится в другом.</p>
-    </div>
-
-    <div class="game-section" id="sliderGame">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Распредели 100 часов</div>
-      <div class="game-desc">Ты фрилансер. 100 часов в неделю — это всё, что у тебя есть. Как распределишь время, чтобы выйти на 500 тыс/мес?</div>
-      <div class="budget-bar">
-        <span class="budget-label">Осталось:</span>
-        <div class="budget-track"><div class="budget-fill" id="budgetFill"></div></div>
-        <span class="budget-num" id="budgetNum">100</span>
-      </div>
-      <div class="slider-item">
-        <div class="slider-row">
-          <div>
-            <div class="slider-name">🔨 Брать больше заказов</div>
-          </div>
-          <div class="slider-val" id="sv0">25</div>
-        </div>
-        <input type="range" id="sl0" min="0" max="100" value="25" oninput="updSliders()">
-      </div>
-      <div class="slider-item">
-        <div class="slider-row">
-          <div>
-            <div class="slider-name">📢 Искать клиентов активнее</div>
-          </div>
-          <div class="slider-val" id="sv1">25</div>
-        </div>
-        <input type="range" id="sl1" min="0" max="100" value="25" oninput="updSliders()">
-      </div>
-      <div class="slider-item">
-        <div class="slider-row">
-          <div>
-            <div class="slider-name">📦 Создать продукт (шаблоны, курс)</div>
-          </div>
-          <div class="slider-val" id="sv2">25</div>
-        </div>
-        <input type="range" id="sl2" min="0" max="100" value="25" oninput="updSliders()">
-      </div>
-      <div class="slider-item">
-        <div class="slider-row">
-          <div>
-            <div class="slider-name">🎯 Строить аудиторию (блог, YouTube)</div>
-          </div>
-          <div class="slider-val" id="sv3">25</div>
-        </div>
-        <input type="range" id="sl3" min="0" max="100" value="25" oninput="updSliders()">
-      </div>
-      <button class="submit-btn" id="sliderSubmitBtn" onclick="submitSliders()">проверить →</button>
-      <div class="feedback wrong" id="fb3w"></div>
-      <div class="feedback correct" id="fb3c"></div>
-      <div class="insight-box" id="sliderInsight">
-        <p><strong style="color:var(--y)">Разбор:</strong> «Брать больше заказов» и «Искать клиентов» — это <strong>линейные стратегии</strong>. Ты обмениваешь время на деньги 1:1. Потолок = 24 часа в сутках. Больше часов → больше денег, но <em>только пока работаешь</em>.</p>
-        <p>«Создать продукт» и «Строить аудиторию» — это <strong>усиливающие петли</strong>. Продукт продаётся, пока ты спишь. Аудитория растёт сама (сарафанное радио). Это стратегии с <em>растущей отдачей</em>.</p>
-        <p>Системный мыслитель инвестирует в петли, а не в линейный обмен. Да, результат приходит позже (задержка!). Но потолок — бесконечность.</p>
-      </div>
-      <div class="recommendation" id="rec3">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec3text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next3" style="display:none;">
-      <button class="next-btn" onclick="goTo(4)">урок 04: Точки рычага →</button>
-    </div>
-  </div>
+<div class="lesson-wrap">
+<div class="lesson-num">урок 03 из 05</div>
+<h1 class="lesson-title">Петли, которые управляют твоей жизнью</h1>
+<div class="article">
+<p>Вот вопрос, который мучает людей тысячи лет: <strong>почему богатые богатеют, а бедные беднеют?</strong></p>
+<p>Можно объяснять это талантом, удачей, привилегиями. Но есть более глубокий ответ — <em>структурный</em>. И он связан с самым важным концептом системного мышления: петлями обратной связи.</p>
+<p>Смотри: у тебя есть деньги → ты инвестируешь → получаешь доход → у тебя больше денег → инвестируешь больше → доход больше → ... Это <strong>усиливающая петля</strong>. Снежный ком. Чем больше — тем больше.</p>
+<div class="illustration">
+<img alt="Петли обратной связи R и B" src="illus_l3.png" style="width:100%;max-width:700px"/>
+<div class="caption">Усиливающие петли — газ. Балансирующие — тормоз. Жизнь — это их взаимодействие.</div>
 </div>
-
+<h3>Два типа петель</h3>
+<p>В системном мышлении есть только два фундаментальных типа петель обратной связи. Это основа всей системной динамики — дисциплины, созданной Джеем Форрестером в MIT в 1950-х:</p>
+<p><strong>1. Усиливающая петля (R — Reinforcing)</strong><br/>
+      Работает как снежный ком. Больше → ещё больше. Или меньше → ещё меньше. Она <em>разгоняет</em> процесс. Может быть «добродетельным кругом» (вверх) или «порочным кругом» (вниз).</p>
+<p>Примеры:<br/>
+      • <strong>Прокрастинация:</strong> откладываешь → тревога растёт → ещё сложнее начать → откладываешь → ...<br/>
+      • <strong>Сарафанное радио:</strong> хороший продукт → рекомендации → больше клиентов → больше рекомендаций → ...<br/>
+      • <strong>Обучение:</strong> учишься → становишься лучше → интересные задачи → мотивация → учишься больше → ...</p>
+<p><strong>2. Балансирующая петля (B — Balancing)</strong><br/>
+      Работает как термостат. Стремится к цели. Отклонение → коррекция → возврат. Она <em>стабилизирует</em> систему.</p>
+<p>Примеры:<br/>
+      • <strong>Голод:</strong> голоден → ешь → сыт → перестаёшь есть → голоден → ...<br/>
+      • <strong>Рынок:</strong> цена растёт → спрос падает → цена падает → спрос растёт → ...<br/>
+      • <strong>Температура тела:</strong> жарко → потеешь → охлаждаешься → перестаёшь потеть → ...</p>
+<div class="highlight">
+<strong>Принцип #3: Каждая система управляется петлями.</strong> Усиливающие петли разгоняют (рост или падение). Балансирующие — стабилизируют. Хочешь изменить систему? Найди петлю. Усиль нужную. Разорви вредную.
+      </div>
+<p>Теперь практика. Ты — фрилансер-дизайнер. Зарабатываешь 150 тыс/мес, работаешь 60 часов в неделю. Хочешь 500 тыс/мес. У тебя <strong>ровно 100 часов в неделю</strong> — распредели их между 4 стратегиями. Прибавишь в одном — убавится в другом.</p>
+</div>
+<div class="game-section" id="sliderGame">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Распредели 100 часов</div>
+<div class="game-desc">Ты фрилансер. 100 часов в неделю — это всё, что у тебя есть. Как распределишь время, чтобы выйти на 500 тыс/мес?</div>
+<div class="budget-bar">
+<span class="budget-label">Осталось:</span>
+<div class="budget-track"><div class="budget-fill" id="budgetFill"></div></div>
+<span class="budget-num" id="budgetNum">100</span>
+</div>
+<div class="slider-item">
+<div class="slider-row">
+<div>
+<div class="slider-name">🔨 Брать больше заказов</div>
+</div>
+<div class="slider-val" id="sv0">25</div>
+</div>
+<input id="sl0" max="100" min="0" oninput="updSliders()" type="range" value="25"/>
+</div>
+<div class="slider-item">
+<div class="slider-row">
+<div>
+<div class="slider-name">📢 Искать клиентов активнее</div>
+</div>
+<div class="slider-val" id="sv1">25</div>
+</div>
+<input id="sl1" max="100" min="0" oninput="updSliders()" type="range" value="25"/>
+</div>
+<div class="slider-item">
+<div class="slider-row">
+<div>
+<div class="slider-name">📦 Создать продукт (шаблоны, курс)</div>
+</div>
+<div class="slider-val" id="sv2">25</div>
+</div>
+<input id="sl2" max="100" min="0" oninput="updSliders()" type="range" value="25"/>
+</div>
+<div class="slider-item">
+<div class="slider-row">
+<div>
+<div class="slider-name">🎯 Строить аудиторию (блог, YouTube)</div>
+</div>
+<div class="slider-val" id="sv3">25</div>
+</div>
+<input id="sl3" max="100" min="0" oninput="updSliders()" type="range" value="25"/>
+</div>
+<button class="submit-btn" id="sliderSubmitBtn" onclick="submitSliders()">проверить →</button>
+<div class="feedback wrong" id="fb3w"></div>
+<div class="feedback correct" id="fb3c"></div>
+<div class="insight-box" id="sliderInsight">
+<p><strong style="color:var(--y)">Разбор:</strong> «Брать больше заказов» и «Искать клиентов» — это <strong>линейные стратегии</strong>. Ты обмениваешь время на деньги 1:1. Потолок = 24 часа в сутках. Больше часов → больше денег, но <em>только пока работаешь</em>.</p>
+<p>«Создать продукт» и «Строить аудиторию» — это <strong>усиливающие петли</strong>. Продукт продаётся, пока ты спишь. Аудитория растёт сама (сарафанное радио). Это стратегии с <em>растущей отдачей</em>.</p>
+<p>Системный мыслитель инвестирует в петли, а не в линейный обмен. Да, результат приходит позже (задержка!). Но потолок — бесконечность.</p>
+</div>
+<div class="recommendation" id="rec3">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec3text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next3" style="display:none;">
+<button class="next-btn" onclick="goTo(4)">урок 04: Точки рычага →</button>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 4 ===== -->
 <div class="screen" id="screen-4">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 04 из 05</div>
-    <h1 class="lesson-title">Где нажать, чтобы всё изменилось</h1>
-    <div class="article">
-      <p>Представь: ты стоишь перед огромным валуном. Он загораживает дорогу. Ты можешь толкать его изо всех сил — и сдвинуть на сантиметр. Или ты можешь найти <strong>правильную точку</strong>, подставить рычаг — и сдвинуть его одним движением.</p>
-
-      <div class="illustration">
-        <img src="illus_l4.png" alt="12 точек рычага по Медоуз" style="width:100%;max-width:700px">
-        <div class="caption">Не сильнее — а в правильном месте. Медоуз: 12 точек рычага.</div>
-      </div>
-
-      <p>Это метафора одного из самых мощных концептов в системном мышлении — <strong>точки рычага</strong> (leverage points).</p>
-
-      <p>Донелла Медоуз — одна из величайших системных мыслителей XX века — составила список из <strong>12 точек рычага</strong>, ранжированных по силе воздействия. Это, возможно, самая важная классификация в системном мышлении.</p>
-
-      <h3>Иерархия точек рычага (упрощённо)</h3>
-
-      <p>Медоуз выделила 12 уровней, но для практики важно понять 4 категории:</p>
-
-      <p><strong>🔴 Слабые рычаги (параметры)</strong><br>
-      Числа: бюджеты, зарплаты, цены, KPI. Это то, что все крутят первым делом. И это почти никогда не работает надолго. Ты можешь увеличить бюджет на рекламу — но если продукт плохой, это не поможет.</p>
-
-      <p><strong>🟡 Средние рычаги (потоки и запасы)</strong><br>
-      Скорость процессов, размер буферов. Нанять больше людей, ускорить конвейер. Лучше, чем параметры, но всё ещё не меняет структуру.</p>
-
-      <p><strong>🟢 Сильные рычаги (структура и правила)</strong><br>
-      Как устроена система. Какие петли работают. Какие метрики определяют поведение. Изменить метрику, по которой оценивают людей — это сильный рычаг. Toyota сделала это, когда перешла от «количество произведённых машин» к «количество дефектов на миллион» — и обогнала GM.</p>
-
-      <p><strong>🔵 Самые сильные рычаги (цель и парадигма)</strong><br>
-      Зачем система существует? Какие убеждения лежат в её основе? Изменить цель системы — это самый мощный рычаг. Но и самый сложный.</p>
-
-      <div class="highlight">
-        <strong>Принцип #4: Ищи рычаг.</strong> Не «работай сильнее» — а «работай в правильном месте». Большинство людей крутят параметры (бюджет, найм, скидки). Системный мыслитель меняет структуру и цель.
-      </div>
-
-      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Вложенность: рычаг на одном уровне ≠ рычаг на другом</h3>
-      <p>Ты внутри команды. Команда внутри компании. Компания внутри рынка. Рынок внутри экономики. Каждый уровень — система со своими петлями, задержками и рычагами.</p>
-      <p>И вот парадокс: <strong>то, что является сильным рычагом внутри команды, может быть слабым рычагом для компании</strong>. Пример: оптимизация работы одного отдела может ухудшать работу соседнего. Повышение KPI одного подразделения может разрушать систему в целом. Поэтому системный мыслитель всегда спрашивает: <em>«Рычаг для какой системы?»</em></p>
-
-      <p>Давай проверим. Вот 6 действий для компании, которая хочет расти. Оцени каждое: насколько сильный это рычаг? 1 — почти ничего не изменит, 5 — изменит всё.</p>
-    </div>
-
-    <div class="game-section" id="sortGame">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Оцени силу рычага</div>
-      <div class="game-desc">Для каждого действия выбери оценку от 1 до 5. Насколько сильно это изменит систему?</div>
-      <div id="ratingPool"></div>
-      <button class="submit-btn" id="sortSubmitBtn" onclick="submitSort()">проверить →</button>
-      <div class="feedback wrong" id="fb4w"></div>
-      <div class="feedback correct" id="fb4c"></div>
-      <div class="recommendation" id="rec4">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec4text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next4" style="display:none;">
-      <button class="next-btn" onclick="goTo(5)">урок 05: Задержки в системах →</button>
-    </div>
-  </div>
+<div class="lesson-wrap">
+<div class="lesson-num">урок 04 из 05</div>
+<h1 class="lesson-title">Где нажать, чтобы всё изменилось</h1>
+<div class="article">
+<p>Представь: ты стоишь перед огромным валуном. Он загораживает дорогу. Ты можешь толкать его изо всех сил — и сдвинуть на сантиметр. Или ты можешь найти <strong>правильную точку</strong>, подставить рычаг — и сдвинуть его одним движением.</p>
+<div class="illustration">
+<img alt="12 точек рычага по Медоуз" src="illus_l4.png" style="width:100%;max-width:700px"/>
+<div class="caption">Не сильнее — а в правильном месте. Медоуз: 12 точек рычага.</div>
 </div>
-
+<p>Это метафора одного из самых мощных концептов в системном мышлении — <strong>точки рычага</strong> (leverage points).</p>
+<p>Донелла Медоуз — одна из величайших системных мыслителей XX века — составила список из <strong>12 точек рычага</strong>, ранжированных по силе воздействия. Это, возможно, самая важная классификация в системном мышлении.</p>
+<h3>Иерархия точек рычага (упрощённо)</h3>
+<p>Медоуз выделила 12 уровней, но для практики важно понять 4 категории:</p>
+<p><strong>🔴 Слабые рычаги (параметры)</strong><br/>
+      Числа: бюджеты, зарплаты, цены, KPI. Это то, что все крутят первым делом. И это почти никогда не работает надолго. Ты можешь увеличить бюджет на рекламу — но если продукт плохой, это не поможет.</p>
+<p><strong>🟡 Средние рычаги (потоки и запасы)</strong><br/>
+      Скорость процессов, размер буферов. Нанять больше людей, ускорить конвейер. Лучше, чем параметры, но всё ещё не меняет структуру.</p>
+<p><strong>🟢 Сильные рычаги (структура и правила)</strong><br/>
+      Как устроена система. Какие петли работают. Какие метрики определяют поведение. Изменить метрику, по которой оценивают людей — это сильный рычаг. Toyota сделала это, когда перешла от «количество произведённых машин» к «количество дефектов на миллион» — и обогнала GM.</p>
+<p><strong>🔵 Самые сильные рычаги (цель и парадигма)</strong><br/>
+      Зачем система существует? Какие убеждения лежат в её основе? Изменить цель системы — это самый мощный рычаг. Но и самый сложный.</p>
+<div class="highlight">
+<strong>Принцип #4: Ищи рычаг.</strong> Не «работай сильнее» — а «работай в правильном месте». Большинство людей крутят параметры (бюджет, найм, скидки). Системный мыслитель меняет структуру и цель.
+      </div>
+<h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Вложенность: рычаг на одном уровне ≠ рычаг на другом</h3>
+<p>Ты внутри команды. Команда внутри компании. Компания внутри рынка. Рынок внутри экономики. Каждый уровень — система со своими петлями, задержками и рычагами.</p>
+<p>И вот парадокс: <strong>то, что является сильным рычагом внутри команды, может быть слабым рычагом для компании</strong>. Пример: оптимизация работы одного отдела может ухудшать работу соседнего. Повышение KPI одного подразделения может разрушать систему в целом. Поэтому системный мыслитель всегда спрашивает: <em>«Рычаг для какой системы?»</em></p>
+<p>Давай проверим. Вот 6 действий для компании, которая хочет расти. Оцени каждое: насколько сильный это рычаг? 1 — почти ничего не изменит, 5 — изменит всё.</p>
+</div>
+<div class="game-section" id="sortGame">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Оцени силу рычага</div>
+<div class="game-desc">Для каждого действия выбери оценку от 1 до 5. Насколько сильно это изменит систему?</div>
+<div id="ratingPool"></div>
+<button class="submit-btn" id="sortSubmitBtn" onclick="submitSort()">проверить →</button>
+<div class="feedback wrong" id="fb4w"></div>
+<div class="feedback correct" id="fb4c"></div>
+<div class="recommendation" id="rec4">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec4text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next4" style="display:none;">
+<button class="next-btn" onclick="goTo(5)">урок 05: Задержки в системах →</button>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 5 ===== -->
 <div class="screen" id="screen-5">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 05 из 05</div>
-    <h1 class="lesson-title">Почему твоё решение сработает через полгода</h1>
-    <div class="article">
-      <p>Ты посадил дерево. Через неделю — ничего. Через месяц — маленький росток. Ты думаешь: <strong>«Не работает. Попробую другое дерево.»</strong> Выкапываешь. Сажаешь новое. Через месяц — ничего. Выкапываешь...</p>
-
-      <p>А твой сосед посадил то же дерево 3 года назад. И сейчас сидит в тени.</p>
-
-      <div class="illustration">
-        <img src="illus_l5.png" alt="Задержки в системах" style="width:100%;max-width:700px">
-        <div class="caption">Системы реагируют с задержкой. Ты уже посеял то, что пожнёшь через полгода.</div>
-      </div>
-
-      <p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную особенность сложных систем.</p>
-
-      <h3>Что такое задержка?</h3>
-
-      <p><strong>Задержка</strong> — это время между действием и его результатом. В простых системах задержка маленькая: нажал выключатель → свет загорелся. Но в сложных системах задержка может быть <em>месяцы и годы</em>.</p>
-
-      <p>Донелла Медоуз: «Задержки в петлях обратной связи — одна из главных причин колебаний в системах. Если ты пытаешься скорректировать систему, не учитывая задержку — ты гарантированно перекомпенсируешь.»</p>
-
-      <p><strong>Проблема 1: Перекомпенсация</strong><br>
+<div class="lesson-wrap">
+<div class="lesson-num">урок 05 из 05</div>
+<h1 class="lesson-title">Почему твоё решение сработает через полгода</h1>
+<div class="article">
+<p>Ты посадил дерево. Через неделю — ничего. Через месяц — маленький росток. Ты думаешь: <strong>«Не работает. Попробую другое дерево.»</strong> Выкапываешь. Сажаешь новое. Через месяц — ничего. Выкапываешь...</p>
+<p>А твой сосед посадил то же дерево 3 года назад. И сейчас сидит в тени.</p>
+<div class="illustration">
+<img alt="Задержки в системах" src="illus_l5.png" style="width:100%;max-width:700px"/>
+<div class="caption">Системы реагируют с задержкой. Ты уже посеял то, что пожнёшь через полгода.</div>
+</div>
+<p>Это история про <strong>задержки в системах</strong> (system delays) — самую коварную особенность сложных систем.</p>
+<h3>Что такое задержка?</h3>
+<p><strong>Задержка</strong> — это время между действием и его результатом. В простых системах задержка маленькая: нажал выключатель → свет загорелся. Но в сложных системах задержка может быть <em>месяцы и годы</em>.</p>
+<p>Донелла Медоуз: «Задержки в петлях обратной связи — одна из главных причин колебаний в системах. Если ты пытаешься скорректировать систему, не учитывая задержку — ты гарантированно перекомпенсируешь.»</p>
+<p><strong>Проблема 1: Перекомпенсация</strong><br/>
       Ты сделал что-то правильное. Ждёшь результат. Не видишь. Думаешь: «Не работает». Делаешь что-то другое. Или то же самое, но в 10 раз сильнее. А потом система «взрывается» — все действия пришли одновременно.</p>
-
-      <p>Это как горячий душ в отеле. Крутишь кран — холодно. Крутишь сильнее — холодно. Ещё сильнее — КИПЯТОК. Потому что вода шла по трубам 30 секунд.</p>
-
-      <p><strong>Проблема 2: Ложная атрибуция</strong><br>
+<p>Это как горячий душ в отеле. Крутишь кран — холодно. Крутишь сильнее — холодно. Ещё сильнее — КИПЯТОК. Потому что вода шла по трубам 30 секунд.</p>
+<p><strong>Проблема 2: Ложная атрибуция</strong><br/>
       Ты принял решение в январе. Последствия пришли в июле. К июлю ты уже забыл про январское решение. И когда всё ломается — ты винишь «рынок», «конкурентов», «невезение».</p>
-
-      <div class="metaphor">
+<div class="metaphor">
         Задержка — это невидимый убийца решений. Ты стреляешь себе в ногу в январе, а боль приходит в июле. И ты думаешь: «Наверное, наступил на что-то в июле.»
       </div>
-
-      <h3>Примеры задержек</h3>
-
-      <p><strong>Здоровье:</strong> Начал бегать → результат через 2-3 месяца. Большинство бросают через 2 недели.</p>
-      <p><strong>Образование:</strong> Начал учить английский → свободно говоришь через 1-2 года. Большинство бросают через месяц и пробуют «новый метод».</p>
-      <p><strong>Бизнес:</strong> Сократил поддержку → экономия видна сразу. Отток клиентов — через 4-6 месяцев.</p>
-
-      <div class="highlight">
-        <strong>Принцип #5: Учитывай задержку.</strong> Всегда спрашивай: «Когда придут последствия этого решения?» Системы с задержкой наказывают нетерпеливых и награждают тех, кто понимает тайминг.
+<h3>Примеры задержек</h3>
+<p><strong>Здоровье:</strong> Начал бегать → результат через 2-3 месяца. Большинство бросают через 2 недели.</p>
+<p><strong>Образование:</strong> Начал учить английский → свободно говоришь через 1-2 года. Большинство бросают через месяц и пробуют «новый метод».</p>
+<p><strong>Бизнес:</strong> Сократил поддержку → экономия видна сразу. Отток клиентов — через 4-6 месяцев.</p>
+<div class="highlight">
+<strong>Принцип #5: Учитывай задержку.</strong> Всегда спрашивай: «Когда придут последствия этого решения?» Системы с задержкой наказывают нетерпеливых и награждают тех, кто понимает тайминг.
       </div>
-
-      <p>Последнее задание. Вот реальная бизнес-ситуация. Определи, когда последствия станут необратимыми.</p>
-    </div>
-
-    <div class="game-section">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Когда «аукнется»?</div>
-      <div class="game-desc">CFO компании (SaaS, 500 клиентов) сокращает отдел поддержки с 10 до 4 человек. «Экономим 1.2 млн/мес!» На каком этапе последствия станут необратимыми?</div>
-      <div class="timeline" id="timelineGame">
-        <div class="timeline-item" onclick="selectTL(0)">
-          <div class="timeline-month">Месяц 1</div>
-          <div class="timeline-text">Экономия 1.2 млн видна в отчёте</div>
-          <div class="timeline-sub">Все довольны. CFO получает бонус. Тикеты копятся.</div>
-        </div>
-        <div class="timeline-item" onclick="selectTL(1)">
-          <div class="timeline-month">Месяц 2-3</div>
-          <div class="timeline-text">Время ответа: 4 часа → 2 дня</div>
-          <div class="timeline-sub">Клиенты недовольны, но пока терпят. Churn +3%.</div>
-        </div>
-        <div class="timeline-item" onclick="selectTL(2)">
-          <div class="timeline-month">Месяц 4-6</div>
-          <div class="timeline-text">NPS -40. Churn +15%. Потери 8 млн/мес.</div>
-          <div class="timeline-sub">Потери превышают экономию в 6 раз. Связь с решением размыта.</div>
-        </div>
-        <div class="timeline-item" onclick="selectTL(3)">
-          <div class="timeline-month">Месяц 9-12</div>
-          <div class="timeline-text">Репутация подорвана. Отзывы 2★. CAC ×3.</div>
-          <div class="timeline-sub">Восстановление: 1-2 года, стоимость ×10 от «экономии».</div>
-        </div>
-      </div>
-      <button class="submit-btn" id="tlSubmitBtn" onclick="submitTL()">проверить →</button>
-      <div class="feedback wrong" id="fb5w"></div>
-      <div class="feedback correct" id="fb5c"></div>
-      <div class="insight-box" id="tlInsight">
-        <p><strong style="color:var(--y)">Правильный ответ: месяц 4-6.</strong> Именно тогда задержка делает своё дело. Экономия была видна <em style="color:var(--y)">сразу</em> (месяц 1). А потери приходят <em style="color:var(--r)">через 4-6 месяцев</em>. К этому моменту CFO уже получил бонус и забыл про решение.</p>
-        <p>Это системная ловушка: <strong>выгода приходит быстро, а расплата — медленно</strong>. Поэтому люди снова и снова принимают решения, которые выглядят умными сегодня и катастрофичны через полгода.</p>
-      </div>
-      <div class="recommendation" id="rec5">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec5text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next5" style="display:none;">
-      <button class="next-btn" onclick="goTo(6)">урок 06: Почему 1+1=3 →</button>
-    </div>
-  </div>
+<p>Последнее задание. Вот реальная бизнес-ситуация. Определи, когда последствия станут необратимыми.</p>
 </div>
-
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Когда «аукнется»?</div>
+<div class="game-desc">CFO компании (SaaS, 500 клиентов) сокращает отдел поддержки с 10 до 4 человек. «Экономим 1.2 млн/мес!» На каком этапе последствия станут необратимыми?</div>
+<div class="timeline" id="timelineGame">
+<div class="timeline-item" onclick="selectTL(0)">
+<div class="timeline-month">Месяц 1</div>
+<div class="timeline-text">Экономия 1.2 млн видна в отчёте</div>
+<div class="timeline-sub">Все довольны. CFO получает бонус. Тикеты копятся.</div>
+</div>
+<div class="timeline-item" onclick="selectTL(1)">
+<div class="timeline-month">Месяц 2-3</div>
+<div class="timeline-text">Время ответа: 4 часа → 2 дня</div>
+<div class="timeline-sub">Клиенты недовольны, но пока терпят. Churn +3%.</div>
+</div>
+<div class="timeline-item" onclick="selectTL(2)">
+<div class="timeline-month">Месяц 4-6</div>
+<div class="timeline-text">NPS -40. Churn +15%. Потери 8 млн/мес.</div>
+<div class="timeline-sub">Потери превышают экономию в 6 раз. Связь с решением размыта.</div>
+</div>
+<div class="timeline-item" onclick="selectTL(3)">
+<div class="timeline-month">Месяц 9-12</div>
+<div class="timeline-text">Репутация подорвана. Отзывы 2★. CAC ×3.</div>
+<div class="timeline-sub">Восстановление: 1-2 года, стоимость ×10 от «экономии».</div>
+</div>
+</div>
+<button class="submit-btn" id="tlSubmitBtn" onclick="submitTL()">проверить →</button>
+<div class="feedback wrong" id="fb5w"></div>
+<div class="feedback correct" id="fb5c"></div>
+<div class="insight-box" id="tlInsight">
+<p><strong style="color:var(--y)">Правильный ответ: месяц 4-6.</strong> Именно тогда задержка делает своё дело. Экономия была видна <em style="color:var(--y)">сразу</em> (месяц 1). А потери приходят <em style="color:var(--r)">через 4-6 месяцев</em>. К этому моменту CFO уже получил бонус и забыл про решение.</p>
+<p>Это системная ловушка: <strong>выгода приходит быстро, а расплата — медленно</strong>. Поэтому люди снова и снова принимают решения, которые выглядят умными сегодня и катастрофичны через полгода.</p>
+</div>
+<div class="recommendation" id="rec5">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec5text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next5" style="display:none;">
+<button class="next-btn" onclick="goTo(6)">урок 06: Почему 1+1=3 →</button>
+</div>
+</div>
+</div>
 <!-- ===== LESSON 6: EMERGENCE ===== -->
 <div class="screen" id="screen-6">
-  <div class="lesson-wrap">
-    <div class="lesson-num">урок 06 из 06</div>
-    <h1 class="lesson-title">Почему 1+1=3</h1>
-    <div class="article">
-      <p>В 1970-х учёные изучали муравьев. Каждый муравей в отдельности — примитивное существо. Он ходит по прямой. Ищет еду. Иногда сталкивается с другим. Без никакого плана.</p>
-
-      <p>Но поставь 100 муравьёв в одно место — и возникнет нечто, чего не было ни в одном муравье. Колония. Она строит дороги, мосты, организует защиту, распределяет роли. Без менеджера. Без плана. Без центрального командования.</p>
-
-      <p>Это — <strong>эмерджентность</strong>. Свойство, которое возникает в системе, но отсутствует в отдельных её элементах.</p>
-
-      <div class="illustration">
-        <img src="illus_l6.png" alt="Эмерджентность — целое больше суммы частей" style="width:100%;max-width:700px">
-        <div class="caption">Эмерджентность: целое больше суммы частей. Это не метафора — это факт.</div>
-      </div>
-
-      <p>Другие примеры эмерджентности:</p>
-      <ul style="margin:16px 0 16px 24px;line-height:2">
-        <li><strong>Мозг</strong>: 86 млрд нейронов. Ни один нейрон не «думает». Но в системе — сознание.</li>
-        <li><strong>Рынок</strong>: миллионы покупателей и продавцов. Никто не управляет ценой. Но цена возникает.</li>
-        <li><strong>Команда</strong>: каждый делает свою работу. Но возникает культура — нечто, чего нет ни в одном человеке.</li>
-      </ul>
-
-      <div class="highlight">
-        <strong>Почему это важно?</strong> Потому что эмерджентные свойства нельзя увидеть, анализируя элементы по отдельности. Поэтому линейное мышление всегда будет удивляться: «Почему мы поняли каждого сотрудника, а команда всё равно не работает?» Потому что проблема — в взаимодействиях, а не в людях.
-      </div>
-
-      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Что это меняет на практике</h3>
-      <p>Если проблема эмерджентная — её нельзя решить, меняя отдельных людей. Нужно менять среду, в которой они взаимодействуют. Если проблема в команде — смотри на правила взаимодействия, а не на людей. Если проблема в компании — смотри на структуру стимулов и правил, а не на отдельных сотрудников.</p>
-    </div>
-
-    <div class="game-section" id="emergeGame">
-      <div class="game-label">✦ практика</div>
-      <div class="game-title">Эмерджентное или нет?</div>
-      <div class="game-desc">Какое из этих свойств является эмерджентным — то есть возникает в системе, но отсутствует в отдельных элементах?</div>
-      <div id="emergePool"></div>
-      <button class="submit-btn" id="emergeSubmitBtn" onclick="submitEmerge()">проверить →</button>
-      <div class="feedback wrong" id="fb6w"></div>
-      <div class="feedback correct" id="fb6c"></div>
-      <div class="insight-box" id="emergeInsight">
-        <p><strong style="color:var(--y)">Разбор:</strong> Сознание, рыночная цена, культура команды и пробки в дорожном движении — эмерджентные. Ни один участник не «имеет» эти свойства — они возникают из взаимодействия. Температура воды — не эмерджентная: это свойство каждой молекулы H₂O. Скорость автомобиля — не эмерджентная: это свойство самого автомобиля.</p>
-      </div>
-      <div class="recommendation" id="rec6">
-        <h4>📋 Твоя рекомендация</h4>
-        <p id="rec6text"></p>
-      </div>
-    </div>
-
-    <div class="next-lesson" id="next6" style="display:none;">
-      <button class="next-btn" onclick="goTo('impossible')">финальный вызов →</button>
-    </div>
-  </div>
+<div class="lesson-wrap">
+<div class="lesson-num">урок 06 из 06</div>
+<h1 class="lesson-title">Почему 1+1=3</h1>
+<div class="article">
+<p>В 1970-х учёные изучали муравьев. Каждый муравей в отдельности — примитивное существо. Он ходит по прямой. Ищет еду. Иногда сталкивается с другим. Без никакого плана.</p>
+<p>Но поставь 100 муравьёв в одно место — и возникнет нечто, чего не было ни в одном муравье. Колония. Она строит дороги, мосты, организует защиту, распределяет роли. Без менеджера. Без плана. Без центрального командования.</p>
+<p>Это — <strong>эмерджентность</strong>. Свойство, которое возникает в системе, но отсутствует в отдельных её элементах.</p>
+<div class="illustration">
+<img alt="Эмерджентность — целое больше суммы частей" src="illus_l6.png" style="width:100%;max-width:700px"/>
+<div class="caption">Эмерджентность: целое больше суммы частей. Это не метафора — это факт.</div>
 </div>
-
+<p>Другие примеры эмерджентности:</p>
+<ul style="margin:16px 0 16px 24px;line-height:2">
+<li><strong>Мозг</strong>: 86 млрд нейронов. Ни один нейрон не «думает». Но в системе — сознание.</li>
+<li><strong>Рынок</strong>: миллионы покупателей и продавцов. Никто не управляет ценой. Но цена возникает.</li>
+<li><strong>Команда</strong>: каждый делает свою работу. Но возникает культура — нечто, чего нет ни в одном человеке.</li>
+</ul>
+<div class="highlight">
+<strong>Почему это важно?</strong> Потому что эмерджентные свойства нельзя увидеть, анализируя элементы по отдельности. Поэтому линейное мышление всегда будет удивляться: «Почему мы поняли каждого сотрудника, а команда всё равно не работает?» Потому что проблема — в взаимодействиях, а не в людях.
+      </div>
+<h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin:40px 0 16px">Что это меняет на практике</h3>
+<p>Если проблема эмерджентная — её нельзя решить, меняя отдельных людей. Нужно менять среду, в которой они взаимодействуют. Если проблема в команде — смотри на правила взаимодействия, а не на людей. Если проблема в компании — смотри на структуру стимулов и правил, а не на отдельных сотрудников.</p>
+</div>
+<div class="game-section" id="emergeGame">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Эмерджентное или нет?</div>
+<div class="game-desc">Какое из этих свойств является эмерджентным — то есть возникает в системе, но отсутствует в отдельных элементах?</div>
+<div id="emergePool"></div>
+<button class="submit-btn" id="emergeSubmitBtn" onclick="submitEmerge()">проверить →</button>
+<div class="feedback wrong" id="fb6w"></div>
+<div class="feedback correct" id="fb6c"></div>
+<div class="insight-box" id="emergeInsight">
+<p><strong style="color:var(--y)">Разбор:</strong> Сознание, рыночная цена, культура команды и пробки в дорожном движении — эмерджентные. Ни один участник не «имеет» эти свойства — они возникают из взаимодействия. Температура воды — не эмерджентная: это свойство каждой молекулы H₂O. Скорость автомобиля — не эмерджентная: это свойство самого автомобиля.</p>
+</div>
+<div class="recommendation" id="rec6">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec6text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next6" style="display:none;">
+<button class="next-btn" onclick="goTo('impossible')">финальный вызов →</button>
+</div>
+</div>
+</div>
 <!-- ===== IMPOSSIBLE CASE ===== -->
 <div class="screen" id="screen-impossible">
-  <div class="lesson-wrap">
-    <div class="lesson-num" style="color:var(--r)">★ финальный вызов</div>
-    <h1 class="lesson-title">Невозможный кейс</h1>
-    <div class="article">
-      <p>Ты прошёл 6 уроков. Ты знаешь про петли, задержки, рычаги, эмерджентность. Теперь попробуй применить всё это одновременно.</p>
-      <div class="highlight" style="border-color:var(--r);margin-bottom:32px">
-        <strong style="color:var(--r)">Кейс:</strong> Компания растёт. Но чем быстрее она растёт — тем хуже становится качество. Чем хуже качество — тем быстрее компания растёт (чтобы компенсировать отток). Круг замкнулся. Что делать?
+<div class="lesson-wrap">
+<div class="lesson-num" style="color:var(--r)">★ финальный вызов</div>
+<h1 class="lesson-title">Невозможный кейс</h1>
+<div class="article">
+<p>Ты прошёл 6 уроков. Ты знаешь про петли, задержки, рычаги, эмерджентность. Теперь попробуй применить всё это одновременно.</p>
+<div class="highlight" style="border-color:var(--r);margin-bottom:32px">
+<strong style="color:var(--r)">Кейс:</strong> Компания растёт. Но чем быстрее она растёт — тем хуже становится качество. Чем хуже качество — тем быстрее компания растёт (чтобы компенсировать отток). Круг замкнулся. Что делать?
       </div>
-      <p>Выбери один вариант — тот, который кажется тебе наиболее сильным рычагом:</p>
-    </div>
-
-    <div class="game-section" id="impossibleGame">
-      <div class="game-label">★ вызов</div>
-      <div class="game-title">Архетип «Пределы роста»</div>
-      <div class="game-desc">Выбери наиболее сильный рычаг для разрыва петли.</div>
-      <div id="impossibleOptions" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px"></div>
-      <button class="submit-btn" id="impossibleSubmitBtn" onclick="submitImpossible()">проверить →</button>
-      <div class="feedback wrong" id="fbIw"></div>
-      <div class="feedback correct" id="fbIc"></div>
-      <div class="insight-box" id="impossibleInsight"></div>
-    </div>
-
-    <div class="next-lesson" id="nextImpossible" style="display:none;">
-      <button class="next-btn" onclick="showResult()">посмотреть результат →</button>
-    </div>
-  </div>
+<p>Выбери один вариант — тот, который кажется тебе наиболее сильным рычагом:</p>
 </div>
-
+<div class="game-section" id="impossibleGame">
+<div class="game-label">★ вызов</div>
+<div class="game-title">Архетип «Пределы роста»</div>
+<div class="game-desc">Выбери наиболее сильный рычаг для разрыва петли.</div>
+<div id="impossibleOptions" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px"></div>
+<button class="submit-btn" id="impossibleSubmitBtn" onclick="submitImpossible()">проверить →</button>
+<div class="feedback wrong" id="fbIw"></div>
+<div class="feedback correct" id="fbIc"></div>
+<div class="insight-box" id="impossibleInsight"></div>
+</div>
+<div class="next-lesson" id="nextImpossible" style="display:none;">
+<button class="next-btn" onclick="showResult()">посмотреть результат →</button>
+</div>
+</div>
+</div>
 <!-- ===== RESULT ===== -->
 <div class="screen" id="screen-result">
-  <div class="result-wrap">
-    <!-- PROFILE -->
-    <div class="result-ring">
-      <div class="result-num" id="rScore">0</div>
-      <div class="result-of">из 6</div>
-    </div>
-    <div class="result-level" id="rLevel"></div>
-    <h1 class="result-title" id="rTitle"></h1>
-    <p class="result-desc" id="rDesc"></p>
-
-    <!-- PERSONALIZED PROFILE -->
-    <div id="rProfile" style="background:var(--card);padding:28px;margin-bottom:32px;text-align:left">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">твой профиль мышления</div>
-      <div id="rProfileItems" style="display:flex;flex-direction:column;gap:12px"></div>
-    </div>
-
-    <!-- TERRITORY MAP -->
-    <div style="margin-bottom:48px;text-align:left">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px">карта территории</div>
-      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:24px">За 25 минут ты прошёл <strong style="color:var(--w)">6 принципов</strong> из всего поля системного мышления. Вот что ещё есть:</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
-        <div style="background:var(--y);padding:16px 20px">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:6px">прошёл в курсе</div>
-          <div style="font-size:13px;font-weight:700;color:#000;line-height:1.6">Модель айсберга · Петли R/B · 12 точек рычага · Задержки · Эмерджентность · Вложенность</div>
-        </div>
-        <div style="background:var(--card);padding:16px 20px;border:1px solid var(--brd)">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--g);text-transform:uppercase;margin-bottom:6px">не вошло в курс</div>
-          <div style="font-size:13px;font-weight:700;color:var(--g);line-height:1.6">12 системных архетипов · Stock-and-flow · Системное моделирование · Динамическая сложность · Ментальные модели · Теория ограничений · Проектирование систем</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRINCIPLES -->
-    <div class="result-principles">
-      <div class="result-principle"><div class="result-principle-num">01</div><div class="result-principle-name">Ныряй глубже</div><div class="result-principle-sub">Повторяющаяся проблема = проблема структуры</div></div>
-      <div class="result-principle"><div class="result-principle-num">02</div><div class="result-principle-name">Думай на 3 шага</div><div class="result-principle-sub">Нет изолированных решений. «А потом что?»</div></div>
-      <div class="result-principle"><div class="result-principle-num">03</div><div class="result-principle-name">Видь петли</div><div class="result-principle-sub">Усиливай нужные, разрывай вредные</div></div>
-      <div class="result-principle"><div class="result-principle-num">04</div><div class="result-principle-name">Ищи рычаг</div><div class="result-principle-sub">Не сильнее — а в правильном месте</div></div>
-      <div class="result-principle"><div class="result-principle-num">05</div><div class="result-principle-name">Учитывай задержку</div><div class="result-principle-sub">Когда придут последствия? Не бросай раньше</div></div>
-      <div class="result-principle"><div class="result-principle-num">06</div><div class="result-principle-name">Смотри на взаимодействия</div><div class="result-principle-sub">Проблема может быть в среде, а не в людях</div></div>
-    </div>
-
-    <!-- OBSERVATION TASK -->
-    <div style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">задание на неделю</div>
-      <h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Включи линзу</h3>
-      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:16px">Теперь ты видишь системы. И это нельзя развидеть.</p>
-      <p style="font-size:15px;color:var(--w);line-height:1.7;font-weight:600">В ближайшие 7 дней — запиши 3 примера из своей жизни или работы, где ты видишь:</p>
-      <ul style="margin:12px 0 0 24px;line-height:2;font-size:14px;color:var(--g)">
-        <li>Петлю обратной связи (усиливающую или балансирующую)</li>
-        <li>Задержку между действием и результатом</li>
-        <li>Свойство, которое возникло из взаимодействия, а не из отдельных частей</li>
-      </ul>
-    </div>
-
-    <!-- GPT DIAGNOSIS -->
-    <div id="gpt-block" style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">персональный системный разбор</div>
-      <h3 style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Опиши свою повторяющуюся проблему</h3>
-      <p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:20px">Напиши 2–3 предложения о проблеме, которая не решается. Я сделаю системный разбор — найду петлю, задержку или архетип, и покажу точку рычага.</p>
-      <div id="gpt-form">
-        <textarea id="gpt-problem" placeholder="Например: я постоянно нанимаю людей, но через 3–4 месяца они уходят. Повышаю зарплаты — не помогает. Уже третий раз за год..." style="width:100%;min-height:110px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:var(--w);font-family:inherit;font-size:15px;line-height:1.6;padding:16px;resize:vertical;outline:none;box-sizing:border-box;margin-bottom:14px" oninput="gptValidate()"></textarea>
-        <button id="gpt-btn" onclick="runDiagnosis()" disabled style="background:var(--y);color:#000;border:none;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;cursor:pointer;opacity:.4;transition:opacity .2s">получить разбор →</button>
-      </div>
-      <div id="gpt-loading" style="display:none;padding:24px 0;text-align:center">
-        <div style="display:inline-block;width:28px;height:28px;border:3px solid rgba(200,255,0,.2);border-top-color:var(--y);border-radius:50%;animation:spin .8s linear infinite"></div>
-        <p style="margin-top:12px;font-size:14px;color:var(--g)">Анализирую структуру проблемы...</p>
-      </div>
-      <div id="gpt-result" style="display:none">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px;margin-top:8px">системный разбор</div>
-        <div id="gpt-text" style="font-size:16px;line-height:1.8;color:var(--w);white-space:pre-wrap"></div>
-        <button onclick="resetDiagnosis()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--g);font-family:inherit;font-size:13px;padding:10px 20px;cursor:pointer">← разобрать другую проблему</button>
-      </div>
-      <div id="gpt-error" style="display:none;padding:16px;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff8080;font-size:14px;margin-top:12px"></div>
-    </div>
-
-    <!-- CTA -->
-    <div class="result-cta">
-      <div class="result-cta-label">следующий шаг</div>
-      <h2 class="result-cta-title">Это была верхушка айсберга.</h2>
-      <p class="result-cta-desc">За 25 минут ты прошёл 6 принципов из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах: архетипы, моделирование, проектирование систем.</p>
-      <a href="https://www.distill-school.ru" class="result-cta-btn">узнать про школу DISTILL →</a>
-    </div>
-    <button class="result-retry" onclick="restart()">&#8635; пройти заново</button>
-  </div>
+<div class="result-wrap">
+<!-- PROFILE -->
+<div class="result-ring">
+<div class="result-num" id="rScore">0</div>
+<div class="result-of">из 6</div>
 </div>
-
+<div class="result-level" id="rLevel"></div>
+<h1 class="result-title" id="rTitle"></h1>
+<p class="result-desc" id="rDesc"></p>
+<!-- PERSONALIZED PROFILE -->
+<div id="rProfile" style="background:var(--card);padding:28px;margin-bottom:32px;text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">твой профиль мышления</div>
+<div id="rProfileItems" style="display:flex;flex-direction:column;gap:12px"></div>
+</div>
+<!-- TERRITORY MAP -->
+<div style="margin-bottom:48px;text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px">карта территории</div>
+<p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:24px">За 25 минут ты прошёл <strong style="color:var(--w)">6 принципов</strong> из всего поля системного мышления. Вот что ещё есть:</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+<div style="background:var(--y);padding:16px 20px">
+<div style="font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:6px">прошёл в курсе</div>
+<div style="font-size:13px;font-weight:700;color:#000;line-height:1.6">Модель айсберга · Петли R/B · 12 точек рычага · Задержки · Эмерджентность · Вложенность</div>
+</div>
+<div style="background:var(--card);padding:16px 20px;border:1px solid var(--brd)">
+<div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--g);text-transform:uppercase;margin-bottom:6px">не вошло в курс</div>
+<div style="font-size:13px;font-weight:700;color:var(--g);line-height:1.6">12 системных архетипов · Stock-and-flow · Системное моделирование · Динамическая сложность · Ментальные модели · Теория ограничений · Проектирование систем</div>
+</div>
+</div>
+</div>
+<!-- PRINCIPLES -->
+<div class="result-principles">
+<div class="result-principle"><div class="result-principle-num">01</div><div class="result-principle-name">Ныряй глубже</div><div class="result-principle-sub">Повторяющаяся проблема = проблема структуры</div></div>
+<div class="result-principle"><div class="result-principle-num">02</div><div class="result-principle-name">Думай на 3 шага</div><div class="result-principle-sub">Нет изолированных решений. «А потом что?»</div></div>
+<div class="result-principle"><div class="result-principle-num">03</div><div class="result-principle-name">Видь петли</div><div class="result-principle-sub">Усиливай нужные, разрывай вредные</div></div>
+<div class="result-principle"><div class="result-principle-num">04</div><div class="result-principle-name">Ищи рычаг</div><div class="result-principle-sub">Не сильнее — а в правильном месте</div></div>
+<div class="result-principle"><div class="result-principle-num">05</div><div class="result-principle-name">Учитывай задержку</div><div class="result-principle-sub">Когда придут последствия? Не бросай раньше</div></div>
+<div class="result-principle"><div class="result-principle-num">06</div><div class="result-principle-name">Смотри на взаимодействия</div><div class="result-principle-sub">Проблема может быть в среде, а не в людях</div></div>
+</div>
+<!-- OBSERVATION TASK -->
+<div style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">задание на неделю</div>
+<h3 style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Включи линзу</h3>
+<p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:16px">Теперь ты видишь системы. И это нельзя развидеть.</p>
+<p style="font-size:15px;color:var(--w);line-height:1.7;font-weight:600">В ближайшие 7 дней — запиши 3 примера из своей жизни или работы, где ты видишь:</p>
+<ul style="margin:12px 0 0 24px;line-height:2;font-size:14px;color:var(--g)">
+<li>Петлю обратной связи (усиливающую или балансирующую)</li>
+<li>Задержку между действием и результатом</li>
+<li>Свойство, которое возникло из взаимодействия, а не из отдельных частей</li>
+</ul>
+</div>
+<!-- GPT DIAGNOSIS -->
+<div id="gpt-block" style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">персональный системный разбор</div>
+<h3 style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Опиши свою повторяющуюся проблему</h3>
+<p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:20px">Напиши 2–3 предложения о проблеме, которая не решается. Я сделаю системный разбор — найду петлю, задержку или архетип, и покажу точку рычага.</p>
+<div id="gpt-form">
+<textarea id="gpt-problem" oninput="gptValidate()" placeholder="Например: я постоянно нанимаю людей, но через 3–4 месяца они уходят. Повышаю зарплаты — не помогает. Уже третий раз за год..." style="width:100%;min-height:110px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:var(--w);font-family:inherit;font-size:15px;line-height:1.6;padding:16px;resize:vertical;outline:none;box-sizing:border-box;margin-bottom:14px"></textarea>
+<button disabled="" id="gpt-btn" onclick="runDiagnosis()" style="background:var(--y);color:#000;border:none;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;cursor:pointer;opacity:.4;transition:opacity .2s">получить разбор →</button>
+</div>
+<div id="gpt-loading" style="display:none;padding:24px 0;text-align:center">
+<div style="display:inline-block;width:28px;height:28px;border:3px solid rgba(200,255,0,.2);border-top-color:var(--y);border-radius:50%;animation:spin .8s linear infinite"></div>
+<p style="margin-top:12px;font-size:14px;color:var(--g)">Анализирую структуру проблемы...</p>
+</div>
+<div id="gpt-result" style="display:none">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px;margin-top:8px">системный разбор</div>
+<div id="gpt-text" style="font-size:16px;line-height:1.8;color:var(--w);white-space:pre-wrap"></div>
+<button onclick="resetDiagnosis()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--g);font-family:inherit;font-size:13px;padding:10px 20px;cursor:pointer">← разобрать другую проблему</button>
+</div>
+<div id="gpt-error" style="display:none;padding:16px;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff8080;font-size:14px;margin-top:12px"></div>
+</div>
+<!-- CTA -->
+<div class="result-cta">
+<div class="result-cta-label">следующий шаг</div>
+<h2 class="result-cta-title">Это была верхушка айсберга.</h2>
+<p class="result-cta-desc">За 25 минут ты прошёл 6 принципов из работ Медоуз, Сенге и Форрестера. Но системное мышление — это навык, который тренируется. В школе DISTILL — 12 недель практики на реальных кейсах: архетипы, моделирование, проектирование систем.</p>
+<a class="result-cta-btn" href="https://www.distill-school.ru">узнать про школу DISTILL →</a>
+</div>
+<button class="result-retry" onclick="restart()">↻ пройти заново</button>
+</div>
+</div>
 <script>
 // ===== GLOBALS =====
 let score = 0;

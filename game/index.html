@@ -1,22 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Сколько сил ты теряешь за рабочий день? — DISTILL</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <meta name="description" content="Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, теряй или набирай силы. Узнай, почему к вечеру не остаётся сил." />
-  <link rel="canonical" href="https://www.distill-school.ru/game/" />
-
-  <!-- Яндекс.Метрика -->
-  <script type="text/javascript">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Сколько сил ты теряешь за рабочий день? — DISTILL</title>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<meta content="Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, теряй или набирай силы. Узнай, почему к вечеру не остаётся сил." name="description"/>
+<link href="https://www.distill-school.ru/game/" rel="canonical"/>
+<!-- Яндекс.Метрика -->
+<script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108295821','ym');
     ym(108295821,'init',{webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
   </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
-
-  <style>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --yellow: #E8FF00;
@@ -651,482 +649,473 @@
       .result-stats { grid-template-columns: 1fr 1fr; }
     }
   </style>
-</head>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Сколько сил ты теряешь за рабочий день? — DISTILL",
+  "url": "https://www.distill-school.ru/game/",
+  "description": "Пройди рабочий день как уровень в игре. 5 реальных ситуаций — делай выборы, теряй или набирай силы. Узнай, почему к вечеру не остаётся сил.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "DISTILL — Школа метанавыков",
+    "url": "https://www.distill-school.ru"
+  }
+}</script></head>
 <body>
-
 <!-- SEO H1 -->
 <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Тест на выгорание: пройди рабочий день и узнай свой уровень</h1>
-
 <nav>
-  <a href="/" class="nav-logo">distill</a>
-  <span class="nav-label" id="nav-label">Уровень 1 — Рабочий день</span>
+<a class="nav-logo" href="/">distill</a>
+<span class="nav-label" id="nav-label">Уровень 1 — Рабочий день</span>
 </nav>
-
 <div class="game-wrap">
-
-  <!-- HUD -->
-  <div class="hud" id="hud">
-    <div class="hud-top">
-      <span class="hud-title">PLAYER_01 // РАБОЧИЙ ДЕНЬ</span>
-      <span class="hud-time" id="hud-time">09:00</span>
-    </div>
-    <div class="hud-bars">
-      <div class="bar-row">
-        <span class="bar-label">❤ СИЛЫ</span>
-        <div class="bar-track">
-          <div class="bar-fill hp" id="hp-bar" style="width:100%"></div>
-        </div>
-        <span class="bar-val" id="hp-val">100</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">⚡ ЭНЕРГИЯ</span>
-        <div class="bar-track">
-          <div class="bar-fill energy" id="energy-bar" style="width:100%"></div>
-        </div>
-        <span class="bar-val" id="energy-val">100</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── START SCREEN ─── -->
-  <div class="screen active" id="screen-start">
-    <div class="start-screen">
-      <div class="game-badge">DISTILL // ТЕСТ НА ВЫГОРАНИЕ</div>
-      <div class="game-title">ТЫ ВЫГОРАЕШЬ?<br><span>ПРОВЕРЬ ЗА 3 МИНУТЫ</span></div>
-      <p class="game-subtitle">Пройди рабочий день как уровень в игре. 8 реальных ситуаций — делай выборы, смотри как падают силы. В конце узнаешь, на какой стадии выгорания ты находишься.</p>
-      <div class="burnout-meter">
-        <div class="burnout-label"><span>УРОВЕНЬ ВЫГОРАНИЯ</span><span id="burnout-pct">...</span></div>
-        <div class="burnout-track"><div class="burnout-fill" id="burnout-fill"></div></div>
-        <div class="burnout-warning">⚠ У большинства людей — выше нормы. Проверь свой уровень.</div>
-      </div>
-      <div class="pixel-char"></div>
-      <button class="start-btn" onclick="startGame()">▶ ПРОВЕРИТЬ СВОЙ УРОВЕНЬ</button>
-      <div class="start-hint">8 сцен · 5 минут · результат сразу</div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 1: УТРО ─── -->
-  <div class="screen" id="screen-1">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🌅</span>
-        <div>
-          <div class="scene-location">Дом → Офис / Удалёнка</div>
-          <div class="scene-time-label">09:00 — Начало дня</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Будильник. 7:30. Открываю телефон — <em>14 непрочитанных</em> в рабочем чате. День ещё не начался, а уже что-то горит...</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Рабочий день ещё не начался, но уже что-то горит. Как ты реагируешь на <strong>14 непрочитанных сообщений</strong> прямо с утра?</p>
-        <div class="choices" id="choices-1">
-          <button class="choice-btn" onclick="choose(1, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Закрываю телефон. Сначала завтрак, потом работа.</div>
-              <span class="choice-effect">Ты знаешь: реакция до кофе — плохая реакция.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(1, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Быстро просматриваю — вдруг что-то срочное.</div>
-              <span class="choice-effect">Лёгкая тревога уже включилась.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(1, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Читаю всё, начинаю отвечать прямо из кровати.</div>
-              <span class="choice-effect">День начался, даже не вставая.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-1">
-          <div class="feedback-delta" id="delta-1"></div>
-          <div id="feedback-text-1"></div>
-          <button class="continue-btn" onclick="nextScene(2)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 2: ПЛАНЁРКА ─── -->
-  <div class="screen" id="screen-2">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">📋</span>
-        <div>
-          <div class="scene-location">Zoom / Переговорка</div>
-          <div class="scene-time-label">10:30 — Планёрка на 30 минут</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Уже <em>55 минут</em>. Тема закрыта, но все продолжают говорить. У меня дедлайн сегодня, а я тут сижу...</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Планёрка идёт уже <strong>55 минут</strong>. Тема давно закрыта, но все продолжают говорить. У тебя горит задача, дедлайн сегодня.</p>
-        <div class="choices" id="choices-2">
-          <button class="choice-btn" onclick="choose(2, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Говорю: «Коллеги, давайте зафиксируем решение и закончим — у меня дедлайн.»</div>
-              <span class="choice-effect">Неловко, но честно.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(2, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Молча сижу, параллельно работаю в другом окне.</div>
-              <span class="choice-effect">Тело на встрече, голова — нет.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(2, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Слушаю до конца. Дедлайн подождёт, уважение важнее.</div>
-              <span class="choice-effect">+1 к лояльности, -1 к здравому смыслу.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-2">
-          <div class="feedback-delta" id="delta-2"></div>
-          <div id="feedback-text-2"></div>
-          <button class="continue-btn" onclick="nextScene(3)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 3: ОБЕД ─── -->
-  <div class="screen" id="screen-3">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🍜</span>
-        <div>
-          <div class="scene-location">Кухня / Кафе / Рабочий стол</div>
-          <div class="scene-time-label">13:00 — Обеденный перерыв</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Обед. Я не успел половину запланированного. Коллега зовёт пообедать. <em>Дедлайн через 4 часа.</em> Что делать?</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Обед. Ты <strong>не успел</strong> сделать половину запланированного. Коллега зовёт пообедать вместе. Дедлайн через 4 часа.</p>
-        <div class="choices" id="choices-3">
-          <button class="choice-btn" onclick="choose(3, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Иду обедать. 30 минут — это инвестиция, не трата.</div>
-              <span class="choice-effect">Мозг восстанавливается в переключении.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(3, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Ем за компьютером, продолжаю работать.</div>
-              <span class="choice-effect">Ни нормально поел, ни нормально поработал.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(3, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Пропускаю обед. Не до этого.</div>
-              <span class="choice-effect">Глюкоза падает. Мозг начинает тупить к 15:00.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-3">
-          <div class="feedback-delta" id="delta-3"></div>
-          <div id="feedback-text-3"></div>
-          <button class="continue-btn" onclick="nextScene(4)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 4: СРОЧНАЯ ЗАДАЧА ─── -->
-  <div class="screen" id="screen-4">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🔥</span>
-        <div>
-          <div class="scene-location">Рабочий стол</div>
-          <div class="scene-time-label">15:30 — Прилетает «срочно»</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Руководитель: <em>«Нужно срочно, к 17:00»</em>. Я в середине своей задачи. Если переключусь — потеряю контекст...</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Руководитель пишет: <strong>«Нужно срочно, к 17:00»</strong>. Ты в середине своей задачи. Если переключишься — потеряешь контекст и не успеешь ни то, ни другое.</p>
-        <div class="choices" id="choices-4">
-          <button class="choice-btn" onclick="choose(4, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Пишу: «Сейчас в середине задачи с дедлайном сегодня. Могу взяться через час — ок?»</div>
-              <span class="choice-effect">Честная коммуникация о приоритетах.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(4, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Бросаю всё, берусь за новую задачу.</div>
-              <span class="choice-effect">Контекст потерян. Оба дедлайна под угрозой.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(4, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Пытаюсь делать оба одновременно.</div>
-              <span class="choice-effect">Многозадачность — миф. Мозг просто переключается и теряет 40% эффективности.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-4">
-          <div class="feedback-delta" id="delta-4"></div>
-          <div id="feedback-text-4"></div>
-          <button class="continue-btn" onclick="nextScene(5)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 5: КОНЕЦ ДНЯ ─── -->
-  <div class="screen" id="screen-5">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🌆</span>
-        <div>
-          <div class="scene-location">Конец рабочего дня</div>
-          <div class="scene-time-label">18:30 — Рабочий день закончен</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Формально день закончился. Но в голове <em>ещё крутятся задачи</em>. Коллега пишет — не срочно, но я уже вижу уведомление...</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Рабочий день формально закончился. Но в голове <strong>ещё крутятся задачи</strong> на завтра. Коллега пишет в чат — не срочно, но ты видишь уведомление.</p>
-        <div class="choices" id="choices-5">
-          <button class="choice-btn" onclick="choose(5, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Закрываю ноутбук. Записываю задачи на завтра в блокнот и выключаю уведомления.</div>
-              <span class="choice-effect">Ритуал завершения дня — это навык.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(5, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Отвечаю коллеге — раз уж увидел.</div>
-              <span class="choice-effect">Граница размылась. Мозг не переключится до сна.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(5, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Продолжаю работать — хочу закрыть ещё пару задач.</div>
-              <span class="choice-effect">+2 задачи сегодня, -20% завтра.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-5">
-          <div class="feedback-delta" id="delta-5"></div>
-          <div id="feedback-text-5"></div>
-          <button class="continue-btn" onclick="nextScene(6)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 6: КОНЦЕНТРАЦИЯ ─── -->
-  <div class="screen" id="screen-6">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🧠</span>
-        <div>
-          <div class="scene-location">Рабочее место</div>
-          <div class="scene-time-label">11:00 — Глубокая работа</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Нужно сосредоточиться на сложной задаче. Но телефон <em>вибрирует каждые 10 минут</em>. Как быть?</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Тебе нужно сделать сложную аналитическую задачу. <strong>Телефон вибрирует каждые 10 минут</strong> — не срочное, но ты видишь уведомления. Через 2 часа должен быть результат.</p>
-        <div class="choices" id="choices-6">
-          <button class="choice-btn" onclick="choose(6, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Перевожу телефон в режим полёта или отключу уведомления на 2 часа.</div>
-              <span class="choice-effect">Фокус сохраняется. Задача будет сделана быстрее.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(6, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Быстро смотрю каждое уведомление — вдруг что-то важное.</div>
-              <span class="choice-effect">Каждый загляд — это прерывание фокуса.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(6, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Работаю с телефоном рядом — пусть будет под рукой.</div>
-              <span class="choice-effect">Телефон рядом — это приглашение отвлечься.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-6">
-          <div class="feedback-delta" id="delta-6"></div>
-          <div id="feedback-text-6"></div>
-          <button class="continue-btn" onclick="nextScene(7)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 7: КРИТИКА ─── -->
-  <div class="screen" id="screen-7">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">💥</span>
-        <div>
-          <div class="scene-location">Офис / чат</div>
-          <div class="scene-time-label">14:00 — Обратная связь</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Коллега публично сказал: <em>«ты неправильно сделал»</em>. Я знаю, что он неправ. Но все смотрят...</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">На общем совещании коллега сказал, что <strong>ты сделал неправильно</strong>. Ты знаешь, что он ошибается. Все молчат и смотрят на тебя.</p>
-        <div class="choices" id="choices-7">
-          <button class="choice-btn" onclick="choose(7, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Спокойно объясняю свою логику с фактами, без эмоций.</div>
-              <span class="choice-effect">Ассертивность — это метанавык.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(7, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Молчу. Не хочу конфликта на виду у всех.</div>
-              <span class="choice-effect">Агрессия накапливается внутри.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(7, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Отвечаю резко — накопилось.</div>
-              <span class="choice-effect">Конфликт эскалируется. Репутация под угрозой.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-7">
-          <div class="feedback-delta" id="delta-7"></div>
-          <div id="feedback-text-7"></div>
-          <button class="continue-btn" onclick="nextScene(8)">ПРОДОЛЖИТЬ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── SCENE 8: ВЕЧЕР ─── -->
-  <div class="screen" id="screen-8">
-    <div class="scene-box">
-      <div class="scene-top">
-        <span class="scene-icon">🌙</span>
-        <div>
-          <div class="scene-location">Дом</div>
-          <div class="scene-time-label">21:00 — Вечер</div>
-        </div>
-      </div>
-      <div class="scene-char-wrap">
-        <div class="scene-pixel-char"></div>
-        <div class="speech-bubble">Дома. Но <em>мысли о 3 незакрытых задачах</em> не дают отключиться. Делать что-то сейчас?</div>
-      </div>
-      <div class="scene-body">
-        <p class="scene-text">Ты дома. Но <strong>мысли о работе не отпускают</strong>. В голове крутятся 3 незакрытых задачи. Сериал или ноутбук?</p>
-        <div class="choices" id="choices-8">
-          <button class="choice-btn" onclick="choose(8, 'A')">
-            <span class="choice-key">A</span>
-            <div>
-              <div>Записываю задачи в блокнот и смотрю сериал. Завтра разберусь.</div>
-              <span class="choice-effect">Мозг отпускает задачи только если зафиксированы.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(8, 'B')">
-            <span class="choice-key">B</span>
-            <div>
-              <div>Открываю ноутбук — закрою хотя бы одну задачу.</div>
-              <span class="choice-effect">Мозг не успеет отключиться до сна.</span>
-            </div>
-          </button>
-          <button class="choice-btn" onclick="choose(8, 'C')">
-            <span class="choice-key">C</span>
-            <div>
-              <div>Лежу с телефоном, листаю ленту. Засну позже.</div>
-              <span class="choice-effect">Соцсети перед сном — худшее из возможного.</span>
-            </div>
-          </button>
-        </div>
-        <div class="feedback" id="feedback-8">
-          <div class="feedback-delta" id="delta-8"></div>
-          <div id="feedback-text-8"></div>
-          <button class="continue-btn" onclick="showResult()">ИТОГИ ДНЯ →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── RESULT SCREEN ─── -->
-  <div class="screen" id="screen-result">
-    <div class="result-screen">
-      <div class="result-game-over" id="result-title-text">ДЕНЬ ЗАВЕРШЁН</div>
-      <div class="result-subtitle">ДИАГНОЗ ВЫГОРАНИЯ // DISTILL ANALYTICS</div>
-
-      <div class="result-stats">
-        <div class="stat-box">
-          <div class="stat-label">🔥 УРОВЕНЬ ВЫГОРАНИЯ</div>
-          <div class="stat-value" id="final-hp-val">—</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">⚡ ЭНЕРГИЯ</div>
-          <div class="stat-value" id="final-energy-val">—</div>
-        </div>
-      </div>
-
-      <div class="result-verdict">
-        <div class="verdict-title">// ВЕРДИКТ СИСТЕМЫ</div>
-        <div class="verdict-text" id="verdict-text"></div>
-      </div>
-
-      <div class="result-moments">
-        <div class="moments-title">// КЛЮЧЕВЫЕ МОМЕНТЫ, ГДЕ УТЕКЛА ЭНЕРГИЯ</div>
-        <div id="moments-list"></div>
-      </div>
-
-      <div class="result-cta-box">
-        <div class="result-cta-title">ЧТО ДЕЛАТЬ С ЭТИМ ВЫГОРАНИЕМ?</div>
-        <div class="result-cta-desc">Получи пошаговый план на 7 дней:<br>— Почему ты сливаешь силы (нейробиология, не банальности)<br>— 3 техники восстановления, которые работают за 10 минут<br>— Как не скатиться обратно через неделю</div>
-        <a href="https://t.me/distillsh_bot?start=game_direct" class="result-cta-btn" target="_blank" onclick="trackBot()">▶ ЗАБРАТЬ ПЛАН В TELEGRAM</a>
-        <button class="replay-btn" onclick="replayGame()">↺ СЫГРАТЬ СНОВА</button>
-      </div>
-    </div>
-  </div>
-
+<!-- HUD -->
+<div class="hud" id="hud">
+<div class="hud-top">
+<span class="hud-title">PLAYER_01 // РАБОЧИЙ ДЕНЬ</span>
+<span class="hud-time" id="hud-time">09:00</span>
+</div>
+<div class="hud-bars">
+<div class="bar-row">
+<span class="bar-label">❤ СИЛЫ</span>
+<div class="bar-track">
+<div class="bar-fill hp" id="hp-bar" style="width:100%"></div>
+</div>
+<span class="bar-val" id="hp-val">100</span>
+</div>
+<div class="bar-row">
+<span class="bar-label">⚡ ЭНЕРГИЯ</span>
+<div class="bar-track">
+<div class="bar-fill energy" id="energy-bar" style="width:100%"></div>
+</div>
+<span class="bar-val" id="energy-val">100</span>
+</div>
+</div>
+</div>
+<!-- ─── START SCREEN ─── -->
+<div class="screen active" id="screen-start">
+<div class="start-screen">
+<div class="game-badge">DISTILL // ТЕСТ НА ВЫГОРАНИЕ</div>
+<div class="game-title">ТЫ ВЫГОРАЕШЬ?<br/><span>ПРОВЕРЬ ЗА 3 МИНУТЫ</span></div>
+<p class="game-subtitle">Пройди рабочий день как уровень в игре. 8 реальных ситуаций — делай выборы, смотри как падают силы. В конце узнаешь, на какой стадии выгорания ты находишься.</p>
+<div class="burnout-meter">
+<div class="burnout-label"><span>УРОВЕНЬ ВЫГОРАНИЯ</span><span id="burnout-pct">...</span></div>
+<div class="burnout-track"><div class="burnout-fill" id="burnout-fill"></div></div>
+<div class="burnout-warning">⚠ У большинства людей — выше нормы. Проверь свой уровень.</div>
+</div>
+<div class="pixel-char"></div>
+<button class="start-btn" onclick="startGame()">▶ ПРОВЕРИТЬ СВОЙ УРОВЕНЬ</button>
+<div class="start-hint">8 сцен · 5 минут · результат сразу</div>
+</div>
+</div>
+<!-- ─── SCENE 1: УТРО ─── -->
+<div class="screen" id="screen-1">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🌅</span>
+<div>
+<div class="scene-location">Дом → Офис / Удалёнка</div>
+<div class="scene-time-label">09:00 — Начало дня</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Будильник. 7:30. Открываю телефон — <em>14 непрочитанных</em> в рабочем чате. День ещё не начался, а уже что-то горит...</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Рабочий день ещё не начался, но уже что-то горит. Как ты реагируешь на <strong>14 непрочитанных сообщений</strong> прямо с утра?</p>
+<div class="choices" id="choices-1">
+<button class="choice-btn" onclick="choose(1, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Закрываю телефон. Сначала завтрак, потом работа.</div>
+<span class="choice-effect">Ты знаешь: реакция до кофе — плохая реакция.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(1, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Быстро просматриваю — вдруг что-то срочное.</div>
+<span class="choice-effect">Лёгкая тревога уже включилась.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(1, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Читаю всё, начинаю отвечать прямо из кровати.</div>
+<span class="choice-effect">День начался, даже не вставая.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-1">
+<div class="feedback-delta" id="delta-1"></div>
+<div id="feedback-text-1"></div>
+<button class="continue-btn" onclick="nextScene(2)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 2: ПЛАНЁРКА ─── -->
+<div class="screen" id="screen-2">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">📋</span>
+<div>
+<div class="scene-location">Zoom / Переговорка</div>
+<div class="scene-time-label">10:30 — Планёрка на 30 минут</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Уже <em>55 минут</em>. Тема закрыта, но все продолжают говорить. У меня дедлайн сегодня, а я тут сижу...</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Планёрка идёт уже <strong>55 минут</strong>. Тема давно закрыта, но все продолжают говорить. У тебя горит задача, дедлайн сегодня.</p>
+<div class="choices" id="choices-2">
+<button class="choice-btn" onclick="choose(2, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Говорю: «Коллеги, давайте зафиксируем решение и закончим — у меня дедлайн.»</div>
+<span class="choice-effect">Неловко, но честно.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(2, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Молча сижу, параллельно работаю в другом окне.</div>
+<span class="choice-effect">Тело на встрече, голова — нет.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(2, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Слушаю до конца. Дедлайн подождёт, уважение важнее.</div>
+<span class="choice-effect">+1 к лояльности, -1 к здравому смыслу.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-2">
+<div class="feedback-delta" id="delta-2"></div>
+<div id="feedback-text-2"></div>
+<button class="continue-btn" onclick="nextScene(3)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 3: ОБЕД ─── -->
+<div class="screen" id="screen-3">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🍜</span>
+<div>
+<div class="scene-location">Кухня / Кафе / Рабочий стол</div>
+<div class="scene-time-label">13:00 — Обеденный перерыв</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Обед. Я не успел половину запланированного. Коллега зовёт пообедать. <em>Дедлайн через 4 часа.</em> Что делать?</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Обед. Ты <strong>не успел</strong> сделать половину запланированного. Коллега зовёт пообедать вместе. Дедлайн через 4 часа.</p>
+<div class="choices" id="choices-3">
+<button class="choice-btn" onclick="choose(3, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Иду обедать. 30 минут — это инвестиция, не трата.</div>
+<span class="choice-effect">Мозг восстанавливается в переключении.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(3, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Ем за компьютером, продолжаю работать.</div>
+<span class="choice-effect">Ни нормально поел, ни нормально поработал.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(3, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Пропускаю обед. Не до этого.</div>
+<span class="choice-effect">Глюкоза падает. Мозг начинает тупить к 15:00.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-3">
+<div class="feedback-delta" id="delta-3"></div>
+<div id="feedback-text-3"></div>
+<button class="continue-btn" onclick="nextScene(4)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 4: СРОЧНАЯ ЗАДАЧА ─── -->
+<div class="screen" id="screen-4">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🔥</span>
+<div>
+<div class="scene-location">Рабочий стол</div>
+<div class="scene-time-label">15:30 — Прилетает «срочно»</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Руководитель: <em>«Нужно срочно, к 17:00»</em>. Я в середине своей задачи. Если переключусь — потеряю контекст...</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Руководитель пишет: <strong>«Нужно срочно, к 17:00»</strong>. Ты в середине своей задачи. Если переключишься — потеряешь контекст и не успеешь ни то, ни другое.</p>
+<div class="choices" id="choices-4">
+<button class="choice-btn" onclick="choose(4, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Пишу: «Сейчас в середине задачи с дедлайном сегодня. Могу взяться через час — ок?»</div>
+<span class="choice-effect">Честная коммуникация о приоритетах.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(4, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Бросаю всё, берусь за новую задачу.</div>
+<span class="choice-effect">Контекст потерян. Оба дедлайна под угрозой.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(4, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Пытаюсь делать оба одновременно.</div>
+<span class="choice-effect">Многозадачность — миф. Мозг просто переключается и теряет 40% эффективности.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-4">
+<div class="feedback-delta" id="delta-4"></div>
+<div id="feedback-text-4"></div>
+<button class="continue-btn" onclick="nextScene(5)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 5: КОНЕЦ ДНЯ ─── -->
+<div class="screen" id="screen-5">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🌆</span>
+<div>
+<div class="scene-location">Конец рабочего дня</div>
+<div class="scene-time-label">18:30 — Рабочий день закончен</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Формально день закончился. Но в голове <em>ещё крутятся задачи</em>. Коллега пишет — не срочно, но я уже вижу уведомление...</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Рабочий день формально закончился. Но в голове <strong>ещё крутятся задачи</strong> на завтра. Коллега пишет в чат — не срочно, но ты видишь уведомление.</p>
+<div class="choices" id="choices-5">
+<button class="choice-btn" onclick="choose(5, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Закрываю ноутбук. Записываю задачи на завтра в блокнот и выключаю уведомления.</div>
+<span class="choice-effect">Ритуал завершения дня — это навык.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(5, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Отвечаю коллеге — раз уж увидел.</div>
+<span class="choice-effect">Граница размылась. Мозг не переключится до сна.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(5, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Продолжаю работать — хочу закрыть ещё пару задач.</div>
+<span class="choice-effect">+2 задачи сегодня, -20% завтра.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-5">
+<div class="feedback-delta" id="delta-5"></div>
+<div id="feedback-text-5"></div>
+<button class="continue-btn" onclick="nextScene(6)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 6: КОНЦЕНТРАЦИЯ ─── -->
+<div class="screen" id="screen-6">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🧠</span>
+<div>
+<div class="scene-location">Рабочее место</div>
+<div class="scene-time-label">11:00 — Глубокая работа</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Нужно сосредоточиться на сложной задаче. Но телефон <em>вибрирует каждые 10 минут</em>. Как быть?</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Тебе нужно сделать сложную аналитическую задачу. <strong>Телефон вибрирует каждые 10 минут</strong> — не срочное, но ты видишь уведомления. Через 2 часа должен быть результат.</p>
+<div class="choices" id="choices-6">
+<button class="choice-btn" onclick="choose(6, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Перевожу телефон в режим полёта или отключу уведомления на 2 часа.</div>
+<span class="choice-effect">Фокус сохраняется. Задача будет сделана быстрее.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(6, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Быстро смотрю каждое уведомление — вдруг что-то важное.</div>
+<span class="choice-effect">Каждый загляд — это прерывание фокуса.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(6, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Работаю с телефоном рядом — пусть будет под рукой.</div>
+<span class="choice-effect">Телефон рядом — это приглашение отвлечься.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-6">
+<div class="feedback-delta" id="delta-6"></div>
+<div id="feedback-text-6"></div>
+<button class="continue-btn" onclick="nextScene(7)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 7: КРИТИКА ─── -->
+<div class="screen" id="screen-7">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">💥</span>
+<div>
+<div class="scene-location">Офис / чат</div>
+<div class="scene-time-label">14:00 — Обратная связь</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Коллега публично сказал: <em>«ты неправильно сделал»</em>. Я знаю, что он неправ. Но все смотрят...</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">На общем совещании коллега сказал, что <strong>ты сделал неправильно</strong>. Ты знаешь, что он ошибается. Все молчат и смотрят на тебя.</p>
+<div class="choices" id="choices-7">
+<button class="choice-btn" onclick="choose(7, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Спокойно объясняю свою логику с фактами, без эмоций.</div>
+<span class="choice-effect">Ассертивность — это метанавык.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(7, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Молчу. Не хочу конфликта на виду у всех.</div>
+<span class="choice-effect">Агрессия накапливается внутри.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(7, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Отвечаю резко — накопилось.</div>
+<span class="choice-effect">Конфликт эскалируется. Репутация под угрозой.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-7">
+<div class="feedback-delta" id="delta-7"></div>
+<div id="feedback-text-7"></div>
+<button class="continue-btn" onclick="nextScene(8)">ПРОДОЛЖИТЬ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── SCENE 8: ВЕЧЕР ─── -->
+<div class="screen" id="screen-8">
+<div class="scene-box">
+<div class="scene-top">
+<span class="scene-icon">🌙</span>
+<div>
+<div class="scene-location">Дом</div>
+<div class="scene-time-label">21:00 — Вечер</div>
+</div>
+</div>
+<div class="scene-char-wrap">
+<div class="scene-pixel-char"></div>
+<div class="speech-bubble">Дома. Но <em>мысли о 3 незакрытых задачах</em> не дают отключиться. Делать что-то сейчас?</div>
+</div>
+<div class="scene-body">
+<p class="scene-text">Ты дома. Но <strong>мысли о работе не отпускают</strong>. В голове крутятся 3 незакрытых задачи. Сериал или ноутбук?</p>
+<div class="choices" id="choices-8">
+<button class="choice-btn" onclick="choose(8, 'A')">
+<span class="choice-key">A</span>
+<div>
+<div>Записываю задачи в блокнот и смотрю сериал. Завтра разберусь.</div>
+<span class="choice-effect">Мозг отпускает задачи только если зафиксированы.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(8, 'B')">
+<span class="choice-key">B</span>
+<div>
+<div>Открываю ноутбук — закрою хотя бы одну задачу.</div>
+<span class="choice-effect">Мозг не успеет отключиться до сна.</span>
+</div>
+</button>
+<button class="choice-btn" onclick="choose(8, 'C')">
+<span class="choice-key">C</span>
+<div>
+<div>Лежу с телефоном, листаю ленту. Засну позже.</div>
+<span class="choice-effect">Соцсети перед сном — худшее из возможного.</span>
+</div>
+</button>
+</div>
+<div class="feedback" id="feedback-8">
+<div class="feedback-delta" id="delta-8"></div>
+<div id="feedback-text-8"></div>
+<button class="continue-btn" onclick="showResult()">ИТОГИ ДНЯ →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ─── RESULT SCREEN ─── -->
+<div class="screen" id="screen-result">
+<div class="result-screen">
+<div class="result-game-over" id="result-title-text">ДЕНЬ ЗАВЕРШЁН</div>
+<div class="result-subtitle">ДИАГНОЗ ВЫГОРАНИЯ // DISTILL ANALYTICS</div>
+<div class="result-stats">
+<div class="stat-box">
+<div class="stat-label">🔥 УРОВЕНЬ ВЫГОРАНИЯ</div>
+<div class="stat-value" id="final-hp-val">—</div>
+</div>
+<div class="stat-box">
+<div class="stat-label">⚡ ЭНЕРГИЯ</div>
+<div class="stat-value" id="final-energy-val">—</div>
+</div>
+</div>
+<div class="result-verdict">
+<div class="verdict-title">// ВЕРДИКТ СИСТЕМЫ</div>
+<div class="verdict-text" id="verdict-text"></div>
+</div>
+<div class="result-moments">
+<div class="moments-title">// КЛЮЧЕВЫЕ МОМЕНТЫ, ГДЕ УТЕКЛА ЭНЕРГИЯ</div>
+<div id="moments-list"></div>
+</div>
+<div class="result-cta-box">
+<div class="result-cta-title">ЧТО ДЕЛАТЬ С ЭТИМ ВЫГОРАНИЕМ?</div>
+<div class="result-cta-desc">Получи пошаговый план на 7 дней:<br/>— Почему ты сливаешь силы (нейробиология, не банальности)<br/>— 3 техники восстановления, которые работают за 10 минут<br/>— Как не скатиться обратно через неделю</div>
+<a class="result-cta-btn" href="https://t.me/distillsh_bot?start=game_direct" onclick="trackBot()" target="_blank">▶ ЗАБРАТЬ ПЛАН В TELEGRAM</a>
+<button class="replay-btn" onclick="replayGame()">↺ СЫГРАТЬ СНОВА</button>
+</div>
+</div>
+</div>
 </div><!-- /game-wrap -->
-
 <script>
   var hp = 100;
   var energy = 100;
@@ -1349,17 +1338,15 @@
     window.scrollTo(0, 0);
   }
 </script>
-
 <!-- SEO-текст под игрой -->
 <section style="max-width:680px;margin:0 auto;padding:48px 24px 80px;font-family:'Inter',sans-serif;color:rgba(255,255,255,0.7);border-top:1px solid rgba(232,255,0,0.15);">
-  <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Что такое этот тест на выгорание?</h2>
-  <p style="font-size:15px;line-height:1.8;margin-bottom:20px;">Это не опросник с вопросами «оцените стресс от 1 до 10». Это интерактивная игра, в которой ты проживаешь обычный рабочий день — от утреннего будильника до вечерних уведомлений. В каждой из 8 сцен нужно сделать выбор, и каждый выбор влияет на твой уровень сил и энергии.</p>
-  <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Кому подойдёт этот тест?</h2>
-  <p style="font-size:15px;line-height:1.8;margin-bottom:20px;">Специалистам, менеджерам и руководителям, которые регулярно заканчивают день с ощущением «вроде работал, но ничего не сделал». Если к вечеру не остаётся сил даже на простые вещи — тест покажет, какие именно паттерны поведения съедают твою энергию.</p>
-  <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Что ты узнаешь в результате?</h2>
-  <p style="font-size:15px;line-height:1.8;margin-bottom:20px;">В конце теста ты получишь свой уровень выгорания и объяснение: какие конкретные паттерны поведения тебя истощают и что с этим делать. Не общие советы про сон и медитацию — а точечный разбор твоей ситуации.</p>
-  <p style="font-size:14px;line-height:1.7;">Тест разработан командой <a href="https://www.distill-school.ru" style="color:#E8FF00;text-decoration:none;font-weight:600;">DISTILL — школы метанавыков</a>. Мы изучаем, как работает мозг под нагрузкой, и помогаем людям работать эффективнее без выгорания.</p>
+<h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Что такое этот тест на выгорание?</h2>
+<p style="font-size:15px;line-height:1.8;margin-bottom:20px;">Это не опросник с вопросами «оцените стресс от 1 до 10». Это интерактивная игра, в которой ты проживаешь обычный рабочий день — от утреннего будильника до вечерних уведомлений. В каждой из 8 сцен нужно сделать выбор, и каждый выбор влияет на твой уровень сил и энергии.</p>
+<h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Кому подойдёт этот тест?</h2>
+<p style="font-size:15px;line-height:1.8;margin-bottom:20px;">Специалистам, менеджерам и руководителям, которые регулярно заканчивают день с ощущением «вроде работал, но ничего не сделал». Если к вечеру не остаётся сил даже на простые вещи — тест покажет, какие именно паттерны поведения съедают твою энергию.</p>
+<h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;">Что ты узнаешь в результате?</h2>
+<p style="font-size:15px;line-height:1.8;margin-bottom:20px;">В конце теста ты получишь свой уровень выгорания и объяснение: какие конкретные паттерны поведения тебя истощают и что с этим делать. Не общие советы про сон и медитацию — а точечный разбор твоей ситуации.</p>
+<p style="font-size:14px;line-height:1.7;">Тест разработан командой <a href="https://www.distill-school.ru" style="color:#E8FF00;text-decoration:none;font-weight:600;">DISTILL — школы метанавыков</a>. Мы изучаем, как работает мозг под нагрузкой, и помогаем людям работать эффективнее без выгорания.</p>
 </section>
-
 </body>
 </html>
