@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Три оси результативности — бесплатный мини-курс · DISTILL</title>
+<meta content="5 уроков про то, чем делатели отличаются от умных наблюдателей: контакт с реальностью, агентность, вкус к асимметрии. Реальные истории, интерактивные механики, персональный разбор в конце. Бесплатно, 15 минут." name="description"/>
+<link href="https://www.distill-school.ru/axes/" rel="canonical"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<meta content="Три оси результативности — бесплатный мини-курс · DISTILL" property="og:title"/>
+<meta content="1903 год. Двое строят летающую машину. Один — с грантом и репутацией, другие чинят велосипеды. Взлетели вторые. Их отличали три штуки — и все три тренируются." property="og:description"/>
+<meta content="https://www.distill-school.ru/axes/og.jpg" property="og:image"/>
+<meta content="https://www.distill-school.ru/axes/" property="og:url"/>
+<meta content="article" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--y:#c8ff00;--bk:#0a0a0a;--dk:#111;--card:#1a1a1a;--brd:#2a2a2a;--w:#fff;--g:#888;--lg:#bbb;--r:#ff3b3b;--gr:#00ff88;--blue:#4488ff}
+    html{scroll-behavior:smooth}
+    body{background:var(--bk);color:var(--w);font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bk);border-bottom:1px solid var(--brd);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-weight:900;font-size:18px;color:var(--y);text-decoration:none;letter-spacing:-.5px}
+    .nav-logo span{color:var(--w)}
+    .nav-progress{display:flex;gap:6px;align-items:center}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:var(--brd);transition:all .3s}
+    .nav-dot.done{background:var(--y)}
+    .nav-dot.active{background:var(--y);box-shadow:0 0 8px var(--y)}
+    .screen{display:none;min-height:100vh;padding-top:56px}
+    .screen.active{display:block}
+    .hero{min-height:calc(100vh - 56px);display:grid;grid-template-columns:1fr 1fr}
+    .hero-left{background:var(--y);padding:80px 56px;display:flex;flex-direction:column;justify-content:center}
+    .hero-tag{display:inline-block;border:1.5px solid rgba(0,0,0,.3);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;color:#000;margin-bottom:32px;align-self:flex-start}
+    .hero-title{font-size:clamp(44px,5.2vw,76px);font-weight:900;line-height:.95;letter-spacing:-3px;color:#000}
+    .hero-title em{font-style:italic}
+    .hero-sub{margin-top:24px;font-size:16px;color:#222;max-width:460px;line-height:1.65}
+    .hero-sub strong{color:#000}
+    .hero-start{margin-top:36px;display:inline-block;background:#000;color:var(--y);padding:18px 40px;font-size:16px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;align-self:flex-start}
+    .hero-start:hover{opacity:.85}
+    .hero-right{background:var(--dk);display:flex;align-items:center;justify-content:center;padding:48px}
+    .hero-right-inner{max-width:400px}
+    .hero-badge{border:1.5px solid var(--y);color:var(--y);padding:8px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:inline-block;margin-bottom:28px}
+    .hero-lessons{display:flex;flex-direction:column;gap:16px}
+    .hero-lesson{display:flex;align-items:flex-start;gap:16px}
+    .hero-lesson-num{flex-shrink:0;width:32px;height:32px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--y)}
+    .hero-lesson-title{font-size:15px;font-weight:700;color:var(--w)}
+    .hero-lesson-desc{font-size:13px;color:var(--g);margin-top:2px}
+    .lesson-wrap{max-width:720px;margin:0 auto;padding:64px 32px 100px}
+    .lesson-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px}
+    .lesson-title{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:40px}
+    .article p{margin-bottom:24px;color:var(--lg)}
+    .article p strong{color:var(--w)}
+    .article p em{color:var(--y);font-style:normal}
+    .article h3{font-size:22px;font-weight:900;letter-spacing:-.5px;margin:48px 0 20px;color:var(--w)}
+    .article .highlight{background:rgba(200,255,0,.06);border-left:3px solid var(--y);padding:20px 28px;margin:32px 0;font-size:17px;color:var(--w);line-height:1.7}
+    .article .highlight strong{color:var(--y)}
+    .article .metaphor{background:var(--card);border:1px solid var(--brd);padding:28px 32px;margin:32px 0;font-size:16px;color:var(--lg);line-height:1.8}
+    .article .metaphor::before{content:'💡';display:block;margin-bottom:12px;font-size:24px}
+    .story{border-left:3px solid var(--brd);padding:4px 0 4px 28px;margin:32px 0}
+    .story p{font-size:18px;line-height:1.75;color:var(--lg);margin-bottom:18px}
+    .story p:last-child{margin-bottom:0}
+    .story p strong{color:var(--w)}
+    .story p em{color:var(--y);font-style:normal}
+    .illustration{background:#0d0d0d;border:1px solid var(--brd);padding:24px;margin:40px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .illustration img{max-width:100%;height:auto;border-radius:4px;background:#fff}
+    .illustration .caption{font-size:13px;color:var(--g);margin-top:12px;font-style:italic}
+    .game-section{background:var(--card);border:1px solid var(--brd);padding:40px;margin-top:56px}
+    .game-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px}
+    .game-title{font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px}
+    .game-desc{font-size:15px;color:var(--g);margin-bottom:32px}
+    /* SWIPE */
+    .swipe-area{display:flex;flex-direction:column;align-items:center;gap:20px}
+    .swipe-progress{display:flex;gap:6px}
+    .swipe-dot{width:8px;height:8px;border-radius:50%;background:var(--brd)}
+    .swipe-dot.correct{background:var(--gr)}
+    .swipe-dot.wrong{background:var(--r)}
+    .swipe-dot.current{background:var(--y);box-shadow:0 0 6px var(--y)}
+    .swipe-card{width:100%;max-width:520px;background:var(--dk);border:1.5px solid var(--brd);padding:36px;font-size:18px;line-height:1.6;text-align:center;transition:transform .3s,border-color .3s}
+    .swipe-card.left{transform:translateX(-20px) rotate(-3deg);border-color:var(--r)}
+    .swipe-card.right{transform:translateX(20px) rotate(3deg);border-color:var(--gr)}
+    .swipe-hint{font-size:12px;color:var(--g)}
+    .swipe-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+    .swipe-btn{padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:opacity .2s}
+    .swipe-btn:hover{opacity:.85}
+    .swipe-btn.no{background:var(--r);color:#fff}
+    .swipe-btn.yes{background:var(--gr);color:#000}
+    /* PREDICTION GAME */
+    .pred-q{background:var(--dk);border:1px solid var(--brd);padding:28px;font-size:18px;line-height:1.6;margin-bottom:24px}
+    .pred-q .pred-src{display:block;margin-top:12px;font-size:12px;color:var(--g);font-style:italic}
+    .pred-slider-row{display:flex;align-items:center;gap:20px;margin-bottom:8px}
+    .pred-val{font-size:34px;font-weight:900;color:var(--y);letter-spacing:-2px;min-width:96px;text-align:right}
+    .pred-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--g);letter-spacing:1px;margin-bottom:8px}
+    input[type="range"]{width:100%;height:4px;background:var(--brd);outline:none;cursor:pointer;-webkit-appearance:none;border-radius:0}
+    input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--y);cursor:pointer}
+    input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--y);cursor:pointer;border:none;border-radius:0}
+    .pred-reveal{display:none;background:var(--dk);border:1px solid var(--brd);padding:28px}
+    .pred-reveal.show{display:block}
+    .pred-bar-row{margin-bottom:16px}
+    .pred-bar-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+    .pred-bar-track{height:12px;background:var(--brd)}
+    .pred-bar-fill{height:100%;transition:width .5s}
+    .pred-bar-fill.mine{background:var(--g)}
+    .pred-bar-fill.real{background:var(--y)}
+    .pred-gap{font-size:15px;line-height:1.7;color:var(--lg);margin-top:16px}
+    .pred-gap strong{color:var(--w)}
+    .pred-summary{background:var(--dk);border:1.5px solid var(--y);padding:28px;display:none}
+    .pred-summary.show{display:block}
+    .pred-summary-num{font-size:44px;font-weight:900;color:var(--y);letter-spacing:-2px;line-height:1}
+    /* TECHNIQUE CARDS */
+    .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0}
+    .tech-card{background:var(--card);border:1px solid var(--brd);padding:22px 24px}
+    .tech-card-name{font-size:15px;font-weight:900;color:var(--y);margin-bottom:8px}
+    .tech-card-desc{font-size:14px;color:var(--g);line-height:1.6}
+    /* RATING */
+    .rating-item{background:var(--dk);border:1px solid var(--brd);padding:20px 24px;margin-bottom:10px;transition:border-color .2s}
+    .rating-item.result-correct{border-color:var(--gr)}
+    .rating-item.result-wrong{border-color:var(--r)}
+    .rating-action{font-size:15px;font-weight:600;margin-bottom:14px}
+    .rating-stars{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    .star-btn{width:38px;height:38px;border:1.5px solid var(--brd);background:transparent;color:var(--g);font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .star-btn:hover{border-color:var(--y);color:var(--y)}
+    .star-btn.active{background:var(--y);border-color:var(--y);color:#000;font-weight:900}
+    .rating-label{font-size:11px;color:var(--g);margin-left:10px;letter-spacing:.5px}
+    .rating-result{font-size:12px;margin-top:10px;font-weight:600;display:none;line-height:1.6}
+    .rating-result.show{display:block}
+    .rating-result.ok{color:var(--gr)}
+    .rating-result.bad{color:var(--r)}
+    /* TWO-CHOICE (lesson 5) */
+    .tc-item{background:var(--dk);border:1px solid var(--brd);padding:20px 24px;margin-bottom:10px}
+    .tc-item.result-correct{border-color:var(--gr)}
+    .tc-item.result-wrong{border-color:var(--r)}
+    .tc-text{font-size:15px;font-weight:600;margin-bottom:14px;line-height:1.6}
+    .tc-btns{display:flex;gap:8px;flex-wrap:wrap}
+    .tc-btn{padding:11px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;background:transparent;border:1.5px solid var(--brd);color:var(--g);transition:all .2s}
+    .tc-btn:hover{border-color:var(--y);color:var(--y)}
+    .tc-btn.active{background:var(--y);border-color:var(--y);color:#000}
+    .tc-why{font-size:12px;margin-top:12px;font-weight:600;display:none;line-height:1.6}
+    .tc-why.show{display:block}
+    .tc-why.ok{color:var(--gr)}
+    .tc-why.bad{color:var(--r)}
+    .feedback{padding:16px 20px;margin-top:16px;font-size:14px;display:none;line-height:1.7}
+    .feedback.show{display:block}
+    .feedback.wrong{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.2);color:#ffaaaa}
+    .feedback.correct{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:#aaffcc}
+    .recommendation{margin-top:20px;padding:24px;background:var(--dk);border:1px solid var(--brd);display:none}
+    .recommendation.show{display:block}
+    .recommendation h4{font-size:14px;font-weight:700;color:var(--y);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+    .recommendation p{font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:12px}
+    .recommendation p:last-child{margin-bottom:0}
+    .recommendation strong{color:var(--w)}
+    .insight-box{margin-top:24px;padding:24px;background:var(--dk);border:1px solid var(--brd);display:none}
+    .insight-box.show{display:block}
+    .insight-box p{font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:16px}
+    .insight-box p:last-child{margin-bottom:0}
+    .insight-box strong{color:var(--w)}
+    .exercise{background:var(--dk);border:1.5px solid var(--y);padding:28px;margin-top:32px}
+    .exercise-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:12px}
+    .exercise p{font-size:15px;color:var(--lg);line-height:1.7;margin:0}
+    .exercise p strong{color:var(--w)}
+    .submit-btn{background:var(--y);color:#000;border:none;padding:16px 40px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-top:20px;transition:opacity .2s}
+    .submit-btn:hover{opacity:.85}
+    .submit-btn:disabled{opacity:.4;cursor:not-allowed}
+    .next-lesson{margin-top:48px;padding-top:32px;border-top:1px solid var(--brd)}
+    .next-btn{background:var(--y);color:#000;border:none;padding:18px 48px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+    .next-btn:hover{opacity:.85}
+    /* RESULT */
+    .result-wrap{max-width:720px;margin:0 auto;padding:80px 32px;text-align:center}
+    .result-ring{width:140px;height:140px;border:4px solid var(--y);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 40px}
+    .result-num{font-size:48px;font-weight:900;color:var(--y);letter-spacing:-3px;line-height:1}
+    .result-of{font-size:11px;color:var(--g)}
+    .result-level{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px}
+    .result-title{font-size:clamp(28px,3.5vw,44px);font-weight:900;letter-spacing:-1.5px;margin-bottom:20px}
+    .result-desc{font-size:17px;color:var(--g);line-height:1.7;margin-bottom:48px;max-width:540px;margin-left:auto;margin-right:auto}
+    .axis-block{background:var(--card);padding:28px;margin-bottom:32px;text-align:left}
+    .axis-row{margin-bottom:22px}
+    .axis-row:last-child{margin-bottom:0}
+    .axis-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
+    .axis-name{font-size:15px;font-weight:700;color:var(--w)}
+    .axis-pct{font-size:14px;font-weight:900;color:var(--y)}
+    .axis-track{height:10px;background:var(--brd)}
+    .axis-fill{height:100%;background:var(--y);transition:width .8s}
+    .axis-fill.weak{background:var(--r)}
+    .axis-note{font-size:13px;color:var(--g);margin-top:8px;line-height:1.6}
+    .weak-box{background:var(--dk);border:1.5px solid var(--r);padding:32px;margin-bottom:32px;text-align:left}
+    .weak-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--r);text-transform:uppercase;margin-bottom:14px}
+    .weak-title{font-size:26px;font-weight:900;letter-spacing:-1px;margin-bottom:14px}
+    .weak-desc{font-size:15px;color:var(--lg);line-height:1.7;margin-bottom:18px}
+    .weak-ex{font-size:15px;color:var(--lg);line-height:1.7;background:rgba(200,255,0,.06);border-left:3px solid var(--y);padding:16px 20px}
+    .weak-ex strong{color:var(--y)}
+    .share-card{background:var(--y);color:#000;padding:32px;text-align:left;margin-bottom:16px}
+    .share-card-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.5);margin-bottom:12px}
+    .share-card-main{font-size:24px;font-weight:900;letter-spacing:-1px;line-height:1.2;margin-bottom:10px}
+    .share-card-sub{font-size:15px;color:#222;line-height:1.6}
+    .share-card-url{font-size:12px;font-weight:700;color:rgba(0,0,0,.55);margin-top:18px;letter-spacing:.5px}
+    .share-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+    .share-btn{background:transparent;border:1.5px solid var(--brd);color:var(--lg);padding:12px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;transition:all .2s}
+    .share-btn:hover{border-color:var(--y);color:var(--y)}
+    .result-cta{background:var(--y);padding:48px;text-align:left;margin-top:32px}
+    .result-cta-label{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:16px}
+    .result-cta-title{font-size:clamp(24px,3vw,36px);font-weight:900;color:#000;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+    .result-cta-desc{font-size:16px;color:#333;line-height:1.7;margin-bottom:28px;max-width:480px}
+    .result-cta-btn{display:inline-block;background:#000;color:var(--y);padding:18px 40px;font-size:16px;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif}
+    .result-retry{margin-top:24px;background:transparent;border:1.5px solid var(--brd);color:var(--g);padding:14px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+    .result-retry:hover{border-color:var(--w);color:var(--w)}
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr}
+      .hero-right{display:none}
+      .hero-left{padding:48px 24px}
+      .lesson-wrap{padding:40px 20px 80px}
+      .game-section{padding:28px 20px}
+      .result-wrap{padding:56px 20px}
+      .result-cta{padding:32px 20px}
+      .tech-grid{grid-template-columns:1fr}
+      .story{padding-left:18px}
+      .pred-val{font-size:26px;min-width:74px}
+      .share-card-main{font-size:20px}
+    }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Три оси результативности — бесплатный мини-курс",
+  "url": "https://www.distill-school.ru/axes/",
+  "description": "5 уроков про то, чем делатели отличаются от умных наблюдателей: контакт с реальностью, калибровка, агентность, вкус к асимметрии и ошибка выжившего.",
+  "inLanguage": "ru",
+  "isAccessibleForFree": true,
+  "provider": {
+    "@type": "Organization",
+    "name": "DISTILL — Школа метанавыков",
+    "url": "https://www.distill-school.ru"
+  }
+}</script></head>
+<body>
+<nav>
+<a class="nav-logo" href="https://www.distill-school.ru">distill<span>.</span></a>
+<div class="nav-progress" id="navProgress">
+<div class="nav-dot" id="dot0"></div>
+<div class="nav-dot" id="dot1"></div>
+<div class="nav-dot" id="dot2"></div>
+<div class="nav-dot" id="dot3"></div>
+<div class="nav-dot" id="dot4"></div>
+<div class="nav-dot" id="dot5"></div>
+</div>
+</nav>
+<!-- ===== HERO ===== -->
+<div class="screen active" id="screen-hero">
+<div class="hero">
+<div class="hero-left">
+<div class="hero-tag">бесплатный мини-курс · 5 уроков · ~15 мин</div>
+<h1 class="hero-title">1903.<br/>двое строят<br/><em>летающую машину.</em></h1>
+<p class="hero-sub"><strong>Первый</strong> — Сэмюэл Лэнгли. Профессор, глава Смитсоновского института, грант военного ведомства, толпы журналистов. Умный, уважаемый, при деньгах.</p>
+<p class="hero-sub"><strong>Вторые</strong> — братья Райт. Чинят велосипеды в мастерской в Огайо. Ни диплома, ни гранта, ни связей.</p>
+<p class="hero-sub">Аппарат Лэнгли с треском падает в реку Потомак. Через девять дней братья Райт взлетают. Не потому что были умнее. Они отличались <strong>тремя штуками</strong> — и все три тренируются.</p>
+<button class="hero-start" onclick="startCourse()">начать (15 минут) →</button>
+</div>
+<div class="hero-right">
+<div class="hero-right-inner">
+<div class="hero-badge">программа курса</div>
+<div class="hero-lessons">
+<div class="hero-lesson"><div class="hero-lesson-num">01</div><div><div class="hero-lesson-title">Контакт с реальностью</div><div class="hero-lesson-desc">Короткая петля «сделал → увидел → поправил».</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">02</div><div><div class="hero-lesson-title">Калибровка</div><div class="hero-lesson-desc">Мозг раздаёт уверенность бесплатно. Точность — нет.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">03</div><div><div class="hero-lesson-title">Агентность</div><div class="hero-lesson-desc">Не «получится ли?», а «как я это сделаю?»</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">04</div><div><div class="hero-lesson-title">Вкус к асимметрии</div><div class="hero-lesson-desc">Теряешь копейки, выиграть можешь всё.</div></div></div>
+<div class="hero-lesson"><div class="hero-lesson-num">05</div><div><div class="hero-lesson-title">Ловушка выжившего</div><div class="hero-lesson-desc">Честный экран: где навык, а где фора.</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ===== LESSON 1 ===== -->
+<div class="screen" id="screen-1">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 01 из 05</div>
+<h1 class="lesson-title">Контакт с реальностью</h1>
+<div class="article">
+<div class="story">
+<p>Лэнгли считал. Формулы, теория, красиво на бумаге. Проверял всё двумя гигантскими публичными запусками. Оба — в воду.</p>
+<p>Братья Райт делали наоборот. Построили самодельную аэродинамическую трубу и продули в ней <strong>200 форм крыла</strong>. Не спорили, какое лучше, — спрашивали у ветра. Каждый день. По чуть-чуть.</p>
+</div>
+<div class="illustration">
+<img alt="Слева — перегруженный аппарат из теории падает в воду, справа — простой самолёт летит" loading="lazy" src="illus_l1.webp" style="width:100%;max-width:700px"/>
+<div class="caption">Слева — идеальная машина из формул. Справа — то, что реально летит.</div>
+</div>
+<p>Вот разница. Лэнгли жил в теории и сверялся с реальностью раз в полгода, ва-банк. Райты касались её каждый день и правили курс по мелочи.</p>
+<p>Это и есть <strong>контакт с реальностью</strong>: короткая петля «сделал → увидел, что вышло на самом деле → поправил». Чем короче петля — тем быстрее ты становишься точным.</p>
+<div class="highlight">
+<strong>Длина петли важнее качества идеи.</strong> Средняя идея с петлёй в один день обгонит гениальную идею с петлёй в полгода. Просто потому, что первая успеет стать хорошей, пока вторая ещё пишется набело.
+      </div>
+<p>И да, ты сейчас узнал в Лэнгли кого-то. Может, себя.</p>
+<p>Потому что у контакта с реальностью есть враг, и это не лень. Это <em>приятная версия происходящего</em> — та, где всё объяснимо, виноваты все кроме тебя, и данных не требуется. Мозг генерирует её бесплатно и очень быстро.</p>
+<p>Давай проверим, отличаешь ли ты одно от другого. Пять фраз. В каждой — либо факт, либо выдача желаемого за действительное.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Факт или выдаёшь желаемое?</div>
+<div class="game-desc">Прочитай фразу. Реши, опирается она на реальность или на приятную картинку в голове. 5 карточек.</div>
+<div class="swipe-area" id="swipeArea1">
+<div class="swipe-progress" id="swipeProgress1"></div>
+<div class="swipe-card" id="swipeCard1"></div>
+<div class="swipe-hint" id="swipeHint1">← ЖЕЛАЕМОЕ  |  ФАКТ →</div>
+<div class="swipe-btns" id="swipeBtns1">
+<button class="swipe-btn no" onclick="swipeAnswer(1,false)">выдаю желаемое</button>
+<button class="swipe-btn yes" onclick="swipeAnswer(1,true)">факт</button>
+</div>
+</div>
+<div class="feedback wrong" id="fb1w"></div>
+<div class="feedback correct" id="fb1c"></div>
+<div class="recommendation" id="rec1">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec1text"></p>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-label">упражнение</div>
+<p><strong>Каждый день одно решение сверяй с цифрой, а не с «кажется».</strong> Одно. Не пять. Возьми решение, которое сегодня принял на ощущениях, и найди под него одно число. Через неделю станет заметно, что часть «очевидного» просто не подтверждается.</p>
+</div>
+<div class="next-lesson" id="next1" style="display:none;">
+<button class="next-btn" onclick="goTo(2)">урок 02: Калибровка →</button>
+</div>
+</div>
+</div>
+<!-- ===== LESSON 2 ===== -->
+<div class="screen" id="screen-2">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 02 из 05</div>
+<h1 class="lesson-title">Калибровка</h1>
+<div class="article">
+<div class="story">
+<p>2011-й. Профессор Филип Тетлок собрал добровольцев — учителей, пенсионеров, айтишников — предсказывать мировые события. Против них — аналитики разведки с доступом к секретке.</p>
+<p><strong>Любители обошли профессионалов примерно на 30%.</strong></p>
+<p>Секретов у них не было. Была привычка: не «случится / не случится», а число. «Вероятность 70%». Записать. Потом сверить: из всех моих «70%» сбылось реально 70? Если 50 — я себя переоцениваю, надо приземлиться.</p>
+</div>
+<div class="illustration">
+<img alt="Человек с уверенным видом бросает дротик мимо мишени и говорит «100% точно!»" loading="lazy" src="illus_l2.webp" style="width:100%;max-width:700px"/>
+<div class="caption">Уверенность и точность — два разных прибора. Второй у большинства не откалиброван.</div>
+</div>
+<p>Мозг раздаёт уверенность бесплатно, а точность — нет. «Точно взлетит» ты говоришь одинаковым тоном и когда прав, и когда фантазируешь. Пока не сверяешь число с реальностью — ты не знаешь, где именно врёшь себе.</p>
+<p>Это и есть калибровка: не быть умнее, а <em>знать точность собственных оценок</em>. Разница огромная. Умный с плохой калибровкой опаснее среднего с хорошей — он уверенно ведёт всех не туда.</p>
+<p>Проверим прямо сейчас. Три вопроса. На каждый двигаешь ползунок — сколько процентов? Потом покажу реальную цифру.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Игра-прогноз</div>
+<div class="game-desc">Три вопроса про реальный мир. Поставь свою оценку — и сравни с тем, как обстоят дела на самом деле.</div>
+<div id="predGame">
+<div class="pred-q" id="predQ"></div>
+<div class="pred-slider-row">
+<input id="predSlider" max="100" min="0" oninput="predUpd()" type="range" value="50"/>
+<div class="pred-val" id="predVal">50%</div>
+</div>
+<div class="pred-scale"><span>0%</span><span>50%</span><span>100%</span></div>
+<button class="submit-btn" id="predBtn" onclick="predLock()">зафиксировать →</button>
+</div>
+<div class="pred-reveal" id="predReveal">
+<div class="pred-bar-row">
+<div class="pred-bar-label"><span style="color:var(--g)">твоя оценка</span><span id="predMineTxt" style="color:var(--g)">—</span></div>
+<div class="pred-bar-track"><div class="pred-bar-fill mine" id="predMineBar" style="width:0%"></div></div>
+</div>
+<div class="pred-bar-row">
+<div class="pred-bar-label"><span style="color:var(--y)">как на самом деле</span><span id="predRealTxt" style="color:var(--y)">—</span></div>
+<div class="pred-bar-track"><div class="pred-bar-fill real" id="predRealBar" style="width:0%"></div></div>
+</div>
+<div class="pred-gap" id="predGap"></div>
+<button class="submit-btn" id="predNextBtn" onclick="predNext()">дальше →</button>
+</div>
+<div class="pred-summary" id="predSummary">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:12px">средний разрыв</div>
+<div class="pred-summary-num" id="predAvg">0</div>
+<div style="font-size:13px;color:var(--g);margin-top:4px;margin-bottom:18px">процентных пунктов между твоей картиной мира и фактами</div>
+<div id="predVerdict" style="font-size:15px;color:var(--lg);line-height:1.7"></div>
+</div>
+<div class="feedback wrong" id="fb2w"></div>
+<div class="feedback correct" id="fb2c"></div>
+<div class="recommendation" id="rec2">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec2text"></p>
+</div>
+</div>
+<div class="article">
+<h3>Пять техник калибровки</h3>
+<div class="tech-grid">
+<div class="tech-card"><div class="tech-card-name">Журнал предсказаний</div><div class="tech-card-desc">Записывай прогноз и вероятность до того, как узнаешь ответ. Иначе память допишет за тебя — и окажется, что ты «так и думал».</div></div>
+<div class="tech-card"><div class="tech-card-name">Интервал на 90%</div><div class="tech-card-desc">Назови вилку, в которую попадёшь в 9 случаях из 10. Расширяй, пока не станет некомфортно широко. Вот там правда и живёт.</div></div>
+<div class="tech-card"><div class="tech-card-name">Pre-mortem</div><div class="tech-card-desc">«Прошёл год, проект провалился — почему?» Задаётся до старта. Вскрывает то, что вежливость прячет на совещаниях.</div></div>
+<div class="tech-card"><div class="tech-card-name">Внешний взгляд</div><div class="tech-card-desc">Не «как будет у меня», а «как обычно бывает у людей в такой ситуации». Твой случай не особенный. Никогда.</div></div>
+<div class="tech-card"><div class="tech-card-name">Ставка</div><div class="tech-card-desc">«Поставил бы денег?» Уверенность на словах бесплатна. Уверенность деньгами становится честнее мгновенно.</div></div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-label">упражнение</div>
+<p><strong>Заведи таблицу: дата / прогноз / вероятность / срок / факт.</strong> 5–10 записей в неделю. Первые недели будет скучно. После 50+ записей это станет самым отрезвляющим зеркалом, которое у тебя есть, — потому что таблице врать нечем.</p>
+</div>
+<div class="next-lesson" id="next2" style="display:none;">
+<button class="next-btn" onclick="goTo(3)">урок 03: Агентность →</button>
+</div>
+</div>
+</div>
+<!-- ===== LESSON 3 ===== -->
+<div class="screen" id="screen-3">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 03 из 05</div>
+<h1 class="lesson-title">Агентность</h1>
+<div class="article">
+<div class="story">
+<p>Джиа Джиангу отказал инвестор — и это его подкосило. Знакомое «всё, я не тяну». Вместо того чтобы прятаться, он сделал странное: <strong>100 дней подряд ловить отказы специально</strong>. Просил у незнакомцев дичь — одолжить сто долларов, посадить цветы в чужом дворе, испечь «олимпийский» пончик в Krispy Kreme.</p>
+<p>Половина сказала «нет». Но пончик ему сделали. Деньги дали. А главное — отказ перестал быть приговором и стал просто данными. Джианг написал книгу, выступил на TED, построил бизнес.</p>
+</div>
+<div class="illustration">
+<img alt="Слева человек толкает огромный камень, справа человека несёт ветром как лист" loading="lazy" src="illus_l3.webp" style="width:100%;max-width:700px"/>
+<div class="caption">Одни и те же обстоятельства. Разное место в предложении: подлежащее или дополнение.</div>
+</div>
+<p>В этом агентность: не «получится ли?», а <strong>«как я это сделаю?»</strong> — и пошёл пробовать. Отказ — не вердикт о тебе, а ответ реальности. На один конкретный запрос, в один конкретный день.</p>
+<p>Самое уютное болото на свете — <em>«думаю над этим»</em>. Там ничего не отказывает. Там вообще ничего не происходит — но ощущается как работа, потому что голова-то занята.</p>
+<div class="metaphor">
+        Проверка на болото простая: если после часа «работы» в мире не изменилось ни одного бита — ни отправленного письма, ни строчки кода, ни разговора, — ты не работал. Ты переживал. Это разные занятия, хотя устаёшь от них одинаково.
+      </div>
+<p>Дальше — четыре формулировки. Одна и та же неудача звучит по-разному в зависимости от того, кто в ней главный.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Попытка или ставка?</div>
+<div class="game-desc">Где человек — причина происходящего, а где следствие чужих решений? 4 карточки.</div>
+<div class="swipe-area" id="swipeArea3">
+<div class="swipe-progress" id="swipeProgress3"></div>
+<div class="swipe-card" id="swipeCard3"></div>
+<div class="swipe-hint" id="swipeHint3">← СЛЕДСТВИЕ  |  ПРИЧИНА →</div>
+<div class="swipe-btns" id="swipeBtns3">
+<button class="swipe-btn no" onclick="swipeAnswer(3,false)">следствие</button>
+<button class="swipe-btn yes" onclick="swipeAnswer(3,true)">причина</button>
+</div>
+</div>
+<div class="feedback wrong" id="fb3w"></div>
+<div class="feedback correct" id="fb3c"></div>
+<div class="recommendation" id="rec3">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec3text"></p>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-label">упражнение</div>
+<p><strong>Правило 48 часов.</strong> Появилась идея — в течение 48 часов делаешь первый физический шаг: письмо, звонок, коммит, черновик. Не сделал — письменно хоронишь: «не делаю, потому что…». Третьего варианта, «пока думаю», не существует.</p>
+<p style="margin-top:14px"><strong>Плюс один запрос реальности в день.</strong> Одна просьба, на которую могут ответить «нет». Каждый день. Через месяц отказ перестанет что-либо значить — ровно как у Джианга.</p>
+</div>
+<div class="next-lesson" id="next3" style="display:none;">
+<button class="next-btn" onclick="goTo(4)">урок 04: Вкус к асимметрии →</button>
+</div>
+</div>
+</div>
+<!-- ===== LESSON 4 ===== -->
+<div class="screen" id="screen-4">
+<div class="lesson-wrap">
+<div class="lesson-num">урок 04 из 05</div>
+<h1 class="lesson-title">Вкус к асимметрии</h1>
+<div class="article">
+<div class="story">
+<p>2008-й, кризис. Три основателя Airbnb на грани, инвесторы отказали 20 раз. И тут странный ход: к выборам они печатают коробки хлопьев <strong>«Obama O's»</strong> и <strong>«Cap'n McCain's»</strong> и продают их по 40 долларов за штуку.</p>
+<p>Заработали около 30 тысяч и дотянули компанию до разворота. Сегодня Airbnb стоит десятки миллиардов.</p>
+</div>
+<p>Коробка хлопьев против выживания компании — вот она, асимметрия: <strong>теряешь копейки, выиграть можешь всё</strong>.</p>
+<div class="illustration">
+<img alt="Лёгкий щелчок по маленькой костяшке домино — падает огромная" loading="lazy" src="illus_l4.webp" style="width:100%;max-width:700px"/>
+<div class="caption">Усилие на входе и результат на выходе не обязаны быть одного размера.</div>
+</div>
+<p>Делатель не пашет больше. Он <em>выбирает, где приложиться</em>. Ищет ходы, где минус ограничен, а плюс огромен.</p>
+<p>Отсюда барбелл: 80–90% ресурсов — в надёжное и скучное, то, что кормит. 10–20% — в дешёвые билеты с гигантским хвостом. Никакой середины.</p>
+<div class="highlight">
+<strong>Худшее из всего — симметричные «попытки».</strong> Много труда, средний результат, никакого хвоста. Пятая итерация презентации, идеальная папка с документами, бесконечное «дошлифовать». Дорого стоит и не может выиграть ничего.
+      </div>
+<p>Проверим твоё чутьё. Четыре действия. Оцени каждое по асимметрии: 1 — трачу и почти ничего не могу выиграть, 5 — трачу копейки, а выигрыш может быть огромным.</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Оцени асимметрию</div>
+<div class="game-desc">Для каждого действия — оценка от 1 до 5. Смотри не на усилие, а на соотношение «что теряю / что могу выиграть».</div>
+<div id="ratingPool"></div>
+<button class="submit-btn" id="ratingSubmitBtn" onclick="submitRating()">проверить →</button>
+<div class="feedback wrong" id="fb4w"></div>
+<div class="feedback correct" id="fb4c"></div>
+<div class="insight-box" id="ratingInsight">
+<p><strong style="color:var(--y)">Разбор:</strong> статья и встреча стоят один вечер, а выиграть могут людей, контракты и траекторию на годы — хвост не ограничен. Пятая версия презентации и час в чате «на всякий случай» стоят ровно столько же времени, но выиграть не могут ничего: у них нет хвоста.</p>
+<p>Барбелл: основная масса — в скучное и надёжное, свободные 10–20% — только в ходы с несимметричным хвостом. Всё, что посередине, — это добросовестно потраченная жизнь.</p>
+</div>
+<div class="recommendation" id="rec4">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec4text"></p>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-label">упражнение</div>
+<p><strong>Аудит касаний.</strong> Неделю записывай, куда ушли часы и что каждое дело принесло. Найди 2–3 действия, которые дали 80% результата, — и посмотри, сколько времени ушло на всё остальное.</p>
+<p style="margin-top:14px"><strong>Оценка сделки до входа.</strong> Перед любым «а давай попробуем» отвечай на два вопроса: что я теряю в худшем случае и что у меня остаётся при провале — навык, контакт, актив? Если при провале не остаётся ничего — это не асимметрия, это лотерея.</p>
+</div>
+<div class="next-lesson" id="next4" style="display:none;">
+<button class="next-btn" onclick="goTo(5)">урок 05: Ловушка выжившего →</button>
+</div>
+</div>
+</div>
+<!-- ===== LESSON 5 ===== -->
+<div class="screen" id="screen-5">
+<div class="lesson-wrap">
+<div class="lesson-num" style="color:var(--r)">урок 05 из 05 · честный экран</div>
+<h1 class="lesson-title">Ловушка выжившего</h1>
+<div class="article">
+<div class="story">
+<p>Вторая мировая. Военные смотрят на вернувшиеся бомбардировщики: больше всего пробоин на крыльях и хвосте. Логично — усилим броню там.</p>
+<p>Математик Абрахам Вальд говорит: нет. Броню — туда, где пробоин <strong>НЕТ</strong>. Потому что самолёты, получившие туда, просто не вернулись, чтобы их посчитали.</p>
+</div>
+<div class="illustration">
+<img alt="Вернувшийся самолёт в пробоинах и призраки невернувшихся самолётов вокруг" loading="lazy" src="illus_l5.webp" style="width:100%;max-width:700px"/>
+<div class="caption">Ты видишь дырки на вернувшихся. Данные, которые нужны, — на дне океана.</div>
+</div>
+<p>Это ошибка выжившего. Ты смотришь на того, у кого вышло, и думаешь «повторю — тоже выйдет». Но не видишь сотню таких же смелых, кого разорвало по дороге. Их не позвали на конференцию и не спросили про утренние привычки.</p>
+<p>Плюс сложный процент: у победителя уже есть капитал, связи, репутация. <strong>Каждый его следующий шаг дешевле, чем твой первый.</strong> Одинаковое действие стоит вам разного и приносит разное.</p>
+<div class="highlight">
+<strong>Три оси — реальные навыки.</strong> Но часть «магии» успешных — это фора и выжившие, а не волшебство. Хорошая новость: навыки берутся тренировкой, а фора — временем.
+      </div>
+<p>Последняя проверка. Шесть историй успеха. Где работает навык, который ты можешь повторить, а где — фора и везение?</p>
+</div>
+<div class="game-section">
+<div class="game-label">✦ практика</div>
+<div class="game-title">Навык или фора?</div>
+<div class="game-desc">Для каждой истории выбери: здесь воспроизводимый навык — или фора, везение и ошибка выжившего.</div>
+<div id="tcPool"></div>
+<button class="submit-btn" id="tcSubmitBtn" onclick="submitTC()">проверить →</button>
+<div class="feedback wrong" id="fb5w"></div>
+<div class="feedback correct" id="fb5c"></div>
+<div class="insight-box" id="tcInsight">
+<p><strong style="color:var(--y)">Как отличать:</strong> спроси «сколько людей сделали ровно то же самое и провалились — и увидел бы я их?». Если механизм понятен и повторяем (журнал прогнозов, 200 писем, 200 продутых крыльев) — это навык. Если история держится на одном удачном событии, тайминге или стартовом капитале — это фора, и копировать там нечего.</p>
+<p>Это не повод опускать руки. Это повод <strong>не копировать ритуалы победителей</strong>, а копировать их механизмы. Будильник на 5 утра — ритуал. Короткая петля обратной связи — механизм.</p>
+</div>
+<div class="recommendation" id="rec5">
+<h4>📋 Твоя рекомендация</h4>
+<p id="rec5text"></p>
+</div>
+</div>
+<div class="next-lesson" id="next5" style="display:none;">
+<button class="next-btn" onclick="showResult()">мой диагноз →</button>
+</div>
+</div>
+</div>
+<!-- ===== RESULT ===== -->
+<div class="screen" id="screen-result">
+<div class="result-wrap">
+<div class="result-ring">
+<div class="result-num" id="rScore">0</div>
+<div class="result-of">из 5</div>
+</div>
+<div class="result-level" id="rLevel"></div>
+<h1 class="result-title" id="rTitle"></h1>
+<p class="result-desc" id="rDesc"></p>
+<!-- AXES PROFILE -->
+<div class="axis-block">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:20px">твои три оси</div>
+<div id="axisRows"></div>
+</div>
+<!-- WEAK AXIS -->
+<div class="weak-box">
+<div class="weak-label">твоя слабая ось</div>
+<h2 class="weak-title" id="weakTitle"></h2>
+<p class="weak-desc" id="weakDesc"></p>
+<div class="weak-ex" id="weakEx"></div>
+</div>
+<!-- AI DIAGNOSIS -->
+<div id="gpt-block" style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">персональный разбор</div>
+<h3 style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Опиши, где сейчас буксуешь</h3>
+<p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:20px">Проект, решение, цель — 2–3 предложения. Скажу, какая ось проседает именно у тебя, и дам одно упражнение под неё.</p>
+<div id="gpt-form">
+<textarea id="gpt-problem" oninput="gptValidate()" placeholder="Например: третий месяц не могу запустить продукт. Всё время нахожу, что ещё доделать. Знаю, что надо показать людям, но каждый раз кажется, что рано..." style="width:100%;min-height:110px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:var(--w);font-family:inherit;font-size:15px;line-height:1.6;padding:16px;resize:vertical;outline:none;box-sizing:border-box;margin-bottom:14px"></textarea>
+<button disabled="" id="gpt-btn" onclick="runDiagnosis()" style="background:var(--y);color:#000;border:none;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;cursor:pointer;opacity:.4;transition:opacity .2s">получить разбор →</button>
+</div>
+<div id="gpt-loading" style="display:none;padding:24px 0;text-align:center">
+<div style="display:inline-block;width:28px;height:28px;border:3px solid rgba(200,255,0,.2);border-top-color:var(--y);border-radius:50%;animation:spin .8s linear infinite"></div>
+<p style="margin-top:12px;font-size:14px;color:var(--g)">Смотрю, какая ось проседает...</p>
+</div>
+<div id="gpt-result" style="display:none">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px;margin-top:8px">разбор</div>
+<div id="gpt-text" style="font-size:16px;line-height:1.8;color:var(--w);white-space:pre-wrap"></div>
+<button onclick="resetDiagnosis()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--g);font-family:inherit;font-size:13px;padding:10px 20px;cursor:pointer">← разобрать другое</button>
+</div>
+<div id="gpt-error" style="display:none;padding:16px;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff8080;font-size:14px;margin-top:12px"></div>
+</div>
+<!-- SHARE -->
+<div style="text-align:left">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">забрать с собой</div>
+<div class="share-card">
+<div class="share-card-label">три оси результативности</div>
+<div class="share-card-main" id="shareMain">Моя слабая ось: —</div>
+<div class="share-card-sub" id="shareSub">Прокачиваю: —</div>
+<div class="share-card-url">distill-school.ru/axes</div>
+</div>
+<div class="share-btns">
+<button class="share-btn" id="copyBtn" onclick="copyShare()">скопировать текст</button>
+<a class="share-btn" href="#" id="tgBtn" rel="noopener" target="_blank">поделиться в telegram</a>
+</div>
+</div>
+<!-- CTA -->
+<div class="result-cta">
+<div class="result-cta-label">следующий шаг</div>
+<h2 class="result-cta-title">Это одна ось из трёх.</h2>
+<p class="result-cta-desc">За 15 минут ты прошёл по верхам. Но контакт с реальностью, агентность и вкус к асимметрии — это навыки, а навыки берутся тренировкой, а не пониманием. В школе DISTILL мы качаем все три на твоих реальных задачах.</p>
+<a class="result-cta-btn" href="https://www.distill-school.ru/?utm_source=axes&amp;utm_medium=course&amp;utm_campaign=final_cta">узнать про школу DISTILL →</a>
+</div>
+<button class="result-retry" onclick="restart()">↻ пройти заново</button>
+</div>
+</div>
+<script>
+// ===== STATE =====
+const R = {
+  1: { done: false, correct: 0, total: 5 },
+  2: { done: false, correct: 0, total: 3 },
+  3: { done: false, correct: 0, total: 4 },
+  4: { done: false, correct: 0, total: 4 },
+  5: { done: false, correct: 0, total: 6 }
+};
+
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + n).classList.add('active');
+  window.scrollTo(0, 0);
+  updateDots(n - 1);
+}
+
+function startCourse() {
+  goTo(1);
+}
+
+function updateDots(a) {
+  for (let i = 0; i < 6; i++) {
+    const d = document.getElementById('dot' + i);
+    if (d) d.className = 'nav-dot' + (i < a ? ' done' : i === a ? ' active' : '');
+  }
+}
+
+// ===== SWIPE ENGINE (lessons 1 and 3) =====
+const swipeSets = {
+  1: {
+    pass: 4,
+    cards: [
+      { text: '«Продукт крутой — рынок точно оценит»', yes: false,
+        why: 'Ни одной цифры. «Крутой» — твоя оценка, «оценит» — твой прогноз. Реальность в этом предложении ещё не высказывалась.' },
+      { text: '«Трое из пяти сказали "дорого" — цена под вопросом»', yes: true,
+        why: 'Есть наблюдение (3 из 5) и осторожный вывод — «под вопросом», а не «надо срочно снижать». Выборка мелкая, но это разговор с реальностью, а не с собой.' },
+      { text: '«Конкуренты просто лучше пиарятся»', yes: false,
+        why: 'Классика: объяснение, которое защищает самооценку. Проверяемо ли оно? Сравни бюджеты, охваты, конверсию. Пока не сравнил — это утешение, а не факт.' },
+      { text: '«Открываемость 12% против 30% — заголовок слабее»', yes: true,
+        why: 'Две цифры, между ними разрыв, из разрыва — гипотеза. Ровно так выглядит короткая петля.' },
+      { text: '«Тема на хайпе, значит взлетит»', yes: false,
+        why: '«Хайп» — не метрика. Взлетает обычно у тех, кто в теме уже год и успел набить руку. У тебя данных нет — есть надежда.' }
+    ]
+  },
+  3: {
+    pass: 3,
+    cards: [
+      { text: '«Не пошло — алгоритм зарезал охваты»', yes: false,
+        why: 'Может, и зарезал. Но в такой формулировке тебе нечего делать завтра утром. Ты пассажир, руль у алгоритма.' },
+      { text: '«Не пошло — взял слабый оффер, тестирую три»', yes: true,
+        why: 'Тот же самый провал, но ручка управления у тебя. Завтра будет три теста, а не одно объяснение.' },
+      { text: '«Подожду, пока будет больше данных»', yes: false,
+        why: 'Самое уютное болото. Звучит рассудительно, а происходит ноль. Данные не приходят сами — их добывают запросами к реальности.' },
+      { text: '«Напишу трём клиентам сегодня»', yes: true,
+        why: 'Конкретно, сегодня, физическое действие. Кто-то, может, скажет «нет» — и это данные, а не приговор.' }
+    ]
+  }
+};
+const swipeState = { 1: null, 3: null };
+
+function initSwipe(L) {
+  swipeState[L] = { idx: 0, correct: 0, done: false, results: [] };
+  document.getElementById('swipeCard' + L).style.display = 'block';
+  document.getElementById('swipeBtns' + L).style.display = 'flex';
+  document.getElementById('swipeHint' + L).style.display = 'block';
+  renderSwipe(L);
+}
+
+function renderSwipe(L) {
+  const st = swipeState[L], set = swipeSets[L];
+  document.getElementById('swipeProgress' + L).innerHTML = set.cards.map((_, i) => {
+    let cls = 'swipe-dot';
+    if (i < st.idx) cls += st.results[i] ? ' correct' : ' wrong';
+    else if (i === st.idx) cls += ' current';
+    return '<div class="' + cls + '"></div>';
+  }).join('');
+  if (st.idx < set.cards.length) {
+    document.getElementById('swipeCard' + L).textContent = set.cards[st.idx].text;
+  }
+}
+
+function swipeAnswer(L, isYes) {
+  const st = swipeState[L], set = swipeSets[L];
+  if (st.done || st.idx >= set.cards.length) return;
+  const card = set.cards[st.idx];
+  const ok = card.yes === isYes;
+  const el = document.getElementById('swipeCard' + L);
+  const w = document.getElementById('fb' + L + 'w');
+  const c = document.getElementById('fb' + L + 'c');
+  w.classList.remove('show'); c.classList.remove('show');
+  st.results.push(ok);
+  if (ok) {
+    st.correct++;
+    el.classList.add('right');
+    c.innerHTML = '✓ Верно! ' + card.why;
+    c.classList.add('show');
+  } else {
+    el.classList.add('left');
+    w.innerHTML = '✗ Мимо. ' + card.why;
+    w.classList.add('show');
+  }
+  setTimeout(() => {
+    el.classList.remove('left', 'right');
+    w.classList.remove('show'); c.classList.remove('show');
+    st.idx++;
+    if (st.idx >= set.cards.length) { finishSwipe(L); return; }
+    renderSwipe(L);
+  }, 3400);
+}
+
+function finishSwipe(L) {
+  const st = swipeState[L], set = swipeSets[L], n = set.cards.length;
+  st.done = true;
+  R[L].done = true;
+  R[L].correct = st.correct;
+  const c = document.getElementById('fb' + L + 'c');
+  const w = document.getElementById('fb' + L + 'w');
+  if (st.correct >= set.pass) {
+    c.textContent = '✓ ' + st.correct + '/' + n + '. Ты видишь разницу.';
+    c.classList.add('show');
+  } else {
+    w.textContent = st.correct + '/' + n + '. Не страшно — это ровно тот навык, который тренируется быстрее всего.';
+    w.classList.add('show');
+  }
+  document.getElementById('swipeCard' + L).style.display = 'none';
+  document.getElementById('swipeBtns' + L).style.display = 'none';
+  document.getElementById('swipeHint' + L).style.display = 'none';
+  renderSwipe(L);
+  const recText = document.getElementById('rec' + L + 'text');
+  if (L === 1) {
+    if (st.correct <= 2) {
+      recText.innerHTML = '<strong>Ты живёшь в приятной версии.</strong> Это не порок — так по умолчанию работает любой мозг. Практика: возьми три своих текущих убеждения про проект и напиши напротив каждого, каким числом его можно проверить. Если числа нет — это не знание, а настроение.';
+    } else if (st.correct <= 3) {
+      recText.innerHTML = '<strong>Ты отличаешь факт от желаемого — когда специально смотришь.</strong> Беда в том, что в реальной жизни специально смотреть некогда. Практика: перед каждым решением одна фраза вслух — «а что я тут знаю точно?». Обычно выясняется, что немного.';
+    } else {
+      recText.innerHTML = '<strong>С фильтром у тебя порядок.</strong> Следующий уровень — не отличать факты, а <em>добывать</em> их: сокращать петлю между «сделал» и «увидел, что вышло». Райты продували крыло каждый день, а не раз в квартал.';
+    }
+  } else {
+    if (st.correct <= 1) {
+      recText.innerHTML = '<strong>Ты в позиции следствия.</strong> В твоих объяснениях главные — алгоритмы, рынок, обстоятельства. Они действительно существуют. Но пока они подлежащее, менять нечего. Практика: перепиши три последних «не получилось, потому что…» так, чтобы подлежащим был ты.';
+    } else if (st.correct <= 2) {
+      recText.innerHTML = '<strong>Ты наполовину за рулём.</strong> Там, где комфортно, ты причина; там, где страшно, включаются «обстоятельства». Практика: правило 48 часов на ближайшую идею. Первый шаг или письменные похороны, третьего не дано.';
+    } else {
+      recText.innerHTML = '<strong>Локус на месте.</strong> Ты формулируешь так, что завтра есть что делать. Следующий уровень — не количество попыток, а их асимметрия: не «пробовать больше», а «пробовать там, где хвост длиннее». Это следующий урок.';
+    }
+  }
+  document.getElementById('rec' + L).classList.add('show');
+  document.getElementById('next' + L).style.display = 'block';
+}
+
+// ===== LESSON 2: PREDICTION GAME =====
+const predData = [
+  {
+    q: 'Бент Флюбьерг изучил базу из 16 000+ крупных проектов — стройки, ИТ, инфраструктура. Какая доля уложилась и в срок, <em>и</em> в бюджет?',
+    src: 'Бент Флюбьерг, «How Big Things Get Done», 2023',
+    real: 8.5,
+    why: 'Меньше девяти процентов. Почти любой крупный план ломается — и если твой сейчас выглядит реалистично, скорее всего, ты просто ещё не дошёл до места, где он сломается.'
+  },
+  {
+    q: 'Какая доля новых бизнесов в США доживает до пятилетия?',
+    src: 'US Bureau of Labor Statistics, Business Employment Dynamics',
+    real: 50,
+    why: 'Здесь большинство промахивается вниз: «90% стартапов умирают» — самая живучая цифра в интернете и одна из самых неточных. Ошибка вниз стоит не меньше, чем ошибка вверх: пессимизм мешает начинать ровно так же, как оптимизм мешает вовремя остановиться.'
+  },
+  {
+    q: 'Какая доля водителей считает, что водит безопаснее среднего?',
+    src: 'Ола Свенсон, 1981 — классическое исследование',
+    real: 88,
+    why: 'Выше медианы может быть максимум половина — это арифметика. Но почти девять из десяти уверены, что это они. Заметь: ты сейчас тоже прикидывал — и, скорее всего, не включил себя в переоценивающих.'
+  }
+];
+let predIdx = 0, predLocked = [], predDone = false;
+
+function predRender() {
+  const d = predData[predIdx];
+  document.getElementById('predQ').innerHTML = d.q + '<span class="pred-src">' + d.src + '</span>';
+  document.getElementById('predSlider').value = 50;
+  document.getElementById('predVal').textContent = '50%';
+  document.getElementById('predGame').style.display = 'block';
+  document.getElementById('predReveal').classList.remove('show');
+}
+
+function predUpd() {
+  document.getElementById('predVal').textContent = document.getElementById('predSlider').value + '%';
+}
+
+function fmt(n) {
+  return String(Math.round(n * 10) / 10).replace('.', ',');
+}
+
+function predLock() {
+  if (predDone) return;
+  const mine = parseInt(document.getElementById('predSlider').value, 10);
+  const d = predData[predIdx];
+  predLocked.push(mine);
+  document.getElementById('predGame').style.display = 'none';
+  document.getElementById('predMineTxt').textContent = mine + '%';
+  document.getElementById('predRealTxt').textContent = fmt(d.real) + '%';
+  document.getElementById('predMineBar').style.width = mine + '%';
+  document.getElementById('predRealBar').style.width = d.real + '%';
+  const gap = Math.abs(mine - d.real);
+  const near = gap <= 15;
+  if (near) R[2].correct++;
+  document.getElementById('predGap').innerHTML =
+    '<strong>Разрыв: ' + fmt(gap) + ' п.п.</strong> ' +
+    (near ? 'Неплохо — ты в пределах пятнадцати пунктов. ' : 'Больше пятнадцати пунктов мимо. ') + d.why;
+  document.getElementById('predNextBtn').textContent = (predIdx >= predData.length - 1) ? 'посмотреть итог →' : 'дальше →';
+  document.getElementById('predReveal').classList.add('show');
+}
+
+function predNext() {
+  predIdx++;
+  document.getElementById('predReveal').classList.remove('show');
+  if (predIdx >= predData.length) { predFinish(); return; }
+  predRender();
+}
+
+function predFinish() {
+  predDone = true;
+  R[2].done = true;
+  const gaps = predLocked.map((m, i) => Math.abs(m - predData[i].real));
+  const avg = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+  document.getElementById('predAvg').textContent = fmt(avg);
+  let verdict;
+  if (avg <= 12) verdict = 'Редкий результат. Твоя картина мира близка к тому, как он устроен на самом деле, — значит, твоим оценкам можно доверять чуть больше, чем среднему человеку.';
+  else if (avg <= 25) verdict = 'Нормальный человеческий разброс. Ты не мимо, но и не точен — а решения принимаешь так, будто точен. Вот здесь и живёт цена вопроса.';
+  else verdict = 'Разрыв большой. Это не про интеллект — это про то, что оценки никто никогда не сверял с фактом. Ровно это и чинит журнал предсказаний.';
+  document.getElementById('predVerdict').textContent = verdict;
+  document.getElementById('predSummary').classList.add('show');
+  const c = document.getElementById('fb2c'), w = document.getElementById('fb2w');
+  if (R[2].correct >= 2) {
+    c.textContent = '✓ ' + R[2].correct + '/3 в пределах 15 п.п. Калибровка рабочая.';
+    c.classList.add('show');
+  } else {
+    w.textContent = R[2].correct + '/3 в пределах 15 п.п. Уверенность есть, точности пока нет — как у большинства.';
+    w.classList.add('show');
+  }
+  const recText = document.getElementById('rec2text');
+  if (R[2].correct === 0) {
+    recText.innerHTML = '<strong>Твои оценки живут отдельно от мира.</strong> Все три мимо — значит, ты опираешься на ощущение правдоподобности, а не на данные. Практика: журнал предсказаний, начиная с сегодня. Прогноз, вероятность, срок. Первые двадцать записей будут неприятными, и это правильный признак.';
+  } else if (R[2].correct === 1) {
+    recText.innerHTML = '<strong>Одно попадание из трёх.</strong> Там, где ты в теме, оценка приличная; где не в теме — берёшь из воздуха с тем же выражением лица. Практика: перед каждой оценкой отмечай, откуда она — из опыта или из воздуха. Разделять эти два источника уже половина калибровки.';
+  } else {
+    recText.innerHTML = '<strong>Калибровка выше средней.</strong> Следующий шаг — не угадывать точнее, а честно ставить широкие интервалы там, где не знаешь. Практика: интервал на 90% — назови вилку, в которую попадёшь в 9 случаях из 10, и расширяй, пока не станет некомфортно.';
+  }
+  document.getElementById('rec2').classList.add('show');
+  document.getElementById('next2').style.display = 'block';
+}
+
+// ===== LESSON 4: RATING =====
+const ratingItems = [
+  { text: 'Написать статью, которая может разойтись', min: 4, max: 5,
+    explain: 'Стоит вечер. Не выстрелит — потерял вечер. Выстрелит — поймал поток людей на годы. Хвост не ограничен.' },
+  { text: 'Пятый раз переделать презентацию, которую никто не просил', min: 1, max: 2,
+    explain: 'Стоит день. Выиграть не может ничего: её всё так же никто не просил. Симметричная трата в чистом виде.' },
+  { text: 'Сходить на встречу, где может случиться сильное знакомство', min: 4, max: 5,
+    explain: 'Стоит два часа. Обычно не даёт ничего. Иногда даёт человека, который меняет траекторию на годы вперёд.' },
+  { text: 'Час в рабочем чате «на всякий случай»', min: 1, max: 2,
+    explain: 'Час каждый день, ощущение включённости, нулевой хвост. Дорогая привычка, замаскированная под работу.' }
+];
+const ratingVals = new Array(ratingItems.length).fill(0);
+let ratingDone = false;
+
+function initRating() {
+  ratingVals.fill(0);
+  document.getElementById('ratingPool').innerHTML = ratingItems.map((item, i) =>
+    '<div class="rating-item" id="ri' + i + '">' +
+      '<div class="rating-action">' + item.text + '</div>' +
+      '<div class="rating-stars">' +
+        [1, 2, 3, 4, 5].map(n => '<button class="star-btn" id="rb' + i + '_' + n + '" onclick="setRating(' + i + ',' + n + ')">' + n + '</button>').join('') +
+        '<span class="rating-label" id="rl' + i + '">не оценено</span>' +
+      '</div>' +
+      '<div class="rating-result" id="rr' + i + '"></div>' +
+    '</div>').join('');
+}
+
+function setRating(i, val) {
+  if (ratingDone) return;
+  ratingVals[i] = val;
+  [1, 2, 3, 4, 5].forEach(n => document.getElementById('rb' + i + '_' + n).classList.toggle('active', n <= val));
+  const labels = ['нет асимметрии', 'слабая', 'средняя', 'сильная', 'очень сильная'];
+  document.getElementById('rl' + i).textContent = labels[val - 1];
+}
+
+function submitRating() {
+  if (ratingDone) return;
+  const unrated = ratingVals.filter(v => v === 0).length;
+  if (unrated > 0) {
+    const w = document.getElementById('fb4w');
+    w.textContent = 'Оцени все 4 действия, потом нажми «проверить». Осталось: ' + unrated + '.';
+    w.classList.add('show');
+    return;
+  }
+  ratingDone = true;
+  document.getElementById('fb4w').classList.remove('show');
+  let ok = 0;
+  ratingItems.forEach((item, i) => {
+    const good = ratingVals[i] >= item.min && ratingVals[i] <= item.max;
+    if (good) ok++;
+    document.getElementById('ri' + i).classList.add(good ? 'result-correct' : 'result-wrong');
+    const rr = document.getElementById('rr' + i);
+    rr.className = 'rating-result show ' + (good ? 'ok' : 'bad');
+    rr.textContent = (good ? '✓ ' : '✗ ') + item.explain;
+  });
+  R[4].done = true;
+  R[4].correct = ok;
+  const c = document.getElementById('fb4c'), w = document.getElementById('fb4w');
+  if (ok >= 3) {
+    c.textContent = '✓ ' + ok + '/4. Ты чувствуешь, где хвост, а где просто труд.';
+    c.classList.add('show');
+  } else {
+    w.textContent = ok + '/4. Смотри разбор по каждому пункту выше.';
+    w.classList.add('show');
+  }
+  document.getElementById('ratingInsight').classList.add('show');
+  const recText = document.getElementById('rec4text');
+  if (ok <= 1) {
+    recText.innerHTML = '<strong>Ты оцениваешь действия по усилию, а не по хвосту.</strong> Это самая дорогая ошибка из трёх осей: можно двадцать лет очень честно работать в зоне симметричных попыток. Практика: аудит касаний за неделю — часы против результата. Цифры обычно неприятные и очень отрезвляющие.';
+  } else if (ok <= 2) {
+    recText.innerHTML = '<strong>Ты видишь асимметрию через раз.</strong> Обычно её легко заметить в чужих действиях и трудно — в своих любимых занятиях. Практика: перед делом длиннее часа спрашивай «что останется, если не выстрелит?». Если ничего — это не ставка, это расход.';
+  } else {
+    recText.innerHTML = '<strong>Чутьё на асимметрию есть.</strong> Следующий шаг — не находить такие ходы, а <em>защищать под них место в календаре</em>. Симметричная работа всегда срочнее и всегда съедает слот под барбелл, если его заранее не забронировать.';
+  }
+  document.getElementById('rec4').classList.add('show');
+  document.getElementById('ratingSubmitBtn').disabled = true;
+  document.getElementById('ratingSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next4').style.display = 'block';
+}
+
+// ===== LESSON 5: SKILL OR HEAD START =====
+const tcItems = [
+  { text: '«Он вставал в 5 утра — вот почему добился»', skill: false,
+    why: 'Миллионы встают в 5 и не добиваются ничего, но их не зовут рассказывать про утро. Ты видишь тех, у кого совпало, и приписываешь причину будильнику.' },
+  { text: '«Она три года вела журнал прогнозов и стала заметно точнее в оценках»', skill: true,
+    why: 'Понятный механизм, воспроизводимый кем угодно. Здесь нет невернувшихся самолётов — есть скучная работа с обратной связью.' },
+  { text: '«Его первый же пост собрал миллион просмотров»', skill: false,
+    why: 'n = 1. В тот же день то же самое написали сотни людей — их ты не увидел. Из одного попадания метод не извлекается.' },
+  { text: '«Он отправил 200 холодных писем и получил 4 контракта»', skill: true,
+    why: 'Объём попыток плюс понятная конверсия. Это арифметика агентности: не чудо, а количество запросов к реальности.' },
+  { text: '«Он купил биткоин в 2011-м и стал миллионером»', skill: false,
+    why: 'Чистый тайминг. Повторить нельзя — 2011-го больше не будет. Копировать здесь нечего, кроме готовности делать ставки с ограниченной потерей.' },
+  { text: '«Он начал бизнес с капиталом и связями отца»', skill: false,
+    why: 'Сложный процент: его первый шаг стоил дешевле, чем твой десятый. Навык у него, возможно, тоже есть — но результат объясняет не он.' }
+];
+const tcVals = new Array(tcItems.length).fill(null);
+let tcDone = false;
+
+function initTC() {
+  tcVals.fill(null);
+  document.getElementById('tcPool').innerHTML = tcItems.map((item, i) =>
+    '<div class="tc-item" id="tci' + i + '">' +
+      '<div class="tc-text">' + item.text + '</div>' +
+      '<div class="tc-btns">' +
+        '<button class="tc-btn" id="tcb' + i + '_1" onclick="setTC(' + i + ',true)">навык</button>' +
+        '<button class="tc-btn" id="tcb' + i + '_0" onclick="setTC(' + i + ',false)">фора / везение</button>' +
+      '</div>' +
+      '<div class="tc-why" id="tcw' + i + '"></div>' +
+    '</div>').join('');
+}
+
+function setTC(i, val) {
+  if (tcDone) return;
+  tcVals[i] = val;
+  document.getElementById('tcb' + i + '_1').classList.toggle('active', val === true);
+  document.getElementById('tcb' + i + '_0').classList.toggle('active', val === false);
+}
+
+function submitTC() {
+  if (tcDone) return;
+  const left = tcVals.filter(v => v === null).length;
+  if (left > 0) {
+    const w = document.getElementById('fb5w');
+    w.textContent = 'Ответь на все 6, потом нажми «проверить». Осталось: ' + left + '.';
+    w.classList.add('show');
+    return;
+  }
+  tcDone = true;
+  document.getElementById('fb5w').classList.remove('show');
+  let ok = 0;
+  tcItems.forEach((item, i) => {
+    const good = tcVals[i] === item.skill;
+    if (good) ok++;
+    document.getElementById('tci' + i).classList.add(good ? 'result-correct' : 'result-wrong');
+    const wEl = document.getElementById('tcw' + i);
+    wEl.className = 'tc-why show ' + (good ? 'ok' : 'bad');
+    wEl.textContent = (good ? '✓ ' : '✗ ') + item.why;
+  });
+  R[5].done = true;
+  R[5].correct = ok;
+  const c = document.getElementById('fb5c'), w = document.getElementById('fb5w');
+  if (ok >= 5) {
+    c.textContent = '✓ ' + ok + '/6. Ты видишь невернувшиеся самолёты.';
+    c.classList.add('show');
+  } else {
+    w.textContent = ok + '/6. Часть «магии» ты всё ещё принимаешь за метод. Смотри разбор выше.';
+    w.classList.add('show');
+  }
+  document.getElementById('tcInsight').classList.add('show');
+  const recText = document.getElementById('rec5text');
+  if (ok <= 3) {
+    recText.innerHTML = '<strong>Ты романтизируешь чужой успех.</strong> Это дорого обходится: копируются ритуалы вместо механизмов, а когда не срабатывает — вина падает на себя. Практика: у каждой вдохновляющей истории спрашивай «сколько людей сделали то же самое и провалились — и увидел бы я их?».';
+  } else if (ok <= 4) {
+    recText.innerHTML = '<strong>Фильтр включается через раз.</strong> Обычно он отключается там, где история тебе нравится. Практика: разделяй в чужом кейсе механизм (что воспроизводимо) и обстоятельства (что было дано). Копировать имеет смысл только первое.';
+  } else {
+    recText.innerHTML = '<strong>Ты отделяешь навык от форы.</strong> Это редкая трезвость. Держи её и в обратную сторону: ошибка выжившего — не повод обесценивать чужой труд и не алиби для собственного бездействия. Фора существует, и навык тоже. Тренируется второе.';
+  }
+  document.getElementById('rec5').classList.add('show');
+  document.getElementById('tcSubmitBtn').disabled = true;
+  document.getElementById('tcSubmitBtn').style.opacity = '0.4';
+  document.getElementById('next5').style.display = 'block';
+}
+
+// ===== RESULT =====
+const AXES = {
+  reality: {
+    name: 'Контакт с реальностью',
+    desc: 'Ты чаще опираешься на то, как тебе кажется, чем на то, что показывают факты. Петля между «сделал» и «увидел, что вышло на самом деле» у тебя слишком длинная — и за это время ошибка успевает вырасти.',
+    ex: 'журнал предсказаний',
+    exFull: 'Таблица: дата / прогноз / вероятность / срок / факт. 5–10 записей в неделю. После пятидесяти записей ты впервые увидишь свою реальную точность — не ту, которая ощущается.'
+  },
+  agency: {
+    name: 'Агентность',
+    desc: 'В твоих объяснениях главные — обстоятельства, а не ты. Они правда существуют. Но пока подлежащее не ты, делать завтра утром нечего: остаётся ждать, когда обстоятельства передумают.',
+    ex: 'правило 48 часов',
+    exFull: 'Появилась идея — в течение 48 часов первый физический шаг: письмо, звонок, черновик, коммит. Не сделал — письменно хоронишь. Варианта «пока думаю» не существует.'
+  },
+  asymmetry: {
+    name: 'Вкус к асимметрии',
+    desc: 'Ты работаешь много и честно — но в зоне, где потолок примерно равен усилию. Симметричные попытки съедают ресурс, который мог бы уйти в ходы с длинным хвостом.',
+    ex: 'аудит касаний',
+    exFull: 'Неделю записывай, куда ушли часы и что каждое дело принесло. Найди 2–3 действия, давшие 80% результата, — и честно посмотри, сколько времени ушло на всё остальное.'
+  }
+};
+
+function computeAxes() {
+  return {
+    reality: ((R[1].correct / R[1].total) + (R[2].correct / R[2].total)) / 2,
+    agency: R[3].correct / R[3].total,
+    asymmetry: R[4].correct / R[4].total
+  };
+}
+
+function weakestAxis(a) {
+  let best = 'reality';
+  ['reality', 'agency', 'asymmetry'].forEach(k => { if (a[k] < a[best]) best = k; });
+  return best;
+}
+
+let weakKey = 'reality';
+
+function showResult() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-result').classList.add('active');
+  window.scrollTo(0, 0);
+  updateDots(5);
+
+  const passed = [
+    R[1].correct >= 4, R[2].correct >= 2, R[3].correct >= 3,
+    R[4].correct >= 3, R[5].correct >= 5
+  ].filter(Boolean).length;
+  document.getElementById('rScore').textContent = passed;
+
+  let level, title, desc;
+  if (passed <= 2) {
+    level = 'НАБЛЮДАТЕЛЬ';
+    title = 'Ты пока больше думаешь, чем делаешь.';
+    desc = 'Это не приговор и не про интеллект — умные наблюдатели как раз самые типичные. Все три оси тренируются, и начинать надо с одной. Ниже — с какой именно.';
+  } else if (passed <= 4) {
+    level = 'ДЕЛАТЕЛЬ В ПРОЦЕССЕ';
+    title = 'Две оси держат, третья проседает.';
+    desc = 'Обычная картина: там, где привычно, ты действуешь точно, а одна ось стабильно тянет назад и объясняет большую часть застреваний. Вот она.';
+  } else {
+    level = 'ДЕЛАТЕЛЬ';
+    title = 'Все три оси в рабочем состоянии.';
+    desc = 'Редкий результат для пятнадцати минут. Но тест — это тест: в нём нет цены ошибки, усталости и людей, которые говорят «нет». Дальше проверяется только на реальных задачах.';
+  }
+  document.getElementById('rLevel').textContent = level;
+  document.getElementById('rTitle').textContent = title;
+  document.getElementById('rDesc').textContent = desc;
+
+  const a = computeAxes();
+  weakKey = weakestAxis(a);
+  const notes = {
+    reality: ['Факты доходят до тебя быстро и без обезболивания.', 'Часть решений ты принимаешь на ощущениях, не заметив этого.'],
+    agency: ['Ты формулируешь так, что завтра есть что делать.', 'Обстоятельства в твоих объяснениях весят больше, чем ты сам.'],
+    asymmetry: ['Ты выбираешь, где приложиться, а не просто прикладываешься.', 'Много честного труда уходит туда, где нет хвоста.']
+  };
+  document.getElementById('axisRows').innerHTML = ['reality', 'agency', 'asymmetry'].map(k => {
+    const pct = Math.round(a[k] * 100);
+    const isWeak = k === weakKey;
+    return '<div class="axis-row">' +
+      '<div class="axis-head"><span class="axis-name">' + AXES[k].name + '</span>' +
+      '<span class="axis-pct"' + (isWeak ? ' style="color:var(--r)"' : '') + '>' + pct + '%</span></div>' +
+      '<div class="axis-track"><div class="axis-fill' + (isWeak ? ' weak' : '') + '" style="width:' + pct + '%"></div></div>' +
+      '<div class="axis-note">' + (pct >= 60 ? notes[k][0] : notes[k][1]) + '</div>' +
+      '</div>';
+  }).join('');
+
+  const wa = AXES[weakKey];
+  document.getElementById('weakTitle').textContent = wa.name;
+  document.getElementById('weakDesc').textContent = wa.desc;
+  document.getElementById('weakEx').innerHTML = '<strong>Одно упражнение: ' + wa.ex + '.</strong> ' + wa.exFull;
+
+  document.getElementById('shareMain').textContent = 'Моя слабая ось: ' + wa.name;
+  document.getElementById('shareSub').textContent = 'Прокачиваю: ' + wa.ex;
+  document.getElementById('tgBtn').href = 'https://t.me/share/url?url=' +
+    encodeURIComponent(COURSE_URL) + '&text=' + encodeURIComponent(shareText());
+}
+
+const COURSE_URL = 'https://www.distill-school.ru/axes/';
+
+function shareText() {
+  const wa = AXES[weakKey];
+  return 'Моя слабая ось: ' + wa.name + '. Прокачиваю: ' + wa.ex + '.\n\nМини-курс «Три оси результативности», 15 минут:';
+}
+
+function copyShare() {
+  const txt = shareText() + ' ' + COURSE_URL;
+  const btn = document.getElementById('copyBtn');
+  const done = () => {
+    btn.textContent = 'скопировано ✓';
+    setTimeout(() => { btn.textContent = 'скопировать текст'; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done).catch(() => fallbackCopy(txt, done));
+  } else {
+    fallbackCopy(txt, done);
+  }
+}
+
+function fallbackCopy(txt, done) {
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) { /* noop */ }
+  document.body.removeChild(ta);
+}
+
+function restart() {
+  Object.keys(R).forEach(k => { R[k].done = false; R[k].correct = 0; });
+  initSwipe(1);
+  initSwipe(3);
+  predIdx = 0; predLocked = []; predDone = false;
+  document.getElementById('predSummary').classList.remove('show');
+  document.getElementById('predReveal').classList.remove('show');
+  predRender();
+  ratingDone = false;
+  initRating();
+  document.getElementById('ratingSubmitBtn').disabled = false;
+  document.getElementById('ratingSubmitBtn').style.opacity = '1';
+  tcDone = false;
+  initTC();
+  document.getElementById('tcSubmitBtn').disabled = false;
+  document.getElementById('tcSubmitBtn').style.opacity = '1';
+  document.querySelectorAll('.feedback').forEach(f => { f.classList.remove('show'); f.textContent = ''; });
+  document.querySelectorAll('.recommendation').forEach(r => r.classList.remove('show'));
+  document.querySelectorAll('.insight-box').forEach(r => r.classList.remove('show'));
+  document.querySelectorAll('.next-lesson').forEach(n => { n.style.display = 'none'; });
+  resetDiagnosis();
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-hero').classList.add('active');
+  for (let i = 0; i < 6; i++) { const d = document.getElementById('dot' + i); if (d) d.className = 'nav-dot'; }
+  window.scrollTo(0, 0);
+}
+
+// ===== AI DIAGNOSIS =====
+function gptValidate() {
+  const val = document.getElementById('gpt-problem').value.trim();
+  const btn = document.getElementById('gpt-btn');
+  const ready = val.length >= 20;
+  btn.disabled = !ready;
+  btn.style.opacity = ready ? '1' : '.4';
+  btn.style.cursor = ready ? 'pointer' : 'default';
+}
+
+function buildProfile() {
+  const a = computeAxes();
+  const pct = k => Math.round(a[k] * 100) + '%';
+  return 'Контакт с реальностью: ' + pct('reality') +
+    '; Агентность: ' + pct('agency') +
+    '; Вкус к асимметрии: ' + pct('asymmetry') +
+    '. Слабая ось по тесту: ' + AXES[weakKey].name +
+    '. Ошибка выжившего (урок 5): ' + R[5].correct + '/6.';
+}
+
+async function runDiagnosis() {
+  const problem = document.getElementById('gpt-problem').value.trim();
+  if (problem.length < 20) return;
+
+  document.getElementById('gpt-form').style.display = 'none';
+  document.getElementById('gpt-loading').style.display = 'block';
+  document.getElementById('gpt-result').style.display = 'none';
+  document.getElementById('gpt-error').style.display = 'none';
+
+  try {
+    const res = await fetch('/api/diagnose?course=axes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ problem, profile: buildProfile(), course: 'axes', axis: AXES[weakKey].name })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (!data.diagnosis) throw new Error('Empty response');
+    document.getElementById('gpt-loading').style.display = 'none';
+    document.getElementById('gpt-text').textContent = data.diagnosis;
+    document.getElementById('gpt-result').style.display = 'block';
+  } catch (err) {
+    document.getElementById('gpt-loading').style.display = 'none';
+    document.getElementById('gpt-form').style.display = 'block';
+    const errEl = document.getElementById('gpt-error');
+    errEl.textContent = 'Что-то пошло не так. Попробуй ещё раз.';
+    errEl.style.display = 'block';
+    console.error('diagnose error:', err);
+  }
+}
+
+function resetDiagnosis() {
+  document.getElementById('gpt-problem').value = '';
+  document.getElementById('gpt-btn').disabled = true;
+  document.getElementById('gpt-btn').style.opacity = '.4';
+  document.getElementById('gpt-result').style.display = 'none';
+  document.getElementById('gpt-error').style.display = 'none';
+  document.getElementById('gpt-form').style.display = 'block';
+}
+
+// ===== INIT =====
+initSwipe(1);
+initSwipe(3);
+predRender();
+initRating();
+initTC();
+</script>
+</body>
+</html>
