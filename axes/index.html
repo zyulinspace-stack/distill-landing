@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Три оси результативности — бесплатный мини-курс · DISTILL</title>
-<meta content="5 уроков про то, чем делатели отличаются от умных наблюдателей: контакт с реальностью, агентность, вкус к асимметрии. Реальные истории, интерактивные механики, персональный разбор в конце. Бесплатно, 15 минут." name="description"/>
+<meta content="5 уроков про то, чем делатели отличаются от умных наблюдателей: контакт с реальностью, агентность, вкус к асимметрии. Реальные истории, интерактивные механики, разбор твоей слабой оси в конце. Бесплатно, 15 минут." name="description"/>
 <link href="https://www.distill-school.ru/axes/" rel="canonical"/>
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -220,7 +220,6 @@
       .pred-val{font-size:26px;min-width:74px}
       .share-card-main{font-size:20px}
     }
-  @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -565,26 +564,6 @@
 <h2 class="weak-title" id="weakTitle"></h2>
 <p class="weak-desc" id="weakDesc"></p>
 <div class="weak-ex" id="weakEx"></div>
-</div>
-<!-- AI DIAGNOSIS -->
-<div id="gpt-block" style="background:var(--dk);border:1.5px solid var(--y);padding:32px;margin-bottom:32px;text-align:left">
-<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px">персональный разбор</div>
-<h3 style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:12px">Опиши, где сейчас буксуешь</h3>
-<p style="font-size:15px;color:var(--g);line-height:1.7;margin-bottom:20px">Проект, решение, цель — 2–3 предложения. Скажу, какая ось проседает именно у тебя, и дам одно упражнение под неё.</p>
-<div id="gpt-form">
-<textarea id="gpt-problem" oninput="gptValidate()" placeholder="Например: третий месяц не могу запустить продукт. Всё время нахожу, что ещё доделать. Знаю, что надо показать людям, но каждый раз кажется, что рано..." style="width:100%;min-height:110px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:var(--w);font-family:inherit;font-size:15px;line-height:1.6;padding:16px;resize:vertical;outline:none;box-sizing:border-box;margin-bottom:14px"></textarea>
-<button disabled="" id="gpt-btn" onclick="runDiagnosis()" style="background:var(--y);color:#000;border:none;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;cursor:pointer;opacity:.4;transition:opacity .2s">получить разбор →</button>
-</div>
-<div id="gpt-loading" style="display:none;padding:24px 0;text-align:center">
-<div style="display:inline-block;width:28px;height:28px;border:3px solid rgba(200,255,0,.2);border-top-color:var(--y);border-radius:50%;animation:spin .8s linear infinite"></div>
-<p style="margin-top:12px;font-size:14px;color:var(--g)">Смотрю, какая ось проседает...</p>
-</div>
-<div id="gpt-result" style="display:none">
-<div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);text-transform:uppercase;margin-bottom:16px;margin-top:8px">разбор</div>
-<div id="gpt-text" style="font-size:16px;line-height:1.8;color:var(--w);white-space:pre-wrap"></div>
-<button onclick="resetDiagnosis()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--g);font-family:inherit;font-size:13px;padding:10px 20px;cursor:pointer">← разобрать другое</button>
-</div>
-<div id="gpt-error" style="display:none;padding:16px;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff8080;font-size:14px;margin-top:12px"></div>
 </div>
 <!-- SHARE -->
 <div style="text-align:left">
@@ -1172,71 +1151,10 @@ function restart() {
   document.querySelectorAll('.recommendation').forEach(r => r.classList.remove('show'));
   document.querySelectorAll('.insight-box').forEach(r => r.classList.remove('show'));
   document.querySelectorAll('.next-lesson').forEach(n => { n.style.display = 'none'; });
-  resetDiagnosis();
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-hero').classList.add('active');
   for (let i = 0; i < 6; i++) { const d = document.getElementById('dot' + i); if (d) d.className = 'nav-dot'; }
   window.scrollTo(0, 0);
-}
-
-// ===== AI DIAGNOSIS =====
-function gptValidate() {
-  const val = document.getElementById('gpt-problem').value.trim();
-  const btn = document.getElementById('gpt-btn');
-  const ready = val.length >= 20;
-  btn.disabled = !ready;
-  btn.style.opacity = ready ? '1' : '.4';
-  btn.style.cursor = ready ? 'pointer' : 'default';
-}
-
-function buildProfile() {
-  const a = computeAxes();
-  const pct = k => Math.round(a[k] * 100) + '%';
-  return 'Контакт с реальностью: ' + pct('reality') +
-    '; Агентность: ' + pct('agency') +
-    '; Вкус к асимметрии: ' + pct('asymmetry') +
-    '. Слабая ось по тесту: ' + AXES[weakKey].name +
-    '. Ошибка выжившего (урок 5): ' + R[5].correct + '/6.';
-}
-
-async function runDiagnosis() {
-  const problem = document.getElementById('gpt-problem').value.trim();
-  if (problem.length < 20) return;
-
-  document.getElementById('gpt-form').style.display = 'none';
-  document.getElementById('gpt-loading').style.display = 'block';
-  document.getElementById('gpt-result').style.display = 'none';
-  document.getElementById('gpt-error').style.display = 'none';
-
-  try {
-    const res = await fetch('/api/diagnose?course=axes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ problem, profile: buildProfile(), course: 'axes', axis: AXES[weakKey].name })
-    });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    if (!data.diagnosis) throw new Error('Empty response');
-    document.getElementById('gpt-loading').style.display = 'none';
-    document.getElementById('gpt-text').textContent = data.diagnosis;
-    document.getElementById('gpt-result').style.display = 'block';
-  } catch (err) {
-    document.getElementById('gpt-loading').style.display = 'none';
-    document.getElementById('gpt-form').style.display = 'block';
-    const errEl = document.getElementById('gpt-error');
-    errEl.textContent = 'Что-то пошло не так. Попробуй ещё раз.';
-    errEl.style.display = 'block';
-    console.error('diagnose error:', err);
-  }
-}
-
-function resetDiagnosis() {
-  document.getElementById('gpt-problem').value = '';
-  document.getElementById('gpt-btn').disabled = true;
-  document.getElementById('gpt-btn').style.opacity = '.4';
-  document.getElementById('gpt-result').style.display = 'none';
-  document.getElementById('gpt-error').style.display = 'none';
-  document.getElementById('gpt-form').style.display = 'block';
 }
 
 // ===== INIT =====
